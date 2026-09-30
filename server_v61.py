@@ -19,26 +19,74 @@ def league_team(league_id,team_id):
     return build_team(team_id,[x["player_name"] for x in entries])
 
 
-def trade_asset_value(row):
-    """Simple AI trade value: elite players are deliberately much harder to acquire."""
+def _primary_position(row):
+    return str(row.get("position") or "").split("/")[0].strip().upper()
+
+def _trade_health_multiplier(state):
+    days=int((state or {}).get("injury_days") or 0)
+    if days>=60:return 0.62
+    if days>=30:return 0.72
+    if days>=14:return 0.82
+    if days>=7:return 0.90
+    return 1.0
+
+def trade_asset_value(row,state=None):
+    """Context-free player value. Team fit is applied separately."""
     o=float(row.get("overall") or 70)
-    # Exponential-ish curve: the gap between 90 and 85 matters more than 80 and 75.
     value=max(1.0,(o-60.0)**2)
     salary=salary_for_row(row)
-    # Very expensive non-stars lose a little value; stars keep their premium.
     if o<84 and salary>20_000_000:value*=0.88
+    value*=_trade_health_multiplier(state)
+    if row.get("expiring_2026_27") is True:
+        # Expiring contracts are less valuable, but stars retain substantial rental value.
+        value*=0.88 if o>=88 else 0.78
     return value
 
-def validate_ai_trade(player_db, send_names, receive_names):
-    by_name={r["name"]:r for rows in player_db.values() for r in rows}
-    offered=sum(trade_asset_value(by_name[n]) for n in send_names if n in by_name)
-    requested=sum(trade_asset_value(by_name[n]) for n in receive_names if n in by_name)
-    if offered<=0 or requested<=0:raise ValueError("Selection de trade invalide.")
-    # AI needs at least 90% of the basketball value it gives away.
-    if offered < requested*0.90:
-        gap=round((requested-offered)/requested*100)
-        raise ValueError(f"Trade refuse par l'IA : offre sportive insuffisante (ecart estime {gap} %).")
-    return {"offered_value":round(offered,1),"requested_value":round(requested,1)}
+def _position_fit_multiplier(roster_rows,incoming_row,outgoing_names=()):
+    """Reward filling a weak position and penalize piling talent onto one position."""
+    pos=_primary_position(incoming_row)
+    if not pos:return 1.0
+    remaining=[r for r in roster_rows if r.get("name") not in set(outgoing_names)]
+    same=sorted([float(r.get("overall") or 70) for r in remaining if _primary_position(r)==pos],reverse=True)
+    o=float(incoming_row.get("overall") or 70)
+    if not same:return 1.12
+    if same[0]>=o+2:return 0.86
+    if len(same)>=2 and same[1]>=o-2:return 0.78
+    if same[0]<=o-5:return 1.08
+    return 1.0
+
+def _team_is_top5(league_id,team_id):
+    rows=standings(league_id)
+    if not rows:return False
+    meta={x["id"]:x for x in TEAM_META};conf=meta.get(team_id,{}).get("conference")
+    same=[x for x in rows if meta.get(x["team_id"],{}).get("conference")==conf]
+    same.sort(key=lambda x:(x["w"],x["pf"]-x["pa"]),reverse=True)
+    return any(x["team_id"]==team_id for x in same[:5])
+
+def validate_ai_trade(league_id,ai_team,send_names,receive_names):
+    by_name={r["name"]:r for rows in PLAYER_DB.values() for r in rows}
+    rm=league_roster_map(league_id)
+    roster_names=[x["player_name"] for x in rm.get(ai_team,[])]
+    roster=[by_name[n] for n in roster_names if n in by_name]
+    states=player_states(league_id,ai_team)
+    outgoing=sum(trade_asset_value(by_name[n],states.get(n)) for n in send_names if n in by_name)
+    incoming=0.0
+    for n in receive_names:
+        if n not in by_name:continue
+        row=by_name[n]
+        incoming+=trade_asset_value(row,None)*_position_fit_multiplier(roster,row,send_names)
+    if outgoing<=0 or incoming<=0:raise ValueError("Selection de trade invalide.")
+    required=1.0
+    if _team_is_top5(league_id,ai_team):required=1.12
+    # Trading away a star requires a premium even when aggregate raw value is similar.
+    best_out=max([float(by_name[n].get("overall") or 0) for n in send_names if n in by_name] or [0])
+    if best_out>=90:required=max(required,1.15)
+    elif best_out>=86:required=max(required,1.08)
+    if incoming < outgoing*required:
+        gap=round((outgoing*required-incoming)/(outgoing*required)*100)
+        reason="équipe Top 5, donc plus réticente à modifier son effectif" if _team_is_top5(league_id,ai_team) else "valeur sportive insuffisante"
+        raise ValueError(f"Trade refuse par l'IA : {reason} (écart estimé {gap} %).")
+    return {"offered_value":round(incoming,1),"requested_value":round(outgoing,1),"required_ratio":required,"top5":_team_is_top5(league_id,ai_team)}
 
 class MultiplayerServer(Server):
     def auth(self):
@@ -159,7 +207,7 @@ class MultiplayerServer(Server):
                 before_a=sum(x["salary"] for x in rm.get(a,[]));before_b=sum(x["salary"] for x in rm.get(other,[]))
                 sa=sum(x["salary"] for x in rm.get(a,[]) if x["player_name"] in pa);sb=sum(x["salary"] for x in rm.get(other,[]) if x["player_name"] in pb)
                 validate_trade_salary(before_a,sa,sb,len(pa));validate_trade_salary(before_b,sb,sa,len(pb))
-                ai_eval=validate_ai_trade(PLAYER_DB,pa,pb)
+                ai_eval=validate_ai_trade(lid,other,pb,pa)
                 names_a=[x["player_name"] for x in rm.get(a,[]) if x["player_name"] not in pa]+pb
                 names_b=[x["player_name"] for x in rm.get(other,[]) if x["player_name"] not in pb]+pa
                 build_team(a,names_a);build_team(other,names_b)
