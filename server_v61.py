@@ -158,7 +158,8 @@ class MultiplayerServer(Server):
                 rm=league_roster_map(lid)
                 before_a=sum(x["salary"] for x in rm.get(a,[]));before_b=sum(x["salary"] for x in rm.get(other,[]))
                 sa=sum(x["salary"] for x in rm.get(a,[]) if x["player_name"] in pa);sb=sum(x["salary"] for x in rm.get(other,[]) if x["player_name"] in pb)
-                validate_trade_salary(before_a,sa,sb,len(pa));validate_trade_salary(before_b,sb,sa,len(pb))\n                ai_eval=validate_ai_trade(PLAYER_DB,pa,pb)
+                validate_trade_salary(before_a,sa,sb,len(pa));validate_trade_salary(before_b,sb,sa,len(pb))
+                ai_eval=validate_ai_trade(PLAYER_DB,pa,pb)
                 names_a=[x["player_name"] for x in rm.get(a,[]) if x["player_name"] not in pa]+pb
                 names_b=[x["player_name"] for x in rm.get(other,[]) if x["player_name"] not in pb]+pa
                 build_team(a,names_a);build_team(other,names_b)
