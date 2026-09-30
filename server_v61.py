@@ -83,8 +83,12 @@ class MultiplayerServer(Server):
                     if len(starters)!=5:raise ValueError("Il faut exactement 5 titulaires.")
                     if any(n not in by for n in starters):raise ValueError("Titulaire inconnu.")
                     team.starters=[by[n] for n in starters];team.bench=[x for x in team.roster if x not in team.starters]
+                    rotation_rows=[{"name":x["name"],"minutes":int(x.get("minutes",0)),"starter":bool(x.get("starter"))} for x in payload["rotation"]]
+                    # Exact validation with the same minute-by-minute rotation engine used by the preview.
+                    rotation_preview(m["team_id"],rotation_rows)
                     set_rotation_plan(team,{x["name"]:int(x.get("minutes",0)) for x in payload["rotation"]})
                     diag=rotation_diagnostics(team)
+                    if not diag.get("valid"):raise ValueError("Rotation impossible : la couverture PG/SG/SF/PF/C n'est pas valide sur 48 minutes.")
                     save_rotation(lid,m["team_id"],payload);return self.send_json(200,{"success":True,"message":"Rotation et tactiques sauvegardées.","rotation_diagnostics":diag})
                 if m["owner_id"]!=u["id"]:return self.send_json(403,{"success":False,"message":"Seul le créateur de la ligue peut générer le calendrier."})
                 rows=generate_calendar([x["id"] for x in TEAM_META],b.get("start_date","2026-10-20"),lid)
