@@ -372,7 +372,7 @@ class MultiplayerServer(Server):
                 if m["owner_id"]!=u["id"]:return self.send_json(403,{"success":False,"message":"Seul le créateur de la ligue peut générer le calendrier."})
                 rows=generate_calendar([x["id"] for x in TEAM_META],b.get("start_date","2026-10-20"),lid)
                 clear_games(lid);insert_games(lid,rows)
-                return self.send_json(200,{"success":True,"games":len(rows)})
+                return self.send_json(200,{"success":True,"games":len(rows),"source":getattr(generate_calendar,"last_source","")})
             if self.path in ("/api/leagues/create","/api/leagues/join","/api/leagues/team"):
                 u=self.auth()
                 if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
