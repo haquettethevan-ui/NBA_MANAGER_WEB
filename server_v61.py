@@ -4,7 +4,7 @@ from multiplayer_db import *
 from season_calendar import generate_calendar
 from season_runner import simulate_next_day, _load_team_state
 from main import OFFENSE_FOCUSES, DEFENSE_FOCUSES, normalize_tactics
-from finance_rules import SALARY_CAP_2026_27, salary_for_row, validate_cap
+from finance_rules import SALARY_CAP_2026_27, LUXURY_TAX_2026_27, FIRST_APRON_2026_27, SECOND_APRON_2026_27, salary_for_row, payroll_zone, validate_trade_salary
 from http.cookies import SimpleCookie
 
 init_db()
@@ -53,8 +53,8 @@ class MultiplayerServer(Server):
                 def pack(team_id):
                     entries=rm.get(team_id,[]);payroll=sum(x["salary"] for x in entries)
                     players=[{"name":e["player_name"],"salary":e["salary"],"overall":allrows.get(e["player_name"],{}).get("overall",0),"position":allrows.get(e["player_name"],{}).get("position","")} for e in entries]
-                    return {"team_id":team_id,"payroll":payroll,"cap_space":max(0,SALARY_CAP_2026_27-payroll),"over_cap":payroll>SALARY_CAP_2026_27,"players":players}
-                return self.send_json(200,{"success":True,"salary_cap":SALARY_CAP_2026_27,"my_team":pack(tid),"teams":[pack(x["id"]) for x in TEAM_META if x["id"]!=tid]})
+                    return {"team_id":team_id,"payroll":payroll,"cap_space":max(0,SALARY_CAP_2026_27-payroll),"over_cap":payroll>SALARY_CAP_2026_27,"payroll_zone":payroll_zone(payroll),"players":players}
+                return self.send_json(200,{"success":True,"salary_cap":SALARY_CAP_2026_27,"luxury_tax":LUXURY_TAX_2026_27,"first_apron":FIRST_APRON_2026_27,"second_apron":SECOND_APRON_2026_27,"my_team":pack(tid),"teams":[pack(x["id"]) for x in TEAM_META if x["id"]!=tid]})
             if parsed.path=="/api/league/calendar":
                 games=games_for(lid)
                 # result_json contient le box score complet. On ne l'envoie que
@@ -137,7 +137,7 @@ class MultiplayerServer(Server):
                 rm=league_roster_map(lid)
                 before_a=sum(x["salary"] for x in rm.get(a,[]));before_b=sum(x["salary"] for x in rm.get(other,[]))
                 sa=sum(x["salary"] for x in rm.get(a,[]) if x["player_name"] in pa);sb=sum(x["salary"] for x in rm.get(other,[]) if x["player_name"] in pb)
-                validate_cap(before_a,before_a-sa+sb);validate_cap(before_b,before_b-sb+sa)
+                validate_trade_salary(before_a,sa,sb,len(pa));validate_trade_salary(before_b,sb,sa,len(pb))
                 names_a=[x["player_name"] for x in rm.get(a,[]) if x["player_name"] not in pa]+pb
                 names_b=[x["player_name"] for x in rm.get(other,[]) if x["player_name"] not in pb]+pa
                 build_team(a,names_a);build_team(other,names_b)
