@@ -3,7 +3,7 @@ import os
 from multiplayer_db import *
 from season_calendar import generate_calendar
 from season_runner import simulate_next_day
-from main import OFFENSE_FOCUSES, DEFENSE_FOCUSES
+from main import OFFENSE_FOCUSES, DEFENSE_FOCUSES, normalize_tactics
 from http.cookies import SimpleCookie
 
 init_db()
