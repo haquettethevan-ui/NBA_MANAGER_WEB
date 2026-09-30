@@ -151,68 +151,98 @@ def clone_rotation_plan_for(team, starter_players, bench_players, starter_minute
 
 
 
-def build_auto_rotation_minutes(team):
-    """V39: rotation automatique réaliste de 10 joueurs (5 titulaires + 5 banc)."""
-    players = list(team.roster)
+def _schedule_based_auto_rotation(team, max_active=10):
+    """Construit une rotation à partir de 48 cinq réellement valides.
+
+    Contrairement à l'ancien générateur, le banc n'a pas besoin de couvrir à
+    lui seul PG/SG/SF/PF/C. Les titulaires et remplaçants se partagent les
+    postes, comme dans une vraie rotation NBA.
+    """
+    players = sorted(list(team.roster), key=lambda p: p.overall, reverse=True)
+    if len(players) < 5:
+        raise ValueError("Il faut au moins 5 joueurs disponibles.")
+
     starters = choose_starting_five(players)
     starter_names = {p.name for p in starters}
-    pool = sorted([p for p in players if p.name not in starter_names], key=lambda p: p.overall, reverse=True)
-    if len(pool) < 5:
-        raise ValueError("Il faut au moins 10 joueurs disponibles pour la rotation automatique.")
+    bench = [p for p in players if p.name not in starter_names]
+    active = starters + bench[:max(0, max_active - 5)]
 
-    # Cherche 5 remplaçants capables de couvrir collectivement tous les postes.
-    candidates = []
-    for combo in combinations(pool[:min(10, len(pool))], 5):
-        covered = set().union(*(set(eligible_positions(p)) for p in combo))
-        if set(REQUIRED_POSITIONS).issubset(covered):
-            candidates.append(combo)
-    candidates.sort(key=lambda c: sum(p.overall for p in c), reverse=True)
-    starter_minutes = [35, 33, 31, 30, 29]
-    bench_minutes = [22, 19, 16, 14, 11]
-    for group in candidates[:30]:
-        minutes = {p.name: 0 for p in players}
-        for p, m in zip(sorted(starters, key=lambda x: x.overall, reverse=True), starter_minutes): minutes[p.name] = m
-        for p, m in zip(sorted(group, key=lambda x: x.overall, reverse=True), bench_minutes): minutes[p.name] = m
-        team.starters = starters
-        team.rotation_plan = minutes
-        try:
-            build_feasible_rotation(team)
-            return starters, minutes
-        except ValueError:
-            pass
-    raise ValueError("Impossible de générer une rotation automatique réaliste couvrant les cinq postes.")
+    # Toutes les compositions de 5 qui couvrent réellement les cinq postes.
+    valid_lineups = []
+    for combo in combinations(active, 5):
+        if position_assignment(list(combo)) is not None:
+            valid_lineups.append(list(combo))
+    if not valid_lineups:
+        raise ValueError("Aucun cinq valide ne peut couvrir PG, SG, SF, PF et C.")
+
+    # Cibles réalistes. Elles guident la sélection mais ne sont pas imposées :
+    # un joueur occupant un poste rare peut jouer davantage si nécessaire.
+    starter_targets = [35, 34, 32, 30, 29]
+    bench_targets = [22, 19, 16, 14, 9]
+    target = {p.name: 0 for p in players}
+    for p, m in zip(sorted(starters, key=lambda x: x.overall, reverse=True), starter_targets):
+        target[p.name] = m
+    for p, m in zip(sorted(active[5:], key=lambda x: x.overall, reverse=True), bench_targets):
+        target[p.name] = m
+
+    # Si moins de 10 joueurs sont disponibles, répartit les minutes restantes
+    # sur les joueurs actifs en privilégiant les meilleurs.
+    missing = 240 - sum(target.values())
+    ranked_active = sorted(active, key=lambda p: p.overall, reverse=True)
+    i = 0
+    while missing > 0:
+        p = ranked_active[i % len(ranked_active)]
+        if target[p.name] < 48:
+            target[p.name] += 1
+            missing -= 1
+        i += 1
+
+    used = {p.name: 0 for p in players}
+    schedule = []
+    # Le premier cinq est bien le cinq titulaire choisi.
+    schedule.append(list(starters))
+    for p in starters:
+        used[p.name] += 1
+
+    for minute in range(1, 48):
+        best = None
+        best_key = None
+        for lineup in valid_lineups:
+            # Besoin restant : favorise les joueurs sous leur cible.
+            need = sum(target[p.name] - used[p.name] for p in lineup)
+            # Évite les stints absurdes sans rendre la contrainte rigide.
+            continuity = len({p.name for p in schedule[-1]} & {p.name for p in lineup})
+            quality = sum(p.overall for p in lineup)
+            key = (need, continuity * 0.35, quality * 0.01)
+            if best_key is None or key > best_key:
+                best_key = key
+                best = lineup
+        schedule.append(best)
+        for p in best:
+            used[p.name] += 1
+
+    minutes = {p.name: used[p.name] for p in players}
+    team.starters = starters
+    team.bench = [p for p in players if p.name not in starter_names]
+    team.rotation_plan = minutes
+
+    # Validation finale par le moteur exact. Puisque les minutes proviennent
+    # elles-mêmes de 48 cinq valides, elles doivent être réalisables.
+    build_feasible_rotation(team)
+    return starters, minutes
 
 
-AI_STARTER_MINUTES = [35, 33, 31, 30, 29]   # 158 min
-AI_BENCH_MINUTES = [22, 19, 16, 14, 11]     # 82 min -> total 240
+def build_auto_rotation_minutes(team):
+    return _schedule_based_auto_rotation(team, max_active=min(10, len(team.roster)))
+
+
+AI_STARTER_MINUTES = [35, 33, 31, 30, 29]
+AI_BENCH_MINUTES = [22, 19, 16, 14, 11]
 
 
 def build_ai_rotation(team):
-    """Rotation IA robuste V46: exactement 10 joueurs et 240 minutes.
-
-    Les cinq titulaires jouent 30 minutes. On cherche ensuite cinq remplaçants
-    parmi les meilleurs joueurs du banc dont les 18 minutes chacun permettent
-    une affectation PG/SG/SF/PF/C exacte pendant 48 minutes.
-    """
-    starters = list(team.starters)
-    starter_names = {p.name for p in starters}
-    pool = sorted([p for p in team.roster if p.name not in starter_names],
-                  key=lambda p: p.overall, reverse=True)
-    if len(pool) < 5:
-        raise ValueError("Il faut au moins 10 joueurs pour construire la rotation IA.")
-    for bench in combinations(pool[:min(12, len(pool))], 5):
-        minutes = {p.name: 0 for p in team.roster}
-        for p in starters:
-            minutes[p.name] = 30
-        for p in bench:
-            minutes[p.name] = 18
-        team.rotation_plan = minutes
-        try:
-            build_feasible_rotation(team)
-            return minutes
-        except ValueError:
-            continue
-    raise ValueError("Impossible de générer une rotation IA de 10 joueurs couvrant les cinq postes.")
+    _, minutes = _schedule_based_auto_rotation(team, max_active=min(10, len(team.roster)))
+    return minutes
 
 
 def ai_tactics(team):
