@@ -138,6 +138,9 @@ class MultiplayerServer(Server):
                 before_a=sum(x["salary"] for x in rm.get(a,[]));before_b=sum(x["salary"] for x in rm.get(other,[]))
                 sa=sum(x["salary"] for x in rm.get(a,[]) if x["player_name"] in pa);sb=sum(x["salary"] for x in rm.get(other,[]) if x["player_name"] in pb)
                 validate_cap(before_a,before_a-sa+sb);validate_cap(before_b,before_b-sb+sa)
+                names_a=[x["player_name"] for x in rm.get(a,[]) if x["player_name"] not in pa]+pb
+                names_b=[x["player_name"] for x in rm.get(other,[]) if x["player_name"] not in pb]+pa
+                build_team(a,names_a);build_team(other,names_b)
                 result=execute_trade(lid,a,pa,other,pb)
                 return self.send_json(200,{"success":True,"message":"Trade validé. Les rotations des deux équipes ont été réinitialisées.","trade":result})
             if self.path=="/api/register":
