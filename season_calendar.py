@@ -1,4 +1,6 @@
-import datetime, json, random, urllib.request\nfrom pathlib import Path
+import datetime, json, random, urllib.request
+from pathlib import Path
+
 
 NBA_SCHEDULE_URL = "https://cdn.nba.com/static/json/staticData/scheduleLeagueV2_1.json"
 
