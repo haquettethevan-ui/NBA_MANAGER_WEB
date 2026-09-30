@@ -19,6 +19,27 @@ def league_team(league_id,team_id):
     return build_team(team_id,[x["player_name"] for x in entries])
 
 
+def trade_asset_value(row):
+    """Simple AI trade value: elite players are deliberately much harder to acquire."""
+    o=float(row.get("overall") or 70)
+    # Exponential-ish curve: the gap between 90 and 85 matters more than 80 and 75.
+    value=max(1.0,(o-60.0)**2)
+    salary=salary_for_row(row)
+    # Very expensive non-stars lose a little value; stars keep their premium.
+    if o<84 and salary>20_000_000:value*=0.88
+    return value
+
+def validate_ai_trade(player_db, send_names, receive_names):
+    by_name={r["name"]:r for rows in player_db.values() for r in rows}
+    offered=sum(trade_asset_value(by_name[n]) for n in send_names if n in by_name)
+    requested=sum(trade_asset_value(by_name[n]) for n in receive_names if n in by_name)
+    if offered<=0 or requested<=0:raise ValueError("Selection de trade invalide.")
+    # AI needs at least 90% of the basketball value it gives away.
+    if offered < requested*0.90:
+        gap=round((requested-offered)/requested*100)
+        raise ValueError(f"Trade refuse par l'IA : offre sportive insuffisante (ecart estime {gap} %).")
+    return {"offered_value":round(offered,1),"requested_value":round(requested,1)}
+
 class MultiplayerServer(Server):
     def auth(self):
         h=self.headers.get("Authorization","")
@@ -137,12 +158,12 @@ class MultiplayerServer(Server):
                 rm=league_roster_map(lid)
                 before_a=sum(x["salary"] for x in rm.get(a,[]));before_b=sum(x["salary"] for x in rm.get(other,[]))
                 sa=sum(x["salary"] for x in rm.get(a,[]) if x["player_name"] in pa);sb=sum(x["salary"] for x in rm.get(other,[]) if x["player_name"] in pb)
-                validate_trade_salary(before_a,sa,sb,len(pa));validate_trade_salary(before_b,sb,sa,len(pb))
+                validate_trade_salary(before_a,sa,sb,len(pa));validate_trade_salary(before_b,sb,sa,len(pb))\n                ai_eval=validate_ai_trade(PLAYER_DB,pa,pb)
                 names_a=[x["player_name"] for x in rm.get(a,[]) if x["player_name"] not in pa]+pb
                 names_b=[x["player_name"] for x in rm.get(other,[]) if x["player_name"] not in pb]+pa
                 build_team(a,names_a);build_team(other,names_b)
                 result=execute_trade(lid,a,pa,other,pb)
-                return self.send_json(200,{"success":True,"message":"Trade validé. Les rotations des deux équipes ont été réinitialisées.","trade":result})
+                return self.send_json(200,{"success":True,"message":"Trade validé. Les rotations des deux équipes ont été réinitialisées.","trade":result,"evaluation":ai_eval})
             if self.path=="/api/register":
                 b=self.body();uid=create_user(b.get("username",""),b.get("password",""));token,u=login(b["username"],b["password"])
                 return self.send_json(200,{"success":True,"token":token,"user":{"id":uid,"username":b["username"]}})
