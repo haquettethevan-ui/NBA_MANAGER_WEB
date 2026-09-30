@@ -29,7 +29,7 @@ class MultiplayerServer(Server):
         if self.path=="/api/game-config":
             return self.send_json(200,{"success":True,"offense":list(OFFENSE_FOCUSES),"defense":list(DEFENSE_FOCUSES)})
         parsed=urlparse(self.path); q=parse_qs(parsed.query)
-        if parsed.path in ("/api/league/roster","/api/league/rotation","/api/league/calendar","/api/league/standings","/api/league/dashboard"):
+        if parsed.path in ("/api/league/roster","/api/league/rotation","/api/league/calendar","/api/league/results","/api/league/standings","/api/league/dashboard"):
             u=self.auth()
             if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
             lid=int(q.get("league_id",[0])[0]);m=membership(u["id"],lid)
@@ -46,6 +46,19 @@ class MultiplayerServer(Server):
                         except Exception:g["result"]=None
                     g.pop("result_json",None)
                 return self.send_json(200,{"success":True,"games":games,"members":league_members(lid)})
+            if parsed.path=="/api/league/results":
+                import json
+                tid=m.get("team_id"); mine=[]; others=[]
+                for g in games_for(lid):
+                    if g["status"]!="played":continue
+                    row={k:v for k,v in g.items() if k!="result_json"}
+                    if tid and tid in (g["home_team"],g["away_team"]):
+                        try:row["result"]=json.loads(g["result_json"]) if g.get("result_json") else None
+                        except Exception:row["result"]=None
+                        mine.append(row)
+                    else:others.append(row)
+                mine.reverse();others.reverse()
+                return self.send_json(200,{"success":True,"team_id":tid,"my_games":mine,"other_games":others[:100]})
             if parsed.path=="/api/league/standings":
                 rows=standings(lid);meta={x["id"]:x for x in TEAM_META};return self.send_json(200,{"success":True,"standings":[{**x,"conference":meta.get(x["team_id"],{}).get("conference","")} for x in rows]})
             if parsed.path=="/api/league/dashboard":
