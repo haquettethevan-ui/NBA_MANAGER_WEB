@@ -280,6 +280,12 @@ class MultiplayerServer(Server):
                     return self.send_json(200,{"success":True,"players":rows,"timeline":roster_timeline_from_team(team),"rotation_diagnostics":rotation_diagnostics(team)})
                 timeline=rotation_preview(m["team_id"],b.get("rotation",[]),[p.name for p in team.roster])
                 return self.send_json(200,{"success":True,"timeline":timeline})
+            if self.path=="/api/account/password":
+                u=self.auth()
+                if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
+                b=self.body();new_password=str(b.get("new_password",""))
+                change_password(u["id"],new_password)
+                return self.send_json(200,{"success":True,"message":"Mot de passe modifié."})
             if self.path=="/api/leagues/delete":
                 u=self.auth()
                 if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
