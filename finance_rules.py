@@ -1,4 +1,7 @@
 SALARY_CAP_2026_27 = 164_961_000
+LUXURY_TAX_2026_27 = 200_428_000
+FIRST_APRON_2026_27 = 209_015_000
+SECOND_APRON_2026_27 = 221_686_000
 
 def fallback_salary(overall):
     """Temporary salary valuation when no imported 2026-27 contract is available."""
@@ -15,11 +18,24 @@ def salary_for_row(row):
     value=row.get("salary_2026_27")
     return int(value) if value not in (None,"") else fallback_salary(row.get("overall",70))
 
+def payroll_zone(payroll):
+    p=int(payroll)
+    if p>SECOND_APRON_2026_27:return "second_apron"
+    if p>FIRST_APRON_2026_27:return "first_apron"
+    if p>LUXURY_TAX_2026_27:return "tax"
+    if p>SALARY_CAP_2026_27:return "over_cap"
+    return "under_cap"
+
+def validate_trade_salary(payroll,outgoing,incoming,outgoing_players=1):
+    payroll=int(payroll);outgoing=int(outgoing);incoming=int(incoming)
+    if payroll>SECOND_APRON_2026_27 and int(outgoing_players)>1:
+        raise ValueError("Trade refuse : une equipe au-dessus du Second Apron ne peut pas agreger plusieurs salaires.")
+    limit=outgoing if payroll>FIRST_APRON_2026_27 else int(outgoing*1.25)+100_000
+    if incoming>limit:
+        if payroll>FIRST_APRON_2026_27:
+            raise ValueError("Trade refuse : au-dessus du First Apron, le salaire recu ne peut pas depasser le salaire envoye.")
+        raise ValueError(f"Trade refuse : salaire recu trop eleve (maximum {limit/1_000_000:.2f} M$).")
+    return True
+
 def validate_cap(before,after):
-    before=int(before);after=int(after)
-    if before<=SALARY_CAP_2026_27:
-        if after>SALARY_CAP_2026_27:
-            raise ValueError(f"Trade refusé : la masse salariale dépasserait le salary cap ({SALARY_CAP_2026_27/1_000_000:.3f} M$).")
-    elif after>before:
-        raise ValueError("Trade refusé : une équipe déjà au-dessus du salary cap ne peut pas augmenter sa masse salariale.")
     return True
