@@ -138,12 +138,12 @@ def _pick(items, weights): return random.choices(items, weights=[max(.001,w) for
 
 def _energy_factor(p, stat="skill"):
     e = _clamp(getattr(p, "energy", 100.0), 45.0, 100.0)
-    # V48: fatigue is progressive rather than invisible until 82.
-    # 95-100 remains almost neutral; 80 is noticeable; below 70 becomes costly.
-    loss = max(0.0, 96.0 - e)
-    scale = {"skill": .0029, "athletic": .0048, "defense": .0043}.get(stat, .0032)
-    extra = max(0.0, 72.0 - e) * {"skill": .0016, "athletic": .0022, "defense": .0020}.get(stat, .0017)
-    return max(.70, 1.0 - loss * scale - extra)
+    # La fatigue doit compter sans écraser le talent. Au-dessus de 85,
+    # l'effet reste léger ; il devient réellement visible surtout sous 70.
+    loss = max(0.0, 94.0 - e)
+    scale = {"skill": .0017, "athletic": .0027, "defense": .0024}.get(stat, .0019)
+    extra = max(0.0, 68.0 - e) * {"skill": .0010, "athletic": .0015, "defense": .0013}.get(stat, .0011)
+    return max(.80, 1.0 - loss * scale - extra)
 
 
 def _offense_rating(p):
@@ -528,12 +528,12 @@ def _injury_probability(player):
         return 0.0
     # Healthy baseline is deliberately small. Risk rises with low energy,
     # recent workload and especially heavy minutes while already fatigued.
-    risk=.0015
-    risk += max(0.0,mins-28)*.00016
-    risk += max(0.0,82.0-player.energy)*.00028
-    risk += max(0.0,player.workload-35.0)*.00012
-    risk += max(0.0,mins-34)*max(0.0,78.0-player.energy)*.000018
-    return _clamp(risk,.0,.065)
+    risk=.0010
+    risk += max(0.0,mins-30)*.00010
+    risk += max(0.0,78.0-player.energy)*.00016
+    risk += max(0.0,player.workload-45.0)*.00008
+    risk += max(0.0,mins-36)*max(0.0,72.0-player.energy)*.000010
+    return _clamp(risk,.0,.035)
 
 def _roll_postgame_injuries(team):
     injuries=[]
@@ -542,12 +542,12 @@ def _roll_postgame_injuries(team):
         if prob and random.random() < prob:
             # Mostly minor injuries, occasional medium absence, rare long absence.
             x=random.random()
-            if x < .68:
-                days=random.randint(2,7); label="Blessure mineure"
-            elif x < .94:
-                days=random.randint(8,21); label="Blessure modérée"
+            if x < .74:
+                days=random.randint(2,6); label="Blessure mineure"
+            elif x < .96:
+                days=random.randint(7,18); label="Blessure modérée"
             else:
-                days=random.randint(22,45); label="Blessure importante"
+                days=random.randint(19,40); label="Blessure importante"
             p.injury_days=days; p.injury_label=label
             injuries.append({"name":p.name,"days":days,"type":label,
                              "energy":round(p.energy,1),"workload":round(p.workload,1)})
