@@ -1,0 +1,22 @@
+name: Cache NBA schedule
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * 1"
+permissions:
+  contents: write
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/cache_nba_schedule.py
+      - name: Commit schedule if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/nba_schedule_2026_27.json
+          git diff --cached --quiet || (git commit -m "Update cached NBA 2026-27 schedule" && git push)
