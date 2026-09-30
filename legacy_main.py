@@ -626,8 +626,23 @@ def normalize_tactics(tactics):
     return result
 
 
-def eligible_positions(player):
+def natural_positions(player):
     return tuple(position.strip() for position in player.position.split("/"))
+
+def eligible_positions(player):
+    """Postes jouables dans une rotation.
+
+    Les positions 2K restent les positions naturelles, mais un joueur peut
+    dépanner sur un poste adjacent. Cela évite de rendre certains effectifs
+    impossibles sans autoriser des aberrations comme un PG au poste de C.
+    """
+    natural=set(natural_positions(player))
+    adjacent={"PG":{"SG"},"SG":{"PG","SF"},"SF":{"SG","PF"},"PF":{"SF","C"},"C":{"PF"}}
+    allowed=set(natural)
+    for pos in natural:
+        allowed.update(adjacent.get(pos,set()))
+    order=("PG","SG","SF","PF","C")
+    return tuple(pos for pos in order if pos in allowed)
 
 
 def primary_position(player):
@@ -668,8 +683,10 @@ def position_assignment(lineup):
         for player in sorted(candidates[pos], key=lambda p: p.overall, reverse=True):
             if player.name in used:
                 continue
-            # Bonus quand le poste correspond à sa position principale.
-            add = 100 if primary_position(player) == pos else 75
+            # Poste naturel favorisé. Un poste adjacent reste possible mais
+            # n'est choisi que lorsque la construction de la rotation le demande.
+            natural=set(natural_positions(player))
+            add = 100 if primary_position(player) == pos else (88 if pos in natural else 58)
             used.add(player.name)
             mapping[pos] = player
             search(index + 1, used, mapping, score + add + player.overall * 0.01)
