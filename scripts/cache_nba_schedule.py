@@ -18,4 +18,5 @@ games=list({(g["date"],g["home"],g["away"]):g for g in games}.values())
 games.sort(key=lambda g:(g["date"],g["home"],g["away"]))
 if len(games)<1150:raise RuntimeError(f"Schedule looks incomplete: {len(games)} known games")
 OUT.parent.mkdir(parents=True,exist_ok=True)
-OUT.write_text(json.dumps({"season":"2026-27","source":"NBA official schedule","games":games},ensure_ascii=False,indent=2)+chr(10),encoding="utf-8")\nprint(f"Saved {len(games)} known regular-season games to {OUT}")\n
+OUT.write_text(json.dumps({"season":"2026-27","source":"NBA official schedule","games":games},ensure_ascii=False,indent=2)+chr(10),encoding="utf-8")
+print(f"Saved {len(games)} known regular-season games to {OUT}")
