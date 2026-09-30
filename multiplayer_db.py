@@ -52,6 +52,11 @@ def init_db():
           from_team TEXT NOT NULL,to_team TEXT NOT NULL,send_json TEXT NOT NULL,receive_json TEXT NOT NULL,
           status TEXT NOT NULL DEFAULT 'pending',reason TEXT NOT NULL DEFAULT '',created_at TEXT NOT NULL,
           FOREIGN KEY(league_id) REFERENCES leagues(id) ON DELETE CASCADE);
+        CREATE TABLE IF NOT EXISTS league_ready(
+          league_id INTEGER NOT NULL,user_id INTEGER NOT NULL,ready INTEGER NOT NULL DEFAULT 0,
+          updated_at TEXT NOT NULL,PRIMARY KEY(league_id,user_id),
+          FOREIGN KEY(league_id) REFERENCES leagues(id) ON DELETE CASCADE,
+          FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE);
         CREATE TABLE IF NOT EXISTS transaction_events(
           id INTEGER PRIMARY KEY AUTOINCREMENT,league_id INTEGER NOT NULL,event_type TEXT NOT NULL,
           team_a TEXT NOT NULL,team_b TEXT NOT NULL,players_a_json TEXT NOT NULL,players_b_json TEXT NOT NULL,
@@ -286,3 +291,28 @@ def transaction_events(league_id,limit=80):
     for r in rows:
         r["players_a"]=json.loads(r.pop("players_a_json"));r["players_b"]=json.loads(r.pop("players_b_json"))
     return rows
+
+
+def set_ready(league_id,user_id,ready=True):
+    with connect() as c:
+        c.execute("""INSERT INTO league_ready(league_id,user_id,ready,updated_at) VALUES(?,?,?,?)
+        ON CONFLICT(league_id,user_id) DO UPDATE SET ready=excluded.ready,updated_at=excluded.updated_at""",
+        (league_id,user_id,1 if ready else 0,now()))
+
+def ready_status(league_id):
+    members=league_members(league_id)
+    with connect() as c:
+        rows={r["user_id"]:bool(r["ready"]) for r in c.execute("SELECT user_id,ready FROM league_ready WHERE league_id=?",(league_id,))}
+    active=[m for m in members if m.get("team_id")]
+    return {"ready_count":sum(1 for m in active if rows.get(m["user_id"],False)),"total_count":len(active),
+            "members":[{"user_id":m["user_id"],"username":m["username"],"team_id":m["team_id"],"ready":rows.get(m["user_id"],False)} for m in active]}
+
+def reset_ready(league_id):
+    with connect() as c:c.execute("UPDATE league_ready SET ready=0,updated_at=? WHERE league_id=?",(now(),league_id))
+
+def all_ready(league_id):
+    s=ready_status(league_id)
+    return s["total_count"]>0 and s["ready_count"]==s["total_count"]
+
+def all_league_ids():
+    with connect() as c:return [r["id"] for r in c.execute("SELECT id FROM leagues")]
