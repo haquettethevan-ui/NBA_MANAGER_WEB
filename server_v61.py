@@ -4,9 +4,20 @@ from multiplayer_db import *
 from season_calendar import generate_calendar
 from season_runner import simulate_next_day, _load_team_state
 from main import OFFENSE_FOCUSES, DEFENSE_FOCUSES, normalize_tactics
+from finance_rules import SALARY_CAP_2026_27, salary_for_row, validate_cap
 from http.cookies import SimpleCookie
 
 init_db()
+
+def seed_finances(league_id):
+    rows={tid:[{"name":r["name"],"salary":salary_for_row(r)} for r in complete_players(tid)] for tid in [x["id"] for x in TEAM_META]}
+    ensure_league_rosters(league_id,rows)
+
+def league_team(league_id,team_id):
+    seed_finances(league_id)
+    entries=roster_entries(league_id,team_id)
+    return build_team(team_id,[x["player_name"] for x in entries])
+
 
 class MultiplayerServer(Server):
     def auth(self):
@@ -29,11 +40,21 @@ class MultiplayerServer(Server):
         if self.path=="/api/game-config":
             return self.send_json(200,{"success":True,"offense":list(OFFENSE_FOCUSES),"defense":list(DEFENSE_FOCUSES)})
         parsed=urlparse(self.path); q=parse_qs(parsed.query)
-        if parsed.path in ("/api/league/roster","/api/league/rotation","/api/league/calendar","/api/league/results","/api/league/standings","/api/league/dashboard"):
+        if parsed.path in ("/api/league/roster","/api/league/rotation","/api/league/calendar","/api/league/results","/api/league/standings","/api/league/dashboard","/api/league/finances"):
             u=self.auth()
             if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
             lid=int(q.get("league_id",[0])[0]);m=membership(u["id"],lid)
             if not m:return self.send_json(403,{"success":False,"message":"Tu n'appartiens pas à cette ligue."})
+            seed_finances(lid)
+            if parsed.path=="/api/league/finances":
+                tid=m.get("team_id")
+                if not tid:return self.send_json(400,{"success":False,"message":"Choisis d'abord ton équipe."})
+                rm=league_roster_map(lid);allrows={r["name"]:r for rows0 in PLAYER_DB.values() for r in rows0}
+                def pack(team_id):
+                    entries=rm.get(team_id,[]);payroll=sum(x["salary"] for x in entries)
+                    players=[{"name":e["player_name"],"salary":e["salary"],"overall":allrows.get(e["player_name"],{}).get("overall",0),"position":allrows.get(e["player_name"],{}).get("position","")} for e in entries]
+                    return {"team_id":team_id,"payroll":payroll,"cap_space":max(0,SALARY_CAP_2026_27-payroll),"over_cap":payroll>SALARY_CAP_2026_27,"players":players}
+                return self.send_json(200,{"success":True,"salary_cap":SALARY_CAP_2026_27,"my_team":pack(tid),"teams":[pack(x["id"]) for x in TEAM_META if x["id"]!=tid]})
             if parsed.path=="/api/league/calendar":
                 games=games_for(lid)
                 # result_json contient le box score complet. On ne l'envoie que
@@ -80,7 +101,7 @@ class MultiplayerServer(Server):
                     opponent={"team_id":oid,"last_results":team_recent_games(lid,oid,3),"injuries":[{"name":n,"days":x["injury_days"],"label":x["injury_label"]} for n,x in os.items() if x["injury_days"]>0]}
                 return self.send_json(200,{"success":True,"team_id":tid,"record":row,"next_game":next_game,"last_game":played[-1] if played else None,"injuries":injuries,"tired":tired,"opponent":opponent,"events":injury_events(lid),"league_name":m["name"],"invite_code":m["invite_code"]})
             if not m.get("team_id"):return self.send_json(400,{"success":False,"message":"Choisis d'abord ton équipe."})
-            team,_=build_team(m["team_id"])
+            team,_=league_team(lid,m["team_id"])
             if parsed.path=="/api/league/roster":
                 saved=load_rotation(lid,m["team_id"]);states=player_states(lid,m["team_id"])
                 ng=next((g for g in games_for(lid) if g["status"]=="scheduled" and m["team_id"] in (g["home_team"],g["away_team"])),None)
@@ -93,6 +114,32 @@ class MultiplayerServer(Server):
         return super().do_GET()
     def do_POST(self):
         try:
+            if self.path in ("/api/auto-rotation","/api/rotation-preview"):
+                u=self.auth()
+                if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
+                b=self.body();lid=int(b.get("league_id",0));m=membership(u["id"],lid)
+                if not m or not m.get("team_id"):return self.send_json(403,{"success":False,"message":"Ligue ou équipe invalide."})
+                team,_=league_team(lid,m["team_id"])
+                if self.path=="/api/auto-rotation":
+                    starters,rotation=build_auto_rotation_minutes(team);starter_names={p.name for p in starters};set_rotation_plan(team,rotation)
+                    rows=[{"name":p.name,"position":p.position,"overall":p.overall,"role":p.role,"minutes":rotation[p.name],"starter":p.name in starter_names} for p in team.roster]
+                    return self.send_json(200,{"success":True,"players":rows,"timeline":roster_timeline_from_team(team),"rotation_diagnostics":rotation_diagnostics(team)})
+                timeline=rotation_preview(m["team_id"],b.get("rotation",[]),[p.name for p in team.roster])
+                return self.send_json(200,{"success":True,"timeline":timeline})
+            if self.path=="/api/league/trade":
+                u=self.auth()
+                if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
+                b=self.body();lid=int(b.get("league_id",0));m=membership(u["id"],lid)
+                if not m or not m.get("team_id"):return self.send_json(403,{"success":False,"message":"Accès refusé."})
+                seed_finances(lid);a=m["team_id"];other=str(b.get("other_team",""))
+                if not other or other==a:raise ValueError("Choisis une autre équipe.")
+                pa=list(dict.fromkeys(b.get("send",[])));pb=list(dict.fromkeys(b.get("receive",[])))
+                rm=league_roster_map(lid)
+                before_a=sum(x["salary"] for x in rm.get(a,[]));before_b=sum(x["salary"] for x in rm.get(other,[]))
+                sa=sum(x["salary"] for x in rm.get(a,[]) if x["player_name"] in pa);sb=sum(x["salary"] for x in rm.get(other,[]) if x["player_name"] in pb)
+                validate_cap(before_a,before_a-sa+sb);validate_cap(before_b,before_b-sb+sa)
+                result=execute_trade(lid,a,pa,other,pb)
+                return self.send_json(200,{"success":True,"message":"Trade validé. Les rotations des deux équipes ont été réinitialisées.","trade":result})
             if self.path=="/api/register":
                 b=self.body();uid=create_user(b.get("username",""),b.get("password",""));token,u=login(b["username"],b["password"])
                 return self.send_json(200,{"success":True,"token":token,"user":{"id":uid,"username":b["username"]}})
@@ -115,14 +162,14 @@ class MultiplayerServer(Server):
                     payload={"rotation":b.get("rotation",[]),"tactics":normalize_tactics(b.get("tactics",{}))}
                     total=sum(int(x.get("minutes",0)) for x in payload["rotation"])
                     if total!=240:raise ValueError("La rotation doit totaliser exactement 240 minutes.")
-                    team,_=build_team(m["team_id"]);by={p.name:p for p in team.roster}
+                    team,_=league_team(lid,m["team_id"]);by={p.name:p for p in team.roster}
                     starters=[x["name"] for x in payload["rotation"] if x.get("starter")]
                     if len(starters)!=5:raise ValueError("Il faut exactement 5 titulaires.")
                     if any(n not in by for n in starters):raise ValueError("Titulaire inconnu.")
                     team.starters=[by[n] for n in starters];team.bench=[x for x in team.roster if x not in team.starters]
                     rotation_rows=[{"name":x["name"],"minutes":int(x.get("minutes",0)),"starter":bool(x.get("starter"))} for x in payload["rotation"]]
                     # Exact validation with the same minute-by-minute rotation engine used by the preview.
-                    rotation_preview(m["team_id"],rotation_rows)
+                    rotation_preview(m["team_id"],rotation_rows,[p.name for p in team.roster])
                     set_rotation_plan(team,{x["name"]:int(x.get("minutes",0)) for x in payload["rotation"]})
                     diag=rotation_diagnostics(team)
                     if not diag.get("valid"):raise ValueError("Rotation impossible : la couverture PG/SG/SF/PF/C n'est pas valide sur 48 minutes.")
