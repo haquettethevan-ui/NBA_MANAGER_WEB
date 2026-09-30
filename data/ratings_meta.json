@@ -1,0 +1,8 @@
+{
+  "source": "2KRatings",
+  "edition": "NBA 2K27",
+  "last_successful_update_month": null,
+  "last_successful_update_at": null,
+  "database_file": "data/players_2k27.json",
+  "update_policy": "manual_monthly"
+}
