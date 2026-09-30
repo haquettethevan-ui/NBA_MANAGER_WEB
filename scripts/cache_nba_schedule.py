@@ -1,4 +1,4 @@
-import json, pathlib, urllib.request
+# Cache bootstrap: official 2026-27 NBA schedule snapshot.\nimport json, pathlib, urllib.request
 
 URL="https://cdn.nba.com/static/json/staticData/scheduleLeagueV2_1.json"
 OUT=pathlib.Path("data/nba_schedule_2026_27.json")
