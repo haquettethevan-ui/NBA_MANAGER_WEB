@@ -1,6 +1,10 @@
 name: Cache NBA schedule
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/cache_nba_schedule.py"
   schedule:
     - cron: "17 6 * * 1"
 permissions:
