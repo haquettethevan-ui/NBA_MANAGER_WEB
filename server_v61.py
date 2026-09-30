@@ -1,5 +1,5 @@
 from server import *
-import os
+import os, threading, time, datetime
 from multiplayer_db import *
 from season_calendar import generate_calendar
 from season_runner import simulate_next_day, _load_team_state
@@ -136,6 +136,34 @@ def generate_ai_trade_offers(league_id,max_offers=1):
                     break
     return created
 
+
+_SIM_LOCK=threading.Lock()
+
+def advance_league_day(league_id):
+    with _SIM_LOCK:
+        if not any(g["status"]=="scheduled" for g in games_for(league_id)):
+            raise ValueError("Aucun match programmé à simuler.")
+        result=simulate_next_day(league_id)
+        result["trade_offers"]=generate_ai_trade_offers(league_id,1)
+        reset_ready(league_id)
+        return result
+
+def _daily_scheduler():
+    from zoneinfo import ZoneInfo
+    paris=ZoneInfo("Europe/Paris")
+    while True:
+        try:
+            nowp=datetime.datetime.now(paris)
+            if nowp.hour>=18:
+                for lid in all_league_ids():
+                    if any(g["status"]=="scheduled" for g in games_for(lid)) and daily_run_due(lid,nowp.date().isoformat()):
+                        try:
+                            advance_league_day(lid)
+                            mark_daily_run(lid,nowp.date().isoformat())
+                        except Exception as e:print("Daily simulation error",lid,e)
+        except Exception as e:print("Scheduler error",e)
+        time.sleep(60)
+
 class MultiplayerServer(Server):
     def auth(self):
         h=self.headers.get("Authorization","")
@@ -157,12 +185,15 @@ class MultiplayerServer(Server):
         if self.path=="/api/game-config":
             return self.send_json(200,{"success":True,"offense":list(OFFENSE_FOCUSES),"defense":list(DEFENSE_FOCUSES)})
         parsed=urlparse(self.path); q=parse_qs(parsed.query)
-        if parsed.path in ("/api/league/roster","/api/league/rotation","/api/league/calendar","/api/league/results","/api/league/standings","/api/league/dashboard","/api/league/finances","/api/league/trade-offers"):
+        if parsed.path in ("/api/league/roster","/api/league/rotation","/api/league/calendar","/api/league/results","/api/league/standings","/api/league/dashboard","/api/league/finances","/api/league/trade-offers","/api/league/ready-status"):
             u=self.auth()
             if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
             lid=int(q.get("league_id",[0])[0]);m=membership(u["id"],lid)
             if not m:return self.send_json(403,{"success":False,"message":"Tu n'appartiens pas à cette ligue."})
             seed_finances(lid)
+            if parsed.path=="/api/league/ready-status":
+                s=ready_status(lid);s["me_ready"]=next((x["ready"] for x in s["members"] if x["user_id"]==u["id"]),False)
+                return self.send_json(200,{"success":True,**s})
             if parsed.path=="/api/league/trade-offers":
                 tid=m.get("team_id")
                 if not tid:return self.send_json(400,{"success":False,"message":"Choisis d’abord ton équipe."})
@@ -247,6 +278,17 @@ class MultiplayerServer(Server):
                     return self.send_json(200,{"success":True,"players":rows,"timeline":roster_timeline_from_team(team),"rotation_diagnostics":rotation_diagnostics(team)})
                 timeline=rotation_preview(m["team_id"],b.get("rotation",[]),[p.name for p in team.roster])
                 return self.send_json(200,{"success":True,"timeline":timeline})
+            if self.path=="/api/league/ready":
+                u=self.auth()
+                if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
+                b=self.body();lid=int(b.get("league_id",0));m=membership(u["id"],lid)
+                if not m or not m.get("team_id"):return self.send_json(403,{"success":False,"message":"Choisis d'abord ton équipe."})
+                if not any(g["status"]=="scheduled" for g in games_for(lid)):raise ValueError("Aucun prochain match n'est programmé.")
+                set_ready(lid,u["id"],True);s=ready_status(lid)
+                simulated=False;result=None
+                if all_ready(lid):
+                    result=advance_league_day(lid);simulated=True;s=ready_status(lid)
+                return self.send_json(200,{"success":True,"message":"Tous les managers étaient prêts : la journée a été simulée." if simulated else "Tu es prêt pour la prochaine journée.","simulated":simulated,"result":result,**s})
             if self.path in ("/api/league/trade-offer/accept","/api/league/trade-offer/reject"):
                 u=self.auth()
                 if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
@@ -297,7 +339,7 @@ class MultiplayerServer(Server):
                 if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
                 b=self.body();lid=int(b.get("league_id",0));m=membership(u["id"],lid)
                 if not m or m["owner_id"]!=u["id"]:return self.send_json(403,{"success":False,"message":"Seul l'hôte peut avancer la saison."})
-                result=simulate_next_day(lid);result["trade_offers"]=generate_ai_trade_offers(lid,1);return self.send_json(200,{"success":True,**result})
+                result=advance_league_day(lid);return self.send_json(200,{"success":True,**result})
             if self.path in ("/api/league/rotation/save","/api/league/calendar/generate"):
                 u=self.auth()
                 if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
@@ -342,4 +384,6 @@ def main():
     print("NBA MANAGER V61 — production-ready server")
     print(f"Listening on 0.0.0.0:{port}")
     httpd.serve_forever()
+threading.Thread(target=_daily_scheduler,daemon=True).start()
+
 if __name__=="__main__":main()
