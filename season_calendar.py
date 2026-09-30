@@ -58,6 +58,14 @@ def _fallback_calendar(team_ids,start_date="2026-10-20",seed=56):
     return rows
 
 def generate_calendar(team_ids,start_date="2026-10-20",seed=56):
-    # Ne jamais remplacer silencieusement le vrai calendrier par des dates fictives.
-    # Si la source officielle est indisponible, on préfère afficher une erreur.
-    return _official_calendar(team_ids)
+    """Use the official NBA schedule when reachable, otherwise keep the league playable."""
+    try:
+        rows=_official_calendar(team_ids)
+        generate_calendar.last_source="NBA officiel"
+        return rows
+    except Exception as exc:
+        print("Official NBA calendar unavailable, using deterministic fallback:",exc)
+        generate_calendar.last_source="calendrier de secours"
+        return _fallback_calendar(team_ids,start_date,seed)
+
+generate_calendar.last_source=""
