@@ -47,6 +47,11 @@ def init_db():
           league_id INTEGER NOT NULL,team_id TEXT NOT NULL,player_name TEXT NOT NULL,
           salary INTEGER NOT NULL DEFAULT 0,original_team_id TEXT NOT NULL,
           PRIMARY KEY(league_id,player_name));
+        CREATE TABLE IF NOT EXISTS trade_offers(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,league_id INTEGER NOT NULL,
+          from_team TEXT NOT NULL,to_team TEXT NOT NULL,send_json TEXT NOT NULL,receive_json TEXT NOT NULL,
+          status TEXT NOT NULL DEFAULT 'pending',reason TEXT NOT NULL DEFAULT '',created_at TEXT NOT NULL,
+          FOREIGN KEY(league_id) REFERENCES leagues(id) ON DELETE CASCADE);
         """)
 def now(): return datetime.datetime.now(datetime.timezone.utc).isoformat()
 def _hash(password,salt): return hashlib.pbkdf2_hmac("sha256",password.encode(),bytes.fromhex(salt),200000).hex()
@@ -233,3 +238,30 @@ def execute_trade(league_id,team_a,players_a,team_b,players_b):
         for n in players_b:c.execute("UPDATE league_rosters SET team_id=? WHERE league_id=? AND team_id=? AND player_name=?",(team_a,league_id,team_b,n))
         c.execute("DELETE FROM saved_rotations WHERE league_id=? AND team_id IN (?,?)",(league_id,team_a,team_b))
         return {"sent_a":sum(x["salary"] for x in a),"sent_b":sum(x["salary"] for x in b)}
+
+
+def create_trade_offer(league_id,from_team,to_team,send_names,receive_names,reason=""):
+    import json
+    with connect() as c:
+        exists=c.execute("SELECT id FROM trade_offers WHERE league_id=? AND from_team=? AND to_team=? AND status='pending'",(league_id,from_team,to_team)).fetchone()
+        if exists:return None
+        cur=c.execute("INSERT INTO trade_offers(league_id,from_team,to_team,send_json,receive_json,status,reason,created_at) VALUES(?,?,?,?,?,'pending',?,?)",
+            (league_id,from_team,to_team,json.dumps(send_names,ensure_ascii=False),json.dumps(receive_names,ensure_ascii=False),reason,now()))
+        return cur.lastrowid
+
+def pending_trade_offers(league_id,to_team):
+    import json
+    with connect() as c:
+        rows=[dict(r) for r in c.execute("SELECT * FROM trade_offers WHERE league_id=? AND to_team=? AND status='pending' ORDER BY id DESC",(league_id,to_team))]
+    for r in rows:
+        r["send"]=json.loads(r.pop("send_json"));r["receive"]=json.loads(r.pop("receive_json"))
+    return rows
+
+def trade_offer(offer_id):
+    import json
+    with connect() as c:r=c.execute("SELECT * FROM trade_offers WHERE id=?",(offer_id,)).fetchone()
+    if not r:return None
+    r=dict(r);r["send"]=json.loads(r.pop("send_json"));r["receive"]=json.loads(r.pop("receive_json"));return r
+
+def set_trade_offer_status(offer_id,status):
+    with connect() as c:c.execute("UPDATE trade_offers SET status=? WHERE id=?",(status,offer_id))
