@@ -26,6 +26,18 @@ ALIASES={
  "p j washington":"pj washington",
  "dennis schroder":"dennis schroder",
  "kristaps porzingis":"kristaps porzingis",
+ "r j barrett":"rj barrett",
+ "nicolas claxton":"nic claxton",
+ "v j edgecombe":"vj edgecombe",
+ "royce o neale":"royce o neale",
+ "day ron sharpe":"day ron sharpe",
+ "de aaron fox":"de aaron fox",
+ "de anthony melton":"de anthony melton",
+ "de andre hunter":"de andre hunter",
+ "ja kobe walter":"ja kobe walter",
+ "g g jackson":"gg jackson",
+ "bobby portis jr":"bobby portis",
+ "bronny james jr":"bronny james",
 }
 
 def norm(s):
@@ -79,13 +91,20 @@ def parse_hoopshype(doc):
 
 def parse_bref(doc):
     contracts={}
+    years=["2026_27","2027_28","2028_29","2029_30","2030_31","2031_32"]
     for cells in rows_from_html(doc):
         if len(cells)<4: continue
-        # BR: rank, player, team, 2026-27...
-        sal=money(cells[3]) if len(cells)>3 else None
-        if sal is None: continue
+        # BR: rank, player, team, 2026-27, 2027-28 ... 2031-32, guaranteed.
+        vals=[money(cells[3+i]) if len(cells)>3+i else None for i in range(len(years))]
+        if vals[0] is None: continue
         name=cells[1]
-        contracts[norm(name)]={"source_name":name,"team":cells[2],"salary_2026_27":sal,"salary_source":"Basketball-Reference"}
+        row={"source_name":name,"team":cells[2],"salary_source":"Basketball-Reference"}
+        for y,v in zip(years,vals): row["salary_"+y]=v
+        active=[i for i,v in enumerate(vals) if v is not None]
+        row["contract_end_season"]=f"{2026+max(active)}-{str(27+max(active)).zfill(2)}" if active else None
+        row["contract_years_remaining"]=len(active)
+        row["expiring_2026_27"]=bool(vals[0] is not None and all(v is None for v in vals[1:]))
+        contracts[norm(name)]=row
     return contracts
 
 def main():
@@ -109,12 +128,12 @@ def main():
                 # Prefer current HoopsHype table, but preserve disagreement for review.
             if chosen:
                 for k,v in chosen.items():
-                    if k.startswith("salary_") or k in {"contract_options","salary_source"}: p[k]=v
+                    if k.startswith("salary_") or k in {"contract_options","salary_source","contract_end_season","contract_years_remaining","expiring_2026_27"}: p[k]=v
                 p["salary_verified"]=True
                 p["salary_checked_at"]=datetime.now(timezone.utc).date().isoformat()
                 matched.append({"player":p["name"],"team_2k":team,"salary":p["salary_2026_27"],"source":p["salary_source"]})
             else:
-                for k in ["salary_2026_27","salary_2027_28","salary_2028_29","salary_2029_30","contract_options","salary_source","salary_checked_at"]:
+                for k in ["salary_2026_27","salary_2027_28","salary_2028_29","salary_2029_30","salary_2030_31","salary_2031_32","contract_options","salary_source","salary_checked_at","contract_end_season","contract_years_remaining","expiring_2026_27"]:
                     p.pop(k,None)
                 p["salary_verified"]=False
                 unmatched.append({"player":p["name"],"team_2k":team,"overall":p.get("overall")})
