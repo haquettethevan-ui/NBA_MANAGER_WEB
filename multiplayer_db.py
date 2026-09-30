@@ -52,6 +52,9 @@ def init_db():
           from_team TEXT NOT NULL,to_team TEXT NOT NULL,send_json TEXT NOT NULL,receive_json TEXT NOT NULL,
           status TEXT NOT NULL DEFAULT 'pending',reason TEXT NOT NULL DEFAULT '',created_at TEXT NOT NULL,
           FOREIGN KEY(league_id) REFERENCES leagues(id) ON DELETE CASCADE);
+        CREATE TABLE IF NOT EXISTS league_daily_runs(
+          league_id INTEGER NOT NULL,run_date TEXT NOT NULL,created_at TEXT NOT NULL,
+          PRIMARY KEY(league_id,run_date),FOREIGN KEY(league_id) REFERENCES leagues(id) ON DELETE CASCADE);
         CREATE TABLE IF NOT EXISTS league_ready(
           league_id INTEGER NOT NULL,user_id INTEGER NOT NULL,ready INTEGER NOT NULL DEFAULT 0,
           updated_at TEXT NOT NULL,PRIMARY KEY(league_id,user_id),
@@ -316,3 +319,10 @@ def all_ready(league_id):
 
 def all_league_ids():
     with connect() as c:return [r["id"] for r in c.execute("SELECT id FROM leagues")]
+
+
+def daily_run_due(league_id,run_date):
+    with connect() as c:return c.execute("SELECT 1 FROM league_daily_runs WHERE league_id=? AND run_date=?",(league_id,run_date)).fetchone() is None
+
+def mark_daily_run(league_id,run_date):
+    with connect() as c:c.execute("INSERT OR IGNORE INTO league_daily_runs(league_id,run_date,created_at) VALUES(?,?,?)",(league_id,run_date,now()))
