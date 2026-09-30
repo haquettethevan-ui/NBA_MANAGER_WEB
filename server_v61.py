@@ -37,7 +37,7 @@ class MultiplayerServer(Server):
             if parsed.path=="/api/league/calendar":
                 return self.send_json(200,{"success":True,"games":games_for(lid),"members":league_members(lid)})
             if parsed.path=="/api/league/standings":
-                return self.send_json(200,{"success":True,"standings":standings(lid)})
+                rows=standings(lid);meta={x["id"]:x for x in TEAM_META};return self.send_json(200,{"success":True,"standings":[{**x,"conference":meta.get(x["team_id"],{}).get("conference","")} for x in rows]})
             if parsed.path=="/api/league/dashboard":
                 games=games_for(lid);st=standings(lid);tid=m.get("team_id")
                 played=[g for g in games if g["status"]=="played" and tid in (g["home_team"],g["away_team"])] if tid else []
