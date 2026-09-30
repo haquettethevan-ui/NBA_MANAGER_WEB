@@ -8,17 +8,16 @@ def fetch_json(url):
     with urllib.request.urlopen(req,timeout=20) as r:return json.load(r)
 
 def from_espn():
-    games=[];d=datetime.date(2026,10,20);end=datetime.date(2027,4,11)
-    while d<=end:
-        data=fetch_json("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?limit=100&dates="+d.strftime("%Y%m%d"))
-        for ev in data.get("events",[]):
-            comp=(ev.get("competitions") or [{}])[0];home=away=None
-            for x in comp.get("competitors",[]):
-                abbr=x.get("team",{}).get("abbreviation")
-                if x.get("homeAway")=="home":home=abbr
-                elif x.get("homeAway")=="away":away=abbr
-            if home in TEAMS and away in TEAMS:games.append({"date":d.isoformat(),"home":home,"away":away})
-        d+=datetime.timedelta(days=1)
+    data=fetch_json("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?limit=2000&dates=20261020-20270411")
+    games=[]
+    for ev in data.get("events",[]):
+        comp=(ev.get("competitions") or [{}])[0];home=away=None
+        date=str(ev.get("date",""))[:10]
+        for x in comp.get("competitors",[]):
+            abbr=x.get("team",{}).get("abbreviation")
+            if x.get("homeAway")=="home":home=abbr
+            elif x.get("homeAway")=="away":away=abbr
+        if home in TEAMS and away in TEAMS and "2026-10-20"<=date<="2027-04-11":games.append({"date":date,"home":home,"away":away})
     return games
 
 games=from_espn()
