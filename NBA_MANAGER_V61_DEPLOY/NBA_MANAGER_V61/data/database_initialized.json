@@ -1,0 +1,10 @@
+{
+  "source": "2KRatings",
+  "edition": "NBA 2K27",
+  "initialized_at": "2026-09-30T00:12:48+02:00",
+  "database_file": "data/players_2k27.json",
+  "policy": "one_time_import",
+  "total_players": 536,
+  "complete_players": 535,
+  "teams": 30
+}
