@@ -60,7 +60,12 @@ class MultiplayerServer(Server):
             team,_=build_team(m["team_id"])
             if parsed.path=="/api/league/roster":
                 saved=load_rotation(lid,m["team_id"]);states=player_states(lid,m["team_id"])
-                return self.send_json(200,{"success":True,"team_id":m["team_id"],"players":[{"name":x.name,"position":x.position,"overall":x.overall,"role":x.role,"outside":x.outside_scoring,"inside":x.inside_scoring,"playmaking":x.playmaking,"defense":x.defense,"rebounding":x.rebounding,"stamina":x.stamina,"energy":round(states.get(x.name,{}).get("energy",100),1),"workload":round(states.get(x.name,{}).get("workload",0),1),"injury_days":states.get(x.name,{}).get("injury_days",0),"injury_label":states.get(x.name,{}).get("injury_label","")} for x in team.roster],"saved":saved})
+                ng=next((g for g in games_for(lid) if g["status"]=="scheduled" and m["team_id"] in (g["home_team"],g["away_team"])),None)
+                if ng:
+                    team=_load_team_state(lid,m["team_id"],ng["game_date"])
+                    states={p.name:{"energy":p.energy,"workload":p.workload,"injury_days":p.injury_days,"injury_label":p.injury_label} for p in team.roster}
+                return self.send_json(200,{"success":True,"team_id":m["team_id"],"next_game_date":ng["game_date"] if ng else None,"players":[{"name":x.name,"position":x.position,"overall":x.overall,"role":x.role,"outside":x.outside_scoring,"inside":x.inside_scoring,"playmaking":x.playmaking,"defense":x.defense,"rebounding":x.rebounding,"stamina":x.stamina,"energy":round(states.get(x.name,{}).get("energy",100),1),"workload":round(states.get(x.name,{}).get("workload",0),1),"injury_days":states.get(x.name,{}).get("injury_days",0),"injury_label":states.get(x.name,{}).get("injury_label","")} for x in team.roster],"saved":saved})
+
             return self.send_json(200,{"success":True,"saved":load_rotation(lid,m["team_id"])})
         return super().do_GET()
     def do_POST(self):
