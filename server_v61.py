@@ -2,7 +2,7 @@ from server import *
 import os
 from multiplayer_db import *
 from season_calendar import generate_calendar
-from season_runner import simulate_next_day
+from season_runner import simulate_next_day, _load_team_state
 from main import OFFENSE_FOCUSES, DEFENSE_FOCUSES, normalize_tactics
 from http.cookies import SimpleCookie
 
