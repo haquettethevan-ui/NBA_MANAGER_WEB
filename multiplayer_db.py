@@ -43,6 +43,10 @@ def init_db():
           energy REAL NOT NULL DEFAULT 100,workload REAL NOT NULL DEFAULT 0,
           injury_days INTEGER NOT NULL DEFAULT 0,injury_label TEXT NOT NULL DEFAULT '',
           last_game_date TEXT,PRIMARY KEY(league_id,team_id,player_name));
+        CREATE TABLE IF NOT EXISTS league_rosters(
+          league_id INTEGER NOT NULL,team_id TEXT NOT NULL,player_name TEXT NOT NULL,
+          salary INTEGER NOT NULL DEFAULT 0,original_team_id TEXT NOT NULL,
+          PRIMARY KEY(league_id,player_name));
         """)
 def now(): return datetime.datetime.now(datetime.timezone.utc).isoformat()
 def _hash(password,salt): return hashlib.pbkdf2_hmac("sha256",password.encode(),bytes.fromhex(salt),200000).hex()
@@ -187,3 +191,39 @@ def injury_events(league_id,limit=80):
                 events.append({"date":g["game_date"],"team_id":team_id,"name":item.get("name",""),"label":item.get("type","Blessure"),"days":item.get("days",0)})
                 if len(events)>=limit:return events
     return events
+
+
+def ensure_league_rosters(league_id, team_rows):
+    """Seed a league-specific roster once. team_rows: {team_id:[{name,salary}, ...]}."""
+    with connect() as c:
+        existing=c.execute("SELECT COUNT(*) n FROM league_rosters WHERE league_id=?",(league_id,)).fetchone()["n"]
+        if existing:return
+        for team_id,rows in team_rows.items():
+            for row in rows:
+                c.execute("INSERT OR IGNORE INTO league_rosters(league_id,team_id,player_name,salary,original_team_id) VALUES(?,?,?,?,?)",
+                          (league_id,team_id,row["name"],int(row.get("salary",0)),team_id))
+
+def roster_entries(league_id,team_id):
+    with connect() as c:
+        return [dict(r) for r in c.execute("SELECT * FROM league_rosters WHERE league_id=? AND team_id=? ORDER BY salary DESC,player_name",(league_id,team_id))]
+
+def league_roster_map(league_id):
+    with connect() as c:
+        rows=[dict(r) for r in c.execute("SELECT * FROM league_rosters WHERE league_id=?",(league_id,))]
+    out={}
+    for r in rows:out.setdefault(r["team_id"],[]).append(r)
+    return out
+
+def execute_trade(league_id,team_a,players_a,team_b,players_b):
+    if not players_a or not players_b:raise ValueError("Chaque équipe doit envoyer au moins un joueur.")
+    with connect() as c:
+        def owned(team,names):
+            q="SELECT player_name,salary FROM league_rosters WHERE league_id=? AND team_id=? AND player_name IN ("+",".join("?"*len(names))+")"
+            rows=[dict(r) for r in c.execute(q,(league_id,team,*names))]
+            if len(rows)!=len(set(names)):raise ValueError("Un joueur sélectionné n'appartient plus à cette équipe.")
+            return rows
+        a=owned(team_a,players_a);b=owned(team_b,players_b)
+        for n in players_a:c.execute("UPDATE league_rosters SET team_id=? WHERE league_id=? AND team_id=? AND player_name=?",(team_b,league_id,team_a,n))
+        for n in players_b:c.execute("UPDATE league_rosters SET team_id=? WHERE league_id=? AND team_id=? AND player_name=?",(team_a,league_id,team_b,n))
+        c.execute("DELETE FROM saved_rotations WHERE league_id=? AND team_id IN (?,?)",(league_id,team_a,team_b))
+        return {"sent_a":sum(x["salary"] for x in a),"sent_b":sum(x["salary"] for x in b)}
