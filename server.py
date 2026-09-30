@@ -98,12 +98,16 @@ def choose_starting_five(players):
     return result
 
 
-def build_team(team_id):
+def build_team(team_id, player_names=None):
     meta = next((team for team in TEAM_META if team["id"] == team_id), None)
     if meta is None:
         raise ValueError(f"Équipe inconnue : {team_id}")
 
-    rows = complete_players(team_id)
+    if player_names is None:
+        rows = complete_players(team_id)
+    else:
+        wanted=set(player_names)
+        rows=[row for rows0 in PLAYER_DB.values() for row in rows0 if row.get("name") in wanted and all(row.get(key) is not None for key in REQUIRED_RATINGS)]
     if len(rows) < 5:
         raise ValueError(
             f"L'effectif de {meta['name']} n'est pas encore disponible dans la base locale "
@@ -315,7 +319,7 @@ def serialize_roster(team_id):
         })
     return {"success": True, "players": output, "roster_size": len(output)}
 
-def rotation_preview(team_id, rotation_rows):
+def rotation_preview(team_id, rotation_rows, player_names=None):
     """Construit une projection minute par minute avant le match.
 
     Cette projection utilise exactement le même générateur de rotations que le
@@ -323,7 +327,7 @@ def rotation_preview(team_id, rotation_rows):
     Elle sert à visualiser qui devrait jouer ensemble ; les événements du match
     peuvent toutefois provoquer des ajustements exceptionnels (fautes).
     """
-    team, _ = build_team(team_id)
+    team, _ = build_team(team_id, player_names)
     by_name = {p.name: p for p in team.roster}
     rotation = {}
     starter_names = []
