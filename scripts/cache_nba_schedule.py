@@ -1,4 +1,5 @@
-# Cache bootstrap: official 2026-27 NBA schedule snapshot.\nimport json, pathlib, urllib.request
+# Cache bootstrap: official 2026-27 NBA schedule snapshot.
+import json, pathlib, urllib.request
 
 URL="https://cdn.nba.com/static/json/staticData/scheduleLeagueV2_1.json"
 OUT=pathlib.Path("data/nba_schedule_2026_27.json")
@@ -17,5 +18,6 @@ games=list({(g["date"],g["home"],g["away"]):g for g in games}.values())
 games.sort(key=lambda g:(g["date"],g["home"],g["away"]))
 if len(games)<1150:raise RuntimeError(f"Schedule looks incomplete: {len(games)} known games")
 OUT.parent.mkdir(parents=True,exist_ok=True)
-OUT.write_text(json.dumps({"season":"2026-27","source":"NBA official schedule","games":games},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+OUT.write_text(json.dumps({"season":"2026-27","source":"NBA official schedule","games":games},ensure_ascii=False,indent=2)+"
+",encoding="utf-8")
 print(f"Saved {len(games)} known regular-season games to {OUT}")
