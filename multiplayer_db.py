@@ -197,7 +197,13 @@ def ensure_league_rosters(league_id, team_rows):
     """Seed a league-specific roster once. team_rows: {team_id:[{name,salary}, ...]}."""
     with connect() as c:
         existing=c.execute("SELECT COUNT(*) n FROM league_rosters WHERE league_id=?",(league_id,)).fetchone()["n"]
-        if existing:return
+        if existing:
+            # Keep trades/team assignments intact, but refresh contract values by player name.
+            salaries={row["name"]:int(row.get("salary",0)) for rows in team_rows.values() for row in rows}
+            for player_name,salary in salaries.items():
+                c.execute("UPDATE league_rosters SET salary=? WHERE league_id=? AND player_name=?",
+                          (salary,league_id,player_name))
+            return
         for team_id,rows in team_rows.items():
             for row in rows:
                 c.execute("INSERT OR IGNORE INTO league_rosters(league_id,team_id,player_name,salary,original_team_id) VALUES(?,?,?,?,?)",
