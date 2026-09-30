@@ -82,13 +82,6 @@ def login(username,password):
         if not u or _hash(password,u["salt"])!=u["password_hash"]: raise ValueError("Identifiants incorrects.")
         token=secrets.token_urlsafe(32);c.execute("INSERT INTO sessions VALUES(?,?,?)",(token,u["id"],now()))
         return token,dict(u)
-def change_password(user_id,new_password):
-    if len(new_password)<6: raise ValueError("Mot de passe ≥ 6 caractères.")
-    salt=secrets.token_hex(16)
-    with connect() as c:
-        cur=c.execute("UPDATE users SET password_hash=?,salt=? WHERE id=?",(_hash(new_password,salt),salt,user_id))
-        if cur.rowcount!=1: raise ValueError("Utilisateur introuvable.")
-
 def user_from_token(token):
     if not token:return None
     with connect() as c:
