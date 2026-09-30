@@ -278,6 +278,13 @@ class MultiplayerServer(Server):
                     return self.send_json(200,{"success":True,"players":rows,"timeline":roster_timeline_from_team(team),"rotation_diagnostics":rotation_diagnostics(team)})
                 timeline=rotation_preview(m["team_id"],b.get("rotation",[]),[p.name for p in team.roster])
                 return self.send_json(200,{"success":True,"timeline":timeline})
+            if self.path=="/api/leagues/delete":
+                u=self.auth()
+                if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
+                b=self.body();lid=int(b.get("league_id",0));m=membership(u["id"],lid)
+                if not m or m.get("owner_id")!=u["id"]:return self.send_json(403,{"success":False,"message":"Seul le propriétaire peut supprimer cette ligue."})
+                delete_league(lid,u["id"])
+                return self.send_json(200,{"success":True,"message":"Ligue supprimée."})
             if self.path=="/api/league/ready":
                 u=self.auth()
                 if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
