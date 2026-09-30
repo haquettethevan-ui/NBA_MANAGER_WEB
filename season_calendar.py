@@ -1,4 +1,4 @@
-import datetime, json, random, urllib.request
+import datetime, json, random, urllib.request\nfrom pathlib import Path
 
 NBA_SCHEDULE_URL = "https://cdn.nba.com/static/json/staticData/scheduleLeagueV2_1.json"
 
@@ -57,15 +57,30 @@ def _fallback_calendar(team_ids,start_date="2026-10-20",seed=56):
         for h,a in slate:rows.append((date.isoformat(),h,a))
     return rows
 
+CACHE_PATH=Path(__file__).resolve().parent/"data"/"nba_schedule_2026_27.json"
+
+def _cached_calendar(team_ids):
+    if not CACHE_PATH.exists():raise FileNotFoundError("Cached NBA schedule not found")
+    data=json.loads(CACHE_PATH.read_text(encoding="utf-8"))
+    allowed=set(team_ids)
+    rows=[(g["date"],g["home"],g["away"]) for g in data.get("games",[]) if g.get("home") in allowed and g.get("away") in allowed]
+    if len(rows)<1150:raise ValueError(f"Calendrier NBA stocké incomplet ({len(rows)} matchs).")
+    return sorted(dict.fromkeys(rows))
+
 def generate_calendar(team_ids,start_date="2026-10-20",seed=56):
-    """Use the official NBA schedule when reachable, otherwise keep the league playable."""
+    """Load the repository-cached NBA schedule. Network is only a temporary migration fallback."""
     try:
-        rows=_official_calendar(team_ids)
-        generate_calendar.last_source="NBA officiel"
+        rows=_cached_calendar(team_ids)
+        generate_calendar.last_source="calendrier NBA stocké"
         return rows
-    except Exception as exc:
-        print("Official NBA calendar unavailable, using deterministic fallback:",exc)
-        generate_calendar.last_source="calendrier de secours"
-        return _fallback_calendar(team_ids,start_date,seed)
+    except Exception as cache_exc:
+        try:
+            rows=_official_calendar(team_ids)
+            generate_calendar.last_source="NBA officiel (cache en attente)"
+            return rows
+        except Exception as net_exc:
+            print("Cached/official NBA calendar unavailable:",cache_exc,net_exc)
+            generate_calendar.last_source="calendrier de secours"
+            return _fallback_calendar(team_ids,start_date,seed)
 
 generate_calendar.last_source=""
