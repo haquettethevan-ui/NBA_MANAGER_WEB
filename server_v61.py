@@ -35,7 +35,17 @@ class MultiplayerServer(Server):
             lid=int(q.get("league_id",[0])[0]);m=membership(u["id"],lid)
             if not m:return self.send_json(403,{"success":False,"message":"Tu n'appartiens pas à cette ligue."})
             if parsed.path=="/api/league/calendar":
-                return self.send_json(200,{"success":True,"games":games_for(lid),"members":league_members(lid)})
+                games=games_for(lid)
+                # result_json contient le box score complet. On ne l'envoie que
+                # pour les matchs du manager afin de garder les autres résultats légers.
+                import json
+                tid=m.get("team_id")
+                for g in games:
+                    if g["status"]=="played" and tid in (g["home_team"],g["away_team"]) and g.get("result_json"):
+                        try:g["result"]=json.loads(g["result_json"])
+                        except Exception:g["result"]=None
+                    g.pop("result_json",None)
+                return self.send_json(200,{"success":True,"games":games,"members":league_members(lid)})
             if parsed.path=="/api/league/standings":
                 rows=standings(lid);meta={x["id"]:x for x in TEAM_META};return self.send_json(200,{"success":True,"standings":[{**x,"conference":meta.get(x["team_id"],{}).get("conference","")} for x in rows]})
             if parsed.path=="/api/league/dashboard":
