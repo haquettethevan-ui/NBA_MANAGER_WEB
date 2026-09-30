@@ -58,7 +58,6 @@ def _fallback_calendar(team_ids,start_date="2026-10-20",seed=56):
     return rows
 
 def generate_calendar(team_ids,start_date="2026-10-20",seed=56):
-    try:
-        return _official_calendar(team_ids)
-    except Exception:
-        return _fallback_calendar(team_ids,start_date,seed)
+    # Ne jamais remplacer silencieusement le vrai calendrier par des dates fictives.
+    # Si la source officielle est indisponible, on préfère afficher une erreur.
+    return _official_calendar(team_ids)
