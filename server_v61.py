@@ -88,6 +88,54 @@ def validate_ai_trade(league_id,ai_team,send_names,receive_names):
         raise ValueError(f"Trade refuse par l'IA : {reason} (écart estimé {gap} %).")
     return {"offered_value":round(incoming,1),"requested_value":round(outgoing,1),"required_ratio":required,"top5":_team_is_top5(league_id,ai_team)}
 
+def _human_team_ids(league_id):
+    return {x["team_id"] for x in league_members(league_id) if x.get("team_id")}
+
+def generate_ai_trade_offers(league_id,max_offers=1):
+    """Generate a small number of conservative AI-initiated offers per simulated day."""
+    import random
+    seed_finances(league_id)
+    humans=_human_team_ids(league_id)
+    rm=league_roster_map(league_id)
+    by_name={r["name"]:r for rows in PLAYER_DB.values() for r in rows}
+    ai_teams=[x["id"] for x in TEAM_META if x["id"] not in humans]
+    random.shuffle(ai_teams)
+    created=[]
+    for ai in ai_teams:
+        if len(created)>=max_offers:break
+        own=[by_name[x["player_name"]] for x in rm.get(ai,[]) if x["player_name"] in by_name]
+        if not own:continue
+        # Prefer moving a player from a crowded primary position.
+        counts={}
+        for r in own:counts[_primary_position(r)]=counts.get(_primary_position(r),0)+1
+        movable=sorted(own,key=lambda r:(counts.get(_primary_position(r),0),-float(r.get("overall") or 0)),reverse=True)
+        targets=list(humans)
+        random.shuffle(targets)
+        for human in targets:
+            theirs=[by_name[x["player_name"]] for x in rm.get(human,[]) if x["player_name"] in by_name]
+            if not theirs:continue
+            candidates=[]
+            for give in movable[:8]:
+                for want in theirs:
+                    if _primary_position(want)==_primary_position(give):continue
+                    try:
+                        before_ai=sum(x["salary"] for x in rm.get(ai,[]));before_h=sum(x["salary"] for x in rm.get(human,[]))
+                        sg=salary_for_row(give);sw=salary_for_row(want)
+                        validate_trade_salary(before_ai,sg,sw,1);validate_trade_salary(before_h,sw,sg,1)
+                        ai_eval=validate_ai_trade(league_id,ai,[give["name"]],[want["name"]])
+                        # Human side gets the same sanity check so AI cannot dump bad value.
+                        human_eval=validate_ai_trade(league_id,human,[want["name"]],[give["name"]])
+                        candidates.append((ai_eval["offered_value"]/max(1,ai_eval["requested_value"]),give,want))
+                    except Exception:continue
+            if candidates:
+                _,give,want=max(candidates,key=lambda x:x[0])
+                reason=f"{ai} cherche à rééquilibrer son effectif au poste de {_primary_position(want)}."
+                oid=create_trade_offer(league_id,ai,human,[give["name"]],[want["name"]],reason)
+                if oid:
+                    created.append({"id":oid,"from_team":ai,"to_team":human,"send":[give["name"]],"receive":[want["name"]],"reason":reason})
+                    break
+    return created
+
 class MultiplayerServer(Server):
     def auth(self):
         h=self.headers.get("Authorization","")
@@ -109,12 +157,16 @@ class MultiplayerServer(Server):
         if self.path=="/api/game-config":
             return self.send_json(200,{"success":True,"offense":list(OFFENSE_FOCUSES),"defense":list(DEFENSE_FOCUSES)})
         parsed=urlparse(self.path); q=parse_qs(parsed.query)
-        if parsed.path in ("/api/league/roster","/api/league/rotation","/api/league/calendar","/api/league/results","/api/league/standings","/api/league/dashboard","/api/league/finances"):
+        if parsed.path in ("/api/league/roster","/api/league/rotation","/api/league/calendar","/api/league/results","/api/league/standings","/api/league/dashboard","/api/league/finances","/api/league/trade-offers"):
             u=self.auth()
             if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
             lid=int(q.get("league_id",[0])[0]);m=membership(u["id"],lid)
             if not m:return self.send_json(403,{"success":False,"message":"Tu n'appartiens pas à cette ligue."})
             seed_finances(lid)
+            if parsed.path=="/api/league/trade-offers":
+                tid=m.get("team_id")
+                if not tid:return self.send_json(400,{"success":False,"message":"Choisis d’abord ton équipe."})
+                return self.send_json(200,{"success":True,"offers":pending_trade_offers(lid,tid)})
             if parsed.path=="/api/league/finances":
                 tid=m.get("team_id")
                 if not tid:return self.send_json(400,{"success":False,"message":"Choisis d'abord ton équipe."})
@@ -195,6 +247,27 @@ class MultiplayerServer(Server):
                     return self.send_json(200,{"success":True,"players":rows,"timeline":roster_timeline_from_team(team),"rotation_diagnostics":rotation_diagnostics(team)})
                 timeline=rotation_preview(m["team_id"],b.get("rotation",[]),[p.name for p in team.roster])
                 return self.send_json(200,{"success":True,"timeline":timeline})
+            if self.path in ("/api/league/trade-offer/accept","/api/league/trade-offer/reject"):
+                u=self.auth()
+                if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
+                b=self.body();offer=trade_offer(int(b.get("offer_id",0)))
+                if not offer:return self.send_json(404,{"success":False,"message":"Offre introuvable."})
+                m=membership(u["id"],offer["league_id"])
+                if not m or m.get("team_id")!=offer["to_team"]:return self.send_json(403,{"success":False,"message":"Cette offre ne t'est pas destinée."})
+                if offer["status"]!="pending":raise ValueError("Cette offre n'est plus disponible.")
+                if self.path.endswith("/reject"):
+                    set_trade_offer_status(offer["id"],"rejected");return self.send_json(200,{"success":True,"message":"Offre refusée."})
+                seed_finances(offer["league_id"]);rm=league_roster_map(offer["league_id"])
+                a=offer["from_team"];bteam=offer["to_team"];pa=offer["send"];pb=offer["receive"]
+                before_a=sum(x["salary"] for x in rm.get(a,[]));before_b=sum(x["salary"] for x in rm.get(bteam,[]))
+                sa=sum(x["salary"] for x in rm.get(a,[]) if x["player_name"] in pa);sb=sum(x["salary"] for x in rm.get(bteam,[]) if x["player_name"] in pb)
+                validate_trade_salary(before_a,sa,sb,len(pa));validate_trade_salary(before_b,sb,sa,len(pb))
+                validate_ai_trade(offer["league_id"],a,pa,pb)
+                names_a=[x["player_name"] for x in rm.get(a,[]) if x["player_name"] not in pa]+pb
+                names_b=[x["player_name"] for x in rm.get(bteam,[]) if x["player_name"] not in pb]+pa
+                build_team(a,names_a);build_team(bteam,names_b)
+                result=execute_trade(offer["league_id"],a,pa,bteam,pb);set_trade_offer_status(offer["id"],"accepted")
+                return self.send_json(200,{"success":True,"message":"Trade accepté.","trade":result})
             if self.path=="/api/league/trade":
                 u=self.auth()
                 if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
@@ -224,7 +297,7 @@ class MultiplayerServer(Server):
                 if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
                 b=self.body();lid=int(b.get("league_id",0));m=membership(u["id"],lid)
                 if not m or m["owner_id"]!=u["id"]:return self.send_json(403,{"success":False,"message":"Seul l'hôte peut avancer la saison."})
-                return self.send_json(200,{"success":True,**simulate_next_day(lid)})
+                result=simulate_next_day(lid);result["trade_offers"]=generate_ai_trade_offers(lid,1);return self.send_json(200,{"success":True,**result})
             if self.path in ("/api/league/rotation/save","/api/league/calendar/generate"):
                 u=self.auth()
                 if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
