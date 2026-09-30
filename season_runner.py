@@ -27,12 +27,21 @@ def _human_rotation(league_id,team_id,team):
     return rotation,payload.get("tactics") or None,starters
 
 def _ai_rotation(team):
-    # Remove unavailable players before asking the existing AI rotation builder.
+    # Les blessés restent membres de l'effectif, mais ne doivent recevoir
+    # aucune minute. Le générateur travaille uniquement avec les disponibles,
+    # puis on réinjecte les blessés à 0 minute pour que le plan contienne
+    # exactement tous les joueurs attendus par set_rotation_plan().
     unavailable=[p for p in team.roster if not available_for_game(p)]
-    if not unavailable:return build_ai_rotation(team)
-    original=list(team.roster);team.roster=[p for p in original if available_for_game(p)]
-    try:return build_ai_rotation(team)
-    finally:team.roster=original
+    if not unavailable:
+        return build_ai_rotation(team)
+    original=list(team.roster)
+    available=[p for p in original if available_for_game(p)]
+    team.roster=available
+    try:
+        rotation=build_ai_rotation(team)
+    finally:
+        team.roster=original
+    return {p.name:int(rotation.get(p.name,0)) for p in original}
 
 def simulate_next_day(league_id):
     date=next_scheduled_date(league_id)
