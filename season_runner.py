@@ -13,7 +13,7 @@ def _load_team_state(league_id,team_id,game_date):
             if st["last_game_date"]:previous=st["last_game_date"] if previous is None else max(previous,st["last_game_date"])
     if previous:
         gap=(datetime.date.fromisoformat(game_date)-datetime.date.fromisoformat(previous)).days
-        recover_between_games(team,max(0,gap))
+        recover_between_games(team,gap)
     return team
 
 def _human_rotation(league_id,team_id,team):
