@@ -2,35 +2,185 @@
   "source": "2KRatings",
   "edition": "NBA 2K27",
   "teams": [
-    {"id":"ATL","name":"Atlanta Hawks","slug":"atlanta-hawks"},
-    {"id":"BOS","name":"Boston Celtics","slug":"boston-celtics"},
-    {"id":"BKN","name":"Brooklyn Nets","slug":"brooklyn-nets"},
-    {"id":"CHA","name":"Charlotte Hornets","slug":"charlotte-hornets"},
-    {"id":"CHI","name":"Chicago Bulls","slug":"chicago-bulls"},
-    {"id":"CLE","name":"Cleveland Cavaliers","slug":"cleveland-cavaliers"},
-    {"id":"DAL","name":"Dallas Mavericks","slug":"dallas-mavericks"},
-    {"id":"DEN","name":"Denver Nuggets","slug":"denver-nuggets"},
-    {"id":"DET","name":"Detroit Pistons","slug":"detroit-pistons"},
-    {"id":"GSW","name":"Golden State Warriors","slug":"golden-state-warriors"},
-    {"id":"HOU","name":"Houston Rockets","slug":"houston-rockets"},
-    {"id":"IND","name":"Indiana Pacers","slug":"indiana-pacers"},
-    {"id":"LAC","name":"Los Angeles Clippers","slug":"los-angeles-clippers"},
-    {"id":"LAL","name":"Los Angeles Lakers","slug":"los-angeles-lakers"},
-    {"id":"MEM","name":"Memphis Grizzlies","slug":"memphis-grizzlies"},
-    {"id":"MIA","name":"Miami Heat","slug":"miami-heat"},
-    {"id":"MIL","name":"Milwaukee Bucks","slug":"milwaukee-bucks"},
-    {"id":"MIN","name":"Minnesota Timberwolves","slug":"minnesota-timberwolves"},
-    {"id":"NOP","name":"New Orleans Pelicans","slug":"new-orleans-pelicans"},
-    {"id":"NYK","name":"New York Knicks","slug":"new-york-knicks"},
-    {"id":"OKC","name":"Oklahoma City Thunder","slug":"oklahoma-city-thunder"},
-    {"id":"ORL","name":"Orlando Magic","slug":"orlando-magic"},
-    {"id":"PHI","name":"Philadelphia 76ers","slug":"philadelphia-76ers"},
-    {"id":"PHX","name":"Phoenix Suns","slug":"phoenix-suns"},
-    {"id":"POR","name":"Portland Trail Blazers","slug":"portland-trail-blazers"},
-    {"id":"SAC","name":"Sacramento Kings","slug":"sacramento-kings"},
-    {"id":"SAS","name":"San Antonio Spurs","slug":"san-antonio-spurs"},
-    {"id":"TOR","name":"Toronto Raptors","slug":"toronto-raptors"},
-    {"id":"UTA","name":"Utah Jazz","slug":"utah-jazz"},
-    {"id":"WAS","name":"Washington Wizards","slug":"washington-wizards"}
+    {
+      "id": "ATL",
+      "name": "Atlanta Hawks",
+      "slug": "atlanta-hawks",
+      "conference": "East"
+    },
+    {
+      "id": "BOS",
+      "name": "Boston Celtics",
+      "slug": "boston-celtics",
+      "conference": "East"
+    },
+    {
+      "id": "BKN",
+      "name": "Brooklyn Nets",
+      "slug": "brooklyn-nets",
+      "conference": "East"
+    },
+    {
+      "id": "CHA",
+      "name": "Charlotte Hornets",
+      "slug": "charlotte-hornets",
+      "conference": "East"
+    },
+    {
+      "id": "CHI",
+      "name": "Chicago Bulls",
+      "slug": "chicago-bulls",
+      "conference": "East"
+    },
+    {
+      "id": "CLE",
+      "name": "Cleveland Cavaliers",
+      "slug": "cleveland-cavaliers",
+      "conference": "East"
+    },
+    {
+      "id": "DAL",
+      "name": "Dallas Mavericks",
+      "slug": "dallas-mavericks",
+      "conference": "West"
+    },
+    {
+      "id": "DEN",
+      "name": "Denver Nuggets",
+      "slug": "denver-nuggets",
+      "conference": "West"
+    },
+    {
+      "id": "DET",
+      "name": "Detroit Pistons",
+      "slug": "detroit-pistons",
+      "conference": "East"
+    },
+    {
+      "id": "GSW",
+      "name": "Golden State Warriors",
+      "slug": "golden-state-warriors",
+      "conference": "West"
+    },
+    {
+      "id": "HOU",
+      "name": "Houston Rockets",
+      "slug": "houston-rockets",
+      "conference": "West"
+    },
+    {
+      "id": "IND",
+      "name": "Indiana Pacers",
+      "slug": "indiana-pacers",
+      "conference": "East"
+    },
+    {
+      "id": "LAC",
+      "name": "Los Angeles Clippers",
+      "slug": "los-angeles-clippers",
+      "conference": "West"
+    },
+    {
+      "id": "LAL",
+      "name": "Los Angeles Lakers",
+      "slug": "los-angeles-lakers",
+      "conference": "West"
+    },
+    {
+      "id": "MEM",
+      "name": "Memphis Grizzlies",
+      "slug": "memphis-grizzlies",
+      "conference": "West"
+    },
+    {
+      "id": "MIA",
+      "name": "Miami Heat",
+      "slug": "miami-heat",
+      "conference": "East"
+    },
+    {
+      "id": "MIL",
+      "name": "Milwaukee Bucks",
+      "slug": "milwaukee-bucks",
+      "conference": "East"
+    },
+    {
+      "id": "MIN",
+      "name": "Minnesota Timberwolves",
+      "slug": "minnesota-timberwolves",
+      "conference": "West"
+    },
+    {
+      "id": "NOP",
+      "name": "New Orleans Pelicans",
+      "slug": "new-orleans-pelicans",
+      "conference": "West"
+    },
+    {
+      "id": "NYK",
+      "name": "New York Knicks",
+      "slug": "new-york-knicks",
+      "conference": "East"
+    },
+    {
+      "id": "OKC",
+      "name": "Oklahoma City Thunder",
+      "slug": "oklahoma-city-thunder",
+      "conference": "West"
+    },
+    {
+      "id": "ORL",
+      "name": "Orlando Magic",
+      "slug": "orlando-magic",
+      "conference": "East"
+    },
+    {
+      "id": "PHI",
+      "name": "Philadelphia 76ers",
+      "slug": "philadelphia-76ers",
+      "conference": "East"
+    },
+    {
+      "id": "PHX",
+      "name": "Phoenix Suns",
+      "slug": "phoenix-suns",
+      "conference": "West"
+    },
+    {
+      "id": "POR",
+      "name": "Portland Trail Blazers",
+      "slug": "portland-trail-blazers",
+      "conference": "West"
+    },
+    {
+      "id": "SAC",
+      "name": "Sacramento Kings",
+      "slug": "sacramento-kings",
+      "conference": "West"
+    },
+    {
+      "id": "SAS",
+      "name": "San Antonio Spurs",
+      "slug": "san-antonio-spurs",
+      "conference": "West"
+    },
+    {
+      "id": "TOR",
+      "name": "Toronto Raptors",
+      "slug": "toronto-raptors",
+      "conference": "East"
+    },
+    {
+      "id": "UTA",
+      "name": "Utah Jazz",
+      "slug": "utah-jazz",
+      "conference": "West"
+    },
+    {
+      "id": "WAS",
+      "name": "Washington Wizards",
+      "slug": "washington-wizards",
+      "conference": "East"
+    }
   ]
 }
