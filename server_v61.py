@@ -42,11 +42,20 @@ class MultiplayerServer(Server):
                 games=games_for(lid);st=standings(lid);tid=m.get("team_id")
                 played=[g for g in games if g["status"]=="played" and tid in (g["home_team"],g["away_team"])] if tid else []
                 upcoming=[g for g in games if g["status"]=="scheduled" and tid in (g["home_team"],g["away_team"])] if tid else []
-                states=player_states(lid,tid) if tid else {}
+                states=player_states(lid,tid) if tid else {};next_game=upcoming[0] if upcoming else None
+                projected=states
+                if tid and next_game:
+                    pt=_load_team_state(lid,tid,next_game["game_date"])
+                    projected={p.name:{"energy":p.energy,"workload":p.workload,"injury_days":p.injury_days,"injury_label":p.injury_label} for p in pt.roster}
                 row=next((x for x in st if x["team_id"]==tid),{"w":0,"l":0,"pf":0,"pa":0})
-                injuries=[{"name":n,"days":x["injury_days"],"label":x["injury_label"]} for n,x in states.items() if x["injury_days"]>0]
-                tired=sorted([{"name":n,"energy":round(x["energy"],1),"workload":round(x["workload"],1)} for n,x in states.items()],key=lambda x:x["energy"])[:5]
-                return self.send_json(200,{"success":True,"team_id":tid,"record":row,"next_game":upcoming[0] if upcoming else None,"last_game":played[-1] if played else None,"injuries":injuries,"tired":tired,"league_name":m["name"],"invite_code":m["invite_code"]})
+                injuries=[{"name":n,"days":x.get("injury_days",0),"label":x.get("injury_label","")} for n,x in projected.items() if x.get("injury_days",0)>0]
+                tired=sorted([{"name":n,"energy":round(x.get("energy",100),1),"workload":round(x.get("workload",0),1)} for n,x in projected.items()],key=lambda x:x["energy"])[:5]
+                opponent=None
+                if next_game and tid:
+                    oid=next_game["away_team"] if next_game["home_team"]==tid else next_game["home_team"]
+                    os=player_states(lid,oid)
+                    opponent={"team_id":oid,"last_results":team_recent_games(lid,oid,3),"injuries":[{"name":n,"days":x["injury_days"],"label":x["injury_label"]} for n,x in os.items() if x["injury_days"]>0]}
+                return self.send_json(200,{"success":True,"team_id":tid,"record":row,"next_game":next_game,"last_game":played[-1] if played else None,"injuries":injuries,"tired":tired,"opponent":opponent,"events":injury_events(lid),"league_name":m["name"],"invite_code":m["invite_code"]})
             if not m.get("team_id"):return self.send_json(400,{"success":False,"message":"Choisis d'abord ton équipe."})
             team,_=build_team(m["team_id"])
             if parsed.path=="/api/league/roster":
