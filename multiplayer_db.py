@@ -326,3 +326,11 @@ def daily_run_due(league_id,run_date):
 
 def mark_daily_run(league_id,run_date):
     with connect() as c:c.execute("INSERT OR IGNORE INTO league_daily_runs(league_id,run_date,created_at) VALUES(?,?,?)",(league_id,run_date,now()))
+
+
+def delete_league(league_id,user_id):
+    with connect() as c:
+        row=c.execute("SELECT owner_id FROM leagues WHERE id=?",(league_id,)).fetchone()
+        if not row:raise ValueError("Ligue introuvable.")
+        if row["owner_id"]!=user_id:raise PermissionError("Seul le propriétaire peut supprimer cette ligue.")
+        c.execute("DELETE FROM leagues WHERE id=?",(league_id,))
