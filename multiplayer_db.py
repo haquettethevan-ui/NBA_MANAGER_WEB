@@ -79,6 +79,11 @@ def join_league(user_id,code):
         c.execute("INSERT OR IGNORE INTO league_members(league_id,user_id) VALUES(?,?)",(l["id"],user_id));return l["id"]
 def choose_team(user_id,league_id,team_id):
     with connect() as c:
+        member=c.execute("SELECT team_id FROM league_members WHERE league_id=? AND user_id=?",(league_id,user_id)).fetchone()
+        if not member: raise ValueError("Tu n'appartiens pas à cette ligue.")
+        if member["team_id"]:
+            if member["team_id"]==team_id:return
+            raise ValueError("Ton équipe est verrouillée pour cette ligue.")
         try:c.execute("UPDATE league_members SET team_id=? WHERE league_id=? AND user_id=?",(team_id,league_id,user_id))
         except sqlite3.IntegrityError:raise ValueError("Cette équipe est déjà prise dans cette ligue.")
 def leagues_for(user_id):
@@ -157,3 +162,28 @@ def standings(league_id):
         d[h]["pf"]+=hs;d[h]["pa"]+=as_;d[a]["pf"]+=as_;d[a]["pa"]+=hs
         win,lose=(h,a) if hs>as_ else (a,h);d[win]["w"]+=1;d[lose]["l"]+=1
     return sorted(d.values(),key=lambda x:(x["w"],x["pf"]-x["pa"]),reverse=True)
+
+def team_recent_games(league_id,team_id,limit=3):
+    with connect() as c:
+        return [dict(r) for r in c.execute("""SELECT * FROM games WHERE league_id=? AND status='played'
+        AND (home_team=? OR away_team=?) ORDER BY game_date DESC,id DESC LIMIT ?""",(league_id,team_id,team_id,limit))]
+
+def injury_events(league_id,limit=80):
+    import json
+    with connect() as c:
+        rows=[dict(r) for r in c.execute("""SELECT game_date,home_team,away_team,result_json FROM games
+        WHERE league_id=? AND status='played' AND result_json IS NOT NULL ORDER BY game_date DESC,id DESC""",(league_id,))]
+    events=[]
+    seen=set()
+    for g in rows:
+        try: result=json.loads(g["result_json"])
+        except Exception: continue
+        injuries=result.get("injuries",{})
+        for team_id,items in ((g["home_team"],injuries.get("team1",[])),(g["away_team"],injuries.get("team2",[]))):
+            for item in items or []:
+                key=(g["game_date"],team_id,item.get("name"))
+                if key in seen:continue
+                seen.add(key)
+                events.append({"date":g["game_date"],"team_id":team_id,"name":item.get("name",""),"label":item.get("type","Blessure"),"days":item.get("days",0)})
+                if len(events)>=limit:return events
+    return events
