@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Import verified NBA 2026-27 salaries into data/players_2k27.json.
+"""Import verified NBA 2026-27 salaries into data/players_2k27.json.\n\nDesigned for the monthly GitHub Actions refresh.
 
 Primary source: HoopsHype current salary table.
 Fallback/verification source: Basketball-Reference contracts table.
