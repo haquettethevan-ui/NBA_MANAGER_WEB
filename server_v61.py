@@ -220,7 +220,7 @@ class MultiplayerServer(Server):
                     oid=next_game["away_team"] if next_game["home_team"]==tid else next_game["home_team"]
                     os=player_states(lid,oid)
                     opponent={"team_id":oid,"last_results":team_recent_games(lid,oid,3),"injuries":[{"name":n,"days":x["injury_days"],"label":x["injury_label"]} for n,x in os.items() if x["injury_days"]>0]}
-                return self.send_json(200,{"success":True,"team_id":tid,"record":row,"next_game":next_game,"last_game":played[-1] if played else None,"injuries":injuries,"tired":tired,"opponent":opponent,"events":injury_events(lid),"league_name":m["name"],"invite_code":m["invite_code"]})
+                return self.send_json(200,{"success":True,"team_id":tid,"record":row,"next_game":next_game,"last_game":played[-1] if played else None,"injuries":injuries,"tired":tired,"opponent":opponent,"events":injury_events(lid),"transactions":transaction_events(lid),"league_name":m["name"],"invite_code":m["invite_code"]})
             if not m.get("team_id"):return self.send_json(400,{"success":False,"message":"Choisis d'abord ton équipe."})
             team,_=league_team(lid,m["team_id"])
             if parsed.path=="/api/league/roster":
