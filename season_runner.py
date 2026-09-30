@@ -4,7 +4,8 @@ from server import build_team,build_ai_rotation,ai_tactics
 from engine_v55 import simulate_game,recover_between_games,available_for_game
 
 def _load_team_state(league_id,team_id,game_date):
-    team,_=build_team(team_id);states=player_states(league_id,team_id)
+    entries=roster_entries(league_id,team_id)
+    team,_=build_team(team_id,[x["player_name"] for x in entries] if entries else None);states=player_states(league_id,team_id)
     previous=None
     for p in team.roster:
         st=states.get(p.name)
