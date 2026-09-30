@@ -255,6 +255,8 @@ class MultiplayerServer(Server):
             if not m.get("team_id"):return self.send_json(400,{"success":False,"message":"Choisis d'abord ton équipe."})
             team,_=league_team(lid,m["team_id"])
             if parsed.path=="/api/league/roster":
+                if not m.get("team_id"):return self.send_json(400,{"success":False,"message":"Choisis d’abord ton équipe."})
+                team,_=league_team(lid,m["team_id"])
                 saved=load_rotation(lid,m["team_id"]);states=player_states(lid,m["team_id"])
                 ng=next((g for g in games_for(lid) if g["status"]=="scheduled" and m["team_id"] in (g["home_team"],g["away_team"])),None)
                 if ng:
