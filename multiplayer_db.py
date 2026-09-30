@@ -52,6 +52,10 @@ def init_db():
           from_team TEXT NOT NULL,to_team TEXT NOT NULL,send_json TEXT NOT NULL,receive_json TEXT NOT NULL,
           status TEXT NOT NULL DEFAULT 'pending',reason TEXT NOT NULL DEFAULT '',created_at TEXT NOT NULL,
           FOREIGN KEY(league_id) REFERENCES leagues(id) ON DELETE CASCADE);
+        CREATE TABLE IF NOT EXISTS transaction_events(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,league_id INTEGER NOT NULL,event_type TEXT NOT NULL,
+          team_a TEXT NOT NULL,team_b TEXT NOT NULL,players_a_json TEXT NOT NULL,players_b_json TEXT NOT NULL,
+          created_at TEXT NOT NULL,FOREIGN KEY(league_id) REFERENCES leagues(id) ON DELETE CASCADE);
         """)
 def now(): return datetime.datetime.now(datetime.timezone.utc).isoformat()
 def _hash(password,salt): return hashlib.pbkdf2_hmac("sha256",password.encode(),bytes.fromhex(salt),200000).hex()
@@ -227,6 +231,11 @@ def league_roster_map(league_id):
 
 def execute_trade(league_id,team_a,players_a,team_b,players_b):
     if not players_a or not players_b:raise ValueError("Chaque équipe doit envoyer au moins un joueur.")
+    current=league_roster_map(league_id)
+    after_a=len(current.get(team_a,[]))-len(set(players_a))+len(set(players_b))
+    after_b=len(current.get(team_b,[]))-len(set(players_b))+len(set(players_a))
+    if after_a<10 or after_b<10:
+        raise ValueError(f"Trade refusé : chaque équipe doit conserver au moins 10 joueurs (après échange : {team_a} {after_a}, {team_b} {after_b}).")
     with connect() as c:
         def owned(team,names):
             q="SELECT player_name,salary FROM league_rosters WHERE league_id=? AND team_id=? AND player_name IN ("+",".join("?"*len(names))+")"
@@ -237,6 +246,9 @@ def execute_trade(league_id,team_a,players_a,team_b,players_b):
         for n in players_a:c.execute("UPDATE league_rosters SET team_id=? WHERE league_id=? AND team_id=? AND player_name=?",(team_b,league_id,team_a,n))
         for n in players_b:c.execute("UPDATE league_rosters SET team_id=? WHERE league_id=? AND team_id=? AND player_name=?",(team_a,league_id,team_b,n))
         c.execute("DELETE FROM saved_rotations WHERE league_id=? AND team_id IN (?,?)",(league_id,team_a,team_b))
+        import json
+        c.execute("INSERT INTO transaction_events(league_id,event_type,team_a,team_b,players_a_json,players_b_json,created_at) VALUES(?,?,?,?,?,?,?)",
+                  (league_id,"trade",team_a,team_b,json.dumps(players_a,ensure_ascii=False),json.dumps(players_b,ensure_ascii=False),now()))
         return {"sent_a":sum(x["salary"] for x in a),"sent_b":sum(x["salary"] for x in b)}
 
 
@@ -265,3 +277,12 @@ def trade_offer(offer_id):
 
 def set_trade_offer_status(offer_id,status):
     with connect() as c:c.execute("UPDATE trade_offers SET status=? WHERE id=?",(status,offer_id))
+
+
+def transaction_events(league_id,limit=80):
+    import json
+    with connect() as c:
+        rows=[dict(r) for r in c.execute("SELECT * FROM transaction_events WHERE league_id=? ORDER BY id DESC LIMIT ?",(league_id,limit))]
+    for r in rows:
+        r["players_a"]=json.loads(r.pop("players_a_json"));r["players_b"]=json.loads(r.pop("players_b_json"))
+    return rows
