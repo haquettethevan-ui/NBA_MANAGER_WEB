@@ -453,10 +453,10 @@ def _set_minute_lineup(team, minute):
 def _energy_tick(team):
     for p in team.roster:
         if p in team.on_court:
-            drain = 2.15 + (82-p.stamina)*.018
+            drain = 1.60 + (82-p.stamina)*.014
             p.energy=max(45.0,p.energy-drain); p.minutes_played += 1
         else:
-            p.energy=min(100.0,p.energy+3.15+(p.stamina-75)*.012)
+            p.energy=min(100.0,p.energy+3.20+(p.stamina-75)*.012)
 
 
 def _pace(t1,t2):
@@ -493,21 +493,25 @@ def prepare_player_season_state(player):
     player.injury_days = max(0, int(getattr(player, "injury_days", 0)))
     player.injury_label = getattr(player, "injury_label", "")
 
-def recover_between_games(team, rest_days):
-    """Recover after calendar days off. Call before the next game."""
-    rest_days=max(0,int(rest_days))
+def recover_between_games(team, elapsed_days):
+    """Advance season state to the next game.
+
+    Injury duration follows real elapsed calendar days. Energy/workload recovery
+    uses only full days without a game: a next-day back-to-back has zero rest days.
+    """
+    elapsed_days=max(0,int(elapsed_days))
+    rest_days=max(0,elapsed_days-1)
     for p in team.roster:
         prepare_player_season_state(p)
         if p.injury_days > 0:
-            p.injury_days=max(0,p.injury_days-rest_days)
+            p.injury_days=max(0,p.injury_days-elapsed_days)
             if p.injury_days == 0:
                 p.injury_label=""
-        # First rest day helps, extra days progressively restore the player.
         if rest_days:
-            stamina_bonus=(p.stamina-75)*.045
-            recovery=8.5 + max(0,rest_days-1)*10.5 + stamina_bonus*rest_days
+            stamina_bonus=(p.stamina-75)*.040
+            recovery=14.0 + max(0,rest_days-1)*13.0 + stamina_bonus*rest_days
             p.energy=_clamp(p.energy+recovery,45.0,100.0)
-            p.workload=_clamp(p.workload-(7.0+max(0,rest_days-1)*12.0),0.0,100.0)
+            p.workload=_clamp(p.workload-(8.0+max(0,rest_days-1)*12.0),0.0,100.0)
 
 def _postgame_workload(team):
     """Convert game minutes and end-game energy into persistent recent workload."""
@@ -517,8 +521,8 @@ def _postgame_workload(team):
         if mins <= 0:
             p.workload=max(0.0,p.workload-4.0)
             continue
-        load=max(0.0,mins-18)*1.15 + max(0.0,78.0-p.energy)*.42
-        p.workload=_clamp(p.workload*.72+load,0.0,100.0)
+        load=max(0.0,mins-18)*1.00 + max(0.0,76.0-p.energy)*.30
+        p.workload=_clamp(p.workload*.68+load,0.0,100.0)
 
 def _injury_probability(player):
     """Per-game injury probability; fatigue/workload raise risk smoothly."""
