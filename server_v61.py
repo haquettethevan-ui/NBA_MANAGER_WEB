@@ -242,7 +242,7 @@ class MultiplayerServer(Server):
                 projected=states
                 if tid and next_game:
                     pt=_load_team_state(lid,tid,next_game["game_date"])
-                    projected={p.name:{"energy":p.energy,"workload":p.workload,"injury_days":p.injury_days,"injury_label":p.injury_label} for p in pt.roster}
+                    projected={p.name:{"energy":getattr(p,"energy",100),"workload":getattr(p,"workload",0),"injury_days":getattr(p,"injury_days",0),"injury_label":getattr(p,"injury_label","")} for p in pt.roster}
                 row=next((x for x in st if x["team_id"]==tid),{"w":0,"l":0,"pf":0,"pa":0})
                 injuries=[{"name":n,"days":x.get("injury_days",0),"label":x.get("injury_label","")} for n,x in projected.items() if x.get("injury_days",0)>0]
                 tired=sorted([{"name":n,"energy":round(x.get("energy",100),1),"workload":round(x.get("workload",0),1)} for n,x in projected.items()],key=lambda x:x["energy"])[:5]
@@ -261,7 +261,7 @@ class MultiplayerServer(Server):
                 ng=next((g for g in games_for(lid) if g["status"]=="scheduled" and m["team_id"] in (g["home_team"],g["away_team"])),None)
                 if ng:
                     team=_load_team_state(lid,m["team_id"],ng["game_date"])
-                    states={p.name:{"energy":p.energy,"workload":p.workload,"injury_days":p.injury_days,"injury_label":p.injury_label} for p in team.roster}
+                    states={p.name:{"energy":getattr(p,"energy",100),"workload":getattr(p,"workload",0),"injury_days":getattr(p,"injury_days",0),"injury_label":getattr(p,"injury_label","")} for p in team.roster}
                 return self.send_json(200,{"success":True,"team_id":m["team_id"],"next_game_date":ng["game_date"] if ng else None,"players":[{"name":x.name,"position":x.position,"overall":x.overall,"role":x.role,"outside":x.outside_scoring,"inside":x.inside_scoring,"playmaking":x.playmaking,"defense":x.defense,"rebounding":x.rebounding,"stamina":x.stamina,"energy":round(states.get(x.name,{}).get("energy",100),1),"workload":round(states.get(x.name,{}).get("workload",0),1),"injury_days":states.get(x.name,{}).get("injury_days",0),"injury_label":states.get(x.name,{}).get("injury_label","")} for x in team.roster],"saved":saved})
 
             return self.send_json(200,{"success":True,"saved":load_rotation(lid,m["team_id"])})
