@@ -250,7 +250,25 @@ class MultiplayerServer(Server):
                 if next_game and tid:
                     oid=next_game["away_team"] if next_game["home_team"]==tid else next_game["home_team"]
                     os=player_states(lid,oid)
-                    opponent={"team_id":oid,"last_results":team_recent_games(lid,oid,3),"injuries":[{"name":n,"days":x["injury_days"],"label":x["injury_label"]} for n,x in os.items() if x["injury_days"]>0]}
+                    ot,_=league_team(lid,oid)
+                    core=sorted(ot.roster,key=lambda p:getattr(p,"overall",0),reverse=True)[:8]
+                    avg=lambda attr: round(sum(float(getattr(p,attr,0) or 0) for p in core)/max(1,len(core)),1)
+                    metrics={"outside":avg("outside_scoring"),"inside":avg("inside_scoring"),"playmaking":avg("playmaking"),"defense":avg("defense"),"rebounding":avg("rebounding")}
+                    strengths=sorted(metrics.items(),key=lambda x:x[1],reverse=True)
+                    strength_key,strength_val=strengths[0];weak_key,weak_val=strengths[-1]
+                    labels={"outside":"tir extérieur","inside":"jeu intérieur","playmaking":"création","defense":"défense","rebounding":"rebond"}
+                    if weak_key=="defense":off_rec="Pénétration"
+                    elif weak_key=="rebounding":off_rec="Rebond offensif"
+                    elif strength_key=="rebounding":off_rec="Tir extérieur"
+                    elif strength_key=="inside":off_rec="Tir extérieur"
+                    else:off_rec="Mouvement de balle"
+                    if strength_key=="outside":def_rec="Défense extérieure"
+                    elif strength_key=="inside":def_rec="Protection du cercle"
+                    elif strength_key=="playmaking":def_rec="Pression porteur"
+                    elif strength_key=="rebounding":def_rec="Box out"
+                    else:def_rec="Homme à homme"
+                    advisor={"metrics":metrics,"strength":{"key":strength_key,"label":labels[strength_key],"value":strength_val},"weakness":{"key":weak_key,"label":labels[weak_key],"value":weak_val},"offense":{"tactic":off_rec,"reason":f"Leur secteur le moins fort est {labels[weak_key]} ({weak_val}). Cherche à les forcer à défendre là où leur profil est le moins confortable."},"defense":{"tactic":def_rec,"reason":f"Leur principal point fort est {labels[strength_key]} ({strength_val}). Priorité : réduire cette source de création avant de traiter le reste."}}
+                    opponent={"team_id":oid,"last_results":team_recent_games(lid,oid,3),"injuries":[{"name":n,"days":x["injury_days"],"label":x["injury_label"]} for n,x in os.items() if x["injury_days"]>0],"advisor":advisor}
                 return self.send_json(200,{"success":True,"team_id":tid,"record":row,"next_game":next_game,"last_game":played[-1] if played else None,"injuries":injuries,"tired":tired,"opponent":opponent,"events":injury_events(lid),"transactions":transaction_events(lid),"league_name":m["name"],"invite_code":m["invite_code"]})
             if not m.get("team_id"):return self.send_json(400,{"success":False,"message":"Choisis d'abord ton équipe."})
             team,_=league_team(lid,m["team_id"])
