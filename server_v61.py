@@ -88,6 +88,70 @@ def validate_ai_trade(league_id,ai_team,send_names,receive_names):
         raise ValueError(f"Trade refuse par l'IA : {reason} (écart estimé {gap} %).")
     return {"offered_value":round(incoming,1),"requested_value":round(outgoing,1),"required_ratio":required,"top5":_team_is_top5(league_id,ai_team)}
 
+def trade_coach_advice(league_id,team_id,max_suggestions=4):
+    """Return only trades that pass the exact salary, roster and AI-acceptance checks used by /api/league/trade."""
+    seed_finances(league_id)
+    rm=league_roster_map(league_id)
+    by_name={r["name"]:r for rows in PLAYER_DB.values() for r in rows}
+    mine=[by_name[x["player_name"]] for x in rm.get(team_id,[]) if x["player_name"] in by_name]
+    if not mine:return {"weakness":None,"suggestions":[]}
+    attrs={"outside":"outside_scoring","inside":"inside_scoring","playmaking":"playmaking","defense":"defense","rebounding":"rebounding","athleticism":"athleticism"}
+    labels={"outside":"tir extérieur","inside":"finition intérieure","playmaking":"création","defense":"défense","rebounding":"rebond","athleticism":"athlétisme"}
+    def profile(rows):
+        core=sorted(rows,key=lambda r:float(r.get("overall") or 0),reverse=True)[:8]
+        return {k:sum(float(r.get(a) or 0) for r in core)/max(1,len(core)) for k,a in attrs.items()}
+    myp=profile(mine)
+    league=[]
+    for tm in TEAM_META:
+        rows=[by_name[x["player_name"]] for x in rm.get(tm["id"],[]) if x["player_name"] in by_name]
+        if rows:league.append(profile(rows))
+    pct={k:100*sum(p[k]<=myp[k] for p in league)/max(1,len(league)) for k in attrs}
+    weak=min(attrs,key=lambda k:pct[k])
+    # Recent poor results increase urgency, but do not invent a different weakness without box-score evidence.
+    recent=team_recent_games(league_id,team_id,5); wins=losses=0
+    for g in recent:
+        try:
+            r=g.get("result") or {}; hs=float(r.get("home_score",r.get("score_home",0)) or 0); aws=float(r.get("away_score",r.get("score_away",0)) or 0)
+            if not hs and not aws:continue
+            scored=hs if g.get("home_team")==team_id else aws; allowed=aws if g.get("home_team")==team_id else hs
+            wins+=scored>allowed;losses+=scored<=allowed
+        except Exception:pass
+    candidates=[]
+    humans=_human_team_ids(league_id)
+    before_a=sum(x["salary"] for x in rm.get(team_id,[]))
+    # Search 1-for-1 first: every displayed proposal is executable by the current engine.
+    send_pool=sorted(mine,key=lambda r:(float(r.get(attrs[weak]) or 0),float(r.get("overall") or 0)))[:10]
+    for tm in TEAM_META:
+        other=tm["id"]
+        if other==team_id or other in humans:continue
+        theirs=[by_name[x["player_name"]] for x in rm.get(other,[]) if x["player_name"] in by_name]
+        before_b=sum(x["salary"] for x in rm.get(other,[]))
+        targets=sorted(theirs,key=lambda r:(float(r.get(attrs[weak]) or 0),float(r.get("overall") or 0)),reverse=True)[:10]
+        for give in send_pool:
+            for get in targets:
+                improvement=float(get.get(attrs[weak]) or 0)-float(give.get(attrs[weak]) or 0)
+                if improvement<4:continue
+                try:
+                    sa=next(x["salary"] for x in rm.get(team_id,[]) if x["player_name"]==give["name"])
+                    sb=next(x["salary"] for x in rm.get(other,[]) if x["player_name"]==get["name"])
+                    validate_trade_salary(before_a,sa,sb,1);validate_trade_salary(before_b,sb,sa,1)
+                    ev=validate_ai_trade(league_id,other,[get["name"]],[give["name"]])
+                    names_a=[x["player_name"] for x in rm.get(team_id,[]) if x["player_name"]!=give["name"]]+[get["name"]]
+                    names_b=[x["player_name"] for x in rm.get(other,[]) if x["player_name"]!=get["name"]]+[give["name"]]
+                    build_team(team_id,names_a);build_team(other,names_b)
+                    score=improvement+max(0,float(get.get("overall") or 0)-float(give.get("overall") or 0))*.5
+                    candidates.append((score,{"other_team":other,"send":[give["name"]],"receive":[get["name"]],"target":labels[weak],"improvement":round(improvement,1),"reason":f"{get['name']} améliore directement ton {labels[weak]} ({float(get.get(attrs[weak]) or 0):.0f}) par rapport à {give['name']} ({float(give.get(attrs[weak]) or 0):.0f}). Ce trade respecte les règles salariales et passe l'évaluation actuelle de l'IA."}))
+                except Exception:continue
+    candidates.sort(key=lambda x:x[0],reverse=True)
+    picked=[];seen=set()
+    for _,x in candidates:
+        sig=(x["other_team"],tuple(x["send"]),tuple(x["receive"]))
+        if sig in seen:continue
+        seen.add(sig);picked.append(x)
+        if len(picked)>=max_suggestions:break
+    return {"weakness":{"key":weak,"label":labels[weak],"rating":round(myp[weak],1),"percentile":round(pct[weak],1)},"recent_form":{"games":wins+losses,"wins":wins,"losses":losses},"suggestions":picked}
+
+
 def _human_team_ids(league_id):
     return {x["team_id"] for x in league_members(league_id) if x.get("team_id")}
 
@@ -185,7 +249,7 @@ class MultiplayerServer(Server):
         if self.path=="/api/game-config":
             return self.send_json(200,{"success":True,"offense":list(OFFENSE_FOCUSES),"defense":list(DEFENSE_FOCUSES)})
         parsed=urlparse(self.path); q=parse_qs(parsed.query)
-        if parsed.path in ("/api/league/roster","/api/league/rotation","/api/league/calendar","/api/league/results","/api/league/standings","/api/league/dashboard","/api/league/finances","/api/league/trade-offers","/api/league/ready-status"):
+        if parsed.path in ("/api/league/roster","/api/league/rotation","/api/league/calendar","/api/league/results","/api/league/standings","/api/league/dashboard","/api/league/finances","/api/league/trade-coach","/api/league/trade-offers","/api/league/ready-status"):
             u=self.auth()
             if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
             lid=int(q.get("league_id",[0])[0]);m=membership(u["id"],lid)
@@ -198,6 +262,10 @@ class MultiplayerServer(Server):
                 tid=m.get("team_id")
                 if not tid:return self.send_json(400,{"success":False,"message":"Choisis d’abord ton équipe."})
                 return self.send_json(200,{"success":True,"offers":pending_trade_offers(lid,tid)})
+            if parsed.path=="/api/league/trade-coach":
+                tid=m.get("team_id")
+                if not tid:return self.send_json(400,{"success":False,"message":"Choisis d'abord ton équipe."})
+                return self.send_json(200,{"success":True,**trade_coach_advice(lid,tid)})
             if parsed.path=="/api/league/finances":
                 tid=m.get("team_id")
                 if not tid:return self.send_json(400,{"success":False,"message":"Choisis d'abord ton équipe."})
