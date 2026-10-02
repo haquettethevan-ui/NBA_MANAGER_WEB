@@ -4,6 +4,7 @@ from multiplayer_db import *
 from season_calendar import generate_calendar
 from season_runner import simulate_next_day, _load_team_state
 from main import OFFENSE_FOCUSES, DEFENSE_FOCUSES, normalize_tactics
+from engine_v55 import energy_factor_from_value
 from finance_rules import SALARY_CAP_2026_27, LUXURY_TAX_2026_27, FIRST_APRON_2026_27, SECOND_APRON_2026_27, salary_for_row, payroll_zone, validate_trade_salary
 from http.cookies import SimpleCookie
 
@@ -105,7 +106,7 @@ def rotation_coach_advice(league_id,team_id):
         injury=int(getattr(p,"injury_days",st.get("injury_days",0)) or 0)
         mins=minutes.get(p.name,0)
         # Energy-adjusted effective OVR: fatigue matters enough to make a fresh backup preferable in real cases.
-        effective=float(p.overall)*(0.72+0.28*max(0,min(100,energy))/100)
+        effective=float(p.overall)*energy_factor_from_value(energy)
         rows.append({"name":p.name,"position":p.position,"overall":p.overall,"energy":round(energy,1),"minutes":mins,"effective":round(effective,1),"injury_days":injury,"player":p})
     suggestions=[]
     active=[x for x in rows if not x["injury_days"]]
@@ -119,7 +120,7 @@ def rotation_coach_advice(league_id,team_id):
         if not backups:continue
         b=max(backups,key=lambda z:z["effective"])
         gap=b["effective"]-x["effective"]; fresh=b["energy"]-x["energy"]
-        if gap>=0 or (x["energy"]<82 and gap>=-2.0 and fresh>=10):
+        if gap>=0 or (x["energy"]<80 and gap>=-2.0 and fresh>=10):
             delta=min(6,max(2,int(round((max(0,gap)+max(0,fresh)/8)))))
             delta=min(delta,x["minutes"]-20,48-b["minutes"])
             if delta>=2:suggestions.append({"type":"reduce","from":x["name"],"to":b["name"],"minutes":delta,"reason":f"{x['name']} est à {x['energy']:.0f}% d'énergie (OVR effectif {x['effective']:.1f}) contre {b['name']} à {b['energy']:.0f}% (OVR effectif {b['effective']:.1f}). Le backup peut prendre une partie de ses minutes sans dégrader la rotation."})
