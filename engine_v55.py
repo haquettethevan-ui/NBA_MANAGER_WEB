@@ -136,14 +136,20 @@ def _sigmoid(x): return 1.0 / (1.0 + math.exp(-x))
 def _pick(items, weights): return random.choices(items, weights=[max(.001,w) for w in weights], k=1)[0]
 
 
+def energy_factor_from_value(energy, stat="skill"):
+    """Shared fatigue curve: 80-100 is fully fresh; penalties accelerate below 80."""
+    e = _clamp(float(energy), 45.0, 100.0)
+    if e >= 80.0:
+        return 1.0
+    # At 70/60/50/45 energy, skill is roughly 98/95/91/88%.
+    deficit = 80.0 - e
+    base_loss = .0015 * deficit + .000075 * deficit * deficit
+    stat_mult = {"skill": 1.0, "athletic": 1.16, "defense": 1.10}.get(stat, 1.0)
+    return max(.78, 1.0 - base_loss * stat_mult)
+
+
 def _energy_factor(p, stat="skill"):
-    e = _clamp(getattr(p, "energy", 100.0), 45.0, 100.0)
-    # La fatigue doit compter sans écraser le talent. Au-dessus de 85,
-    # l'effet reste léger ; il devient réellement visible surtout sous 70.
-    loss = max(0.0, 94.0 - e)
-    scale = {"skill": .0017, "athletic": .0027, "defense": .0024}.get(stat, .0019)
-    extra = max(0.0, 68.0 - e) * {"skill": .0010, "athletic": .0015, "defense": .0013}.get(stat, .0011)
-    return max(.80, 1.0 - loss * scale - extra)
+    return energy_factor_from_value(getattr(p, "energy", 100.0), stat)
 
 
 def _offense_rating(p):
@@ -453,10 +459,12 @@ def _set_minute_lineup(team, minute):
 def _energy_tick(team):
     for p in team.roster:
         if p in team.on_court:
-            drain = 1.60 + (82-p.stamina)*.014
+            # Slightly slower in-game drain: normal starter minutes should not
+            # automatically push a fresh player deep into the fatigue penalty zone.
+            drain = 1.42 + (82-p.stamina)*.012
             p.energy=max(45.0,p.energy-drain); p.minutes_played += 1
         else:
-            p.energy=min(100.0,p.energy+3.20+(p.stamina-75)*.012)
+            p.energy=min(100.0,p.energy+3.10+(p.stamina-75)*.012)
 
 
 def _pace(t1,t2):
