@@ -88,6 +88,58 @@ def validate_ai_trade(league_id,ai_team,send_names,receive_names):
         raise ValueError(f"Trade refuse par l'IA : {reason} (écart estimé {gap} %).")
     return {"offered_value":round(incoming,1),"requested_value":round(outgoing,1),"required_ratio":required,"top5":_team_is_top5(league_id,ai_team)}
 
+def rotation_coach_advice(league_id,team_id):
+    """Compare current minutes with projected energy-adjusted player quality and suggest conservative minute transfers."""
+    team,_=league_team(league_id,team_id)
+    saved=load_rotation(league_id,team_id)
+    payload=(saved or {}).get("payload",{}) if isinstance(saved,dict) else {}
+    rotation=payload.get("rotation",[]) or []
+    minutes={x.get("name"):int(x.get("minutes",0) or 0) for x in rotation}
+    ng=next((g for g in games_for(league_id) if g["status"]=="scheduled" and team_id in (g["home_team"],g["away_team"])),None)
+    if ng: team=_load_team_state(league_id,team_id,ng["game_date"])
+    states=player_states(league_id,team_id)
+    rows=[]
+    for p in team.roster:
+        st=states.get(p.name,{})
+        energy=float(getattr(p,"energy",st.get("energy",100)) or 100)
+        injury=int(getattr(p,"injury_days",st.get("injury_days",0)) or 0)
+        mins=minutes.get(p.name,0)
+        # Energy-adjusted effective OVR: fatigue matters enough to make a fresh backup preferable in real cases.
+        effective=float(p.overall)*(0.72+0.28*max(0,min(100,energy))/100)
+        rows.append({"name":p.name,"position":p.position,"overall":p.overall,"energy":round(energy,1),"minutes":mins,"effective":round(effective,1),"injury_days":injury,"player":p})
+    suggestions=[]
+    active=[x for x in rows if not x["injury_days"]]
+    def positions(x):
+        try:return set(eligible_positions(x["player"].position))
+        except Exception:return {z.strip() for z in str(x["position"]).replace("-","/").split("/") if z.strip()}
+    # Flag overworked players only when a compatible backup is now effectively better or very close and much fresher.
+    for x in sorted(active,key=lambda z:z["minutes"],reverse=True):
+        if x["minutes"]<26:continue
+        backups=[b for b in active if b["name"]!=x["name"] and b["minutes"]<x["minutes"] and positions(x)&positions(b)]
+        if not backups:continue
+        b=max(backups,key=lambda z:z["effective"])
+        gap=b["effective"]-x["effective"]; fresh=b["energy"]-x["energy"]
+        if gap>=0 or (x["energy"]<82 and gap>=-2.0 and fresh>=10):
+            delta=min(6,max(2,int(round((max(0,gap)+max(0,fresh)/8)))))
+            delta=min(delta,x["minutes"]-20,48-b["minutes"])
+            if delta>=2:suggestions.append({"type":"reduce","from":x["name"],"to":b["name"],"minutes":delta,"reason":f"{x['name']} est à {x['energy']:.0f}% d'énergie (OVR effectif {x['effective']:.1f}) contre {b['name']} à {b['energy']:.0f}% (OVR effectif {b['effective']:.1f}). Le backup peut prendre une partie de ses minutes sans dégrader la rotation."})
+    # Also reward underused fresh talent even when the starter is not critically tired.
+    for b in sorted(active,key=lambda z:(z["effective"],z["energy"]),reverse=True):
+        if b["minutes"]>=24 or b["energy"]<88:continue
+        donors=[x for x in active if x["name"]!=b["name"] and x["minutes"]>=24 and positions(x)&positions(b) and x["effective"]<=b["effective"]+1.0]
+        if donors:
+            x=min(donors,key=lambda z:(z["effective"],z["energy"]))
+            delta=min(4,x["minutes"]-20,28-b["minutes"])
+            if delta>=2:suggestions.append({"type":"increase","from":x["name"],"to":b["name"],"minutes":delta,"reason":f"{b['name']} est frais ({b['energy']:.0f}%) et son niveau projeté ({b['effective']:.1f}) est comparable ou supérieur à {x['name']} ({x['effective']:.1f}). Il peut prendre davantage de responsabilités."})
+    # Deduplicate player pairs and keep advice readable.
+    out=[];seen=set()
+    for s in suggestions:
+        sig=(s["from"],s["to"])
+        if sig in seen:continue
+        seen.add(sig);out.append(s)
+        if len(out)>=4:break
+    return {"players":[{k:v for k,v in x.items() if k!="player"} for x in rows],"suggestions":out,"has_saved_rotation":bool(rotation),"next_game_date":ng["game_date"] if ng else None}
+
 def trade_coach_advice(league_id,team_id,max_suggestions=4):
     """Return only trades that pass the exact salary, roster and AI-acceptance checks used by /api/league/trade."""
     seed_finances(league_id)
@@ -249,7 +301,7 @@ class MultiplayerServer(Server):
         if self.path=="/api/game-config":
             return self.send_json(200,{"success":True,"offense":list(OFFENSE_FOCUSES),"defense":list(DEFENSE_FOCUSES)})
         parsed=urlparse(self.path); q=parse_qs(parsed.query)
-        if parsed.path in ("/api/league/roster","/api/league/rotation","/api/league/calendar","/api/league/results","/api/league/standings","/api/league/dashboard","/api/league/finances","/api/league/trade-coach","/api/league/trade-offers","/api/league/ready-status"):
+        if parsed.path in ("/api/league/roster","/api/league/rotation","/api/league/calendar","/api/league/results","/api/league/standings","/api/league/dashboard","/api/league/finances","/api/league/rotation-coach","/api/league/trade-coach","/api/league/trade-offers","/api/league/ready-status"):
             u=self.auth()
             if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
             lid=int(q.get("league_id",[0])[0]);m=membership(u["id"],lid)
@@ -262,6 +314,10 @@ class MultiplayerServer(Server):
                 tid=m.get("team_id")
                 if not tid:return self.send_json(400,{"success":False,"message":"Choisis d’abord ton équipe."})
                 return self.send_json(200,{"success":True,"offers":pending_trade_offers(lid,tid)})
+            if parsed.path=="/api/league/rotation-coach":
+                tid=m.get("team_id")
+                if not tid:return self.send_json(400,{"success":False,"message":"Choisis d'abord ton équipe."})
+                return self.send_json(200,{"success":True,**rotation_coach_advice(lid,tid)})
             if parsed.path=="/api/league/trade-coach":
                 tid=m.get("team_id")
                 if not tid:return self.send_json(400,{"success":False,"message":"Choisis d'abord ton équipe."})
