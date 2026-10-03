@@ -371,9 +371,17 @@ def ai_tactics_engine_guided(team, opponent, trials=2):
     offense_pool=["Équilibré","Jeu intérieur","Tir extérieur","Pénétration","Pick & Roll","Jeu rapide","Mouvement de balle","Rebond offensif"]
     defense_pool=["Équilibré","Homme à homme","Pression porteur","Protection du cercle","Défense extérieure","Box out","Repli défensif","Zone"]
     opponent_plan=ai_tactics(opponent,team)
-    # Candidate shortlist deliberately comes from the heuristic top three.
-    off_candidates=[base["offensePrimary"],base["offenseSecondary"],base["offenseTertiary"]]
-    def_candidates=[base["defensePrimary"],base["defenseSecondary"],base["defenseTertiary"]]
+    # Keep team identity, but never let the heuristic completely hide a
+    # tactically strong family. P&R is a universal creation tool in the engine,
+    # while balanced defense is a useful neutral challenger.
+    off_candidates=list(dict.fromkeys([
+        base["offensePrimary"],base["offenseSecondary"],base["offenseTertiary"],
+        "Pick & Roll"
+    ]))
+    def_candidates=list(dict.fromkeys([
+        base["defensePrimary"],base["defenseSecondary"],base["defenseTertiary"],
+        "Équilibré"
+    ]))
     seed_key=(team.name+"|"+opponent.name).encode("utf-8")
     seed0=int.from_bytes(hashlib.sha256(seed_key).digest()[:4],"big")
     saved=random.getstate()
