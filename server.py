@@ -250,104 +250,15 @@ def build_ai_rotation(team):
     return minutes
 
 
-def _ai_league_baselines():
-    """League distributions for roster-relative AI identities.
 
-    Raw 2K category scales are not directly comparable (outside scoring is
-    structurally higher than some other categories), so tactical identity uses
-    league-relative z-scores instead of raw rating gaps.
-    """
-    attrs=("outside_scoring","inside_scoring","playmaking","defense","rebounding","athleticism")
-    profiles=[]
-    for rows in PLAYER_DB.values():
-        valid=[r for r in rows if all(r.get(a) is not None for a in attrs)]
-        core=sorted(valid,key=lambda r:int(r.get("overall") or 0),reverse=True)[:8]
-        if not core: continue
-        profiles.append({a:sum(float(r[a]) for r in core)/len(core) for a in attrs})
-    out={}
-    for a in attrs:
-        vals=[p[a] for p in profiles]
-        mean=sum(vals)/len(vals)
-        var=sum((x-mean)**2 for x in vals)/max(1,len(vals)-1)
-        out[a]=(mean,max(var**.5,1.0))
-    return out
-
-_AI_BASELINES=_ai_league_baselines()
-
-def ai_tactics(team, opponent=None):
-    """Choose a varied NBA-style plan from league-relative roster strengths.
-
-    Player ratings and shot calibration are untouched. Only the CPU's tactical
-    selection is normalized, so a high raw outside-scoring scale no longer
-    forces almost every team into 'Tir extérieur'.
-    """
-    core=sorted(team.roster,key=lambda p:getattr(p,"overall",0),reverse=True)[:8]
-    opp_core=sorted(opponent.roster,key=lambda p:getattr(p,"overall",0),reverse=True)[:8] if opponent else []
-    def avg(players,attr,default=70.0):
-        return sum(float(getattr(p,attr,default) or default) for p in players)/max(1,len(players))
-    def z(players,attr):
-        mean,sd=_AI_BASELINES[attr]
-        return (avg(players,attr)-mean)/sd
-    outside=z(core,"outside_scoring"); inside=z(core,"inside_scoring")
-    play=z(core,"playmaking"); defense=z(core,"defense")
-    rebound=z(core,"rebounding"); athletic=z(core,"athleticism")
-    # Identity dominates. Scores are deliberately on the same normalized scale.
-    off_scores={
-        "Tir extérieur":1.00*outside+.12*play,
-        "Jeu intérieur":.88*inside+.22*rebound,
-        "Pénétration":.58*inside+.55*athletic+.12*play,
-        "Pick & Roll":.72*play+.22*outside+.16*inside,
-        "Jeu rapide":.66*athletic+.38*play,
-        "Mouvement de balle":.88*play+.12*outside,
-        "Rebond offensif":.82*rebound+.20*inside,
-        "Équilibré":.20-0.12*max(abs(outside),abs(inside),abs(play),abs(athletic))}
-    def_scores={
-        "Homme à homme":.72*defense+.28*athletic,
-        "Pression porteur":.58*defense+.50*athletic,
-        "Protection du cercle":.70*defense+.42*rebound,
-        "Défense extérieure":.82*defense+.20*athletic,
-        "Box out":1.00*rebound+.10*defense,
-        "Repli défensif":.68*athletic+.30*defense,
-        "Zone":.58*defense+.38*rebound-.18,
-        "Équilibré":.18}
-    if opp_core:
-        # Matchup adjustment is intentionally modest (~20-25% of a typical
-        # identity score) so the CPU adapts without becoming a perfect counter.
-        oo=z(opp_core,"outside_scoring"); oi=z(opp_core,"inside_scoring")
-        op=z(opp_core,"playmaking"); od=z(opp_core,"defense"); ore=z(opp_core,"rebounding")
-        # Attack defensive weaknesses, while roster identity remains the base.
-        # Interior/drive plans like weak defense and weak rebounding; perimeter
-        # creation likes weak overall defense but does not become a universal pick.
-        off_scores["Tir extérieur"] += max(-.34,min(.34,-od*.22))
-        off_scores["Pénétration"] += max(-.36,min(.36,-(.68*od+.32*ore)*.23))
-        off_scores["Jeu intérieur"] += max(-.34,min(.34,-(.62*od+.38*ore)*.21))
-        off_scores["Rebond offensif"] += max(-.30,min(.30,-ore*.20))
-        # Apply matchup information to every offensive family. Previously P&R,
-        # transition and ball movement were effectively roster-only choices.
-        off_scores["Pick & Roll"] += max(-.34,min(.34,-(.70*od+.30*op)*.21))
-        off_scores["Jeu rapide"] += max(-.32,min(.32,-(.58*od+.42*ore)*.20))
-        off_scores["Mouvement de balle"] += max(-.30,min(.30,-(.76*od+.24*op)*.19))
-        off_scores["Équilibré"] += max(-.14,min(.14,-od*.08))
-
-        # Defense counters the opponent's offensive strengths.
-        def_scores["Défense extérieure"] += max(-.38,min(.38,oo*.25))
-        def_scores["Protection du cercle"] += max(-.38,min(.38,oi*.25))
-        def_scores["Pression porteur"] += max(-.35,min(.35,op*.23))
-        def_scores["Box out"] += max(-.32,min(.32,ore*.20))
-        # Defensive choices also react to the opponent's likely creation style.
-        def_scores["Homme à homme"] += max(-.24,min(.24,(.45*op+.30*oi+.25*oo)*.12))
-        def_scores["Repli défensif"] += max(-.28,min(.28,z(opp_core,"athleticism")*.18))
-        def_scores["Zone"] += max(-.24,min(.24,(oi-oo)*.14))
-        def_scores["Équilibré"] += max(-.12,min(.12,(abs(oo)+abs(oi)+abs(op))*.035))
-    def top3(scores):
-        return [k for k,_ in sorted(scores.items(),key=lambda kv:(kv[1],kv[0]),reverse=True)[:3]]
-    off=top3(off_scores); deff=top3(def_scores)
-    return normalize_tactics({
-        "offensePrimary":off[0],"offenseSecondary":off[1],"offenseTertiary":off[2],
-        "defensePrimary":deff[0],"defenseSecondary":deff[1],"defenseTertiary":deff[2]})
-
-
-
+CPU_NEUTRAL_TACTICS = {
+    "offensePrimary": "Équilibré",
+    "offenseSecondary": "Mouvement de balle",
+    "offenseTertiary": "Jeu rapide",
+    "defensePrimary": "Équilibré",
+    "defenseSecondary": "Homme à homme",
+    "defenseTertiary": "Box out",
+}
 
 
 def roster_timeline_from_team(team):
@@ -597,7 +508,7 @@ class Server(SimpleHTTPRequestHandler):
             rotation2 = build_ai_rotation(opponent_team)
             starter_names2 = [player.name for player in opponent_team.starters]
             role_map2 = None
-            tactics2 = ai_tactics(opponent_team, user_team)
+            tactics2 = CPU_NEUTRAL_TACTICS.copy()
 
             print()
             print("========================================")
