@@ -25,7 +25,7 @@ def replace_primary(plan, side, focus, pool):
 def evaluate(team_id, opponent_id, side="offense", samples=8):
     team,_=server.build_team(team_id)
     opp,_=server.build_team(opponent_id)
-    cpu=server.ai_tactics_engine_guided(team,opp,trials=2)
+    cpu=server.ai_tactics_engine_guided(team,opp,trials=4)
     opponent_plan=server.ai_tactics(opp,team)
     pool=OFFENSE if side=="offense" else DEFENSE
     key=side+"Primary"
