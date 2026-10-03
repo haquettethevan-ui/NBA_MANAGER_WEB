@@ -17,6 +17,7 @@ from main import (
     REQUIRED_POSITIONS,
     eligible_positions,
     tactic_compatibility,
+    normalize_tactics,
 )
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -318,10 +319,22 @@ def ai_tactics(team, opponent=None):
         off_scores["Pénétration"] += max(-.32,min(.32,-(.72*od+.28*ore)*.20))
         off_scores["Jeu intérieur"] += max(-.30,min(.30,-(.68*od+.32*ore)*.18))
         off_scores["Rebond offensif"] += max(-.28,min(.28,-ore*.18))
+        # Apply matchup information to every offensive family. Previously P&R,
+        # transition and ball movement were effectively roster-only choices.
+        off_scores["Pick & Roll"] += max(-.32,min(.32,-(.58*od+.42*op)*.20))
+        off_scores["Jeu rapide"] += max(-.30,min(.30,-(.55*od+.45*ore)*.18))
+        off_scores["Mouvement de balle"] += max(-.30,min(.30,-(.72*od+.28*op)*.18))
+        off_scores["Équilibré"] += max(-.16,min(.16,-od*.10))
+
         def_scores["Défense extérieure"] += max(-.34,min(.34,oo*.22))
         def_scores["Protection du cercle"] += max(-.34,min(.34,oi*.22))
         def_scores["Pression porteur"] += max(-.32,min(.32,op*.20))
         def_scores["Box out"] += max(-.28,min(.28,ore*.17))
+        # Defensive choices also react to the opponent's likely creation style.
+        def_scores["Homme à homme"] += max(-.24,min(.24,(.45*op+.30*oi+.25*oo)*.12))
+        def_scores["Repli défensif"] += max(-.28,min(.28,z(opp_core,"athleticism")*.18))
+        def_scores["Zone"] += max(-.24,min(.24,(oi-oo)*.14))
+        def_scores["Équilibré"] += max(-.12,min(.12,(abs(oo)+abs(oi)+abs(op))*.035))
     def top3(scores):
         return [k for k,_ in sorted(scores.items(),key=lambda kv:(kv[1],kv[0]),reverse=True)[:3]]
     off=top3(off_scores); deff=top3(def_scores)
