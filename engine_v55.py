@@ -23,6 +23,10 @@ DEFAULT_TACTICS = {
     "offensePrimary": "Équilibré", "offenseSecondary": "Mouvement de balle", "offenseTertiary": "Jeu rapide",
     "defensePrimary": "Équilibré", "defenseSecondary": "Homme à homme", "defenseTertiary": "Box out",
 }
+NEUTRAL_TACTICS = {
+    "offensePrimary": "Équilibré", "offenseSecondary": "Mouvement de balle", "offenseTertiary": "Jeu rapide",
+    "defensePrimary": "Équilibré", "defenseSecondary": "Homme à homme", "defenseTertiary": "Box out",
+}
 PRIORITY = (1.0, .58, .30)
 
 # Positive = offense creates this situation more often; negative = defense suppresses it.
@@ -97,7 +101,12 @@ def normalize_tactics(t):
     return out
 
 
+def _is_neutral_tactics(tactics):
+    return all(tactics.get(k) == v for k, v in NEUTRAL_TACTICS.items())
+
 def _effects(tactics, side):
+    if _is_neutral_tactics(tactics):
+        return {}
     table = OFFENSE_PROFILE if side == "offense" else DEFENSE_PROFILE
     keys = ("offensePrimary","offenseSecondary","offenseTertiary") if side == "offense" else ("defensePrimary","defenseSecondary","defenseTertiary")
     result = {}
@@ -111,6 +120,8 @@ def _effects(tactics, side):
 
 
 def _focuses(tactics, side):
+    if _is_neutral_tactics(tactics):
+        return []
     keys = ("offensePrimary","offenseSecondary","offenseTertiary") if side == "offense" else ("defensePrimary","defenseSecondary","defenseTertiary")
     result=[]; seen=set()
     for weight,key in zip(PRIORITY,keys):
