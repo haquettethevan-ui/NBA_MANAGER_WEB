@@ -260,6 +260,10 @@ CPU_NEUTRAL_TACTICS = {
     "defenseTertiary": "Box out",
 }
 
+def ai_tactics(team=None, opponent=None):
+    """Backward-compatible CPU tactic hook: CPU teams are always neutral."""
+    return CPU_NEUTRAL_TACTICS.copy()
+
 
 def roster_timeline_from_team(team):
     """Retourne la timeline de pré-match issue du plan de rotation validé."""
