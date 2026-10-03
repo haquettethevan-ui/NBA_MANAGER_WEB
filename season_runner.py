@@ -58,8 +58,14 @@ def simulate_next_day(league_id):
                     hr=_human_rotation(league_id,tid,team)
                     if hr[0] is None:raise ValueError(tid+" : aucune rotation sauvegardée.")
                     rotation,tactics,starters=hr
-                else:rotation,tactics,starters=_ai_rotation(team),ai_tactics(team),None
+                else:rotation,tactics,starters=_ai_rotation(team),None,None
                 prepared[tid]=(team,rotation,tactics,starters)
+    # AI tactics are matchup-aware, but human saved tactics remain untouched.
+    for g in slate:
+        hid,aid=g["home_team"],g["away_team"]
+        ht,hr,htac,hs5=prepared[hid]; at,ar,atac,as5=prepared[aid]
+        if hid not in members: prepared[hid]=(ht,hr,ai_tactics(ht,at),hs5)
+        if aid not in members: prepared[aid]=(at,ar,ai_tactics(at,ht),as5)
     results=[]
     for g in slate:
         ht,hr,htac,hs5=prepared[g["home_team"]];at,ar,atac,as5=prepared[g["away_team"]]
