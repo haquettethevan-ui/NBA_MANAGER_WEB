@@ -15,4 +15,4 @@ jobs:
       - name: Syntax check
         run: python -m py_compile server.py test_ai_tactics_optimality.py
       - name: Tactical benchmark
-        run: python test_ai_tactics_optimality.py
+        run: python test_ai_tactics_optimality.py\n      - name: League coherence\n        run: python test_ai_tactics_coherence.py
