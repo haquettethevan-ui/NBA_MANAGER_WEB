@@ -17,6 +17,7 @@ from main import (
     REQUIRED_POSITIONS,
     eligible_positions,
     tactic_compatibility,
+    normalize_tactics,
 )
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -314,20 +315,39 @@ def ai_tactics(team, opponent=None):
         # identity score) so the CPU adapts without becoming a perfect counter.
         oo=z(opp_core,"outside_scoring"); oi=z(opp_core,"inside_scoring")
         op=z(opp_core,"playmaking"); od=z(opp_core,"defense"); ore=z(opp_core,"rebounding")
-        off_scores["Tir extérieur"] += max(-.32,min(.32,-od*.20))
-        off_scores["Pénétration"] += max(-.32,min(.32,-(.72*od+.28*ore)*.20))
-        off_scores["Jeu intérieur"] += max(-.30,min(.30,-(.68*od+.32*ore)*.18))
-        off_scores["Rebond offensif"] += max(-.28,min(.28,-ore*.18))
-        def_scores["Défense extérieure"] += max(-.34,min(.34,oo*.22))
-        def_scores["Protection du cercle"] += max(-.34,min(.34,oi*.22))
-        def_scores["Pression porteur"] += max(-.32,min(.32,op*.20))
-        def_scores["Box out"] += max(-.28,min(.28,ore*.17))
+        # Attack defensive weaknesses, while roster identity remains the base.
+        # Interior/drive plans like weak defense and weak rebounding; perimeter
+        # creation likes weak overall defense but does not become a universal pick.
+        off_scores["Tir extérieur"] += max(-.34,min(.34,-od*.22))
+        off_scores["Pénétration"] += max(-.36,min(.36,-(.68*od+.32*ore)*.23))
+        off_scores["Jeu intérieur"] += max(-.34,min(.34,-(.62*od+.38*ore)*.21))
+        off_scores["Rebond offensif"] += max(-.30,min(.30,-ore*.20))
+        # Apply matchup information to every offensive family. Previously P&R,
+        # transition and ball movement were effectively roster-only choices.
+        off_scores["Pick & Roll"] += max(-.34,min(.34,-(.70*od+.30*op)*.21))
+        off_scores["Jeu rapide"] += max(-.32,min(.32,-(.58*od+.42*ore)*.20))
+        off_scores["Mouvement de balle"] += max(-.30,min(.30,-(.76*od+.24*op)*.19))
+        off_scores["Équilibré"] += max(-.14,min(.14,-od*.08))
+
+        # Defense counters the opponent's offensive strengths.
+        def_scores["Défense extérieure"] += max(-.38,min(.38,oo*.25))
+        def_scores["Protection du cercle"] += max(-.38,min(.38,oi*.25))
+        def_scores["Pression porteur"] += max(-.35,min(.35,op*.23))
+        def_scores["Box out"] += max(-.32,min(.32,ore*.20))
+        # Defensive choices also react to the opponent's likely creation style.
+        def_scores["Homme à homme"] += max(-.24,min(.24,(.45*op+.30*oi+.25*oo)*.12))
+        def_scores["Repli défensif"] += max(-.28,min(.28,z(opp_core,"athleticism")*.18))
+        def_scores["Zone"] += max(-.24,min(.24,(oi-oo)*.14))
+        def_scores["Équilibré"] += max(-.12,min(.12,(abs(oo)+abs(oi)+abs(op))*.035))
     def top3(scores):
         return [k for k,_ in sorted(scores.items(),key=lambda kv:(kv[1],kv[0]),reverse=True)[:3]]
     off=top3(off_scores); deff=top3(def_scores)
     return normalize_tactics({
         "offensePrimary":off[0],"offenseSecondary":off[1],"offenseTertiary":off[2],
         "defensePrimary":deff[0],"defenseSecondary":deff[1],"defenseTertiary":deff[2]})
+
+
+
 
 
 def roster_timeline_from_team(team):
@@ -577,7 +597,7 @@ class Server(SimpleHTTPRequestHandler):
             rotation2 = build_ai_rotation(opponent_team)
             starter_names2 = [player.name for player in opponent_team.starters]
             role_map2 = None
-            tactics2 = ai_tactics(opponent_team)
+            tactics2 = ai_tactics(opponent_team, user_team)
 
             print()
             print("========================================")
