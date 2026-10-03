@@ -2,6 +2,8 @@ from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 from pathlib import Path
 import json
+import random
+import hashlib
 from itertools import combinations
 
 from main import (
@@ -341,6 +343,67 @@ def ai_tactics(team, opponent=None):
     return normalize_tactics({
         "offensePrimary":off[0],"offenseSecondary":off[1],"offenseTertiary":off[2],
         "defensePrimary":deff[0],"defenseSecondary":deff[1],"defenseTertiary":deff[2]})
+
+
+
+def _replace_ai_primary(plan, side, focus, pool):
+    out=dict(plan)
+    keys=[side+"Primary",side+"Secondary",side+"Tertiary"]
+    out[keys[0]]=focus
+    used=[]
+    for key in keys:
+        if out[key] in used:
+            out[key]=next(x for x in pool if x not in used)
+        used.append(out[key])
+    return normalize_tactics(out)
+
+
+def ai_tactics_engine_guided(team, opponent, trials=2):
+    """CPU plan: roster/matchup heuristic, then a cheap engine tie-break.
+
+    The heuristic keeps the team's basketball identity. The engine only tests
+    the three most plausible primaries, with common random seeds, so CPU teams
+    adapt to the actual engine without exhaustive/perfect search.
+    """
+    base=ai_tactics(team,opponent)
+    if opponent is None:
+        return base
+    offense_pool=["Équilibré","Jeu intérieur","Tir extérieur","Pénétration","Pick & Roll","Jeu rapide","Mouvement de balle","Rebond offensif"]
+    defense_pool=["Équilibré","Homme à homme","Pression porteur","Protection du cercle","Défense extérieure","Box out","Repli défensif","Zone"]
+    opponent_plan=ai_tactics(opponent,team)
+    # Candidate shortlist deliberately comes from the heuristic top three.
+    off_candidates=[base["offensePrimary"],base["offenseSecondary"],base["offenseTertiary"]]
+    def_candidates=[base["defensePrimary"],base["defenseSecondary"],base["defenseTertiary"]]
+    seed_key=(team.name+"|"+opponent.name).encode("utf-8")
+    seed0=int.from_bytes(hashlib.sha256(seed_key).digest()[:4],"big")
+    saved=random.getstate()
+
+    def score(plan):
+        margins=[]
+        for i in range(max(1,trials)):
+            random.seed(seed0+i)
+            # Rebuild fresh teams so benchmark games cannot leak fatigue/stats.
+            tid=next(x["id"] for x in TEAM_META if x["name"]==team.name)
+            oid=next(x["id"] for x in TEAM_META if x["name"]==opponent.name)
+            a,_=build_team(tid); b,_=build_team(oid)
+            result=simulate_game(a,b,build_ai_rotation(a),build_ai_rotation(b),
+                                 tactics1=plan,tactics2=opponent_plan)
+            margins.append(result["team1"]["stats"]["points"]-result["team2"]["stats"]["points"])
+        return sum(margins)/len(margins)
+
+    try:
+        off_rank=sorted(
+            ((score(_replace_ai_primary(base,"offense",x,offense_pool)),x) for x in off_candidates),
+            reverse=True)
+        chosen=_replace_ai_primary(base,"offense",off_rank[0][1],offense_pool)
+        def_rank=sorted(
+            ((score(_replace_ai_primary(chosen,"defense",x,defense_pool)),x) for x in def_candidates),
+            reverse=True)
+        chosen=_replace_ai_primary(chosen,"defense",def_rank[0][1],defense_pool)
+        # Preserve the heuristic ordering as secondary/tertiary identity.
+        return chosen
+    finally:
+        random.setstate(saved)
 
 
 def roster_timeline_from_team(team):
