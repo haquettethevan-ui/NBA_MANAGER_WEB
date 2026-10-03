@@ -40,3 +40,4 @@ print("MAX_DEF_SHARE",round(max(deff.values())/total*100,1),"%")
 print("TEAMS_WITH_ONE_PAIR",sum(len(v)==1 for v in team_choices.values()))
 for tid in ids:
     print("TEAM",tid,"DISTINCT",len(team_choices[tid]),"SAMPLE",list(sorted(team_choices[tid]))[:8])
+# CI trigger: league-wide deterministic AI coherence validation
