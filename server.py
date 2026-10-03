@@ -358,7 +358,7 @@ def _replace_ai_primary(plan, side, focus, pool):
     return normalize_tactics(out)
 
 
-def ai_tactics_engine_guided(team, opponent, trials=2):
+def ai_tactics_engine_guided(team, opponent, trials=4):
     """CPU plan: roster/matchup heuristic, then a cheap engine tie-break.
 
     The heuristic keeps the team's basketball identity. The engine only tests
@@ -371,17 +371,11 @@ def ai_tactics_engine_guided(team, opponent, trials=2):
     offense_pool=["Équilibré","Jeu intérieur","Tir extérieur","Pénétration","Pick & Roll","Jeu rapide","Mouvement de balle","Rebond offensif"]
     defense_pool=["Équilibré","Homme à homme","Pression porteur","Protection du cercle","Défense extérieure","Box out","Repli défensif","Zone"]
     opponent_plan=ai_tactics(opponent,team)
-    # Keep team identity, but never let the heuristic completely hide a
-    # tactically strong family. P&R is a universal creation tool in the engine,
-    # while balanced defense is a useful neutral challenger.
-    off_candidates=list(dict.fromkeys([
-        base["offensePrimary"],base["offenseSecondary"],base["offenseTertiary"],
-        "Pick & Roll"
-    ]))
-    def_candidates=list(dict.fromkeys([
-        base["defensePrimary"],base["defenseSecondary"],base["defenseTertiary"],
-        "Équilibré"
-    ]))
+    # Keep the shortlist tied to team identity. The previous forced P&R /
+    # balanced challengers increased benchmark regret by admitting candidates
+    # that did not actually fit some rosters.
+    off_candidates=[base["offensePrimary"],base["offenseSecondary"],base["offenseTertiary"]]
+    def_candidates=[base["defensePrimary"],base["defenseSecondary"],base["defenseTertiary"]]
     seed_key=(team.name+"|"+opponent.name).encode("utf-8")
     seed0=int.from_bytes(hashlib.sha256(seed_key).digest()[:4],"big")
     saved=random.getstate()
@@ -400,15 +394,25 @@ def ai_tactics_engine_guided(team, opponent, trials=2):
         return sum(margins)/len(margins)
 
     try:
+        # Common random numbers make candidate comparisons much less noisy.
+        # Require a small, repeatable advantage before overriding the heuristic
+        # primary; close calls stay with the team's natural identity.
+        off_base=score(base)
         off_rank=sorted(
             ((score(_replace_ai_primary(base,"offense",x,offense_pool)),x) for x in off_candidates),
             reverse=True)
-        chosen=_replace_ai_primary(base,"offense",off_rank[0][1],offense_pool)
+        off_best_score,off_best=off_rank[0]
+        chosen=base
+        if off_best != base["offensePrimary"] and off_best_score >= off_base + 1.5:
+            chosen=_replace_ai_primary(base,"offense",off_best,offense_pool)
+
+        def_base=score(chosen)
         def_rank=sorted(
             ((score(_replace_ai_primary(chosen,"defense",x,defense_pool)),x) for x in def_candidates),
             reverse=True)
-        chosen=_replace_ai_primary(chosen,"defense",def_rank[0][1],defense_pool)
-        # Preserve the heuristic ordering as secondary/tertiary identity.
+        def_best_score,def_best=def_rank[0]
+        if def_best != chosen["defensePrimary"] and def_best_score >= def_base + 1.5:
+            chosen=_replace_ai_primary(chosen,"defense",def_best,defense_pool)
         return chosen
     finally:
         random.setstate(saved)
