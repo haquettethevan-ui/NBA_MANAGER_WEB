@@ -2,8 +2,6 @@ from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 from pathlib import Path
 import json
-import random
-import hashlib
 from itertools import combinations
 
 from main import (
@@ -346,76 +344,6 @@ def ai_tactics(team, opponent=None):
 
 
 
-def _replace_ai_primary(plan, side, focus, pool):
-    out=dict(plan)
-    keys=[side+"Primary",side+"Secondary",side+"Tertiary"]
-    out[keys[0]]=focus
-    used=[]
-    for key in keys:
-        if out[key] in used:
-            out[key]=next(x for x in pool if x not in used)
-        used.append(out[key])
-    return normalize_tactics(out)
-
-
-def ai_tactics_engine_guided(team, opponent, trials=4):
-    """CPU plan: roster/matchup heuristic, then a cheap engine tie-break.
-
-    The heuristic keeps the team's basketball identity. The engine only tests
-    the three most plausible primaries, with common random seeds, so CPU teams
-    adapt to the actual engine without exhaustive/perfect search.
-    """
-    base=ai_tactics(team,opponent)
-    if opponent is None:
-        return base
-    offense_pool=["Équilibré","Jeu intérieur","Tir extérieur","Pénétration","Pick & Roll","Jeu rapide","Mouvement de balle","Rebond offensif"]
-    defense_pool=["Équilibré","Homme à homme","Pression porteur","Protection du cercle","Défense extérieure","Box out","Repli défensif","Zone"]
-    opponent_plan=ai_tactics(opponent,team)
-    # Keep the shortlist tied to team identity. The previous forced P&R /
-    # balanced challengers increased benchmark regret by admitting candidates
-    # that did not actually fit some rosters.
-    off_candidates=[base["offensePrimary"],base["offenseSecondary"],base["offenseTertiary"]]
-    def_candidates=[base["defensePrimary"],base["defenseSecondary"],base["defenseTertiary"]]
-    seed_key=(team.name+"|"+opponent.name).encode("utf-8")
-    seed0=int.from_bytes(hashlib.sha256(seed_key).digest()[:4],"big")
-    saved=random.getstate()
-
-    def score(plan):
-        margins=[]
-        for i in range(max(1,trials)):
-            random.seed(seed0+i)
-            # Rebuild fresh teams so benchmark games cannot leak fatigue/stats.
-            tid=next(x["id"] for x in TEAM_META if x["name"]==team.name)
-            oid=next(x["id"] for x in TEAM_META if x["name"]==opponent.name)
-            a,_=build_team(tid); b,_=build_team(oid)
-            result=simulate_game(a,b,build_ai_rotation(a),build_ai_rotation(b),
-                                 tactics1=plan,tactics2=opponent_plan)
-            margins.append(result["team1"]["stats"]["points"]-result["team2"]["stats"]["points"])
-        return sum(margins)/len(margins)
-
-    try:
-        # Common random numbers make candidate comparisons much less noisy.
-        # Require a small, repeatable advantage before overriding the heuristic
-        # primary; close calls stay with the team's natural identity.
-        off_base=score(base)
-        off_rank=sorted(
-            ((score(_replace_ai_primary(base,"offense",x,offense_pool)),x) for x in off_candidates),
-            reverse=True)
-        off_best_score,off_best=off_rank[0]
-        chosen=base
-        if off_best != base["offensePrimary"] and off_best_score >= off_base + 1.5:
-            chosen=_replace_ai_primary(base,"offense",off_best,offense_pool)
-
-        def_base=score(chosen)
-        def_rank=sorted(
-            ((score(_replace_ai_primary(chosen,"defense",x,defense_pool)),x) for x in def_candidates),
-            reverse=True)
-        def_best_score,def_best=def_rank[0]
-        if def_best != chosen["defensePrimary"] and def_best_score >= def_base + 1.5:
-            chosen=_replace_ai_primary(chosen,"defense",def_best,defense_pool)
-        return chosen
-    finally:
-        random.setstate(saved)
 
 
 def roster_timeline_from_team(team):
@@ -665,7 +593,7 @@ class Server(SimpleHTTPRequestHandler):
             rotation2 = build_ai_rotation(opponent_team)
             starter_names2 = [player.name for player in opponent_team.starters]
             role_map2 = None
-            tactics2 = ai_tactics(opponent_team)
+            tactics2 = ai_tactics(opponent_team, user_team)
 
             print()
             print("========================================")
