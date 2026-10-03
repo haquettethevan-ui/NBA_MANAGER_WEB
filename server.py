@@ -249,56 +249,80 @@ def build_ai_rotation(team):
     return minutes
 
 
-def ai_tactics(team, opponent=None):
-    """AI game plan: mostly roster identity, with limited opponent adaptation.
+def _ai_league_baselines():
+    """League distributions for roster-relative AI identities.
 
-    The AI deliberately does not get the full human coach scouting logic:
-    roughly 75% of the score comes from its own personnel and 25% from the
-    opponent. This keeps teams distinct without giving the CPU a perfect counter.
+    Raw 2K category scales are not directly comparable (outside scoring is
+    structurally higher than some other categories), so tactical identity uses
+    league-relative z-scores instead of raw rating gaps.
+    """
+    attrs=("outside_scoring","inside_scoring","playmaking","defense","rebounding","athleticism")
+    profiles=[]
+    for rows in PLAYER_DB.values():
+        valid=[r for r in rows if all(r.get(a) is not None for a in attrs)]
+        core=sorted(valid,key=lambda r:int(r.get("overall") or 0),reverse=True)[:8]
+        if not core: continue
+        profiles.append({a:sum(float(r[a]) for r in core)/len(core) for a in attrs})
+    out={}
+    for a in attrs:
+        vals=[p[a] for p in profiles]
+        mean=sum(vals)/len(vals)
+        var=sum((x-mean)**2 for x in vals)/max(1,len(vals)-1)
+        out[a]=(mean,max(var**.5,1.0))
+    return out
+
+_AI_BASELINES=_ai_league_baselines()
+
+def ai_tactics(team, opponent=None):
+    """Choose a varied NBA-style plan from league-relative roster strengths.
+
+    Player ratings and shot calibration are untouched. Only the CPU's tactical
+    selection is normalized, so a high raw outside-scoring scale no longer
+    forces almost every team into 'Tir extérieur'.
     """
     core=sorted(team.roster,key=lambda p:getattr(p,"overall",0),reverse=True)[:8]
     opp_core=sorted(opponent.roster,key=lambda p:getattr(p,"overall",0),reverse=True)[:8] if opponent else []
     def avg(players,attr,default=70.0):
         return sum(float(getattr(p,attr,default) or default) for p in players)/max(1,len(players))
-    outside=avg(core,"outside_scoring"); inside=avg(core,"inside_scoring")
-    play=avg(core,"playmaking"); defense=avg(core,"defense")
-    rebound=avg(core,"rebounding"); athletic=avg(core,"athleticism")
-    # Own-roster identity scores. Centering on the team's own profile avoids
-    # thresholds that previously sent 29/30 teams to the same outside plan.
-    mean_off=(outside+inside+play+athletic)/4
+    def z(players,attr):
+        mean,sd=_AI_BASELINES[attr]
+        return (avg(players,attr)-mean)/sd
+    outside=z(core,"outside_scoring"); inside=z(core,"inside_scoring")
+    play=z(core,"playmaking"); defense=z(core,"defense")
+    rebound=z(core,"rebounding"); athletic=z(core,"athleticism")
+    # Identity dominates. Scores are deliberately on the same normalized scale.
     off_scores={
-        "Tir extérieur":outside-mean_off,
-        "Jeu intérieur":inside-mean_off,
-        "Pénétration":.62*(inside-mean_off)+.38*(athletic-mean_off),
-        "Pick & Roll":.62*(play-mean_off)+.22*(outside-mean_off)+.16*(inside-mean_off),
-        "Jeu rapide":.58*(athletic-mean_off)+.42*(play-mean_off),
-        "Mouvement de balle":play-mean_off,
-        "Rebond offensif":.72*(rebound-72)+.28*(inside-mean_off),
-        "Équilibré":1.25-max(abs(outside-mean_off),abs(inside-mean_off),abs(play-mean_off))*.18}
+        "Tir extérieur":1.00*outside+.12*play,
+        "Jeu intérieur":.88*inside+.22*rebound,
+        "Pénétration":.58*inside+.55*athletic+.12*play,
+        "Pick & Roll":.72*play+.22*outside+.16*inside,
+        "Jeu rapide":.66*athletic+.38*play,
+        "Mouvement de balle":.88*play+.12*outside,
+        "Rebond offensif":.82*rebound+.20*inside,
+        "Équilibré":.20-0.12*max(abs(outside),abs(inside),abs(play),abs(athletic))}
     def_scores={
-        "Homme à homme":.65*(defense-70)+.35*(athletic-70),
-        "Pression porteur":.55*(defense-70)+.45*(athletic-70),
-        "Protection du cercle":.68*(defense-70)+.32*(rebound-70),
-        "Défense extérieure":.72*(defense-70)+.28*(athletic-70),
-        "Box out":rebound-70,
-        "Repli défensif":.62*(athletic-70)+.38*(defense-70),
-        "Zone":.55*(defense-70)+.45*(rebound-70)-1.0,
-        "Équilibré":1.0}
+        "Homme à homme":.72*defense+.28*athletic,
+        "Pression porteur":.58*defense+.50*athletic,
+        "Protection du cercle":.70*defense+.42*rebound,
+        "Défense extérieure":.82*defense+.20*athletic,
+        "Box out":1.00*rebound+.10*defense,
+        "Repli défensif":.68*athletic+.30*defense,
+        "Zone":.58*defense+.38*rebound-.18,
+        "Équilibré":.18}
     if opp_core:
-        oo=avg(opp_core,"outside_scoring"); oi=avg(opp_core,"inside_scoring")
-        op=avg(opp_core,"playmaking"); od=avg(opp_core,"defense"); ore=avg(opp_core,"rebounding")
-        # Limited adaptation: attack visible defensive soft spots, defend visible
-        # offensive strengths. The small coefficients keep roster identity dominant.
-        off_scores["Tir extérieur"] += max(-3, min(3,(72-od)*.22))
-        off_scores["Pénétration"] += max(-3, min(3,(72-(.72*od+.28*ore))*.22))
-        off_scores["Jeu intérieur"] += max(-3, min(3,(72-(.68*od+.32*ore))*.20))
-        off_scores["Rebond offensif"] += max(-2.5,min(2.5,(72-ore)*.20))
-        def_scores["Défense extérieure"] += max(-3,min(3,(oo-72)*.24))
-        def_scores["Protection du cercle"] += max(-3,min(3,(oi-72)*.24))
-        def_scores["Pression porteur"] += max(-3,min(3,(op-72)*.22))
-        def_scores["Box out"] += max(-2.5,min(2.5,(ore-72)*.18))
+        # Matchup adjustment is intentionally modest (~20-25% of a typical
+        # identity score) so the CPU adapts without becoming a perfect counter.
+        oo=z(opp_core,"outside_scoring"); oi=z(opp_core,"inside_scoring")
+        op=z(opp_core,"playmaking"); od=z(opp_core,"defense"); ore=z(opp_core,"rebounding")
+        off_scores["Tir extérieur"] += max(-.32,min(.32,-od*.20))
+        off_scores["Pénétration"] += max(-.32,min(.32,-(.72*od+.28*ore)*.20))
+        off_scores["Jeu intérieur"] += max(-.30,min(.30,-(.68*od+.32*ore)*.18))
+        off_scores["Rebond offensif"] += max(-.28,min(.28,-ore*.18))
+        def_scores["Défense extérieure"] += max(-.34,min(.34,oo*.22))
+        def_scores["Protection du cercle"] += max(-.34,min(.34,oi*.22))
+        def_scores["Pression porteur"] += max(-.32,min(.32,op*.20))
+        def_scores["Box out"] += max(-.28,min(.28,ore*.17))
     def top3(scores):
-        # Keep priorities unique and let the roster determine their order.
         return [k for k,_ in sorted(scores.items(),key=lambda kv:(kv[1],kv[0]),reverse=True)[:3]]
     off=top3(off_scores); deff=top3(def_scores)
     return normalize_tactics({
