@@ -1,5 +1,7 @@
 name: AI tactics benchmark
 on:
+  push:
+    branches: [ai-tactics-benchmark]
   pull_request:
     branches: [main]
   workflow_dispatch:
