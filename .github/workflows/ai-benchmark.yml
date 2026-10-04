@@ -1,20 +1,34 @@
 name: AI tactics benchmark
+
 on:
   push:
-    branches: [ai-tactics-benchmark]
+    branches: [main]
+    paths:
+      - "engine_v55.py"
+      - "legacy_main.py"
+      - "main.py"
+      - "server.py"
+      - "test_tactics_neutral_balance.py"
+      - ".github/workflows/ai-benchmark.yml"
   pull_request:
     branches: [main]
   workflow_dispatch:
+
 jobs:
   benchmark:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
+
       - name: Syntax check
-        run: python -m py_compile server.py test_ai_tactics_optimality.py
-      - name: Tactical benchmark
-        run: python test_ai_tactics_optimality.py\n      - name: League coherence\n        run: python test_ai_tactics_coherence.py
+        run: python -m py_compile engine_v55.py legacy_main.py main.py server.py test_tactics_neutral_balance.py
+
+      - name: Tactics balance and roster-fit benchmark
+        run: python -u test_tactics_neutral_balance.py
