@@ -1,5 +1,5 @@
 name: Refresh 2K player potential
-# refresh-v4: parse POT from repeated attribute summary
+# refresh-v5: parse POT from final Attributes occurrence
 
 on:
   workflow_dispatch:
@@ -26,9 +26,13 @@ jobs:
           d=json.load(open("data/players_2k27.json",encoding="utf-8"))
           ps=[p for rs in d["players"].values() for p in rs]
           have=[p for p in ps if p.get("potential") is not None and p.get("potential_grade")]
-          print(f"Potential: {len(have)}/{len(ps)} players")
+          from collections import Counter
+          dist=Counter(p["potential_grade"] for p in have)
+          print(f"Potential: {len(have)}/{len(ps)} players; distribution={dict(dist)}")
           if len(have) < max(250, int(len(ps)*0.85)):
               raise SystemExit("Potential coverage too low")
+          if len(dist) < 4 or max(dist.values()) > int(len(have)*0.65):
+              raise SystemExit(f"Potential distribution suspicious: {dict(dist)}")
           PY
       - name: Commit refreshed database
         run: |
