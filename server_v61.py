@@ -327,6 +327,29 @@ class MultiplayerServer(Server):
             return self.send_json(200,{"success":True,"user":u,"leagues":leagues_for(u["id"])})
         if self.path=="/api/teams":
             return self.send_json(200,{"success":True,"teams":team_catalog()})
+        if parsed.path=="/api/players":
+            u=self.auth()
+            if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
+            lid=int(parse_qs(parsed.query).get("league_id",[0])[0] or 0)
+            current_team={}
+            if lid:
+                seed_finances(lid)
+                for tid,entries in league_roster_map(lid).items():
+                    for e in entries:current_team[e["player_name"]]=tid
+            players=[]
+            for original_team,rows in PLAYER_DB.items():
+                for r in rows:
+                    if not all(r.get(key) is not None for key in REQUIRED_RATINGS):continue
+                    players.append({
+                        "name":r.get("name"),"team_id":current_team.get(r.get("name"),original_team),
+                        "position":r.get("position"),"overall":r.get("overall"),
+                        "potential":r.get("potential"),"potential_grade":r.get("potential_grade"),
+                        "outside":r.get("outside_scoring"),"inside":r.get("inside_scoring"),
+                        "athleticism":r.get("athleticism"),"playmaking":r.get("playmaking"),
+                        "defense":r.get("defense"),"rebounding":r.get("rebounding"),"stamina":r.get("stamina")
+                    })
+            players.sort(key=lambda x:(-(float(x.get("overall") or 0)),x.get("name") or ""))
+            return self.send_json(200,{"success":True,"players":players})
         if self.path=="/api/game-config":
             return self.send_json(200,{"success":True,"offense":list(OFFENSE_FOCUSES),"defense":list(DEFENSE_FOCUSES)})
         parsed=urlparse(self.path); q=parse_qs(parsed.query)
