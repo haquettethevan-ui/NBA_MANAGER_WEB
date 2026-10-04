@@ -1,0 +1,53 @@
+name: Tactics Balance Benchmark
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "engine_v55.py"
+      - "legacy_main.py"
+      - "main.py"
+      - "server.py"
+      - "test_tactics_neutral_balance.py"
+      - ".github/workflows/tactics-benchmark.yml"
+
+jobs:
+  tactics-benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile engine
+        run: python -m py_compile engine_v55.py legacy_main.py main.py server.py test_tactics_neutral_balance.py
+
+      - name: Run tactics balance benchmark
+        run: |
+          set -o pipefail
+          python -u test_tactics_neutral_balance.py 2>&1 | tee tactics-benchmark.txt
+
+      - name: Publish benchmark summary
+        if: always()
+        run: |
+          {
+            echo "## NBA Manager — Tactics benchmark"
+            echo
+            echo '~~~text'
+            tail -n 120 tactics-benchmark.txt 2>/dev/null || echo "Benchmark did not produce an output file."
+            echo '~~~'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload benchmark output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tactics-benchmark
+          path: tactics-benchmark.txt
+          if-no-files-found: ignore
