@@ -3,8 +3,8 @@
   "edition": "NBA 2K27",
   "team_count": 30,
   "teams_with_data": 30,
-  "total_players": 536,
-  "fully_verified_players": 535,
+  "total_players": 537,
+  "fully_verified_players": 536,
   "players_with_missing_general_category": 1,
   "missing_players": [
     {
@@ -224,8 +224,8 @@
       "team": "LAC",
       "name": "Los Angeles Clippers",
       "status": "ok",
-      "players": 18,
-      "fully_verified": 18,
+      "players": 19,
+      "fully_verified": 19,
       "partial_or_unverified": 0,
       "missing_by_category": {
         "outside_scoring": 0,
