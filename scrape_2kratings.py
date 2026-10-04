@@ -293,13 +293,13 @@ def extract_rating(text: str, labels: List[str]) -> Optional[int]:
 POTENTIAL_VALUES = {"A+":97,"A":92,"A-":87,"B+":82,"B":77,"B-":72,"C+":67,"C":62,"C-":57,"D+":52,"D":47,"D-":42,"F":35}
 
 def extract_potential(text: str) -> Tuple[Optional[str], Optional[int]]:
-    """Keep 2KRatings' displayed POT letter and map it to the midpoint of its published range."""
+    """Extract the actual Potential grade from the player's Attributes section."""
     clean = normalize(text).upper()
     grade = r"(A\+|A-|A|B\+|B-|B|C\+|C-|C|D\+|D-|D|F)"
-    # Use the repeated attribute summary ("B+ Potential"), not "Potential <...>".
-    # The latter can falsely read the first letter of the player's name, e.g. "Potential A.J. Green" => A.
-    match = re.search(grade + r"\s+POTENTIAL\b", clean)
-    letter = match.group(1) if match else None
+    # Player pages contain unrelated earlier occurrences of "Potential" (navigation/meta).
+    # The Attributes block appears later and is rendered as "Potential <grade>".
+    matches = re.findall(r"\bPOTENTIAL\s+" + grade + r"(?=\s|$)", clean)
+    letter = matches[-1] if matches else None
     return letter, POTENTIAL_VALUES.get(letter) if letter else None
 
 def parse_general_categories(player_html: str) -> Dict[str, Optional[int]]:
