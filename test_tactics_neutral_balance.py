@@ -92,22 +92,23 @@ def roster_skill(team,focus):
       "Équilibré":overall,
       "Jeu intérieur":.70*inside+.18*ath+.12*reb,
       "Tir extérieur":.82*outside+.18*play,
-      "Pénétration":.58*inside+.27*ath+.15*play,
-      "Pick & Roll":.52*play+.24*inside+.24*outside,
-      "Jeu rapide":.62*ath+.23*play+.15*overall,
-      "Mouvement de balle":.72*play+.18*outside+.10*overall,
-      "Rebond offensif":.72*reb+.28*ath,
+      "Pénétration":.50*inside+.32*ath+.18*play,
+      "Pick & Roll":.52*play+.28*inside+.20*outside,
+      "Jeu rapide":.68*ath+.32*play,
+      "Mouvement de balle":.68*play+.32*outside,
+      "Rebond offensif":.76*reb+.24*ath,
     }[focus]
 
 base={}
 gains=defaultdict(list); skills=defaultdict(list)
 for a,b in pairs:
-    base[a]=margin(a,b,"offense","Équilibré",seeds=4)
+    base[a]=margin(a,b,"offense","Équilibré",seeds=12)
     for focus in OFF:
         if focus=="Équilibré": continue
         team,_=server.build_team(a)
         skills[focus].append(roster_skill(team,focus))
-        gains[focus].append(margin(a,b,"offense",focus,seeds=4)-base[a])
+        gains[focus].append(margin(a,b,"offense",focus,seeds=12)-base[a])
+print("FIT_SAMPLE_SEEDS",12)
 print("FIT_CORRELATIONS",{f:round(corr(skills[f],gains[f]),3) for f in gains})
 print("FIT_GAINS_LOW_HIGH",{
  f:(round(statistics.mean([g for _,g in sorted(zip(skills[f],gains[f]))[:10]]),2),
