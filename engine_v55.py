@@ -400,11 +400,11 @@ def _shot_probability(shooter, defender, area, assisted, oe, de, mx):
     elif area == "mid":
         skill = .72*shooter.outside_scoring + .28*shooter.inside_scoring
         defense = .65*perimeter_defense(defender)+.35*interior_defense(defender)
-        base = .442; matchup=(skill-defense)*.00335; context=-de.get("perimeter_def",0)*.035
+        base = .427; matchup=(skill-defense)*.00335; context=-de.get("perimeter_def",0)*.035
     else:
         skill = .72*shooter.inside_scoring + .28*shooter.athleticism
         defense = interior_defense(defender) * _energy_factor(defender,"defense")
-        base = .582; matchup=(skill-defense)*.00365
+        base = .567; matchup=(skill-defense)*.00365
         context = -de.get("rim_def",0)*.075 + de.get("rim_allow",0)*.055 + de.get("drive_allow",0)*.025 + mx.get("rim_quality",0)
     energy = (_energy_factor(shooter)-1)*.45
     assist_bonus = .022 if assisted else 0
@@ -485,7 +485,7 @@ def _play_possession(att, dfn, tactics_a, tactics_d):
     area = _pick(["rim","mid","three"], [profile["rim"],profile["mid"],profile["three"]])
     defender = _best_defender(dfn, shooter, area, oe)
 
-    assisted = potential_assist and random.random() < _clamp(.64 + (creator.playmaking-75)*.0105 + oe.get("assist",0)*.34 + de.get("assist_allow",0)*.16 + mx.get("assist",0)*.28,.26,.89)
+    assisted = potential_assist and random.random() < _clamp(.71 + (creator.playmaking-75)*.0105 + oe.get("assist",0)*.34 + de.get("assist_allow",0)*.16 + mx.get("assist",0)*.28,.30,.92)
     passer = creator if assisted and creator is not shooter else None
 
     foul = (.145 if area=="rim" else .075) + de.get("foul",0)*.22 + (shooter.inside_scoring-75)*.0011
