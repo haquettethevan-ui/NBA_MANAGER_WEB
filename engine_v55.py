@@ -392,7 +392,9 @@ def _shot_probability(shooter, defender, area, assisted, oe, de, mx):
     if area == "three":
         skill = shooter.outside_scoring
         defense = perimeter_defense(defender) * _energy_factor(defender,"defense")
-        base = .352
+        # League calibration: keep 3PA volume/tactical effects intact while
+        # bringing simulated 3P% down from ~40.8% toward the NBA 36-37% range.
+        base = .312
         matchup = (skill-defense)*.00365
         context = -de.get("perimeter_def",0)*.075 + de.get("three_allow",0)*.055 + mx.get("three_quality",0)
     elif area == "mid":
