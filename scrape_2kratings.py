@@ -290,6 +290,18 @@ def extract_rating(text: str, labels: List[str]) -> Optional[int]:
     return None
 
 
+POTENTIAL_VALUES = {"A+":97,"A":92,"A-":87,"B+":82,"B":77,"B-":72,"C+":67,"C":62,"C-":57,"D+":52,"D":47,"D-":42,"F":35}
+
+def extract_potential(text: str) -> Tuple[Optional[str], Optional[int]]:
+    """Keep 2KRatings' displayed letter and use the midpoint of its published range internally."""
+    clean = normalize(text).upper()
+    matches = re.findall(r"\\b(?:A\\+|A-|A|B\\+|B-|B|C\\+|C-|C|D\\+|D-|D|F)\\b(?=\\s+POTENTIAL)|\\bPOTENTIAL\\s+(A\\+|A-|A|B\\+|B-|B|C\\+|C-|C|D\\+|D-|D|F)\\b", clean)
+    # The first branch is captured as the full match, the second as group 1.
+    direct = re.search(r"\\b(A\\+|A-|A|B\\+|B-|B|C\\+|C-|C|D\\+|D-|D|F)\\s+POTENTIAL\\b", clean)
+    reverse = re.search(r"\\bPOTENTIAL\\s+(A\\+|A-|A|B\\+|B-|B|C\\+|C-|C|D\\+|D-|D|F)\\b", clean)
+    letter = (direct or reverse).group(1) if (direct or reverse) else None
+    return letter, POTENTIAL_VALUES.get(letter) if letter else None
+
 def parse_general_categories(player_html: str) -> Dict[str, Optional[int]]:
     text = html_to_text(player_html)
     return {
@@ -320,7 +332,10 @@ def enrich_player(player: dict, refresh: bool, delay: float) -> dict:
     try:
         html = cached_fetch(player["url"], refresh=refresh, delay=delay)
         categories = parse_general_categories(html)
+        potential_grade, potential = extract_potential(html_to_text(html))
         record.update(categories)
+        record["potential_grade"] = potential_grade
+        record["potential"] = potential
         record["general_category_status"] = (
             "verified" if all(v is not None for v in categories.values()) else "partial"
         )
@@ -411,7 +426,7 @@ def main() -> int:
         "updated_from_live_site_by_script": True,
         "categories": [
             "outside_scoring", "inside_scoring", "athleticism", "playmaking",
-            "defense", "rebounding", "stamina",
+            "defense", "rebounding", "stamina", "potential",
         ],
         "teams_count": len(teams),
         "players": ordered_players,
