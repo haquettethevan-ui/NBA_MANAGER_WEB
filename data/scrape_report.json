@@ -4,14 +4,209 @@
   "team_count": 30,
   "teams_with_data": 30,
   "total_players": 537,
-  "fully_verified_players": 536,
-  "players_with_missing_general_category": 1,
+  "fully_verified_players": 521,
+  "players_with_missing_general_category": 16,
   "missing_players": [
+    {
+      "team": "ATL",
+      "name": "Dyson Daniels",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
+      ]
+    },
+    {
+      "team": "ATL",
+      "name": "Henri Veesaar",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
+      ]
+    },
+    {
+      "team": "DAL",
+      "name": "Zaccharie Risacher",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
+      ]
+    },
+    {
+      "team": "DET",
+      "name": "Ausar Thompson",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
+      ]
+    },
+    {
+      "team": "DET",
+      "name": "Daniss Jenkins",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
+      ]
+    },
+    {
+      "team": "MIN",
+      "name": "Rudy Gobert",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
+      ]
+    },
+    {
+      "team": "NOP",
+      "name": "Trendon Watford",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
+      ]
+    },
+    {
+      "team": "NYK",
+      "name": "Tyler Kolek",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
+      ]
+    },
     {
       "team": "NYK",
       "name": "Tyler Nickel",
       "missing": [
         "rebounding"
+      ]
+    },
+    {
+      "team": "PHX",
+      "name": "CJ Huntley",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
+      ]
+    },
+    {
+      "team": "SAC",
+      "name": "De’Andre Hunter",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
+      ]
+    },
+    {
+      "team": "SAC",
+      "name": "Ben Simmons",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
+      ]
+    },
+    {
+      "team": "SAS",
+      "name": "Stephon Castle",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
+      ]
+    },
+    {
+      "team": "WAS",
+      "name": "Deandre Ayton",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
+      ]
+    },
+    {
+      "team": "WAS",
+      "name": "Tre Johnson",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
+      ]
+    },
+    {
+      "team": "WAS",
+      "name": "Jamir Watkins",
+      "missing": [
+        "outside_scoring",
+        "inside_scoring",
+        "athleticism",
+        "playmaking",
+        "defense",
+        "rebounding",
+        "stamina"
       ]
     }
   ],
@@ -21,16 +216,16 @@
       "name": "Atlanta Hawks",
       "status": "ok",
       "players": 18,
-      "fully_verified": 18,
-      "partial_or_unverified": 0,
+      "fully_verified": 16,
+      "partial_or_unverified": 2,
       "missing_by_category": {
-        "outside_scoring": 0,
-        "inside_scoring": 0,
-        "athleticism": 0,
-        "playmaking": 0,
-        "defense": 0,
-        "rebounding": 0,
-        "stamina": 0
+        "outside_scoring": 2,
+        "inside_scoring": 2,
+        "athleticism": 2,
+        "playmaking": 2,
+        "defense": 2,
+        "rebounding": 2,
+        "stamina": 2
       }
     },
     {
@@ -123,16 +318,16 @@
       "name": "Dallas Mavericks",
       "status": "ok",
       "players": 19,
-      "fully_verified": 19,
-      "partial_or_unverified": 0,
+      "fully_verified": 18,
+      "partial_or_unverified": 1,
       "missing_by_category": {
-        "outside_scoring": 0,
-        "inside_scoring": 0,
-        "athleticism": 0,
-        "playmaking": 0,
-        "defense": 0,
-        "rebounding": 0,
-        "stamina": 0
+        "outside_scoring": 1,
+        "inside_scoring": 1,
+        "athleticism": 1,
+        "playmaking": 1,
+        "defense": 1,
+        "rebounding": 1,
+        "stamina": 1
       }
     },
     {
@@ -157,16 +352,16 @@
       "name": "Detroit Pistons",
       "status": "ok",
       "players": 19,
-      "fully_verified": 19,
-      "partial_or_unverified": 0,
+      "fully_verified": 17,
+      "partial_or_unverified": 2,
       "missing_by_category": {
-        "outside_scoring": 0,
-        "inside_scoring": 0,
-        "athleticism": 0,
-        "playmaking": 0,
-        "defense": 0,
-        "rebounding": 0,
-        "stamina": 0
+        "outside_scoring": 2,
+        "inside_scoring": 2,
+        "athleticism": 2,
+        "playmaking": 2,
+        "defense": 2,
+        "rebounding": 2,
+        "stamina": 2
       }
     },
     {
@@ -310,16 +505,16 @@
       "name": "Minnesota Timberwolves",
       "status": "ok",
       "players": 17,
-      "fully_verified": 17,
-      "partial_or_unverified": 0,
+      "fully_verified": 16,
+      "partial_or_unverified": 1,
       "missing_by_category": {
-        "outside_scoring": 0,
-        "inside_scoring": 0,
-        "athleticism": 0,
-        "playmaking": 0,
-        "defense": 0,
-        "rebounding": 0,
-        "stamina": 0
+        "outside_scoring": 1,
+        "inside_scoring": 1,
+        "athleticism": 1,
+        "playmaking": 1,
+        "defense": 1,
+        "rebounding": 1,
+        "stamina": 1
       }
     },
     {
@@ -327,16 +522,16 @@
       "name": "New Orleans Pelicans",
       "status": "ok",
       "players": 22,
-      "fully_verified": 22,
-      "partial_or_unverified": 0,
+      "fully_verified": 21,
+      "partial_or_unverified": 1,
       "missing_by_category": {
-        "outside_scoring": 0,
-        "inside_scoring": 0,
-        "athleticism": 0,
-        "playmaking": 0,
-        "defense": 0,
-        "rebounding": 0,
-        "stamina": 0
+        "outside_scoring": 1,
+        "inside_scoring": 1,
+        "athleticism": 1,
+        "playmaking": 1,
+        "defense": 1,
+        "rebounding": 1,
+        "stamina": 1
       }
     },
     {
@@ -344,16 +539,16 @@
       "name": "New York Knicks",
       "status": "ok",
       "players": 15,
-      "fully_verified": 14,
-      "partial_or_unverified": 1,
+      "fully_verified": 13,
+      "partial_or_unverified": 2,
       "missing_by_category": {
-        "outside_scoring": 0,
-        "inside_scoring": 0,
-        "athleticism": 0,
-        "playmaking": 0,
-        "defense": 0,
-        "rebounding": 1,
-        "stamina": 0
+        "outside_scoring": 1,
+        "inside_scoring": 1,
+        "athleticism": 1,
+        "playmaking": 1,
+        "defense": 1,
+        "rebounding": 2,
+        "stamina": 1
       }
     },
     {
@@ -412,16 +607,16 @@
       "name": "Phoenix Suns",
       "status": "ok",
       "players": 18,
-      "fully_verified": 18,
-      "partial_or_unverified": 0,
+      "fully_verified": 17,
+      "partial_or_unverified": 1,
       "missing_by_category": {
-        "outside_scoring": 0,
-        "inside_scoring": 0,
-        "athleticism": 0,
-        "playmaking": 0,
-        "defense": 0,
-        "rebounding": 0,
-        "stamina": 0
+        "outside_scoring": 1,
+        "inside_scoring": 1,
+        "athleticism": 1,
+        "playmaking": 1,
+        "defense": 1,
+        "rebounding": 1,
+        "stamina": 1
       }
     },
     {
@@ -446,16 +641,16 @@
       "name": "Sacramento Kings",
       "status": "ok",
       "players": 16,
-      "fully_verified": 16,
-      "partial_or_unverified": 0,
+      "fully_verified": 14,
+      "partial_or_unverified": 2,
       "missing_by_category": {
-        "outside_scoring": 0,
-        "inside_scoring": 0,
-        "athleticism": 0,
-        "playmaking": 0,
-        "defense": 0,
-        "rebounding": 0,
-        "stamina": 0
+        "outside_scoring": 2,
+        "inside_scoring": 2,
+        "athleticism": 2,
+        "playmaking": 2,
+        "defense": 2,
+        "rebounding": 2,
+        "stamina": 2
       }
     },
     {
@@ -463,16 +658,16 @@
       "name": "San Antonio Spurs",
       "status": "ok",
       "players": 18,
-      "fully_verified": 18,
-      "partial_or_unverified": 0,
+      "fully_verified": 17,
+      "partial_or_unverified": 1,
       "missing_by_category": {
-        "outside_scoring": 0,
-        "inside_scoring": 0,
-        "athleticism": 0,
-        "playmaking": 0,
-        "defense": 0,
-        "rebounding": 0,
-        "stamina": 0
+        "outside_scoring": 1,
+        "inside_scoring": 1,
+        "athleticism": 1,
+        "playmaking": 1,
+        "defense": 1,
+        "rebounding": 1,
+        "stamina": 1
       }
     },
     {
@@ -514,16 +709,16 @@
       "name": "Washington Wizards",
       "status": "ok",
       "players": 16,
-      "fully_verified": 16,
-      "partial_or_unverified": 0,
+      "fully_verified": 13,
+      "partial_or_unverified": 3,
       "missing_by_category": {
-        "outside_scoring": 0,
-        "inside_scoring": 0,
-        "athleticism": 0,
-        "playmaking": 0,
-        "defense": 0,
-        "rebounding": 0,
-        "stamina": 0
+        "outside_scoring": 3,
+        "inside_scoring": 3,
+        "athleticism": 3,
+        "playmaking": 3,
+        "defense": 3,
+        "rebounding": 3,
+        "stamina": 3
       }
     }
   ]

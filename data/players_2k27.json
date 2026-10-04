@@ -31,8 +31,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Nickeil Alexander-Walker",
@@ -50,8 +50,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "C.J. McCollum",
@@ -69,8 +69,8 @@
         "stamina": 98,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Dyson Daniels",
@@ -79,17 +79,17 @@
         "three_point": 50,
         "dunk": 75,
         "url": "https://www.2kratings.com/dyson-daniels",
-        "outside_scoring": 61,
-        "inside_scoring": 58,
-        "athleticism": 83,
-        "playmaking": 76,
-        "defense": 83,
-        "rebounding": 62,
-        "stamina": 89,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       },
       {
         "name": "Onyeka Okongwu",
@@ -107,8 +107,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Luguentz Dort",
@@ -126,8 +126,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Aaron Wiggins",
@@ -145,8 +145,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jock Landale",
@@ -164,8 +164,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Dorian Finney-Smith",
@@ -183,8 +183,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Kingston Flemings",
@@ -202,8 +202,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Corey Kispert",
@@ -221,8 +221,8 @@
         "stamina": 84,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Asa Newell",
@@ -240,8 +240,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Mouhamed Gueye",
@@ -259,8 +259,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Jalen Wilson",
@@ -278,8 +278,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Zuby Ejiofor",
@@ -297,8 +297,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Henri Veesaar",
@@ -307,17 +307,17 @@
         "three_point": 76,
         "dunk": 75,
         "url": "https://www.2kratings.com/henri-veesaar",
-        "outside_scoring": 64,
-        "inside_scoring": 67,
-        "athleticism": 76,
-        "playmaking": 56,
-        "defense": 52,
-        "rebounding": 74,
-        "stamina": 88,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       },
       {
         "name": "RayJ Dennis",
@@ -335,8 +335,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Keshon Gilbert",
@@ -354,8 +354,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       }
     ],
     "BOS": [
@@ -375,8 +375,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "Derrick White",
@@ -394,8 +394,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Paul George",
@@ -432,8 +432,8 @@
         "stamina": 84,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Mitchell Robinson",
@@ -451,8 +451,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Neemias Queta",
@@ -470,8 +470,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Sam Hauser",
@@ -489,8 +489,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Mike Conley",
@@ -508,8 +508,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Luka Garza",
@@ -527,8 +527,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Baylor Scheierman",
@@ -546,8 +546,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Hugo González",
@@ -565,8 +565,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jordan Walsh",
@@ -584,8 +584,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Ron Harper Jr.",
@@ -603,8 +603,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Chris Cenac Jr.",
@@ -622,8 +622,8 @@
         "stamina": 82,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Amari Williams",
@@ -641,8 +641,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Dillon Mitchell",
@@ -660,8 +660,8 @@
         "stamina": 75,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "BKN": [
@@ -681,8 +681,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Julius Randle",
@@ -700,8 +700,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Keon Ellis",
@@ -719,8 +719,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Noah Clowney",
@@ -738,8 +738,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Nolan Traore",
@@ -757,8 +757,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Egor Dëmin",
@@ -776,8 +776,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Day’Ron Sharpe",
@@ -795,8 +795,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Danny Wolf",
@@ -814,8 +814,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Terance Mann",
@@ -833,8 +833,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Mikel Brown Jr.",
@@ -852,8 +852,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Josh Minott",
@@ -871,8 +871,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Moritz Wagner",
@@ -890,8 +890,8 @@
         "stamina": 78,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Ben Saraf",
@@ -909,8 +909,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Drake Powell",
@@ -928,8 +928,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Chaney Johnson",
@@ -947,8 +947,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Grant Nelson",
@@ -966,8 +966,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Joshua Jefferson",
@@ -985,8 +985,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Tyler Bilodeau",
@@ -1004,8 +1004,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "CHA": [
@@ -1044,8 +1044,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Naz Reid",
@@ -1063,8 +1063,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Coby White",
@@ -1082,8 +1082,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Grayson Allen",
@@ -1101,8 +1101,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Moussa Diabaté",
@@ -1120,8 +1120,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Ryan Kalkbrenner",
@@ -1139,8 +1139,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Dennis Schroder",
@@ -1158,8 +1158,8 @@
         "stamina": 93,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Royce O’Neale",
@@ -1177,8 +1177,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Sion James",
@@ -1196,8 +1196,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Buddy Hield",
@@ -1215,8 +1215,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Grant Williams",
@@ -1234,8 +1234,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Tidjane Salaün",
@@ -1253,8 +1253,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Liam McNeeley",
@@ -1272,8 +1272,8 @@
         "stamina": 84,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Pat Connaughton",
@@ -1291,8 +1291,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Hannes Steinbach",
@@ -1310,8 +1310,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "P.J. Hall",
@@ -1329,8 +1329,8 @@
         "stamina": 87,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Christian Anderson",
@@ -1348,8 +1348,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Kylan Boswell",
@@ -1367,8 +1367,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Michael Ajayi",
@@ -1386,8 +1386,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "CHI": [
@@ -1407,8 +1407,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Josh Giddey",
@@ -1426,8 +1426,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Matas Buzelis",
@@ -1445,8 +1445,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Nicolas Claxton",
@@ -1464,8 +1464,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Tre Jones",
@@ -1483,8 +1483,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Caleb Wilson",
@@ -1521,8 +1521,8 @@
         "stamina": 82,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Zach Collins",
@@ -1540,8 +1540,8 @@
         "stamina": 75,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Isaac Okoro",
@@ -1559,8 +1559,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Patrick Williams",
@@ -1578,8 +1578,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Leonard Miller",
@@ -1597,8 +1597,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Noa Essengue",
@@ -1616,8 +1616,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Dailyn Swain",
@@ -1635,8 +1635,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Tobe Awaka",
@@ -1654,8 +1654,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jaylin Sellers",
@@ -1673,8 +1673,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "CLE": [
@@ -1732,8 +1732,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "Jarrett Allen",
@@ -1751,8 +1751,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Peyton Watson",
@@ -1770,8 +1770,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Sam Merrill",
@@ -1789,8 +1789,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jaylon Tyson",
@@ -1808,8 +1808,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Mario Hezonja",
@@ -1827,8 +1827,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Thomas Bryant",
@@ -1846,8 +1846,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Craig Porter Jr.",
@@ -1865,8 +1865,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Nae’Qwan Tomlin",
@@ -1884,8 +1884,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Tyrese Proctor",
@@ -1903,8 +1903,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Meleek Thomas",
@@ -1922,8 +1922,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Ernest Udeh Jr.",
@@ -1941,8 +1941,8 @@
         "stamina": 79,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Tristan Enaruna",
@@ -1960,8 +1960,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Riley Minix",
@@ -1979,8 +1979,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Khalifa Diop",
@@ -1998,8 +1998,8 @@
         "stamina": 82,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "DAL": [
@@ -2038,8 +2038,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "P.J. Washington",
@@ -2057,8 +2057,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Dereck Lively II",
@@ -2076,8 +2076,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Naji Marshall",
@@ -2095,8 +2095,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Daniel Gafford",
@@ -2114,8 +2114,8 @@
         "stamina": 75,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Santi Aldama",
@@ -2133,8 +2133,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Zaccharie Risacher",
@@ -2143,17 +2143,17 @@
         "three_point": 81,
         "dunk": 70,
         "url": "https://www.2kratings.com/zaccharie-risacher",
-        "outside_scoring": 73,
-        "inside_scoring": 65,
-        "athleticism": 77,
-        "playmaking": 63,
-        "defense": 69,
-        "rebounding": 54,
-        "stamina": 91,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       },
       {
         "name": "Max Christie",
@@ -2171,8 +2171,8 @@
         "stamina": 98,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Marcus Sasser",
@@ -2190,8 +2190,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Morez Johnson Jr.",
@@ -2209,8 +2209,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Dwight Powell",
@@ -2228,8 +2228,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Caleb Martin",
@@ -2247,8 +2247,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jett Howard",
@@ -2266,8 +2266,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Tarik Biberovic",
@@ -2285,8 +2285,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Moussa Cisse",
@@ -2304,8 +2304,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "John Poulakidas",
@@ -2323,8 +2323,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Sergio De Larrea",
@@ -2342,8 +2342,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Tobi Lawal",
@@ -2361,8 +2361,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       }
     ],
     "DEN": [
@@ -2382,8 +2382,8 @@
         "stamina": 97,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "Jamal Murray",
@@ -2401,8 +2401,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Aaron Gordon",
@@ -2420,8 +2420,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "DeMar DeRozan",
@@ -2439,8 +2439,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Cameron Johnson",
@@ -2458,8 +2458,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Christian Braun",
@@ -2477,8 +2477,8 @@
         "stamina": 93,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Marvin Bagley III",
@@ -2496,8 +2496,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Julian Strawther",
@@ -2515,8 +2515,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Tyus Jones",
@@ -2534,8 +2534,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Cam Whitmore",
@@ -2553,8 +2553,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Lonnie Walker IV",
@@ -2572,8 +2572,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Spencer Jones",
@@ -2591,8 +2591,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Ryan Nembhard",
@@ -2610,8 +2610,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Zeke Nnaji",
@@ -2629,8 +2629,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "DaRon Holmes II",
@@ -2648,8 +2648,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Alpha Diallo",
@@ -2667,8 +2667,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Trevon Brazile",
@@ -2686,8 +2686,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Bryce Hopkins",
@@ -2705,8 +2705,8 @@
         "stamina": 87,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       }
     ],
     "DET": [
@@ -2736,17 +2736,17 @@
         "three_point": 70,
         "dunk": 91,
         "url": "https://www.2kratings.com/ausar-thompson",
-        "outside_scoring": 55,
-        "inside_scoring": 62,
-        "athleticism": 91,
-        "playmaking": 73,
-        "defense": 92,
-        "rebounding": 66,
-        "stamina": 95,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       },
       {
         "name": "Jalen Duren",
@@ -2764,8 +2764,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "John Collins",
@@ -2783,8 +2783,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Daniss Jenkins",
@@ -2793,17 +2793,17 @@
         "three_point": 83,
         "dunk": 60,
         "url": "https://www.2kratings.com/daniss-jenkins",
-        "outside_scoring": 78,
-        "inside_scoring": 53,
-        "athleticism": 74,
-        "playmaking": 79,
-        "defense": 60,
-        "rebounding": 46,
-        "stamina": 85,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       },
       {
         "name": "Duncan Robinson",
@@ -2821,8 +2821,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Isaiah Joe",
@@ -2840,8 +2840,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Paul Reed",
@@ -2859,8 +2859,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Kevin Huerter",
@@ -2878,8 +2878,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Ron Holland",
@@ -2897,8 +2897,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Javonte Green",
@@ -2916,8 +2916,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Taurean Prince",
@@ -2935,8 +2935,8 @@
         "stamina": 84,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Gary Harris",
@@ -2954,8 +2954,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Ebuka Okorie",
@@ -2973,8 +2973,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Isaac Jones",
@@ -2992,8 +2992,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Elijah Harkless",
@@ -3011,8 +3011,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Ugonna Onyenso",
@@ -3030,8 +3030,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Tolu Smith",
@@ -3049,8 +3049,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Chaz Lanier",
@@ -3068,8 +3068,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "GSW": [
@@ -3089,8 +3089,8 @@
         "stamina": 98,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "Jimmy Butler",
@@ -3127,8 +3127,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Draymond Green",
@@ -3146,8 +3146,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Brandin Podziemski",
@@ -3165,8 +3165,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Gui Santos",
@@ -3184,8 +3184,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Al Horford",
@@ -3203,8 +3203,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "De’Anthony Melton",
@@ -3222,8 +3222,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Moses Moody",
@@ -3241,8 +3241,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Brandon Williams",
@@ -3260,8 +3260,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Gary Payton II",
@@ -3279,8 +3279,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Will Richard",
@@ -3298,8 +3298,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Yaxel Lendeborg",
@@ -3317,8 +3317,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Charles Bassey",
@@ -3336,8 +3336,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "L.J. Cryer",
@@ -3355,8 +3355,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Dalen Terry",
@@ -3374,8 +3374,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Georges Niang",
@@ -3393,8 +3393,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Malevy Leons",
@@ -3412,8 +3412,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Graham Ike",
@@ -3431,8 +3431,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       }
     ],
     "HOU": [
@@ -3452,8 +3452,8 @@
         "stamina": 94,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "Alperen Sengun",
@@ -3471,8 +3471,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Amen Thompson",
@@ -3490,8 +3490,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Jabari Smith Jr.",
@@ -3509,8 +3509,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Reed Sheppard",
@@ -3528,8 +3528,8 @@
         "stamina": 93,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Fred VanVleet",
@@ -3547,8 +3547,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Marcus Smart",
@@ -3566,8 +3566,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Tari Eason",
@@ -3585,8 +3585,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Steven Adams",
@@ -3604,8 +3604,8 @@
         "stamina": 68,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Clint Capela",
@@ -3623,8 +3623,8 @@
         "stamina": 78,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Bogdan Bogdanovic",
@@ -3642,8 +3642,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jae’Sean Tate",
@@ -3661,8 +3661,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Oscar Tshiebwe",
@@ -3680,8 +3680,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Julian Phillips",
@@ -3699,8 +3699,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Bruce Thornton",
@@ -3718,8 +3718,8 @@
         "stamina": 82,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Isaiah Crawford",
@@ -3737,8 +3737,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Sean Pedulla",
@@ -3756,8 +3756,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Quadir Copeland",
@@ -3775,8 +3775,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Rafael Castro",
@@ -3794,8 +3794,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       }
     ],
     "IND": [
@@ -3834,8 +3834,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Ivica Zubac",
@@ -3853,8 +3853,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Andrew Nembhard",
@@ -3872,8 +3872,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "T.J. McConnell",
@@ -3891,8 +3891,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Kelly Oubre Jr.",
@@ -3910,8 +3910,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Aaron Nesmith",
@@ -3929,8 +3929,8 @@
         "stamina": 87,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Obi Toppin",
@@ -3948,8 +3948,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jarace Walker",
@@ -3967,8 +3967,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jay Huff",
@@ -3986,8 +3986,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Quenton Jackson",
@@ -4005,8 +4005,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Ben Sheppard",
@@ -4024,8 +4024,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Kobe Brown",
@@ -4043,8 +4043,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Johnny Furphy",
@@ -4062,8 +4062,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Larry Nance Jr.",
@@ -4081,8 +4081,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jalen Slawson",
@@ -4100,8 +4100,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Braden Smith",
@@ -4119,8 +4119,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "LAC": [
@@ -4140,8 +4140,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Brandon Ingram",
@@ -4159,8 +4159,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Rui Hachimura",
@@ -4178,8 +4178,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Max Strus",
@@ -4197,8 +4197,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Derrick Jones Jr.",
@@ -4216,8 +4216,8 @@
         "stamina": 83,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Brook Lopez",
@@ -4235,8 +4235,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Bradley Beal",
@@ -4273,8 +4273,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Keaton Wagler",
@@ -4292,8 +4292,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Isaiah Jackson",
@@ -4311,8 +4311,8 @@
         "stamina": 82,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jordan Miller",
@@ -4330,8 +4330,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Kobe Sanders",
@@ -4349,8 +4349,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Gradey Dick",
@@ -4368,8 +4368,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Yanic Konan Niederhauser",
@@ -4387,8 +4387,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jalen Pickett",
@@ -4406,8 +4406,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Yuki Kawamura",
@@ -4425,8 +4425,8 @@
         "stamina": 75,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Cam Christie",
@@ -4444,8 +4444,8 @@
         "stamina": 86,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Baba Miller",
@@ -4463,8 +4463,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Nick Martinelli",
@@ -4482,8 +4482,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "LAL": [
@@ -4503,8 +4503,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "Austin Reaves",
@@ -4522,8 +4522,8 @@
         "stamina": 94,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Walker Kessler",
@@ -4541,8 +4541,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Collin Sexton",
@@ -4560,8 +4560,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Quentin Grimes",
@@ -4579,8 +4579,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jarred Vanderbilt",
@@ -4598,8 +4598,8 @@
         "stamina": 75,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Sandro Mamukelashvili",
@@ -4617,8 +4617,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Ziaire Williams",
@@ -4636,8 +4636,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jake LaRavia",
@@ -4655,8 +4655,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Dalton Knecht",
@@ -4674,8 +4674,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Matisse Thybulle",
@@ -4693,8 +4693,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jaden Hardy",
@@ -4712,8 +4712,8 @@
         "stamina": 84,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Cameron Carr",
@@ -4731,8 +4731,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Kevon Looney",
@@ -4750,8 +4750,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Bronny James Jr.",
@@ -4769,8 +4769,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Adou Thiero",
@@ -4788,8 +4788,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Chris Mañon",
@@ -4807,8 +4807,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Arthur Kaluma",
@@ -4826,8 +4826,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "AK Okereke",
@@ -4845,8 +4845,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       }
     ],
     "MEM": [
@@ -4866,8 +4866,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Cedric Coward",
@@ -4885,8 +4885,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Zach Edey",
@@ -4904,8 +4904,8 @@
         "stamina": 79,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Cameron Boozer",
@@ -4942,8 +4942,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jaylen Wells",
@@ -4961,8 +4961,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Isaiah Stewart",
@@ -4980,8 +4980,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "G.G. Jackson",
@@ -4999,8 +4999,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Cam Spencer",
@@ -5018,8 +5018,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Olivier-Maxence Prosper",
@@ -5037,8 +5037,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Scotty Pippen Jr.",
@@ -5056,8 +5056,8 @@
         "stamina": 82,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Kris Murray",
@@ -5075,8 +5075,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Walter Clayton Jr.",
@@ -5094,8 +5094,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Javon Small",
@@ -5113,8 +5113,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Quinten Post",
@@ -5132,8 +5132,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Taylor Hendricks",
@@ -5151,8 +5151,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jahmai Mashack",
@@ -5170,8 +5170,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Karim Lopez",
@@ -5189,8 +5189,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jordan Hawkins",
@@ -5208,8 +5208,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Micah Peavy",
@@ -5227,8 +5227,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "MIA": [
@@ -5248,8 +5248,8 @@
         "stamina": 98,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "Bam Adebayo",
@@ -5267,8 +5267,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Bobby Portis Jr.",
@@ -5286,8 +5286,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Andrew Wiggins",
@@ -5305,8 +5305,8 @@
         "stamina": 87,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Tim Hardaway Jr.",
@@ -5324,8 +5324,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Pelle Larsson",
@@ -5343,8 +5343,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Davion Mitchell",
@@ -5362,8 +5362,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Klay Thompson",
@@ -5400,8 +5400,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Nikola Jovic",
@@ -5419,8 +5419,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Dru Smith",
@@ -5438,8 +5438,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Nick Richards",
@@ -5457,8 +5457,8 @@
         "stamina": 81,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Myron Gardner",
@@ -5476,8 +5476,8 @@
         "stamina": 84,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Keshad Johnson",
@@ -5495,8 +5495,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Bez Mbeng",
@@ -5514,8 +5514,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Ryan Conwell",
@@ -5533,8 +5533,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Vladislav Goldin",
@@ -5552,8 +5552,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Tre Donaldson",
@@ -5571,8 +5571,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "MIL": [
@@ -5592,8 +5592,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Ryan Rollins",
@@ -5611,8 +5611,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Kevin Porter Jr.",
@@ -5630,8 +5630,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Myles Turner",
@@ -5649,8 +5649,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Kel’el Ware",
@@ -5668,8 +5668,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Caris LeVert",
@@ -5687,8 +5687,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jaime Jaquez Jr.",
@@ -5706,8 +5706,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Kyle Kuzma",
@@ -5725,8 +5725,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Ousmane Dieng",
@@ -5744,8 +5744,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "A.J. Green",
@@ -5763,8 +5763,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Kasparas Jakucionis",
@@ -5782,8 +5782,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Gary Trent Jr.",
@@ -5801,8 +5801,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Brayden Burries",
@@ -5820,8 +5820,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Jericho Sims",
@@ -5839,8 +5839,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Kam Jones",
@@ -5858,8 +5858,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Nate Ament",
@@ -5877,8 +5877,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Pete Nance",
@@ -5896,8 +5896,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Cormac Ryan",
@@ -5915,8 +5915,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Bogoljub Markovic",
@@ -5934,8 +5934,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       }
     ],
     "MIN": [
@@ -5955,8 +5955,8 @@
         "stamina": 97,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "LaMelo Ball",
@@ -5993,8 +5993,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Rudy Gobert",
@@ -6003,17 +6003,17 @@
         "three_point": 29,
         "dunk": 75,
         "url": "https://www.2kratings.com/rudy-gobert",
-        "outside_scoring": 55,
-        "inside_scoring": 70,
-        "athleticism": 75,
-        "playmaking": 44,
-        "defense": 78,
-        "rebounding": 89,
-        "stamina": 90,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       },
       {
         "name": "Ayo Dosunmu",
@@ -6031,8 +6031,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Donte DiVincenzo",
@@ -6050,8 +6050,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Terrence Shannon Jr.",
@@ -6069,8 +6069,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Trey Lyles",
@@ -6088,8 +6088,8 @@
         "stamina": 81,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Bones Hyland",
@@ -6107,8 +6107,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Cody Williams",
@@ -6126,8 +6126,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jonathan Kuminga",
@@ -6145,8 +6145,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jaylen Clark",
@@ -6164,8 +6164,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Joan Beringer",
@@ -6183,8 +6183,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Isaiah Evans",
@@ -6202,8 +6202,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Enrique Freeman",
@@ -6221,8 +6221,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Zyon Pullin",
@@ -6240,8 +6240,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Rocco Zikarsky",
@@ -6259,8 +6259,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "NOP": [
@@ -6299,8 +6299,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Dejounte Murray",
@@ -6318,8 +6318,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Saddiq Bey",
@@ -6337,8 +6337,8 @@
         "stamina": 81,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jeremiah Fears",
@@ -6356,8 +6356,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Herbert Jones",
@@ -6375,8 +6375,8 @@
         "stamina": 82,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Derik Queen",
@@ -6394,8 +6394,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Bennedict Mathurin",
@@ -6413,8 +6413,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Yves Missi",
@@ -6432,8 +6432,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jordan Poole",
@@ -6451,8 +6451,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Karlo Matkovic",
@@ -6470,8 +6470,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "DeAndre Jordan",
@@ -6489,8 +6489,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Bryce McGowens",
@@ -6508,8 +6508,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Trendon Watford",
@@ -6518,17 +6518,17 @@
         "three_point": 68,
         "dunk": 75,
         "url": "https://www.2kratings.com/trendon-watford",
-        "outside_scoring": 73,
-        "inside_scoring": 72,
-        "athleticism": 75,
-        "playmaking": 64,
-        "defense": 51,
-        "rebounding": 59,
-        "stamina": 85,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       },
       {
         "name": "Julian Reese",
@@ -6546,8 +6546,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Christian Koloko",
@@ -6565,8 +6565,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Caleb Houstan",
@@ -6584,8 +6584,8 @@
         "stamina": 86,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "A.J. Johnson",
@@ -6603,8 +6603,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Kobe Bufkin",
@@ -6622,8 +6622,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Taj Gibson",
@@ -6641,8 +6641,8 @@
         "stamina": 75,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jaron Pierre Jr.",
@@ -6660,8 +6660,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Malik Dia",
@@ -6679,8 +6679,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "NYK": [
@@ -6700,8 +6700,8 @@
         "stamina": 98,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "Karl-Anthony Towns",
@@ -6738,8 +6738,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Mikal Bridges",
@@ -6757,8 +6757,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Josh Hart",
@@ -6776,8 +6776,8 @@
         "stamina": 99,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Miles McBride",
@@ -6795,8 +6795,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Landry Shamet",
@@ -6814,8 +6814,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jose Alvarado",
@@ -6833,8 +6833,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Andre Drummond",
@@ -6852,8 +6852,8 @@
         "stamina": 75,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jordan Clarkson",
@@ -6871,8 +6871,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Tyler Kolek",
@@ -6881,17 +6881,17 @@
         "three_point": 82,
         "dunk": 45,
         "url": "https://www.2kratings.com/tyler-kolek",
-        "outside_scoring": 73,
-        "inside_scoring": 52,
-        "athleticism": 79,
-        "playmaking": 77,
-        "defense": 51,
-        "rebounding": 47,
-        "stamina": 90,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       },
       {
         "name": "Mohamed Diawara",
@@ -6909,8 +6909,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Kevin McCullar Jr.",
@@ -6928,8 +6928,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Pacome Dadiet",
@@ -6947,8 +6947,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Tyler Nickel",
@@ -6966,8 +6966,8 @@
         "stamina": 7,
         "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       }
     ],
     "OKC": [
@@ -6987,8 +6987,8 @@
         "stamina": 98,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "Chet Holmgren",
@@ -7044,8 +7044,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Ajay Mitchell",
@@ -7063,8 +7063,8 @@
         "stamina": 87,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Alex Caruso",
@@ -7082,8 +7082,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Cason Wallace",
@@ -7101,8 +7101,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jared McCain",
@@ -7120,8 +7120,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Jaylin Williams",
@@ -7139,8 +7139,8 @@
         "stamina": 78,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Kenrich Williams",
@@ -7158,8 +7158,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Aday Mara",
@@ -7177,8 +7177,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Nikola Topic",
@@ -7196,8 +7196,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Thomas Sorber",
@@ -7215,8 +7215,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Bennett Stirtz",
@@ -7234,8 +7234,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Brooks Barnhizer",
@@ -7253,8 +7253,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Otega Oweh",
@@ -7272,8 +7272,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Josh Dix",
@@ -7291,8 +7291,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "ORL": [
@@ -7350,8 +7350,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jalen Suggs",
@@ -7369,8 +7369,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Anthony Black",
@@ -7388,8 +7388,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Wendell Carter Jr.",
@@ -7407,8 +7407,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Nikola Vucevic",
@@ -7426,8 +7426,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Tristan da Silva",
@@ -7445,8 +7445,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Goga Bitadze",
@@ -7464,8 +7464,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jevon Carter",
@@ -7483,8 +7483,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Noah Penda",
@@ -7502,8 +7502,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jonathan Isaac",
@@ -7521,8 +7521,8 @@
         "stamina": 70,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jamal Cain",
@@ -7540,8 +7540,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Jase Richardson",
@@ -7559,8 +7559,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Malaki Branham",
@@ -7578,8 +7578,8 @@
         "stamina": 86,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Colin Castleton",
@@ -7597,8 +7597,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Izaiyah Nelson",
@@ -7616,8 +7616,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Alex Morales",
@@ -7635,8 +7635,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       }
     ],
     "PHI": [
@@ -7694,8 +7694,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "Joel Embiid",
@@ -7713,8 +7713,8 @@
         "stamina": 70,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "V.J. Edgecombe",
@@ -7732,8 +7732,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Anfernee Simons",
@@ -7751,8 +7751,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Dean Wade",
@@ -7770,8 +7770,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Kentavious Caldwell-Pope",
@@ -7789,8 +7789,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Adem Bona",
@@ -7808,8 +7808,8 @@
         "stamina": 84,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Dominick Barlow",
@@ -7827,8 +7827,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Justin Edwards",
@@ -7846,8 +7846,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Rayan Rupert",
@@ -7865,8 +7865,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Caleb Love",
@@ -7884,8 +7884,8 @@
         "stamina": 82,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Ariel Hukporti",
@@ -7903,8 +7903,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Jabari Walker",
@@ -7922,8 +7922,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Labaron Philon Jr.",
@@ -7941,8 +7941,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       }
     ],
     "PHX": [
@@ -7962,8 +7962,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "Dillon Brooks",
@@ -7981,8 +7981,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jalen Green",
@@ -8000,8 +8000,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Miles Bridges",
@@ -8019,8 +8019,8 @@
         "stamina": 93,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Collin Gillespie",
@@ -8038,8 +8038,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Mark Williams",
@@ -8057,8 +8057,8 @@
         "stamina": 75,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Luke Kennard",
@@ -8076,8 +8076,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Oso Ighodaro",
@@ -8095,8 +8095,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Pat Spencer",
@@ -8114,8 +8114,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jordan Goodwin",
@@ -8133,8 +8133,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Ryan Dunn",
@@ -8152,8 +8152,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Rasheer Fleming",
@@ -8171,8 +8171,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Khaman Maluach",
@@ -8190,8 +8190,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Jamaree Bouyea",
@@ -8209,8 +8209,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Haywood Highsmith",
@@ -8228,8 +8228,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Koa Peat",
@@ -8247,8 +8247,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Koby Brea",
@@ -8266,8 +8266,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "CJ Huntley",
@@ -8276,17 +8276,17 @@
         "three_point": 72,
         "dunk": 80,
         "url": "https://www.2kratings.com/cj-huntley",
-        "outside_scoring": 63,
-        "inside_scoring": 67,
-        "athleticism": 70,
-        "playmaking": 47,
-        "defense": 52,
-        "rebounding": 70,
-        "stamina": 80,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       }
     ],
     "POR": [
@@ -8306,8 +8306,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Damian Lillard",
@@ -8344,8 +8344,8 @@
         "stamina": 97,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "Jrue Holiday",
@@ -8363,8 +8363,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Donovan Clingan",
@@ -8382,8 +8382,8 @@
         "stamina": 82,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Shaedon Sharpe",
@@ -8401,8 +8401,8 @@
         "stamina": 94,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Toumani Camara",
@@ -8420,8 +8420,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Scoot Henderson",
@@ -8439,8 +8439,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Robert Williams III",
@@ -8458,8 +8458,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Vit Krejci",
@@ -8477,8 +8477,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Sidy Cissoko",
@@ -8496,8 +8496,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Micah Potter",
@@ -8515,8 +8515,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jeremy Sochan",
@@ -8534,8 +8534,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Branden Carlson",
@@ -8553,8 +8553,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Yang Hansen",
@@ -8572,8 +8572,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "John Tonje",
@@ -8591,8 +8591,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Chris Youngblood",
@@ -8610,8 +8610,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Jayson Kent",
@@ -8629,8 +8629,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       }
     ],
     "SAC": [
@@ -8650,8 +8650,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Zach LaVine",
@@ -8669,8 +8669,8 @@
         "stamina": 98,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Malik Monk",
@@ -8688,8 +8688,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Keegan Murray",
@@ -8707,8 +8707,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Maxime Raynaud",
@@ -8726,8 +8726,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "De’Andre Hunter",
@@ -8736,17 +8736,17 @@
         "three_point": 73,
         "dunk": 70,
         "url": "https://www.2kratings.com/deandre-hunter",
-        "outside_scoring": 78,
-        "inside_scoring": 64,
-        "athleticism": 77,
-        "playmaking": 62,
-        "defense": 63,
-        "rebounding": 51,
-        "stamina": 88,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       },
       {
         "name": "Precious Achiuwa",
@@ -8764,8 +8764,8 @@
         "stamina": 84,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Nique Clifford",
@@ -8783,8 +8783,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Darius Acuff Jr.",
@@ -8812,17 +8812,17 @@
         "three_point": 50,
         "dunk": 85,
         "url": "https://www.2kratings.com/ben-simmons",
-        "outside_scoring": 58,
-        "inside_scoring": 75,
-        "athleticism": 78,
-        "playmaking": 80,
-        "defense": 68,
-        "rebounding": 62,
-        "stamina": 80,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       },
       {
         "name": "Dylan Cardwell",
@@ -8840,8 +8840,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Daeqwon Plowden",
@@ -8859,8 +8859,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Jonathan Mogbo",
@@ -8878,8 +8878,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Alex Karaban",
@@ -8897,8 +8897,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Emanuel Sharp",
@@ -8916,8 +8916,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Adam Flagler",
@@ -8935,8 +8935,8 @@
         "stamina": 84,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       }
     ],
     "SAS": [
@@ -8956,8 +8956,8 @@
         "stamina": 97,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "Stephon Castle",
@@ -8966,17 +8966,17 @@
         "three_point": 79,
         "dunk": 88,
         "url": "https://www.2kratings.com/stephon-castle",
-        "outside_scoring": 83,
-        "inside_scoring": 73,
-        "athleticism": 84,
-        "playmaking": 82,
-        "defense": 77,
-        "rebounding": 55,
-        "stamina": 90,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       },
       {
         "name": "Dylan Harper",
@@ -9032,8 +9032,8 @@
         "stamina": 97,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Devin Vassell",
@@ -9051,8 +9051,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Keldon Johnson",
@@ -9070,8 +9070,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Julian Champagnie",
@@ -9089,8 +9089,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Luke Kornet",
@@ -9108,8 +9108,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Harrison Barnes",
@@ -9127,8 +9127,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Carter Bryant",
@@ -9146,8 +9146,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jordan McLaughlin",
@@ -9165,8 +9165,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Tarris Reed Jr.",
@@ -9184,8 +9184,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "David Jones-Garcia",
@@ -9203,8 +9203,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Jayden Quaintance",
@@ -9222,8 +9222,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Taelon Peter",
@@ -9241,8 +9241,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Ja’Kobi Gillespie",
@@ -9260,8 +9260,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Maliq Brown",
@@ -9279,8 +9279,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "TOR": [
@@ -9300,8 +9300,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A+",
+        "potential": 97
       },
       {
         "name": "Scottie Barnes",
@@ -9338,8 +9338,8 @@
         "stamina": 95,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Immanuel Quickley",
@@ -9357,8 +9357,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Collin Murray-Boyles",
@@ -9376,8 +9376,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jakob Poeltl",
@@ -9395,8 +9395,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jamal Shead",
@@ -9414,8 +9414,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Ja’Kobe Walter",
@@ -9433,8 +9433,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jamison Battle",
@@ -9452,8 +9452,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Kyle Anderson",
@@ -9471,8 +9471,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Trey Jemison III",
@@ -9490,8 +9490,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Trayce Jackson-Davis",
@@ -9509,8 +9509,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Andre Jackson Jr.",
@@ -9528,8 +9528,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Allen Graves",
@@ -9547,8 +9547,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Alijah Martin",
@@ -9566,8 +9566,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Malachi Smith",
@@ -9585,8 +9585,8 @@
         "stamina": 84,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Jaden Bradley",
@@ -9604,8 +9604,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Chucky Hepburn",
@@ -9623,8 +9623,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ],
     "UTA": [
@@ -9663,8 +9663,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Keyonte George",
@@ -9682,8 +9682,8 @@
         "stamina": 84,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Isaiah Collier",
@@ -9701,8 +9701,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Brice Sensabaugh",
@@ -9720,8 +9720,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Darryn Peterson",
@@ -9758,8 +9758,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Kyle Filipowski",
@@ -9777,8 +9777,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jusuf Nurkic",
@@ -9796,8 +9796,8 @@
         "stamina": 86,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Jaxson Hayes",
@@ -9815,8 +9815,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Josh Okogie",
@@ -9834,8 +9834,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Josh Green",
@@ -9853,8 +9853,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Sviatoslav Mykhailiuk",
@@ -9872,8 +9872,8 @@
         "stamina": 81,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Blake Hinson",
@@ -9891,8 +9891,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B-",
+        "potential": 72
       },
       {
         "name": "Mohamed Bamba",
@@ -9910,8 +9910,8 @@
         "stamina": 78,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Harrison Ingram",
@@ -9929,8 +9929,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Trey Alexander",
@@ -9948,8 +9948,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Tamar Bates",
@@ -9967,8 +9967,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       }
     ],
     "WAS": [
@@ -10026,8 +10026,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Kyshawn George",
@@ -10045,8 +10045,8 @@
         "stamina": 90,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "AJ Dybantsa",
@@ -10074,17 +10074,17 @@
         "three_point": 63,
         "dunk": 75,
         "url": "https://www.2kratings.com/deandre-ayton",
-        "outside_scoring": 68,
-        "inside_scoring": 78,
-        "athleticism": 73,
-        "playmaking": 54,
-        "defense": 63,
-        "rebounding": 80,
-        "stamina": 75,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       },
       {
         "name": "Bilal Coulibaly",
@@ -10102,8 +10102,8 @@
         "stamina": 92,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Tre Johnson",
@@ -10112,17 +10112,17 @@
         "three_point": 82,
         "dunk": 75,
         "url": "https://www.2kratings.com/tre-johnson",
-        "outside_scoring": 80,
-        "inside_scoring": 64,
-        "athleticism": 79,
-        "playmaking": 68,
-        "defense": 53,
-        "rebounding": 43,
-        "stamina": 86,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       },
       {
         "name": "Will Riley",
@@ -10140,8 +10140,8 @@
         "stamina": 85,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Khris Middleton",
@@ -10159,8 +10159,8 @@
         "stamina": 75,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "A-",
+        "potential": 87
       },
       {
         "name": "Justin Champagnie",
@@ -10178,8 +10178,8 @@
         "stamina": 80,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Carlton Carrington",
@@ -10197,8 +10197,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B+",
+        "potential": 82
       },
       {
         "name": "Tre Mann",
@@ -10216,8 +10216,8 @@
         "stamina": 88,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Jamir Watkins",
@@ -10226,17 +10226,17 @@
         "three_point": 71,
         "dunk": 85,
         "url": "https://www.2kratings.com/jamir-watkins",
-        "outside_scoring": 70,
-        "inside_scoring": 61,
-        "athleticism": 82,
-        "playmaking": 65,
-        "defense": 64,
-        "rebounding": 58,
-        "stamina": 90,
-        "general_category_status": "verified",
+        "outside_scoring": null,
+        "inside_scoring": null,
+        "athleticism": null,
+        "playmaking": null,
+        "defense": null,
+        "rebounding": null,
+        "stamina": null,
+        "general_category_status": "partial",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": null,
+        "potential": null
       },
       {
         "name": "Tristan Vukcevic",
@@ -10254,8 +10254,8 @@
         "stamina": 89,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       },
       {
         "name": "Felix Okpara",
@@ -10273,8 +10273,8 @@
         "stamina": 84,
         "general_category_status": "verified",
         "source": "2KRatings",
-        "potential_grade": "A",
-        "potential": 92
+        "potential_grade": "B",
+        "potential": 77
       }
     ]
   }
