@@ -233,46 +233,45 @@ def _lineup_focus_fit(lineup, focus):
     return _clamp((skill-62.0)/26.0, 0.0, 1.0)
 
 def _roster_fit_effects(tactics, lineup):
-    result={}
-    fits=[]
-    for focus,weight in _focuses(tactics,"offense"):
-        fit=_lineup_focus_fit(lineup,focus)
-        fits.append((focus,fit,weight))
-        # The tactic sets the intent (shot diet / style), but roster fit decides
-        # how efficiently the lineup can execute it. Poor fits therefore keep
-        # the requested style while producing worse shot quality / ball security;
-        # strong fits receive a meaningful, bounded execution bonus.
-        signed=(fit-.5)*2.0
-        if focus=="Tir extérieur":
-            result["three"] = result.get("three",0)+signed*.045*weight
-            result["three_quality"] = result.get("three_quality",0)+signed*.022*weight
-            result["turnover"] = result.get("turnover",0)-signed*.0030*weight
-        elif focus=="Jeu intérieur":
-            result["rim"] = result.get("rim",0)+signed*.050*weight
-            result["rim_quality"] = result.get("rim_quality",0)+signed*.024*weight
-            result["oreb"] = result.get("oreb",0)+signed*.025*weight
-        elif focus=="Pénétration":
-            result["rim"] = result.get("rim",0)+signed*.050*weight
-            result["rim_quality"] = result.get("rim_quality",0)+signed*.022*weight
-            result["turnover"] = result.get("turnover",0)-signed*.0045*weight
-        elif focus=="Pick & Roll":
-            result["assist"] = result.get("assist",0)+signed*.105*weight
-            result["rim_quality"] = result.get("rim_quality",0)+signed*.017*weight
-            result["three_quality"] = result.get("three_quality",0)+signed*.010*weight
-            result["turnover"] = result.get("turnover",0)-signed*.0050*weight
-        elif focus=="Jeu rapide":
-            result["transition"] = result.get("transition",0)+signed*.120*weight
-            result["rim_quality"] = result.get("rim_quality",0)+signed*.016*weight
-            result["turnover"] = result.get("turnover",0)-signed*.0040*weight
-        elif focus=="Mouvement de balle":
-            result["assist"] = result.get("assist",0)+signed*.135*weight
-            result["three_quality"] = result.get("three_quality",0)+signed*.010*weight
-            result["turnover"] = result.get("turnover",0)-signed*.0070*weight
-        elif focus=="Rebond offensif":
-            result["oreb"] = result.get("oreb",0)+signed*.135*weight
-            # Sending unsuitable lineups to the glass has a real transition cost.
-            result["transition_defense"] = result.get("transition_defense",0)+signed*.050*weight
-    return result, fits
+    """Compatibility is diagnostic only; it must not manufacture efficiency.
+
+    The selected tactic creates situations. The players' real ratings determine
+    whether those situations are good for this lineup.
+    """
+    fits=[(focus,_lineup_focus_fit(lineup,focus),weight)
+          for focus,weight in _focuses(tactics,"offense")]
+    return {}, fits
+
+
+def _tactical_finisher_weight(p, creator, oe):
+    """Route tactical opportunities toward players whose real skills fit them.
+
+    This changes *who gets the situation*, never the make probability. Once the
+    shooter is selected, _shot_probability uses his actual scoring rating versus
+    the actual defender.
+    """
+    w=_finisher_weight(p,creator)
+    three=max(-.25,min(.40,oe.get("three",0)))
+    rim=max(-.25,min(.45,oe.get("rim",0)))
+    pnr=max(0.0,oe.get("pnr",0))
+    transition=max(0.0,oe.get("transition",0))
+    movement=max(0.0,oe.get("assist",0))
+
+    # Center ratings around ordinary NBA ability so specialists are naturally
+    # targeted by the system they suit, while weak fits are not magically fixed.
+    outside=(p.outside_scoring-75.0)/15.0
+    inside=(p.inside_scoring-75.0)/15.0
+    athletic=(p.athleticism-75.0)/15.0
+    play=(p.playmaking-75.0)/15.0
+
+    intent = (
+        three * outside * 1.30
+        + rim * (.78*inside + .22*athletic) * 1.15
+        + pnr * (.52*play + .28*inside + .20*outside) * .70
+        + transition * (.62*athletic + .23*play + .15*inside) * .42
+        + movement * (.68*play + .32*outside) * .55
+    )
+    return w * math.exp(_clamp(intent,-.75,.75))
 
 def tactic_compatibility(tactics, players, minutes=None):
     """Public 0-100 compatibility scores, minute-weighted for the rotation."""
@@ -424,10 +423,10 @@ def _play_possession(att, dfn, tactics_a, tactics_d):
     pass_intent = _clamp(.34 + (creator.playmaking-70)*.010 + oe.get("assist",0)*.34 + mx.get("assist",0)*.24, .16, .78)
     if random.random() < pass_intent:
         candidates=[p for p in lineup if p is not creator]
-        shooter=_pick(candidates,[_finisher_weight(p,creator) for p in candidates]) if candidates else creator
+        shooter=_pick(candidates,[_tactical_finisher_weight(p,creator,oe) for p in candidates]) if candidates else creator
         potential_assist=True
     else:
-        shooter=_pick(lineup,[_finisher_weight(p,creator) for p in lineup])
+        shooter=_pick(lineup,[_tactical_finisher_weight(p,creator,oe) for p in lineup])
         potential_assist=(shooter is not creator and random.random()<.72)
 
     profile = _shot_profile(shooter)
