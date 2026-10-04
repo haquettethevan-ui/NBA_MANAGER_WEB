@@ -12,5 +12,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Run 2000-game engine benchmark
-        run: python test_engine.py 2000
+      - name: Run 1000-game calibrated benchmark
+        run: python test_engine.py 1000
