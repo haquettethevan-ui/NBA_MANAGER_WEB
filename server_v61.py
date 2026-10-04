@@ -397,17 +397,6 @@ class MultiplayerServer(Server):
             seed_finances(lid)
             if parsed.path=="/api/league/ready-status":
                 s=ready_status(lid)
-                # Self-heal leagues left at N/N ready (for example after an older
-                # failed ready request). Polling this endpoint is enough to resume.
-                if s.get("total",0)>0 and s.get("ready_count",0)==s.get("total",0):
-                    try:
-                        advance_league_day(lid)
-                        s=ready_status(lid)
-                    except Exception as sim_ex:
-                        reset_ready(lid)
-                        print("Ready-status simulation error",lid,repr(sim_ex),flush=True)
-                        s=ready_status(lid)
-                        s["simulation_error"]=str(sim_ex)
                 s["me_ready"]=next((x["ready"] for x in s["members"] if x["user_id"]==u["id"]),False)
                 return self.send_json(200,{"success":True,**s})
             if parsed.path=="/api/league/trade-offers":
@@ -581,6 +570,13 @@ class MultiplayerServer(Server):
                 if not m or m.get("owner_id")!=u["id"]:return self.send_json(403,{"success":False,"message":"Seul le propriétaire peut supprimer cette ligue."})
                 delete_league(lid,u["id"])
                 return self.send_json(200,{"success":True,"message":"Ligue supprimée."})
+            if self.path=="/api/league/unready":
+                u=self.auth()
+                if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
+                b=self.body();lid=int(b.get("league_id",0));m=membership(u["id"],lid)
+                if not m or not m.get("team_id"):return self.send_json(403,{"success":False,"message":"Choisis d'abord ton équipe."})
+                set_ready(lid,u["id"],False);st=ready_status(lid)
+                return self.send_json(200,{"success":True,"message":"Statut prêt annulé.","simulated":False,**st})
             if self.path=="/api/league/ready":
                 u=self.auth()
                 if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
