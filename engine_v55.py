@@ -418,7 +418,20 @@ def _play_possession(att, dfn, tactics_a, tactics_d):
         potential_assist=(shooter is not creator and random.random()<.72)
 
     profile = _shot_profile(shooter)
-    profile["rim"] *= 1+oe.get("rim",0)+mx.get("rim",0); profile["mid"] *= 1+oe.get("mid",0)+mx.get("mid",0); profile["three"] *= 1+oe.get("three",0)+mx.get("three",0)
+
+    # Tactics must change shot DIET, not merely shot efficiency.  Convert the
+    # weighted tactical intent into strong but bounded multipliers.  A manager
+    # stacking Jeu intérieur + Pénétration should visibly trade threes for rim
+    # attempts; Tir extérieur does the inverse. Player profile still supplies
+    # the baseline, so Curry-like players remain more perimeter-oriented than
+    # centers even inside the same system.
+    rim_intent = oe.get("rim",0) + mx.get("rim",0)
+    mid_intent = oe.get("mid",0) + mx.get("mid",0)
+    three_intent = oe.get("three",0) + mx.get("three",0)
+    profile["rim"] *= _clamp(1 + rim_intent*2.35, .52, 1.85)
+    profile["mid"] *= _clamp(1 + mid_intent*1.75, .62, 1.55)
+    profile["three"] *= _clamp(1 + three_intent*2.55, .42, 1.85)
+
     if de.get("rim_def",0): profile["rim"] *= 1-de["rim_def"]*.30
     if de.get("perimeter_def",0): profile["three"] *= 1-de["perimeter_def"]*.24
     area = _pick(["rim","mid","three"], [profile["rim"],profile["mid"],profile["three"]])
