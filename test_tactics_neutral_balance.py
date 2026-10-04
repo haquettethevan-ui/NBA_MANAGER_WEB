@@ -70,3 +70,44 @@ for tid,oid in pairs[:10]:
         rates[label]=sum(threes)/max(1,sum(attempts))
     print("SHOT_DIET",tid,"inside",round(rates["inside"],3),"outside",round(rates["outside"],3))
     assert rates["inside"] + .08 < rates["outside"], (tid,rates)
+
+
+# Roster-fit correlation audit. A tactic should be more valuable to teams whose
+# rotation actually possesses the skills needed to execute it.
+def corr(xs,ys):
+    mx=statistics.mean(xs); my=statistics.mean(ys)
+    num=sum((x-mx)*(y-my) for x,y in zip(xs,ys))
+    den=(sum((x-mx)**2 for x in xs)*sum((y-my)**2 for y in ys))**.5
+    return num/den if den else 0.0
+
+def roster_skill(team,focus):
+    rot=server.build_ai_rotation(team)
+    active=[p for p in team.roster if rot.get(p.name,0)>0]
+    den=sum(rot[p.name] for p in active) or 1
+    def avg(attr): return sum(getattr(p,attr)*rot[p.name] for p in active)/den
+    outside,inside,play,ath,reb,overall=(avg(x) for x in ("outside_scoring","inside_scoring","playmaking","athleticism","rebounding","overall"))
+    return {
+      "Équilibré":overall,
+      "Jeu intérieur":.70*inside+.18*ath+.12*reb,
+      "Tir extérieur":.82*outside+.18*play,
+      "Pénétration":.58*inside+.27*ath+.15*play,
+      "Pick & Roll":.52*play+.24*inside+.24*outside,
+      "Jeu rapide":.62*ath+.23*play+.15*overall,
+      "Mouvement de balle":.72*play+.18*outside+.10*overall,
+      "Rebond offensif":.72*reb+.28*ath,
+    }[focus]
+
+base={}
+gains=defaultdict(list); skills=defaultdict(list)
+for a,b in pairs:
+    base[a]=margin(a,b,"offense","Équilibré",seeds=4)
+    for focus in OFF:
+        if focus=="Équilibré": continue
+        team,_=server.build_team(a)
+        skills[focus].append(roster_skill(team,focus))
+        gains[focus].append(margin(a,b,"offense",focus,seeds=4)-base[a])
+print("FIT_CORRELATIONS",{f:round(corr(skills[f],gains[f]),3) for f in gains})
+print("FIT_GAINS_LOW_HIGH",{
+ f:(round(statistics.mean([g for _,g in sorted(zip(skills[f],gains[f]))[:10]]),2),
+    round(statistics.mean([g for _,g in sorted(zip(skills[f],gains[f]))[-10:]]),2))
+ for f in gains})
