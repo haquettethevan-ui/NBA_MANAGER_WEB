@@ -32,9 +32,14 @@ def _trade_health_multiplier(state):
     return 1.0
 
 def trade_asset_value(row,state=None):
-    """Context-free player value. Team fit is applied separately."""
+    """Market value = current level + 2K potential; team needs are applied separately."""
     o=float(row.get("overall") or 70)
+    pot=float(row.get("potential") or o)
+    # Potential is deliberately secondary to current ability, but becomes meaningful
+    # for young/high-upside assets. Never punish a player because POT is missing.
+    upside=max(0.0,pot-o)
     value=max(1.0,(o-60.0)**2)
+    value*=1.0 + min(0.38, upside*0.022)
     salary=salary_for_row(row)
     if o<84 and salary>20_000_000:value*=0.88
     value*=_trade_health_multiplier(state)
@@ -64,6 +69,30 @@ def _team_is_top5(league_id,team_id):
     same.sort(key=lambda x:(x["w"],x["pf"]-x["pa"]),reverse=True)
     return any(x["team_id"]==team_id for x in same[:5])
 
+def _team_is_conference_leader(league_id,team_id):
+    rows=standings(league_id)
+    if not rows:return False
+    meta={x["id"]:x for x in TEAM_META};conf=meta.get(team_id,{}).get("conference")
+    same=[x for x in rows if meta.get(x["team_id"],{}).get("conference")==conf]
+    same.sort(key=lambda x:(x["w"],x["pf"]-x["pa"]),reverse=True)
+    return bool(same) and same[0]["team_id"]==team_id
+
+def _team_need_multiplier(league_id,team_id,roster_rows,incoming_row,outgoing_names=()):
+    """Reward a player who directly improves the receiving team's weakest basketball area."""
+    attrs=("outside_scoring","inside_scoring","playmaking","defense","rebounding")
+    remaining=[r for r in roster_rows if r.get("name") not in set(outgoing_names)]
+    core=sorted(remaining,key=lambda r:float(r.get("overall") or 0),reverse=True)[:8]
+    if not core:return 1.0
+    avgs={a:sum(float(r.get(a) or 0) for r in core)/len(core) for a in attrs}
+    weak=min(attrs,key=avgs.get)
+    incoming=float(incoming_row.get(weak) or 0)
+    improvement=incoming-avgs[weak]
+    if improvement<=0:return 1.0
+    # A non-leading team is more willing to act when the incoming player fixes
+    # its clearest weakness. Conference leaders stay conservative.
+    cap=0.16 if not _team_is_conference_leader(league_id,team_id) else 0.07
+    return 1.0 + min(cap, improvement*0.008)
+
 def validate_ai_trade(league_id,ai_team,send_names,receive_names):
     by_name={r["name"]:r for rows in PLAYER_DB.values() for r in rows}
     rm=league_roster_map(league_id)
@@ -75,7 +104,7 @@ def validate_ai_trade(league_id,ai_team,send_names,receive_names):
     for n in receive_names:
         if n not in by_name:continue
         row=by_name[n]
-        incoming+=trade_asset_value(row,None)*_position_fit_multiplier(roster,row,send_names)
+        incoming+=trade_asset_value(row,None)*_position_fit_multiplier(roster,row,send_names)*_team_need_multiplier(league_id,ai_team,roster,row,send_names)
     if outgoing<=0 or incoming<=0:raise ValueError("Selection de trade invalide.")
     required=1.0
     if _team_is_top5(league_id,ai_team):required=1.12
@@ -87,7 +116,7 @@ def validate_ai_trade(league_id,ai_team,send_names,receive_names):
         gap=round((outgoing*required-incoming)/(outgoing*required)*100)
         reason="équipe Top 5, donc plus réticente à modifier son effectif" if _team_is_top5(league_id,ai_team) else "valeur sportive insuffisante"
         raise ValueError(f"Trade refuse par l'IA : {reason} (écart estimé {gap} %).")
-    return {"offered_value":round(incoming,1),"requested_value":round(outgoing,1),"required_ratio":required,"top5":_team_is_top5(league_id,ai_team)}
+    return {"offered_value":round(incoming,1),"requested_value":round(outgoing,1),"required_ratio":required,"top5":_team_is_top5(league_id,ai_team),"conference_leader":_team_is_conference_leader(league_id,ai_team)}
 
 def rotation_coach_advice(league_id,team_id):
     """Compare current minutes with projected energy-adjusted player quality and suggest conservative minute transfers."""
