@@ -1,5 +1,5 @@
 name: Refresh 2K player potential
-# refresh-v2: force a full current-player potential import
+# refresh-v3: corrected potential parser
 
 on:
   workflow_dispatch:
