@@ -135,6 +135,18 @@ def validate_ai_trade(league_id,ai_team,send_names,receive_names):
     best_out=max([float(by_name[n].get("overall") or 0) for n in send_names if n in by_name] or [0])
     if best_out>=90:required=max(required,1.15)
     elif best_out>=86:required=max(required,1.08)
+    # Young high-upside cornerstone assets require a real premium too.
+    # 2K POT alone is not enough: age gates the protection.
+    cornerstone=False
+    for n in send_names:
+        row=by_name.get(n,{})
+        age=row.get("age")
+        pot=float(row.get("potential") or row.get("overall") or 0)
+        o=float(row.get("overall") or 0)
+        if age is not None and float(age)<=23 and pot>=92 and o>=82:
+            cornerstone=True
+            break
+    if cornerstone:required=max(required,1.18)
     if incoming < outgoing*required:
         gap=round((outgoing*required-incoming)/(outgoing*required)*100)
         reason="équipe Top 3 NBA ou leader de conférence, donc plus réticente à modifier son effectif" if elite_record else "valeur sportive insuffisante"
