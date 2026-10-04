@@ -396,7 +396,19 @@ class MultiplayerServer(Server):
             if not m:return self.send_json(403,{"success":False,"message":"Tu n'appartiens pas à cette ligue."})
             seed_finances(lid)
             if parsed.path=="/api/league/ready-status":
-                s=ready_status(lid);s["me_ready"]=next((x["ready"] for x in s["members"] if x["user_id"]==u["id"]),False)
+                s=ready_status(lid)
+                # Self-heal leagues left at N/N ready (for example after an older
+                # failed ready request). Polling this endpoint is enough to resume.
+                if s.get("total",0)>0 and s.get("ready_count",0)==s.get("total",0):
+                    try:
+                        advance_league_day(lid)
+                        s=ready_status(lid)
+                    except Exception as sim_ex:
+                        reset_ready(lid)
+                        print("Ready-status simulation error",lid,repr(sim_ex),flush=True)
+                        s=ready_status(lid)
+                        s["simulation_error"]=str(sim_ex)
+                s["me_ready"]=next((x["ready"] for x in s["members"] if x["user_id"]==u["id"]),False)
                 return self.send_json(200,{"success":True,**s})
             if parsed.path=="/api/league/trade-offers":
                 tid=m.get("team_id")
