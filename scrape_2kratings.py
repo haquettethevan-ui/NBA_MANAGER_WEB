@@ -302,6 +302,22 @@ def extract_potential(text: str) -> Tuple[Optional[str], Optional[int]]:
     letter = matches[-1] if matches else None
     return letter, POTENTIAL_VALUES.get(letter) if letter else None
 
+def extract_age(text: str) -> Optional[int]:
+    """Extract current age from 2KRatings player profile text."""
+    clean = normalize(text)
+    patterns = [
+        r"\b(\d{1,2})-year-old\b",
+        r"\b(\d{1,2})\s+yrs?\s+old\b",
+    ]
+    for pattern in patterns:
+        m = re.search(pattern, clean, flags=re.I)
+        if m:
+            age = int(m.group(1))
+            if 18 <= age <= 50:
+                return age
+    return None
+
+
 def parse_general_categories(player_html: str) -> Dict[str, Optional[int]]:
     text = html_to_text(player_html)
     return {
@@ -332,10 +348,13 @@ def enrich_player(player: dict, refresh: bool, delay: float) -> dict:
     try:
         html = cached_fetch(player["url"], refresh=refresh, delay=delay)
         categories = parse_general_categories(html)
-        potential_grade, potential = extract_potential(html_to_text(html))
+        detail_text = html_to_text(html)
+        potential_grade, potential = extract_potential(detail_text)
+        age = extract_age(detail_text)
         record.update(categories)
         record["potential_grade"] = potential_grade
         record["potential"] = potential
+        record["age"] = age
         record["general_category_status"] = (
             "verified" if all(v is not None for v in categories.values()) else "partial"
         )
