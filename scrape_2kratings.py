@@ -293,13 +293,13 @@ def extract_rating(text: str, labels: List[str]) -> Optional[int]:
 POTENTIAL_VALUES = {"A+":97,"A":92,"A-":87,"B+":82,"B":77,"B-":72,"C+":67,"C":62,"C-":57,"D+":52,"D":47,"D-":42,"F":35}
 
 def extract_potential(text: str) -> Tuple[Optional[str], Optional[int]]:
-    """Keep 2KRatings' displayed letter and use the midpoint of its published range internally."""
+    """Keep 2KRatings' displayed POT letter and map it to the midpoint of its published range."""
     clean = normalize(text).upper()
-    matches = re.findall(r"\\b(?:A\\+|A-|A|B\\+|B-|B|C\\+|C-|C|D\\+|D-|D|F)\\b(?=\\s+POTENTIAL)|\\bPOTENTIAL\\s+(A\\+|A-|A|B\\+|B-|B|C\\+|C-|C|D\\+|D-|D|F)\\b", clean)
-    # The first branch is captured as the full match, the second as group 1.
-    direct = re.search(r"\\b(A\\+|A-|A|B\\+|B-|B|C\\+|C-|C|D\\+|D-|D|F)\\s+POTENTIAL\\b", clean)
-    reverse = re.search(r"\\bPOTENTIAL\\s+(A\\+|A-|A|B\\+|B-|B|C\\+|C-|C|D\\+|D-|D|F)\\b", clean)
-    letter = (direct or reverse).group(1) if (direct or reverse) else None
+    grade = r"(A\+|A-|A|B\+|B-|B|C\+|C-|C|D\+|D-|D|F)"
+    reverse = re.search(r"\bPOTENTIAL\s+" + grade, clean)
+    direct = re.search(grade + r"\s+POTENTIAL\b", clean)
+    match = reverse or direct
+    letter = match.group(1) if match else None
     return letter, POTENTIAL_VALUES.get(letter) if letter else None
 
 def parse_general_categories(player_html: str) -> Dict[str, Optional[int]]:
