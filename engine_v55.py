@@ -35,10 +35,10 @@ OFFENSE_PROFILE = {
     "Jeu intérieur": {"rim": .18, "mid": .045, "three": -.115, "post": .16},
     "Tir extérieur": {"three": .16, "rim": -.07, "mid": -.06},
     "Pénétration": {"rim": .19, "three": -.05, "drive": .18},
-    "Pick & Roll": {"rim": .085, "three": .055, "pnr": .18, "mid": .015},
-    "Jeu rapide": {"rim": .14, "three": .045, "transition": .34, "turnover": .008},
+    "Pick & Roll": {"rim": .070, "three": .045, "pnr": .145, "mid": .012},
+    "Jeu rapide": {"rim": .105, "three": .035, "transition": .27, "turnover": .010},
     "Mouvement de balle": {"assist": .035, "three": .010, "turnover": .001},
-    "Rebond offensif": {"oreb": .115, "transition_defense": -.15},
+    "Rebond offensif": {"oreb": .095, "transition_defense": -.15},
 }
 DEFENSE_PROFILE = {
     "Équilibré": {},
@@ -232,6 +232,39 @@ def _lineup_focus_fit(lineup, focus):
     }.get(focus, overall)
     return _clamp((skill-62.0)/26.0, 0.0, 1.0)
 
+def _lineup_execution_factors(lineup):
+    """Real lineup abilities used to scale collective tactical situations.
+
+    These are not bonuses: 1.0 is an ordinary NBA lineup. A weak transition or
+    rebounding unit simply cannot create the same volume of those situations as
+    an elite one.
+    """
+    if not lineup:
+        return {"transition":1.0,"oreb":1.0,"drive":1.0}
+    avg=lambda attr: sum(getattr(p,attr) for p in lineup)/len(lineup)
+    ath,play,inside,reb=(avg(x) for x in ("athleticism","playmaking","inside_scoring","rebounding"))
+    transition=.68*ath+.32*play
+    drive=.50*inside+.32*ath+.18*play
+    glass=.76*reb+.24*ath
+    # Wider than a cosmetic modifier, but bounded so tactics never disappear.
+    scale=lambda skill: _clamp(.62+(skill-62.0)/26.0*.62,.62,1.24)
+    return {"transition":scale(transition),"drive":scale(drive),"oreb":scale(glass)}
+
+
+def _apply_lineup_execution(oe, lineup):
+    factors=_lineup_execution_factors(lineup)
+    out=dict(oe)
+    # Only situation volume is scaled. Shot/rebound conversion is still resolved
+    # from the participating players' ratings against the defense.
+    if out.get("transition",0)>0: out["transition"]*=factors["transition"]
+    if out.get("drive",0)>0:
+        out["drive"]*=factors["drive"]
+        # Penetration's rim-volume component should also depend on actual drivers.
+        out["rim"] = out.get("rim",0) * (.72+.28*factors["drive"])
+    if out.get("oreb",0)>0: out["oreb"]*=factors["oreb"]
+    return out
+
+
 def _roster_fit_effects(tactics, lineup):
     """Compatibility is diagnostic only; it must not manufacture efficiency.
 
@@ -403,6 +436,7 @@ def _play_possession(att, dfn, tactics_a, tactics_d):
     fit_effects, _ = _roster_fit_effects(tactics_a, lineup)
     for stat,value in fit_effects.items():
         (mx if stat.endswith("_quality") else oe)[stat] = (mx if stat.endswith("_quality") else oe).get(stat,0)+value
+    oe = _apply_lineup_execution(oe, lineup)
 
     # Separate possession creator from finisher. This avoids forcing the same
     # player to own shots, turnovers and free throws on every possession.
