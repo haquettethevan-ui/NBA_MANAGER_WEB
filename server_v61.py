@@ -317,6 +317,7 @@ class MultiplayerServer(Server):
     def body(self):
         n=int(self.headers.get("Content-Length","0"));return json.loads(self.rfile.read(n).decode("utf-8") or "{}")
     def do_GET(self):
+        parsed=urlparse(self.path); q=parse_qs(parsed.query)
         if self.path=="/health":
             return self.send_json(200,{"status":"ok","version":"V61"})
         if self.path=="/":
@@ -352,7 +353,6 @@ class MultiplayerServer(Server):
             return self.send_json(200,{"success":True,"players":players})
         if self.path=="/api/game-config":
             return self.send_json(200,{"success":True,"offense":list(OFFENSE_FOCUSES),"defense":list(DEFENSE_FOCUSES)})
-        parsed=urlparse(self.path); q=parse_qs(parsed.query)
         if parsed.path in ("/api/league/roster","/api/league/rotation","/api/league/calendar","/api/league/results","/api/league/standings","/api/league/dashboard","/api/league/finances","/api/league/rotation-coach","/api/league/trade-coach","/api/league/trade-offers","/api/league/ready-status"):
             u=self.auth()
             if not u:return self.send_json(401,{"success":False,"message":"Non connecté."})
