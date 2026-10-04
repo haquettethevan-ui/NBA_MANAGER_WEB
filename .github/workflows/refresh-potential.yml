@@ -1,0 +1,38 @@
+name: Refresh 2K player potential
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/refresh-potential.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh all current-player data including potential
+        run: python -u scrape_2kratings.py --refresh --workers 6 --delay 0.35
+      - name: Validate potential coverage
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("data/players_2k27.json",encoding="utf-8"))
+          ps=[p for rs in d["players"].values() for p in rs]
+          have=[p for p in ps if p.get("potential") is not None and p.get("potential_grade")]
+          print(f"Potential: {len(have)}/{len(ps)} players")
+          if len(have) < max(250, int(len(ps)*0.85)):
+              raise SystemExit("Potential coverage too low")
+          PY
+      - name: Commit refreshed database
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/players_2k27.json data/scrape_report.json
+          git diff --cached --quiet || git commit -m "Refresh NBA 2K potential ratings"
+          git push
