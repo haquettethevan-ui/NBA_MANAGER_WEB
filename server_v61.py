@@ -578,7 +578,13 @@ class MultiplayerServer(Server):
                 set_ready(lid,u["id"],True);s=ready_status(lid)
                 simulated=False;result=None
                 if all_ready(lid):
-                    result=advance_league_day(lid);simulated=True;s=ready_status(lid)
+                    try:
+                        result=advance_league_day(lid);simulated=True;s=ready_status(lid)
+                    except Exception as sim_ex:
+                        # Do not leave the league stuck at N/N ready after a failed simulation.
+                        reset_ready(lid)
+                        print("Ready simulation error",lid,repr(sim_ex),flush=True)
+                        raise
                 return self.send_json(200,{"success":True,"message":"Tous les managers étaient prêts : la journée a été simulée." if simulated else "Tu es prêt pour la prochaine journée.","simulated":simulated,"result":result,**s})
             if self.path in ("/api/league/trade-offer/accept","/api/league/trade-offer/reject"):
                 u=self.auth()
