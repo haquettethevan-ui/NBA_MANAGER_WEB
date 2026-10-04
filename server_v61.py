@@ -61,13 +61,11 @@ def _position_fit_multiplier(roster_rows,incoming_row,outgoing_names=()):
     if same[0]<=o-5:return 1.08
     return 1.0
 
-def _team_is_top5(league_id,team_id):
+def _team_is_top3_league(league_id,team_id):
     rows=standings(league_id)
     if not rows:return False
-    meta={x["id"]:x for x in TEAM_META};conf=meta.get(team_id,{}).get("conference")
-    same=[x for x in rows if meta.get(x["team_id"],{}).get("conference")==conf]
-    same.sort(key=lambda x:(x["w"],x["pf"]-x["pa"]),reverse=True)
-    return any(x["team_id"]==team_id for x in same[:5])
+    ranked=sorted(rows,key=lambda x:(x["w"],x["pf"]-x["pa"]),reverse=True)
+    return any(x["team_id"]==team_id for x in ranked[:3])
 
 def _team_is_conference_leader(league_id,team_id):
     rows=standings(league_id)
@@ -107,16 +105,17 @@ def validate_ai_trade(league_id,ai_team,send_names,receive_names):
         incoming+=trade_asset_value(row,None)*_position_fit_multiplier(roster,row,send_names)*_team_need_multiplier(league_id,ai_team,roster,row,send_names)
     if outgoing<=0 or incoming<=0:raise ValueError("Selection de trade invalide.")
     required=1.0
-    if _team_is_top5(league_id,ai_team):required=1.12
+    elite_record=_team_is_top3_league(league_id,ai_team) or _team_is_conference_leader(league_id,ai_team)
+    if elite_record:required=1.12
     # Trading away a star requires a premium even when aggregate raw value is similar.
     best_out=max([float(by_name[n].get("overall") or 0) for n in send_names if n in by_name] or [0])
     if best_out>=90:required=max(required,1.15)
     elif best_out>=86:required=max(required,1.08)
     if incoming < outgoing*required:
         gap=round((outgoing*required-incoming)/(outgoing*required)*100)
-        reason="équipe Top 5, donc plus réticente à modifier son effectif" if _team_is_top5(league_id,ai_team) else "valeur sportive insuffisante"
+        reason="équipe Top 3 NBA ou leader de conférence, donc plus réticente à modifier son effectif" if elite_record else "valeur sportive insuffisante"
         raise ValueError(f"Trade refuse par l'IA : {reason} (écart estimé {gap} %).")
-    return {"offered_value":round(incoming,1),"requested_value":round(outgoing,1),"required_ratio":required,"top5":_team_is_top5(league_id,ai_team),"conference_leader":_team_is_conference_leader(league_id,ai_team)}
+    return {"offered_value":round(incoming,1),"requested_value":round(outgoing,1),"required_ratio":required,"top3_league":_team_is_top3_league(league_id,ai_team),"conference_leader":_team_is_conference_leader(league_id,ai_team)}
 
 def rotation_coach_advice(league_id,team_id):
     """Compare current minutes with projected energy-adjusted player quality and suggest conservative minute transfers."""
