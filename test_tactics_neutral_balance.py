@@ -64,8 +64,10 @@ for tid,oid in pairs[:10]:
             a,_=server.build_team(tid); b,_=server.build_team(oid)
             rr=main.simulate_game(a,b,server.build_ai_rotation(a),server.build_ai_rotation(b),tactics1=plan,tactics2=NEUTRAL)
             st=rr["team1"]["stats"]
-            fga=sum(p["fga"] for p in rr["team1"]["players"])
-            tpa=sum(p["3pa"] for p in rr["team1"]["players"])
+            # Use team-level counters: player serialization does not expose the
+            # internal fga/3pa aliases used by older benchmark versions.
+            fga=st.get("shots_attempted", st.get("fieldGoalsAttempted", 0))
+            tpa=st.get("three_attempted", st.get("threeAttempts", 0))
             attempts.append(fga); threes.append(tpa)
         rates[label]=sum(threes)/max(1,sum(attempts))
     print("SHOT_DIET",tid,"inside",round(rates["inside"],3),"outside",round(rates["outside"],3))
