@@ -238,27 +238,40 @@ def _roster_fit_effects(tactics, lineup):
     for focus,weight in _focuses(tactics,"offense"):
         fit=_lineup_focus_fit(lineup,focus)
         fits.append((focus,fit,weight))
-        # Poor fit reduces the extra situations requested by the tactic; great
-        # fit slightly improves their quality. This remains much smaller than
-        # the player's own shot/defense ratings.
+        # The tactic sets the intent (shot diet / style), but roster fit decides
+        # how efficiently the lineup can execute it. Poor fits therefore keep
+        # the requested style while producing worse shot quality / ball security;
+        # strong fits receive a meaningful, bounded execution bonus.
         signed=(fit-.5)*2.0
         if focus=="Tir extérieur":
-            result["three"] = result.get("three",0)+signed*.080*weight
-            result["three_quality"] = result.get("three_quality",0)+signed*.006*weight
-        elif focus in ("Jeu intérieur","Pénétration"):
-            result["rim"] = result.get("rim",0)+signed*.085*weight
-            result["rim_quality"] = result.get("rim_quality",0)+signed*.009*weight
+            result["three"] = result.get("three",0)+signed*.045*weight
+            result["three_quality"] = result.get("three_quality",0)+signed*.022*weight
+            result["turnover"] = result.get("turnover",0)-signed*.0030*weight
+        elif focus=="Jeu intérieur":
+            result["rim"] = result.get("rim",0)+signed*.050*weight
+            result["rim_quality"] = result.get("rim_quality",0)+signed*.024*weight
+            result["oreb"] = result.get("oreb",0)+signed*.025*weight
+        elif focus=="Pénétration":
+            result["rim"] = result.get("rim",0)+signed*.050*weight
+            result["rim_quality"] = result.get("rim_quality",0)+signed*.022*weight
+            result["turnover"] = result.get("turnover",0)-signed*.0045*weight
         elif focus=="Pick & Roll":
-            result["assist"] = result.get("assist",0)+signed*.065*weight
-            result["rim"] = result.get("rim",0)+signed*.040*weight
+            result["assist"] = result.get("assist",0)+signed*.105*weight
+            result["rim_quality"] = result.get("rim_quality",0)+signed*.017*weight
+            result["three_quality"] = result.get("three_quality",0)+signed*.010*weight
+            result["turnover"] = result.get("turnover",0)-signed*.0050*weight
         elif focus=="Jeu rapide":
-            result["transition"] = result.get("transition",0)+signed*.090*weight
-            result["rim"] = result.get("rim",0)+signed*.040*weight
+            result["transition"] = result.get("transition",0)+signed*.120*weight
+            result["rim_quality"] = result.get("rim_quality",0)+signed*.016*weight
+            result["turnover"] = result.get("turnover",0)-signed*.0040*weight
         elif focus=="Mouvement de balle":
-            result["assist"] = result.get("assist",0)+signed*.090*weight
-            result["turnover"] = result.get("turnover",0)-signed*.004*weight
+            result["assist"] = result.get("assist",0)+signed*.135*weight
+            result["three_quality"] = result.get("three_quality",0)+signed*.010*weight
+            result["turnover"] = result.get("turnover",0)-signed*.0070*weight
         elif focus=="Rebond offensif":
-            result["oreb"] = result.get("oreb",0)+signed*.080*weight
+            result["oreb"] = result.get("oreb",0)+signed*.135*weight
+            # Sending unsuitable lineups to the glass has a real transition cost.
+            result["transition_defense"] = result.get("transition_defense",0)+signed*.050*weight
     return result, fits
 
 def tactic_compatibility(tactics, players, minutes=None):
