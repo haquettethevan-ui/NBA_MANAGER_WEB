@@ -1,5 +1,5 @@
 name: Refresh 2K player potential
-# refresh-v5: parse POT from final Attributes occurrence
+# refresh-v6: refresh POT and player ages
 
 on:
   workflow_dispatch:
@@ -33,6 +33,10 @@ jobs:
               raise SystemExit("Potential coverage too low")
           if len(dist) < 4 or max(dist.values()) > int(len(have)*0.65):
               raise SystemExit(f"Potential distribution suspicious: {dict(dist)}")
+          ages=[p for p in ps if p.get("age") is not None]
+          print(f"Ages: {len(ages)}/{len(ps)} players")
+          if len(ages) < int(len(ps)*0.90):
+              raise SystemExit("Age coverage too low")
           PY
       - name: Commit refreshed database
         run: |
