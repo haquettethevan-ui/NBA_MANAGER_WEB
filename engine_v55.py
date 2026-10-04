@@ -32,10 +32,10 @@ PRIORITY = (1.0, .58, .30)
 # Positive = offense creates this situation more often; negative = defense suppresses it.
 OFFENSE_PROFILE = {
     "Équilibré": {},
-    "Jeu intérieur": {"rim": .18, "mid": .045, "three": -.115, "post": .16},
+    "Jeu intérieur": {"rim": .195, "mid": .045, "three": -.115, "post": .17},
     "Tir extérieur": {"three": .16, "rim": -.07, "mid": -.06},
-    "Pénétration": {"rim": .19, "three": -.05, "drive": .18},
-    "Pick & Roll": {"rim": .070, "three": .045, "pnr": .145, "mid": .012},
+    "Pénétration": {"rim": .205, "three": -.05, "drive": .195},
+    "Pick & Roll": {"rim": .060, "three": .038, "pnr": .125, "mid": .010},
     "Jeu rapide": {"rim": .105, "three": .035, "transition": .27, "turnover": .010},
     "Mouvement de balle": {"assist": .035, "three": .010, "turnover": .001},
     "Rebond offensif": {"oreb": .095, "transition_defense": -.15},
@@ -44,7 +44,7 @@ DEFENSE_PROFILE = {
     "Équilibré": {},
     "Protection du cercle": {"rim_def": .145, "three_allow": .085},
     "Défense extérieure": {"perimeter_def": .105, "rim_allow": .073},
-    "Pression porteur": {"turnover_force": .011, "foul": .003, "drive_allow": .011},
+    "Pression porteur": {"turnover_force": .0085, "foul": .0035, "drive_allow": .014},
     "Zone": {"rim_def": .045, "three_allow": .095, "oreb_allow": .105, "assist_allow": .065},
     "Homme à homme": {"perimeter_def": .022, "rim_def": .012},
     "Box out": {"oreb_def": .155, "transition_allow": .065},
@@ -69,9 +69,9 @@ TACTIC_MATCHUPS = {
     ("Pénétration", "Pression porteur"): {"turnover": .007, "rim": .0245},
     ("Pénétration", "Zone"): {"rim": -.035, "assist": .0385},
 
-    ("Pick & Roll", "Homme à homme"): {"rim": .0315, "three": .0245, "assist": .0245},
-    ("Pick & Roll", "Pression porteur"): {"rim": .0315, "turnover": -.0042},
-    ("Pick & Roll", "Zone"): {"rim": -.0245, "three": .0245, "assist": .0315},
+    ("Pick & Roll", "Homme à homme"): {"rim": .026, "three": .020, "assist": .020},
+    ("Pick & Roll", "Pression porteur"): {"rim": .026, "turnover": -.0035},
+    ("Pick & Roll", "Zone"): {"rim": -.0245, "three": .020, "assist": .026},
 
     ("Jeu rapide", "Repli défensif"): {"transition": -.126, "rim": -.0315},
     ("Jeu rapide", "Box out"): {"transition": .056, "rim": .0245},
