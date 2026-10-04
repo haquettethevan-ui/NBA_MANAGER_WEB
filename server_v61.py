@@ -485,7 +485,8 @@ class MultiplayerServer(Server):
                 if ng:
                     team=_load_team_state(lid,m["team_id"],ng["game_date"])
                     states={p.name:{"energy":getattr(p,"energy",100),"workload":getattr(p,"workload",0),"injury_days":getattr(p,"injury_days",0),"injury_label":getattr(p,"injury_label","")} for p in team.roster}
-                return self.send_json(200,{"success":True,"team_id":m["team_id"],"next_game_date":ng["game_date"] if ng else None,"players":[{"name":x.name,"position":x.position,"overall":x.overall,"role":x.role,"outside":x.outside_scoring,"inside":x.inside_scoring,"playmaking":x.playmaking,"defense":x.defense,"rebounding":x.rebounding,"stamina":x.stamina,"energy":round(states.get(x.name,{}).get("energy",100),1),"workload":round(states.get(x.name,{}).get("workload",0),1),"injury_days":states.get(x.name,{}).get("injury_days",0),"injury_label":states.get(x.name,{}).get("injury_label","")} for x in team.roster],"saved":saved})
+                allrows={r["name"]:r for rows0 in PLAYER_DB.values() for r in rows0}
+                return self.send_json(200,{"success":True,"team_id":m["team_id"],"next_game_date":ng["game_date"] if ng else None,"players":[{"name":x.name,"position":x.position,"overall":x.overall,"potential":allrows.get(x.name,{}).get("potential"),"potential_grade":allrows.get(x.name,{}).get("potential_grade"),"role":x.role,"outside":x.outside_scoring,"inside":x.inside_scoring,"playmaking":x.playmaking,"defense":x.defense,"rebounding":x.rebounding,"stamina":x.stamina,"energy":round(states.get(x.name,{}).get("energy",100),1),"workload":round(states.get(x.name,{}).get("workload",0),1),"injury_days":states.get(x.name,{}).get("injury_days",0),"injury_label":states.get(x.name,{}).get("injury_label","")} for x in team.roster],"saved":saved})
 
             return self.send_json(200,{"success":True,"saved":load_rotation(lid,m["team_id"])})
         return super().do_GET()
