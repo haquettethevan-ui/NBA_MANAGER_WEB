@@ -39,7 +39,31 @@ def trade_asset_value(row,state=None):
     # for young/high-upside assets. Never punish a player because POT is missing.
     upside=max(0.0,pot-o)
     value=max(1.0,(o-60.0)**2)
-    value*=1.0 + min(0.38, upside*0.022)
+    # 2K POT is a ceiling, not an age-adjusted market projection.
+    # Convert that ceiling into future trade value only when the player's age
+    # makes meaningful development plausible. Missing age stays neutral.
+    age=row.get("age")
+    age_factor=1.0
+    if age is not None:
+        age=float(age)
+        if age<=21: age_factor=1.35
+        elif age<=23: age_factor=1.20
+        elif age<=25: age_factor=1.00
+        elif age<=27: age_factor=0.70
+        elif age<=29: age_factor=0.40
+        elif age<=31: age_factor=0.20
+        else: age_factor=0.0
+    value*=1.0 + min(0.42, upside*0.022*age_factor)
+    # Age also matters when POT is already close to OVR: young stars retain
+    # more long-term asset value, while older players gradually lose resale value.
+    if age is not None:
+        if age<=21: value*=1.12
+        elif age<=23: value*=1.08
+        elif age<=25: value*=1.04
+        elif age>=38: value*=0.72
+        elif age>=35: value*=0.80
+        elif age>=33: value*=0.88
+        elif age>=31: value*=0.95
     salary=salary_for_row(row)
     if o<84 and salary>20_000_000:value*=0.88
     value*=_trade_health_multiplier(state)
