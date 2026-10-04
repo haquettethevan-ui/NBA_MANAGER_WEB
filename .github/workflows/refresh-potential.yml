@@ -1,5 +1,5 @@
 name: Refresh 2K player potential
-# refresh-v3: corrected potential parser
+# refresh-v4: parse POT from repeated attribute summary
 
 on:
   workflow_dispatch:
