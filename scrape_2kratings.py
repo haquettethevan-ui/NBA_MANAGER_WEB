@@ -296,9 +296,9 @@ def extract_potential(text: str) -> Tuple[Optional[str], Optional[int]]:
     """Keep 2KRatings' displayed POT letter and map it to the midpoint of its published range."""
     clean = normalize(text).upper()
     grade = r"(A\+|A-|A|B\+|B-|B|C\+|C-|C|D\+|D-|D|F)"
-    reverse = re.search(r"\bPOTENTIAL\s+" + grade, clean)
-    direct = re.search(grade + r"\s+POTENTIAL\b", clean)
-    match = reverse or direct
+    # Use the repeated attribute summary ("B+ Potential"), not "Potential <...>".
+    # The latter can falsely read the first letter of the player's name, e.g. "Potential A.J. Green" => A.
+    match = re.search(grade + r"\s+POTENTIAL\b", clean)
     letter = match.group(1) if match else None
     return letter, POTENTIAL_VALUES.get(letter) if letter else None
 
