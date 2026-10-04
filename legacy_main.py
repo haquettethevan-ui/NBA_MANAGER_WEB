@@ -630,19 +630,15 @@ def natural_positions(player):
     return tuple(position.strip() for position in player.position.split("/"))
 
 def eligible_positions(player):
-    """Postes jouables dans une rotation.
+    """Postes réellement jouables par le joueur d'après sa fiche 2K.
 
-    Les positions 2K restent les positions naturelles, mais un joueur peut
-    dépanner sur un poste adjacent. Cela évite de rendre certains effectifs
-    impossibles sans autoriser des aberrations comme un PG au poste de C.
+    Aucune extension automatique vers un poste adjacent : un PG pur reste PG,
+    un SG/SF peut jouer SG ou SF, etc. Cela empêche le moteur de fabriquer des
+    lineups valides en plaçant artificiellement un joueur hors position.
     """
     natural=set(natural_positions(player))
-    adjacent={"PG":{"SG"},"SG":{"PG","SF"},"SF":{"SG","PF"},"PF":{"SF","C"},"C":{"PF"}}
-    allowed=set(natural)
-    for pos in natural:
-        allowed.update(adjacent.get(pos,set()))
     order=("PG","SG","SF","PF","C")
-    return tuple(pos for pos in order if pos in allowed)
+    return tuple(pos for pos in order if pos in natural)
 
 
 def primary_position(player):
@@ -823,6 +819,10 @@ def build_feasible_rotation(team):
             slot_node[(minute, pos)] = next_node
             next_node += 1
 
+    # Minute 0 est réservée au cinq de départ choisi par le manager.
+    # Les titulaires sont verrouillés sur l'affectation PG/SG/SF/PF/C calculée
+    # ci-dessus ; aucun remplaçant ne peut prendre un slot au coup d'envoi.
+    starter_pos_by_name = {p.name: pos for pos, p in starter_assignment.items()}
     for p in active:
         flow.add_edge(source, player_node[p.name], target[p.name])
         eligible = set(eligible_positions(p))
@@ -830,9 +830,12 @@ def build_feasible_rotation(team):
             pm = player_min_node[(p.name, minute)]
             flow.add_edge(player_node[p.name], pm, 1)
             for pos in REQUIRED_POSITIONS:
-                if pos in eligible:
-                    edge_index = flow.add_edge(pm, slot_node[(minute, pos)], 1)
-                    edge_refs[(p.name, minute, pos)] = (pm, edge_index)
+                if pos not in eligible:
+                    continue
+                if minute == 0 and starter_pos_by_name.get(p.name) != pos:
+                    continue
+                edge_index = flow.add_edge(pm, slot_node[(minute, pos)], 1)
+                edge_refs[(p.name, minute, pos)] = (pm, edge_index)
 
     for minute in range(48):
         for pos in REQUIRED_POSITIONS:
@@ -877,7 +880,9 @@ def build_feasible_rotation(team):
         return {p.name for p in items}
 
     starter_names = names(starter_lineup)
-    start_index = next((i for i, (lu, _) in enumerate(remaining) if names(lu) == starter_names), 0)
+    start_index = next((i for i, (lu, _) in enumerate(remaining) if names(lu) == starter_names), None)
+    if start_index is None:
+        raise ValueError("Erreur interne : le cinq de départ choisi n'a pas été placé à la première minute.")
     ordered.append(remaining.pop(start_index))
     # Le premier prototype maximisait uniquement la continuité du cinq. Cela
     # pouvait produire 25-35 minutes consécutives pour un titulaire. On garde
