@@ -311,6 +311,7 @@ def serialize_roster(team_id):
     for row in rows:
         output.append({
             "name": row["name"], "position": row["position"], "overall": row["overall"],
+            "potential": row.get("potential"), "potential_grade": row.get("potential_grade"),
             "outside": row["outside_scoring"], "inside": row["inside_scoring"],
             "athleticism": row["athleticism"], "playmaking": row["playmaking"],
             "defense": row["defense"], "rebounding": row["rebounding"], "stamina": row["stamina"],
