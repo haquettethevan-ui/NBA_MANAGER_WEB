@@ -1,4 +1,5 @@
 name: Tactics Balance Benchmark
+# Automated regression benchmark for tactical balance and roster-fit correlation.
 
 on:
   workflow_dispatch:
