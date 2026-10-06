@@ -1,0 +1,60 @@
+{
+  "matchup": "PHI vs SAS",
+  "games_per_plan": 50,
+  "total_games": 150,
+  "hypothesis": {
+    "PHI_strengths": "elite versatile creation/scoring: Maxey, Brown, LeBron, Embiid",
+    "SAS_strength": "Wembanyama interior defense/rebounding",
+    "expected_order": "adapted_perimeter_creation > neutral > bad_force_rim"
+  },
+  "plans": {
+    "adapted_perimeter_creation": {
+      "points": 118.02,
+      "fg_pct": 46.72,
+      "three_attempted": 42.24,
+      "three_pct": 37.13,
+      "shots_attempted": 89.48,
+      "free_throws_attempted": 23.3,
+      "rebounds": 44.42,
+      "assists": 24.98,
+      "turnovers": 13.5,
+      "fouls": 19.08,
+      "possessions": 102.26,
+      "opp_points": 121.1,
+      "point_diff": -3.08,
+      "win_pct": 44.0
+    },
+    "neutral": {
+      "points": 118.6,
+      "fg_pct": 48.45,
+      "three_attempted": 36.7,
+      "three_pct": 37.61,
+      "shots_attempted": 89.16,
+      "free_throws_attempted": 23.04,
+      "rebounds": 44.18,
+      "assists": 25.2,
+      "turnovers": 13.36,
+      "fouls": 18.34,
+      "possessions": 102.54,
+      "opp_points": 119.4,
+      "point_diff": -0.8,
+      "win_pct": 44.0
+    },
+    "bad_force_rim": {
+      "points": 118.28,
+      "fg_pct": 51.4,
+      "three_attempted": 23.94,
+      "three_pct": 37.44,
+      "shots_attempted": 87.88,
+      "free_throws_attempted": 24.32,
+      "rebounds": 44.1,
+      "assists": 25.7,
+      "turnovers": 13.02,
+      "fouls": 18.16,
+      "possessions": 102.22,
+      "opp_points": 120.56,
+      "point_diff": -2.28,
+      "win_pct": 46.0
+    }
+  }
+}
