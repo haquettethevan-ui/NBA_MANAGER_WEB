@@ -77,3 +77,5 @@ db["salary_season"]="2026-27"
 DB.write_text(json.dumps(db,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 REPORT.write_text(json.dumps({"status":"ok","source_contracts":len(source),"matched":len(matched),"unmatched_count":len(unmatched),"ambiguous_count":len(ambiguous),"unmatched":unmatched,"ambiguous":ambiguous,"sample":matched[:20]},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print("MATCHED",len(matched),"UNMATCHED",len(unmatched),"AMBIGUOUS",len(ambiguous),flush=True)
+
+# Workflow trigger: salary data refresh
