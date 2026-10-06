@@ -32,7 +32,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 30000000
       },
       {
         "name": "Nickeil Alexander-Walker",
@@ -51,7 +52,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 14403710
       },
       {
         "name": "C.J. McCollum",
@@ -70,7 +72,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 21000000
       },
       {
         "name": "Dyson Daniels",
@@ -89,7 +92,8 @@
         "general_category_status": "partial",
         "source": "2KRatings",
         "potential_grade": null,
-        "potential": null
+        "potential": null,
+        "salary_2026_27": 25000000
       },
       {
         "name": "Onyeka Okongwu",
@@ -108,7 +112,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 16120000
       },
       {
         "name": "Luguentz Dort",
@@ -127,7 +132,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 18222222
       },
       {
         "name": "Aaron Wiggins",
@@ -146,7 +152,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 9224300
       },
       {
         "name": "Jock Landale",
@@ -165,7 +172,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 14100000
       },
       {
         "name": "Dorian Finney-Smith",
@@ -184,7 +192,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 13335000
       },
       {
         "name": "Kingston Flemings",
@@ -203,7 +212,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 7348680
       },
       {
         "name": "Corey Kispert",
@@ -222,7 +232,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 13975000
       },
       {
         "name": "Asa Newell",
@@ -241,7 +252,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3399480
       },
       {
         "name": "Mouhamed Gueye",
@@ -260,7 +272,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2406205
       },
       {
         "name": "Jalen Wilson",
@@ -298,7 +311,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3453360
       },
       {
         "name": "Henri Veesaar",
@@ -317,7 +331,8 @@
         "general_category_status": "partial",
         "source": "2KRatings",
         "potential_grade": null,
-        "potential": null
+        "potential": null,
+        "salary_2026_27": 1357763
       },
       {
         "name": "RayJ Dennis",
@@ -376,7 +391,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 58456566
       },
       {
         "name": "Derrick White",
@@ -395,7 +411,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 30348000
       },
       {
         "name": "Paul George",
@@ -414,7 +431,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 54126380
       },
       {
         "name": "Payton Pritchard",
@@ -433,7 +451,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 7767857
       },
       {
         "name": "Mitchell Robinson",
@@ -452,7 +471,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 15044000
       },
       {
         "name": "Neemias Queta",
@@ -471,7 +491,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2667944
       },
       {
         "name": "Sam Hauser",
@@ -490,7 +511,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 10848215
       },
       {
         "name": "Mike Conley",
@@ -509,7 +531,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Luka Garza",
@@ -528,7 +551,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2801346
       },
       {
         "name": "Baylor Scheierman",
@@ -547,7 +571,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2744040
       },
       {
         "name": "Hugo González",
@@ -566,7 +591,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2923560
       },
       {
         "name": "Jordan Walsh",
@@ -585,7 +611,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2406205
       },
       {
         "name": "Ron Harper Jr.",
@@ -604,7 +631,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 3150752
       },
       {
         "name": "Chris Cenac Jr.",
@@ -623,7 +651,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2988120
       },
       {
         "name": "Amari Williams",
@@ -682,7 +711,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 40806150
       },
       {
         "name": "Julius Randle",
@@ -701,7 +731,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 33333334
       },
       {
         "name": "Keon Ellis",
@@ -720,7 +751,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 8780488
       },
       {
         "name": "Noah Clowney",
@@ -739,7 +771,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 5414034
       },
       {
         "name": "Nolan Traore",
@@ -758,7 +791,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4002000
       },
       {
         "name": "Egor Dëmin",
@@ -777,7 +811,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 7233720
       },
       {
         "name": "Day’Ron Sharpe",
@@ -796,7 +831,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 10000000
       },
       {
         "name": "Danny Wolf",
@@ -815,7 +851,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2941440
       },
       {
         "name": "Terance Mann",
@@ -834,7 +871,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 15500000
       },
       {
         "name": "Mikel Brown Jr.",
@@ -853,7 +891,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 8787000
       },
       {
         "name": "Josh Minott",
@@ -872,7 +911,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 4500000
       },
       {
         "name": "Moritz Wagner",
@@ -891,7 +931,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 9268293
       },
       {
         "name": "Ben Saraf",
@@ -910,7 +951,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3028560
       },
       {
         "name": "Drake Powell",
@@ -929,7 +971,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3540600
       },
       {
         "name": "Chaney Johnson",
@@ -986,7 +1029,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2969520
       },
       {
         "name": "Tyler Bilodeau",
@@ -1026,7 +1070,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 15104626
       },
       {
         "name": "Kon Knueppel",
@@ -1045,7 +1090,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 10516560
       },
       {
         "name": "Naz Reid",
@@ -1064,7 +1110,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 23275862
       },
       {
         "name": "Coby White",
@@ -1083,7 +1130,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 22839506
       },
       {
         "name": "Grayson Allen",
@@ -1102,7 +1150,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 18125000
       },
       {
         "name": "Moussa Diabaté",
@@ -1121,7 +1170,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2461462
       },
       {
         "name": "Ryan Kalkbrenner",
@@ -1140,7 +1190,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2411090
       },
       {
         "name": "Dennis Schroder",
@@ -1159,7 +1210,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 14809200
       },
       {
         "name": "Royce O’Neale",
@@ -1178,7 +1230,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 10875000
       },
       {
         "name": "Sion James",
@@ -1197,7 +1250,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2411090
       },
       {
         "name": "Buddy Hield",
@@ -1216,7 +1270,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 9658536
       },
       {
         "name": "Grant Williams",
@@ -1235,7 +1290,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 14265750
       },
       {
         "name": "Tidjane Salaün",
@@ -1254,7 +1310,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 8237880
       },
       {
         "name": "Liam McNeeley",
@@ -1273,7 +1330,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2902080
       },
       {
         "name": "Pat Connaughton",
@@ -1292,7 +1350,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 3815861
       },
       {
         "name": "Hannes Steinbach",
@@ -1311,7 +1370,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 5227200
       },
       {
         "name": "P.J. Hall",
@@ -1349,7 +1409,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4257480
       },
       {
         "name": "Kylan Boswell",
@@ -1408,7 +1469,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 21500000
       },
       {
         "name": "Josh Giddey",
@@ -1427,7 +1489,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 25000000
       },
       {
         "name": "Matas Buzelis",
@@ -1446,7 +1509,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 5715360
       },
       {
         "name": "Nicolas Claxton",
@@ -1484,7 +1548,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 8000000
       },
       {
         "name": "Caleb Wilson",
@@ -1503,7 +1568,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 10683720
       },
       {
         "name": "Jalen Smith",
@@ -1522,7 +1588,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 9428571
       },
       {
         "name": "Zach Collins",
@@ -1541,7 +1608,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 8292683
       },
       {
         "name": "Isaac Okoro",
@@ -1560,7 +1628,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 11814814
       },
       {
         "name": "Patrick Williams",
@@ -1579,7 +1648,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 18000000
       },
       {
         "name": "Leonard Miller",
@@ -1598,7 +1668,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2406205
       },
       {
         "name": "Noa Essengue",
@@ -1617,7 +1688,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 5701200
       },
       {
         "name": "Dailyn Swain",
@@ -1636,7 +1708,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4965480
       },
       {
         "name": "Tobe Awaka",
@@ -1695,7 +1768,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 50105628
       },
       {
         "name": "James Harden",
@@ -1714,7 +1788,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 30647619
       },
       {
         "name": "Evan Mobley",
@@ -1733,7 +1808,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 50105628
       },
       {
         "name": "Jarrett Allen",
@@ -1752,7 +1828,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 28000000
       },
       {
         "name": "Peyton Watson",
@@ -1771,7 +1848,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 20465116
       },
       {
         "name": "Sam Merrill",
@@ -1790,7 +1868,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 9160715
       },
       {
         "name": "Jaylon Tyson",
@@ -1809,7 +1888,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3658560
       },
       {
         "name": "Mario Hezonja",
@@ -1828,7 +1908,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Thomas Bryant",
@@ -1847,7 +1928,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Craig Porter Jr.",
@@ -1866,7 +1948,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2406205
       },
       {
         "name": "Nae’Qwan Tomlin",
@@ -1885,7 +1968,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2411090
       },
       {
         "name": "Tyrese Proctor",
@@ -1904,7 +1988,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2150917
       },
       {
         "name": "Meleek Thomas",
@@ -1923,7 +2008,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 1357763
       },
       {
         "name": "Ernest Udeh Jr.",
@@ -1999,7 +2085,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 1357763
       }
     ],
     "DAL": [
@@ -2020,7 +2107,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 39491282
       },
       {
         "name": "Cooper Flagg",
@@ -2039,7 +2127,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 14517480
       },
       {
         "name": "P.J. Washington",
@@ -2058,7 +2147,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 19813044
       },
       {
         "name": "Dereck Lively II",
@@ -2077,7 +2167,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 7239131
       },
       {
         "name": "Naji Marshall",
@@ -2096,7 +2187,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 9428571
       },
       {
         "name": "Daniel Gafford",
@@ -2115,7 +2207,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 17263584
       },
       {
         "name": "Santi Aldama",
@@ -2134,7 +2227,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 17007043
       },
       {
         "name": "Zaccharie Risacher",
@@ -2153,7 +2247,8 @@
         "general_category_status": "partial",
         "source": "2KRatings",
         "potential_grade": null,
-        "potential": null
+        "potential": null,
+        "salary_2026_27": 13826040
       },
       {
         "name": "Max Christie",
@@ -2172,7 +2267,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 8285714
       },
       {
         "name": "Marcus Sasser",
@@ -2191,7 +2287,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 5198983
       },
       {
         "name": "Morez Johnson Jr.",
@@ -2210,7 +2307,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 6754800
       },
       {
         "name": "Dwight Powell",
@@ -2248,7 +2346,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 10001493
       },
       {
         "name": "Jett Howard",
@@ -2286,7 +2385,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 3000000
       },
       {
         "name": "Moussa Cisse",
@@ -2305,7 +2405,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2185116
       },
       {
         "name": "John Poulakidas",
@@ -2343,7 +2444,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3182280
       },
       {
         "name": "Tobi Lawal",
@@ -2383,7 +2485,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 59033114
       },
       {
         "name": "Jamal Murray",
@@ -2402,7 +2505,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 50105628
       },
       {
         "name": "Aaron Gordon",
@@ -2421,7 +2525,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 33658037
       },
       {
         "name": "DeMar DeRozan",
@@ -2440,7 +2545,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Cameron Johnson",
@@ -2459,7 +2565,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 23062500
       },
       {
         "name": "Christian Braun",
@@ -2478,7 +2585,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 21551726
       },
       {
         "name": "Marvin Bagley III",
@@ -2497,7 +2605,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Julian Strawther",
@@ -2516,7 +2625,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4826931
       },
       {
         "name": "Tyus Jones",
@@ -2535,7 +2645,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Cam Whitmore",
@@ -2554,7 +2665,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 1819437
       },
       {
         "name": "Lonnie Walker IV",
@@ -2573,7 +2685,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 3286399
       },
       {
         "name": "Spencer Jones",
@@ -2592,7 +2705,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 6000000
       },
       {
         "name": "Ryan Nembhard",
@@ -2611,7 +2725,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2150917
       },
       {
         "name": "Zeke Nnaji",
@@ -2630,7 +2745,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 7466667
       },
       {
         "name": "DaRon Holmes II",
@@ -2649,7 +2765,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 3372120
       },
       {
         "name": "Alpha Diallo",
@@ -2687,7 +2804,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 1357763
       },
       {
         "name": "Bryce Hopkins",
@@ -2727,7 +2845,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 50105628
       },
       {
         "name": "Ausar Thompson",
@@ -2746,7 +2865,8 @@
         "general_category_status": "partial",
         "source": "2KRatings",
         "potential_grade": null,
-        "potential": null
+        "potential": null,
+        "salary_2026_27": 11117925
       },
       {
         "name": "Jalen Duren",
@@ -2765,7 +2885,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 40160643
       },
       {
         "name": "John Collins",
@@ -2784,7 +2905,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 17000000
       },
       {
         "name": "Daniss Jenkins",
@@ -2803,7 +2925,8 @@
         "general_category_status": "partial",
         "source": "2KRatings",
         "potential_grade": null,
-        "potential": null
+        "potential": null,
+        "salary_2026_27": 4000000
       },
       {
         "name": "Duncan Robinson",
@@ -2822,7 +2945,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 15992957
       },
       {
         "name": "Isaiah Joe",
@@ -2841,7 +2965,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 11323006
       },
       {
         "name": "Paul Reed",
@@ -2860,7 +2985,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 5602689
       },
       {
         "name": "Kevin Huerter",
@@ -2879,7 +3005,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 8333333
       },
       {
         "name": "Ron Holland",
@@ -2898,7 +3025,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 9069600
       },
       {
         "name": "Javonte Green",
@@ -2917,7 +3045,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 3943679
       },
       {
         "name": "Taurean Prince",
@@ -2936,7 +3065,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 3815861
       },
       {
         "name": "Gary Harris",
@@ -2955,7 +3085,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 3815861
       },
       {
         "name": "Ebuka Okorie",
@@ -2974,7 +3105,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4481280
       },
       {
         "name": "Isaac Jones",
@@ -3050,7 +3182,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2411090
       },
       {
         "name": "Chaz Lanier",
@@ -3069,7 +3202,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2150917
       }
     ],
     "GSW": [
@@ -3090,7 +3224,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 62587158
       },
       {
         "name": "Jimmy Butler",
@@ -3109,7 +3244,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 56832773
       },
       {
         "name": "Kristaps Porzingis",
@@ -3128,7 +3264,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 19512195
       },
       {
         "name": "Draymond Green",
@@ -3147,7 +3284,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 27678571
       },
       {
         "name": "Brandin Podziemski",
@@ -3166,7 +3304,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 5679459
       },
       {
         "name": "Gui Santos",
@@ -3185,7 +3324,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 4629630
       },
       {
         "name": "Al Horford",
@@ -3204,7 +3344,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 6822000
       },
       {
         "name": "De’Anthony Melton",
@@ -3223,7 +3364,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 5477000
       },
       {
         "name": "Moses Moody",
@@ -3242,7 +3384,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 12500000
       },
       {
         "name": "Brandon Williams",
@@ -3261,7 +3404,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Gary Payton II",
@@ -3280,7 +3424,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Will Richard",
@@ -3299,7 +3444,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2150917
       },
       {
         "name": "Yaxel Lendeborg",
@@ -3318,7 +3464,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 6096240
       },
       {
         "name": "Charles Bassey",
@@ -3337,7 +3484,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "L.J. Cryer",
@@ -3375,7 +3523,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 1357763
       },
       {
         "name": "Georges Niang",
@@ -3394,7 +3543,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Malevy Leons",
@@ -3453,7 +3603,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 43902439
       },
       {
         "name": "Alperen Sengun",
@@ -3472,7 +3623,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 35642202
       },
       {
         "name": "Amen Thompson",
@@ -3491,7 +3643,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 12258609
       },
       {
         "name": "Jabari Smith Jr.",
@@ -3510,7 +3663,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 23643411
       },
       {
         "name": "Reed Sheppard",
@@ -3529,7 +3683,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 11108880
       },
       {
         "name": "Fred VanVleet",
@@ -3548,7 +3703,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 25000000
       },
       {
         "name": "Marcus Smart",
@@ -3567,7 +3723,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 6064000
       },
       {
         "name": "Tari Eason",
@@ -3586,7 +3743,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 14051724
       },
       {
         "name": "Steven Adams",
@@ -3605,7 +3763,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 13000000
       },
       {
         "name": "Clint Capela",
@@ -3624,7 +3783,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 7035000
       },
       {
         "name": "Bogdan Bogdanovic",
@@ -3643,7 +3803,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Jae’Sean Tate",
@@ -3662,7 +3823,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Oscar Tshiebwe",
@@ -3681,7 +3843,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2537526
       },
       {
         "name": "Julian Phillips",
@@ -3700,7 +3863,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2537526
       },
       {
         "name": "Bruce Thornton",
@@ -3719,7 +3883,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 1357763
       },
       {
         "name": "Isaiah Crawford",
@@ -3738,7 +3903,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Sean Pedulla",
@@ -3816,7 +3982,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 48924624
       },
       {
         "name": "Pascal Siakam",
@@ -3835,7 +4002,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 48924624
       },
       {
         "name": "Ivica Zubac",
@@ -3854,7 +4022,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 20342140
       },
       {
         "name": "Andrew Nembhard",
@@ -3873,7 +4042,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 19550160
       },
       {
         "name": "T.J. McConnell",
@@ -3892,7 +4062,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 11000000
       },
       {
         "name": "Kelly Oubre Jr.",
@@ -3911,7 +4082,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 8050000
       },
       {
         "name": "Aaron Nesmith",
@@ -3930,7 +4102,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 11000000
       },
       {
         "name": "Obi Toppin",
@@ -3949,7 +4122,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 15000000
       },
       {
         "name": "Jarace Walker",
@@ -3968,7 +4142,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 8478542
       },
       {
         "name": "Jay Huff",
@@ -3987,7 +4162,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2667944
       },
       {
         "name": "Quenton Jackson",
@@ -4025,7 +4201,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 5031669
       },
       {
         "name": "Kobe Brown",
@@ -4063,7 +4240,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2296271
       },
       {
         "name": "Larry Nance Jr.",
@@ -4082,7 +4260,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Jalen Slawson",
@@ -4141,7 +4320,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 42166510
       },
       {
         "name": "Brandon Ingram",
@@ -4160,7 +4340,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 40000000
       },
       {
         "name": "Rui Hachimura",
@@ -4179,7 +4360,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 14000000
       },
       {
         "name": "Max Strus",
@@ -4198,7 +4380,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 16660836
       },
       {
         "name": "Derrick Jones Jr.",
@@ -4217,7 +4400,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 10476190
       },
       {
         "name": "Brook Lopez",
@@ -4236,7 +4420,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 9187500
       },
       {
         "name": "Bradley Beal",
@@ -4255,7 +4440,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 6424800
       },
       {
         "name": "Kris Dunn",
@@ -4274,7 +4460,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 5684800
       },
       {
         "name": "Keaton Wagler",
@@ -4293,7 +4480,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 9674760
       },
       {
         "name": "Isaiah Jackson",
@@ -4312,7 +4500,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 7000000
       },
       {
         "name": "Jordan Miller",
@@ -4331,7 +4520,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 5300000
       },
       {
         "name": "Kobe Sanders",
@@ -4350,7 +4540,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2622139
       },
       {
         "name": "Gradey Dick",
@@ -4369,7 +4560,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 7131511
       },
       {
         "name": "Yanic Konan Niederhauser",
@@ -4388,7 +4580,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2880960
       },
       {
         "name": "Jalen Pickett",
@@ -4426,7 +4619,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Cam Christie",
@@ -4445,7 +4639,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2296271
       },
       {
         "name": "Baba Miller",
@@ -4464,7 +4659,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 1705630
       },
       {
         "name": "Nick Martinelli",
@@ -4504,7 +4700,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 49800000
       },
       {
         "name": "Austin Reaves",
@@ -4523,7 +4720,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 41240250
       },
       {
         "name": "Walker Kessler",
@@ -4542,7 +4740,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 30232558
       },
       {
         "name": "Collin Sexton",
@@ -4561,7 +4760,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 9366000
       },
       {
         "name": "Quentin Grimes",
@@ -4580,7 +4780,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 13953489
       },
       {
         "name": "Jarred Vanderbilt",
@@ -4599,7 +4800,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 12428571
       },
       {
         "name": "Sandro Mamukelashvili",
@@ -4618,7 +4820,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 13000000
       },
       {
         "name": "Ziaire Williams",
@@ -4637,7 +4840,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Jake LaRavia",
@@ -4656,7 +4860,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 6000000
       },
       {
         "name": "Dalton Knecht",
@@ -4675,7 +4880,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4201080
       },
       {
         "name": "Matisse Thybulle",
@@ -4694,7 +4900,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Jaden Hardy",
@@ -4713,7 +4920,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 6000000
       },
       {
         "name": "Cameron Carr",
@@ -4732,7 +4940,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3315360
       },
       {
         "name": "Kevon Looney",
@@ -4751,7 +4960,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Bronny James Jr.",
@@ -4770,7 +4980,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2296271
       },
       {
         "name": "Adou Thiero",
@@ -4789,7 +5000,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2150917
       },
       {
         "name": "Chris Mañon",
@@ -4867,7 +5079,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 9220050
       },
       {
         "name": "Cedric Coward",
@@ -4886,7 +5099,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 6001080
       },
       {
         "name": "Zach Edey",
@@ -4905,7 +5119,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 6332760
       },
       {
         "name": "Cameron Boozer",
@@ -4924,7 +5139,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 11849760
       },
       {
         "name": "Jerami Grant",
@@ -4943,7 +5159,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 34206898
       },
       {
         "name": "Jaylen Wells",
@@ -4962,7 +5179,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2296271
       },
       {
         "name": "Isaiah Stewart",
@@ -4981,7 +5199,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 15000000
       },
       {
         "name": "G.G. Jackson",
@@ -5000,7 +5219,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2406205
       },
       {
         "name": "Cam Spencer",
@@ -5019,7 +5239,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2411090
       },
       {
         "name": "Olivier-Maxence Prosper",
@@ -5038,7 +5259,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2497812
       },
       {
         "name": "Scotty Pippen Jr.",
@@ -5057,7 +5279,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2461462
       },
       {
         "name": "Kris Murray",
@@ -5076,7 +5299,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 5315004
       },
       {
         "name": "Walter Clayton Jr.",
@@ -5095,7 +5319,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4190520
       },
       {
         "name": "Javon Small",
@@ -5133,7 +5358,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 8285714
       },
       {
         "name": "Taylor Hendricks",
@@ -5152,7 +5378,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 7805900
       },
       {
         "name": "Jahmai Mashack",
@@ -5190,7 +5417,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3746760
       },
       {
         "name": "Jordan Hawkins",
@@ -5209,7 +5437,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 7021895
       },
       {
         "name": "Micah Peavy",
@@ -5228,7 +5457,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2150917
       }
     ],
     "MIA": [
@@ -5249,7 +5479,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 58456566
       },
       {
         "name": "Bam Adebayo",
@@ -5268,7 +5499,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 49800000
       },
       {
         "name": "Bobby Portis Jr.",
@@ -5287,7 +5519,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 14521414
       },
       {
         "name": "Andrew Wiggins",
@@ -5306,7 +5539,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 30169644
       },
       {
         "name": "Tim Hardaway Jr.",
@@ -5325,7 +5559,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 6500000
       },
       {
         "name": "Pelle Larsson",
@@ -5344,7 +5579,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2296271
       },
       {
         "name": "Davion Mitchell",
@@ -5363,7 +5599,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 12400000
       },
       {
         "name": "Klay Thompson",
@@ -5382,7 +5619,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 5600000
       },
       {
         "name": "Simone Fontecchio",
@@ -5401,7 +5639,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Nikola Jovic",
@@ -5420,7 +5659,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 16200000
       },
       {
         "name": "Dru Smith",
@@ -5439,7 +5679,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2584539
       },
       {
         "name": "Nick Richards",
@@ -5458,7 +5699,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Myron Gardner",
@@ -5477,7 +5719,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2150917
       },
       {
         "name": "Keshad Johnson",
@@ -5515,7 +5758,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2185116
       },
       {
         "name": "Ryan Conwell",
@@ -5534,7 +5778,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 1357763
       },
       {
         "name": "Vladislav Goldin",
@@ -5593,7 +5838,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 33000000
       },
       {
         "name": "Ryan Rollins",
@@ -5612,7 +5858,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4000000
       },
       {
         "name": "Kevin Porter Jr.",
@@ -5631,7 +5878,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 5390700
       },
       {
         "name": "Myles Turner",
@@ -5650,7 +5898,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 26584164
       },
       {
         "name": "Kel’el Ware",
@@ -5669,7 +5918,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4654920
       },
       {
         "name": "Caris LeVert",
@@ -5688,7 +5938,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 14809200
       },
       {
         "name": "Jaime Jaquez Jr.",
@@ -5707,7 +5958,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 5939141
       },
       {
         "name": "Kyle Kuzma",
@@ -5726,7 +5978,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 20345152
       },
       {
         "name": "Ousmane Dieng",
@@ -5745,7 +5998,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 5750000
       },
       {
         "name": "A.J. Green",
@@ -5764,7 +6018,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 10044644
       },
       {
         "name": "Kasparas Jakucionis",
@@ -5783,7 +6038,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 3841680
       },
       {
         "name": "Gary Trent Jr.",
@@ -5802,7 +6058,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 15200000
       },
       {
         "name": "Brayden Burries",
@@ -5821,7 +6078,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 6417360
       },
       {
         "name": "Jericho Sims",
@@ -5840,7 +6098,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2801346
       },
       {
         "name": "Kam Jones",
@@ -5878,7 +6137,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 5502000
       },
       {
         "name": "Pete Nance",
@@ -5897,7 +6157,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2537526
       },
       {
         "name": "Cormac Ryan",
@@ -5935,7 +6196,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 1357763
       }
     ],
     "MIN": [
@@ -5956,7 +6218,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 48924624
       },
       {
         "name": "LaMelo Ball",
@@ -5975,7 +6238,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 40770520
       },
       {
         "name": "Jaden McDaniels",
@@ -5994,7 +6258,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 26200001
       },
       {
         "name": "Rudy Gobert",
@@ -6013,7 +6278,8 @@
         "general_category_status": "partial",
         "source": "2KRatings",
         "potential_grade": null,
-        "potential": null
+        "potential": null,
+        "salary_2026_27": 36500000
       },
       {
         "name": "Ayo Dosunmu",
@@ -6032,7 +6298,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 19310345
       },
       {
         "name": "Donte DiVincenzo",
@@ -6051,7 +6318,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 12535000
       },
       {
         "name": "Terrence Shannon Jr.",
@@ -6070,7 +6338,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2801640
       },
       {
         "name": "Trey Lyles",
@@ -6089,7 +6358,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Bones Hyland",
@@ -6108,7 +6378,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2845883
       },
       {
         "name": "Cody Williams",
@@ -6127,7 +6398,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 6015600
       },
       {
         "name": "Jonathan Kuminga",
@@ -6146,7 +6418,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 6064000
       },
       {
         "name": "Jaylen Clark",
@@ -6165,7 +6438,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3086420
       },
       {
         "name": "Joan Beringer",
@@ -6184,7 +6458,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4411200
       },
       {
         "name": "Isaiah Evans",
@@ -6203,7 +6478,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 1357763
       },
       {
         "name": "Enrique Freeman",
@@ -6281,7 +6557,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 42166510
       },
       {
         "name": "Trey Murphy III",
@@ -6300,7 +6577,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 27000000
       },
       {
         "name": "Dejounte Murray",
@@ -6319,7 +6597,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 32785071
       },
       {
         "name": "Saddiq Bey",
@@ -6338,7 +6617,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 6440678
       },
       {
         "name": "Jeremiah Fears",
@@ -6357,7 +6637,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 7896240
       },
       {
         "name": "Herbert Jones",
@@ -6376,7 +6657,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 14898786
       },
       {
         "name": "Derik Queen",
@@ -6395,7 +6677,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 5416080
       },
       {
         "name": "Bennedict Mathurin",
@@ -6414,7 +6697,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 7804878
       },
       {
         "name": "Yves Missi",
@@ -6433,7 +6717,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3512760
       },
       {
         "name": "Jordan Poole",
@@ -6452,7 +6737,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 34044642
       },
       {
         "name": "Karlo Matkovic",
@@ -6471,7 +6757,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2296271
       },
       {
         "name": "DeAndre Jordan",
@@ -6490,7 +6777,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 3876529
       },
       {
         "name": "Bryce McGowens",
@@ -6509,7 +6797,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2584539
       },
       {
         "name": "Trendon Watford",
@@ -6528,7 +6817,8 @@
         "general_category_status": "partial",
         "source": "2KRatings",
         "potential_grade": null,
-        "potential": null
+        "potential": null,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Julian Reese",
@@ -6566,7 +6856,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2625627
       },
       {
         "name": "Caleb Houstan",
@@ -6585,7 +6876,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2625627
       },
       {
         "name": "A.J. Johnson",
@@ -6604,7 +6896,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3237120
       },
       {
         "name": "Kobe Bufkin",
@@ -6623,7 +6916,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Taj Gibson",
@@ -6642,7 +6936,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 148828
       },
       {
         "name": "Jaron Pierre Jr.",
@@ -6701,7 +6996,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 37739521
       },
       {
         "name": "Karl-Anthony Towns",
@@ -6720,7 +7016,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 57078728
       },
       {
         "name": "OG Anunoby",
@@ -6739,7 +7036,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 42500000
       },
       {
         "name": "Mikal Bridges",
@@ -6758,7 +7056,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 33482145
       },
       {
         "name": "Josh Hart",
@@ -6777,7 +7076,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 20923760
       },
       {
         "name": "Miles McBride",
@@ -6796,7 +7096,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 3956523
       },
       {
         "name": "Landry Shamet",
@@ -6815,7 +7116,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 5357143
       },
       {
         "name": "Jose Alvarado",
@@ -6834,7 +7136,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 4500000
       },
       {
         "name": "Andre Drummond",
@@ -6853,7 +7156,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Jordan Clarkson",
@@ -6872,7 +7176,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Tyler Kolek",
@@ -6891,7 +7196,8 @@
         "general_category_status": "partial",
         "source": "2KRatings",
         "potential_grade": null,
-        "potential": null
+        "potential": null,
+        "salary_2026_27": 2296271
       },
       {
         "name": "Mohamed Diawara",
@@ -6910,7 +7216,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2232143
       },
       {
         "name": "Kevin McCullar Jr.",
@@ -6948,7 +7255,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2983680
       },
       {
         "name": "Tyler Nickel",
@@ -6988,7 +7296,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 40806150
       },
       {
         "name": "Chet Holmgren",
@@ -7007,7 +7316,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 41500000
       },
       {
         "name": "Jalen Williams",
@@ -7026,7 +7336,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 41500000
       },
       {
         "name": "Isaiah Hartenstein",
@@ -7045,7 +7356,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 23148148
       },
       {
         "name": "Ajay Mitchell",
@@ -7064,7 +7376,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2850000
       },
       {
         "name": "Alex Caruso",
@@ -7083,7 +7396,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 19550160
       },
       {
         "name": "Cason Wallace",
@@ -7102,7 +7416,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 7420806
       },
       {
         "name": "Jared McCain",
@@ -7121,7 +7436,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 4422600
       },
       {
         "name": "Jaylin Williams",
@@ -7140,7 +7456,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 7774648
       },
       {
         "name": "Kenrich Williams",
@@ -7159,7 +7476,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 5000000
       },
       {
         "name": "Aday Mara",
@@ -7178,7 +7496,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 5791680
       },
       {
         "name": "Nikola Topic",
@@ -7197,7 +7516,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 5429760
       },
       {
         "name": "Thomas Sorber",
@@ -7216,7 +7536,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4887720
       },
       {
         "name": "Bennett Stirtz",
@@ -7235,7 +7556,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4717320
       },
       {
         "name": "Brooks Barnhizer",
@@ -7313,7 +7635,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 41500000
       },
       {
         "name": "Franz Wagner",
@@ -7332,7 +7655,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 41754690
       },
       {
         "name": "Desmond Bane",
@@ -7351,7 +7675,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 39446090
       },
       {
         "name": "Jalen Suggs",
@@ -7370,7 +7695,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 32400000
       },
       {
         "name": "Anthony Black",
@@ -7389,7 +7715,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 10106316
       },
       {
         "name": "Wendell Carter Jr.",
@@ -7408,7 +7735,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 18102000
       },
       {
         "name": "Nikola Vucevic",
@@ -7427,7 +7755,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Tristan da Silva",
@@ -7446,7 +7775,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3991200
       },
       {
         "name": "Goga Bitadze",
@@ -7465,7 +7795,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 7608696
       },
       {
         "name": "Jevon Carter",
@@ -7484,7 +7815,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Noah Penda",
@@ -7503,7 +7835,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2150917
       },
       {
         "name": "Jonathan Isaac",
@@ -7522,7 +7855,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 10449421
       },
       {
         "name": "Jamal Cain",
@@ -7541,7 +7875,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2584539
       },
       {
         "name": "Jase Richardson",
@@ -7560,7 +7895,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3132360
       },
       {
         "name": "Malaki Branham",
@@ -7579,7 +7915,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2537526
       },
       {
         "name": "Colin Castleton",
@@ -7657,7 +7994,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 40770520
       },
       {
         "name": "Jaylen Brown",
@@ -7676,7 +8014,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 57078728
       },
       {
         "name": "LeBron James",
@@ -7695,7 +8034,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 3876529
       },
       {
         "name": "Joel Embiid",
@@ -7714,7 +8054,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 58100000
       },
       {
         "name": "V.J. Edgecombe",
@@ -7733,7 +8074,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 11663880
       },
       {
         "name": "Anfernee Simons",
@@ -7752,7 +8094,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 6000000
       },
       {
         "name": "Dean Wade",
@@ -7771,7 +8114,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 9000000
       },
       {
         "name": "Kentavious Caldwell-Pope",
@@ -7790,7 +8134,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Adem Bona",
@@ -7809,7 +8154,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2296271
       },
       {
         "name": "Dominick Barlow",
@@ -7828,7 +8174,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 3415000
       },
       {
         "name": "Justin Edwards",
@@ -7847,7 +8194,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2411090
       },
       {
         "name": "Rayan Rupert",
@@ -7904,7 +8252,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 3400000
       },
       {
         "name": "Jabari Walker",
@@ -7923,7 +8272,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2584539
       },
       {
         "name": "Labaron Philon Jr.",
@@ -7942,7 +8292,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3597120
       }
     ],
     "PHX": [
@@ -7963,7 +8314,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 57078728
       },
       {
         "name": "Dillon Brooks",
@@ -7982,7 +8334,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 19992727
       },
       {
         "name": "Jalen Green",
@@ -8001,7 +8354,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 36251166
       },
       {
         "name": "Miles Bridges",
@@ -8020,7 +8374,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 22826087
       },
       {
         "name": "Collin Gillespie",
@@ -8039,7 +8394,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 10714286
       },
       {
         "name": "Mark Williams",
@@ -8058,7 +8414,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 11728395
       },
       {
         "name": "Luke Kennard",
@@ -8077,7 +8434,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 6064000
       },
       {
         "name": "Oso Ighodaro",
@@ -8096,7 +8454,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2296271
       },
       {
         "name": "Pat Spencer",
@@ -8134,7 +8493,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 5864198
       },
       {
         "name": "Ryan Dunn",
@@ -8153,7 +8513,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2784240
       },
       {
         "name": "Rasheer Fleming",
@@ -8172,7 +8533,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2150917
       },
       {
         "name": "Khaman Maluach",
@@ -8191,7 +8553,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 6316680
       },
       {
         "name": "Jamaree Bouyea",
@@ -8210,7 +8573,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2584539
       },
       {
         "name": "Haywood Highsmith",
@@ -8229,7 +8593,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 3449421
       },
       {
         "name": "Koa Peat",
@@ -8248,7 +8613,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2926800
       },
       {
         "name": "Koby Brea",
@@ -8307,7 +8673,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 13125000
       },
       {
         "name": "Damian Lillard",
@@ -8326,7 +8693,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 13398800
       },
       {
         "name": "Ja Morant",
@@ -8345,7 +8713,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 42166510
       },
       {
         "name": "Jrue Holiday",
@@ -8364,7 +8733,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 34800000
       },
       {
         "name": "Donovan Clingan",
@@ -8383,7 +8753,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 7519920
       },
       {
         "name": "Shaedon Sharpe",
@@ -8402,7 +8773,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 20089287
       },
       {
         "name": "Toumani Camara",
@@ -8421,7 +8793,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 18080358
       },
       {
         "name": "Scoot Henderson",
@@ -8440,7 +8813,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 13585523
       },
       {
         "name": "Robert Williams III",
@@ -8459,7 +8833,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 13968254
       },
       {
         "name": "Vit Krejci",
@@ -8478,7 +8853,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2667944
       },
       {
         "name": "Sidy Cissoko",
@@ -8497,7 +8873,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2497812
       },
       {
         "name": "Micah Potter",
@@ -8516,7 +8893,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2801346
       },
       {
         "name": "Jeremy Sochan",
@@ -8535,7 +8913,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Branden Carlson",
@@ -8554,7 +8933,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Yang Hansen",
@@ -8573,7 +8953,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4643520
       },
       {
         "name": "John Tonje",
@@ -8651,7 +9032,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 45472000
       },
       {
         "name": "Zach LaVine",
@@ -8670,7 +9052,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 48967380
       },
       {
         "name": "Malik Monk",
@@ -8689,7 +9072,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 20190035
       },
       {
         "name": "Keegan Murray",
@@ -8708,7 +9092,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 24137936
       },
       {
         "name": "Maxime Raynaud",
@@ -8727,7 +9112,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2150917
       },
       {
         "name": "De’Andre Hunter",
@@ -8746,7 +9132,8 @@
         "general_category_status": "partial",
         "source": "2KRatings",
         "potential_grade": null,
-        "potential": null
+        "potential": null,
+        "salary_2026_27": 24910714
       },
       {
         "name": "Precious Achiuwa",
@@ -8765,7 +9152,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 5477000
       },
       {
         "name": "Nique Clifford",
@@ -8784,7 +9172,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3263400
       },
       {
         "name": "Darius Acuff Jr.",
@@ -8803,7 +9192,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 8021640
       },
       {
         "name": "Ben Simmons",
@@ -8822,7 +9212,8 @@
         "general_category_status": "partial",
         "source": "2KRatings",
         "potential_grade": null,
-        "potential": null
+        "potential": null,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Dylan Cardwell",
@@ -8860,7 +9251,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B-",
-        "potential": 72
+        "potential": 72,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Jonathan Mogbo",
@@ -8898,7 +9290,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2948280
       },
       {
         "name": "Emanuel Sharp",
@@ -8917,7 +9310,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 1357763
       },
       {
         "name": "Adam Flagler",
@@ -8957,7 +9351,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 16868246
       },
       {
         "name": "Stephon Castle",
@@ -8976,7 +9371,8 @@
         "general_category_status": "partial",
         "source": "2KRatings",
         "potential_grade": null,
-        "potential": null
+        "potential": null,
+        "salary_2026_27": 10015920
       },
       {
         "name": "Dylan Harper",
@@ -8995,7 +9391,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 12989040
       },
       {
         "name": "De’Aaron Fox",
@@ -9014,7 +9411,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 49800000
       },
       {
         "name": "Tobias Harris",
@@ -9033,7 +9431,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 15044000
       },
       {
         "name": "Devin Vassell",
@@ -9052,7 +9451,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 27000000
       },
       {
         "name": "Keldon Johnson",
@@ -9071,7 +9471,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 17500000
       },
       {
         "name": "Julian Champagnie",
@@ -9090,7 +9491,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 13888889
       },
       {
         "name": "Luke Kornet",
@@ -9109,7 +9511,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 10450000
       },
       {
         "name": "Harrison Barnes",
@@ -9128,7 +9531,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 8000000
       },
       {
         "name": "Carter Bryant",
@@ -9147,7 +9551,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 5145360
       },
       {
         "name": "Jordan McLaughlin",
@@ -9166,7 +9571,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Tarris Reed Jr.",
@@ -9185,7 +9591,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3076920
       },
       {
         "name": "David Jones-Garcia",
@@ -9223,7 +9630,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3902760
       },
       {
         "name": "Taelon Peter",
@@ -9242,7 +9650,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2185116
       },
       {
         "name": "Ja’Kobi Gillespie",
@@ -9301,7 +9710,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A+",
-        "potential": 97
+        "potential": 97,
+        "salary_2026_27": 50300000
       },
       {
         "name": "Scottie Barnes",
@@ -9320,7 +9730,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 41754690
       },
       {
         "name": "R.J. Barrett",
@@ -9339,7 +9750,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 29616071
       },
       {
         "name": "Immanuel Quickley",
@@ -9358,7 +9770,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 32500000
       },
       {
         "name": "Collin Murray-Boyles",
@@ -9377,7 +9790,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 6649560
       },
       {
         "name": "Jakob Poeltl",
@@ -9396,7 +9810,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 19500000
       },
       {
         "name": "Jamal Shead",
@@ -9415,7 +9830,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2296271
       },
       {
         "name": "Ja’Kobe Walter",
@@ -9434,7 +9850,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3811800
       },
       {
         "name": "Jamison Battle",
@@ -9453,7 +9870,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2296271
       },
       {
         "name": "Kyle Anderson",
@@ -9472,7 +9890,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Trey Jemison III",
@@ -9510,7 +9929,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2406205
       },
       {
         "name": "Andre Jackson Jr.",
@@ -9529,7 +9949,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2537526
       },
       {
         "name": "Allen Graves",
@@ -9548,7 +9969,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4065720
       },
       {
         "name": "Alijah Martin",
@@ -9567,7 +9989,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2185116
       },
       {
         "name": "Malachi Smith",
@@ -9605,7 +10028,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 1357763
       },
       {
         "name": "Chucky Hepburn",
@@ -9645,7 +10069,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 49000000
       },
       {
         "name": "Lauri Markkanen",
@@ -9664,7 +10089,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 46113154
       },
       {
         "name": "Keyonte George",
@@ -9683,7 +10109,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 6563925
       },
       {
         "name": "Isaiah Collier",
@@ -9702,7 +10129,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 2763960
       },
       {
         "name": "Brice Sensabaugh",
@@ -9721,7 +10149,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 4862237
       },
       {
         "name": "Darryn Peterson",
@@ -9740,7 +10169,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 13195320
       },
       {
         "name": "Ace Bailey",
@@ -9759,7 +10189,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 9523080
       },
       {
         "name": "Kyle Filipowski",
@@ -9778,7 +10209,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3000000
       },
       {
         "name": "Jusuf Nurkic",
@@ -9797,7 +10229,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 10576923
       },
       {
         "name": "Jaxson Hayes",
@@ -9816,7 +10249,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 6000000
       },
       {
         "name": "Josh Okogie",
@@ -9835,7 +10269,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 6000000
       },
       {
         "name": "Josh Green",
@@ -9854,7 +10289,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 14679012
       },
       {
         "name": "Sviatoslav Mykhailiuk",
@@ -9930,7 +10366,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2449421
       },
       {
         "name": "Trey Alexander",
@@ -9989,7 +10426,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 58456566
       },
       {
         "name": "Trae Young",
@@ -10008,7 +10446,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 49488300
       },
       {
         "name": "Alexandre Sarr",
@@ -10046,7 +10485,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3108000
       },
       {
         "name": "AJ Dybantsa",
@@ -10065,7 +10505,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A",
-        "potential": 92
+        "potential": 92,
+        "salary_2026_27": 14748000
       },
       {
         "name": "Deandre Ayton",
@@ -10084,7 +10525,8 @@
         "general_category_status": "partial",
         "source": "2KRatings",
         "potential_grade": null,
-        "potential": null
+        "potential": null,
+        "salary_2026_27": 8104000
       },
       {
         "name": "Bilal Coulibaly",
@@ -10103,7 +10545,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 9240012
       },
       {
         "name": "Tre Johnson",
@@ -10122,7 +10565,8 @@
         "general_category_status": "partial",
         "source": "2KRatings",
         "potential_grade": null,
-        "potential": null
+        "potential": null,
+        "salary_2026_27": 8649600
       },
       {
         "name": "Will Riley",
@@ -10141,7 +10585,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B+",
-        "potential": 82
+        "potential": 82,
+        "salary_2026_27": 3688320
       },
       {
         "name": "Khris Middleton",
@@ -10160,7 +10605,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "A-",
-        "potential": 87
+        "potential": 87,
+        "salary_2026_27": 5591122
       },
       {
         "name": "Justin Champagnie",
@@ -10179,7 +10625,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 2667944
       },
       {
         "name": "Carlton Carrington",
@@ -10217,7 +10664,8 @@
         "general_category_status": "verified",
         "source": "2KRatings",
         "potential_grade": "B",
-        "potential": 77
+        "potential": 77,
+        "salary_2026_27": 8000000
       },
       {
         "name": "Jamir Watkins",
@@ -10277,5 +10725,7 @@
         "potential": 77
       }
     ]
-  }
+  },
+  "salary_source": "Basketball-Reference 2026-27 contracts",
+  "salary_season": "2026-27"
 }
