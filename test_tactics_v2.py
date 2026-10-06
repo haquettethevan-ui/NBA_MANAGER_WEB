@@ -3,7 +3,7 @@ import json, random, statistics as st
 import server
 from main import DEFAULT_TACTICS, simulate_game
 
-N=80
+N=320
 T1,T2="PHI","SAS"
 def tac(**kw):
     x=dict(DEFAULT_TACTICS); x.update(kw); return x
@@ -35,20 +35,32 @@ def summary(games):
   vals=[x["score"] if key=="points" else x["stats"][key] for x in arr]
   return round(st.mean(vals),2)
  return {k:av(teams,k) for k in ["points","fg_pct","three_attempted","three_pct","shots_attempted","free_throws_attempted","rebounds","assists","turnovers","fouls","possessions"]}|{"opp_points":av(opp,"points"),"win_pct":round(100*sum(g["team1"]["score"]>g["team2"]["score"] for g in games)/len(games),1)}
-report={"games_per_scenario":N,"scenarios":{}}
+report={"games_per_scenario":N,"total_games":0,"scenarios":{},"sweeps":{},"cross_tests":{}}
 neutral=tac()
 for i,(name,t) in enumerate(SCENARIOS.items()):
  games=[one(100000*i+j,t,neutral) for j in range(N)]
  report["scenarios"][name]=summary(games)
-# Direct symmetric cross-tests for defensive tradeoffs and exploit candidates.
+ report["total_games"] += len(games)
+# Five-point sensitivity sweeps: verify monotonicity, strength and extreme-value exploits.
+SWEEP_KEYS=["pace","ballMovement","pickAndRoll","offensiveGlass","perimeterPressure","rimProtection","helpDefense","defensiveTransition"]
+for si,key in enumerate(SWEEP_KEYS):
+ report["sweeps"][key]={}
+ for value in [0,25,50,75,100]:
+  t=tac(**{key:value})
+  games=[one(2000000+si*200000+value*1000+j,t,neutral) for j in range(N)]
+  report["sweeps"][key][str(value)]=summary(games)
+  report["total_games"] += len(games)
+
+# Direct cross-tests for counters, tradeoffs and exploit candidates.
 pairs={
  "rim_attack_vs_rim_def":(SCENARIOS["rim_100"],SCENARIOS["rim_def_100"]),
  "three_attack_vs_pressure":(SCENARIOS["three_100"],SCENARIOS["pressure_100"]),
  "rim_three_vs_neutral":(SCENARIOS["rim_three_100"],neutral),
  "all100_vs_neutral":(SCENARIOS["all_100"],neutral),
 }
-report["cross_tests"]={}
 for i,(name,(a,b)) in enumerate(pairs.items()):
- report["cross_tests"][name]=summary([one(900000+10000*i+j,a,b) for j in range(N)])
+ games=[one(900000+10000*i+j,a,b) for j in range(N)]
+ report["cross_tests"][name]=summary(games)
+ report["total_games"] += len(games)
 open("data/tactics_v2_test_report.json","w",encoding="utf-8").write(json.dumps(report,indent=2,ensure_ascii=False))
 print(json.dumps(report,indent=2,ensure_ascii=False))
