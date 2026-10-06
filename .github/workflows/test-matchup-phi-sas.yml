@@ -5,6 +5,8 @@ on:
       - 'test_matchup_phi_sas.py'
       - '.github/workflows/test-matchup-phi-sas.yml'
   workflow_dispatch:
+
+# trigger: 2026-10-06-phi-sas
 permissions:
   contents: write
 jobs:
