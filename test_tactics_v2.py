@@ -3,7 +3,7 @@ import json, random, statistics as st
 import server
 from main import DEFAULT_TACTICS, simulate_game
 
-N=250
+N=80
 T1,T2="PHI","SAS"
 def tac(**kw):
     x=dict(DEFAULT_TACTICS); x.update(kw); return x
