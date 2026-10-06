@@ -377,16 +377,16 @@ def _shot_probability(shooter, defender, area, assisted, oe, de, mx):
         # bringing simulated 3P% down from ~40.8% toward the NBA 36-37% range.
         base = .312
         matchup = (skill-defense)*.00365
-        context = -de.get("perimeter_def",0)*.075 + de.get("three_allow",0)*.055 + mx.get("three_quality",0)
+        context = 0
     elif area == "mid":
         skill = .72*shooter.outside_scoring + .28*shooter.inside_scoring
         defense = .65*perimeter_defense(defender)+.35*interior_defense(defender)
-        base = .427; matchup=(skill-defense)*.00335; context=-de.get("perimeter_def",0)*.035
+        base = .427; matchup=(skill-defense)*.00335; context=0
     else:
         skill = .72*shooter.inside_scoring + .28*shooter.athleticism
         defense = interior_defense(defender) * _energy_factor(defender,"defense")
         base = .567; matchup=(skill-defense)*.00365
-        context = -de.get("rim_def",0)*.075 + de.get("rim_allow",0)*.055 + de.get("drive_allow",0)*.025 + mx.get("rim_quality",0)
+        context = 0
     energy = (_energy_factor(shooter)-1)*.45
     assist_bonus = .022 if assisted else 0
     return _clamp(base + matchup + context + energy + assist_bonus, .20, .78)
@@ -461,8 +461,9 @@ def _play_possession(att, dfn, tactics_a, tactics_d):
     profile["mid"] *= _clamp(1 + mid_intent*1.75, .62, 1.55)
     profile["three"] *= _clamp(1 + three_intent*2.55, .42, 1.85)
 
-    if de.get("rim_def",0): profile["rim"] *= 1-de["rim_def"]*.30
-    if de.get("perimeter_def",0): profile["three"] *= 1-de["perimeter_def"]*.24
+    # Defensive choices remove/redirect opportunities instead of changing make %.
+    profile["rim"] *= _clamp(1-de.get("rim_suppress",0)+de.get("rim_allow",0),.62,1.38)
+    profile["three"] *= _clamp(1-de.get("three_suppress",0)+de.get("three_allow",0),.62,1.38)
     area = _pick(["rim","mid","three"], [profile["rim"],profile["mid"],profile["three"]])
     defender = _best_defender(dfn, shooter, area, oe)
 
