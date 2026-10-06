@@ -8,6 +8,7 @@ DB=ROOT/"data"/"players_2k27.json"
 REPORT=ROOT/"data"/"salary_import_report.json"
 TEAM_IDS=["ATL","BOS","BKN","CHA","CHI","CLE","DAL","DEN","DET","GSW","HOU","IND","LAC","LAL","MEM","MIA","MIL","MIN","NOP","NYK","OKC","ORL","PHI","PHX","POR","SAC","SAS","TOR","UTA","WAS"]
 URL="https://www.basketball-reference.com/contracts/{team}.html"
+BREF_TEAM_ID={"PHX":"PHO"}
 
 def fetch(url):
     req=Request(url,headers={"User-Agent":"Mozilla/5.0","Accept-Language":"en-US,en;q=0.9"})
@@ -38,7 +39,8 @@ source=[]
 errors=[]
 for team in TEAM_IDS:
     try:
-        rows=parse_team(team,fetch(URL.format(team=team)))
+        source_team=BREF_TEAM_ID.get(team,team)
+        rows=parse_team(team,fetch(URL.format(team=source_team)))
         if not rows: raise RuntimeError("no contract rows parsed")
         source.extend(rows); print(team,len(rows),flush=True); time.sleep(0.35)
     except Exception as e:
