@@ -4,6 +4,7 @@ on:
     paths:
       - 'test_tactics_v2.py'
       - 'engine_v55.py'
+      - 'data/players_2k27.json'
       - '.github/workflows/test-tactics-v2.yml'
   workflow_dispatch:
 permissions:
@@ -24,3 +25,5 @@ jobs:
           git add data/tactics_v2_test_report.json
           git diff --cached --quiet || git commit -m "Record V2 tactical stress test"
           git push
+
+# rerun: 2026-10-06-v2
