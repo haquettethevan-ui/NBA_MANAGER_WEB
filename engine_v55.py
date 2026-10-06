@@ -20,126 +20,107 @@ DEFENSE_FOCUSES = (
     "Zone", "Homme à homme", "Box out", "Repli défensif",
 )
 DEFAULT_TACTICS = {
-    "offensePrimary": "Équilibré", "offenseSecondary": "Mouvement de balle", "offenseTertiary": "Jeu rapide",
-    "defensePrimary": "Équilibré", "defenseSecondary": "Homme à homme", "defenseTertiary": "Box out",
+    # Continuous game-plan controls (0..100). 50 is neutral.
+    "pace": 50,
+    "ballMovement": 55,
+    "pickAndRoll": 50,
+    "postPlay": 40,
+    "rimPriority": 55,
+    "midPriority": 35,
+    "threePriority": 55,
+    # One axis: 0 = get back, 100 = crash offensive glass.
+    "offensiveGlass": 45,
+    "perimeterPressure": 50,
+    "rimProtection": 50,
+    "helpDefense": 50,
+    "switching": 45,
+    # One axis: 0 = crash defensive glass, 100 = leak out / transition.
+    "defensiveTransition": 50,
 }
-NEUTRAL_TACTICS = {
-    "offensePrimary": "Équilibré", "offenseSecondary": "Mouvement de balle", "offenseTertiary": "Jeu rapide",
-    "defensePrimary": "Équilibré", "defenseSecondary": "Homme à homme", "defenseTertiary": "Box out",
-}
-PRIORITY = (1.0, .58, .30)
+TACTIC_KEYS = tuple(DEFAULT_TACTICS)
 
-# Positive = offense creates this situation more often; negative = defense suppresses it.
-OFFENSE_PROFILE = {
-    "Équilibré": {},
-    "Jeu intérieur": {"rim": .195, "mid": .045, "three": -.115, "post": .17},
-    "Tir extérieur": {"three": .16, "rim": -.07, "mid": -.06},
-    "Pénétration": {"rim": .205, "three": -.05, "drive": .195},
-    "Pick & Roll": {"rim": .050, "three": .030, "pnr": .100, "mid": .008},
-    "Jeu rapide": {"rim": .105, "three": .035, "transition": .27, "turnover": .010},
-    "Mouvement de balle": {"assist": .035, "three": .010, "turnover": .001},
-    "Rebond offensif": {"oreb": .095, "transition_defense": -.15},
-}
-DEFENSE_PROFILE = {
-    "Équilibré": {},
-    "Protection du cercle": {"rim_def": .145, "three_allow": .085},
-    "Défense extérieure": {"perimeter_def": .105, "rim_allow": .073},
-    "Pression porteur": {"turnover_force": .0065, "foul": .0045, "drive_allow": .018},
-    "Zone": {"rim_def": .045, "three_allow": .095, "oreb_allow": .105, "assist_allow": .065},
-    "Homme à homme": {"perimeter_def": .022, "rim_def": .012},
-    "Box out": {"oreb_def": .155, "transition_allow": .065},
-    "Repli défensif": {"transition_def": .34, "oreb_allow": .008},
-}
-
-# Interactions between an offensive idea and the opponent's defensive idea.
-# Values are deliberately small: tactics change the situations created, while
-# player ratings still decide whether those situations are converted.
-TACTIC_MATCHUPS = {
-    ("Jeu intérieur", "Protection du cercle"): {"rim": -.084, "rim_quality": -.0126},
-    ("Jeu intérieur", "Défense extérieure"): {"rim": .056, "rim_quality": .007},
-    ("Jeu intérieur", "Zone"): {"rim": -.035, "assist": .028},
-    ("Jeu intérieur", "Box out"): {"oreb": -.028},
-
-    ("Tir extérieur", "Défense extérieure"): {"three": -.084, "three_quality": -.014, "rim": .0245},
-    ("Tir extérieur", "Protection du cercle"): {"three": .07, "three_quality": .0084},
-    ("Tir extérieur", "Zone"): {"three": .042, "three_quality": .0042, "assist": .028},
-
-    ("Pénétration", "Protection du cercle"): {"rim": -.07, "rim_quality": -.0119},
-    ("Pénétration", "Défense extérieure"): {"rim": .042, "rim_quality": .0056},
-    ("Pénétration", "Pression porteur"): {"turnover": .007, "rim": .0245},
-    ("Pénétration", "Zone"): {"rim": -.035, "assist": .0385},
-
-    ("Pick & Roll", "Homme à homme"): {"rim": .020, "three": .015, "assist": .016},
-    ("Pick & Roll", "Pression porteur"): {"rim": .020, "turnover": -.0025},
-    ("Pick & Roll", "Zone"): {"rim": -.0245, "three": .015, "assist": .020},
-
-    ("Jeu rapide", "Repli défensif"): {"transition": -.126, "rim": -.0315},
-    ("Jeu rapide", "Box out"): {"transition": .056, "rim": .0245},
-    ("Jeu rapide", "Pression porteur"): {"transition": .0245, "turnover": .0056},
-
-    ("Mouvement de balle", "Zone"): {"assist": .063, "three": .0315, "three_quality": .0049},
-    ("Mouvement de balle", "Homme à homme"): {"assist": .0245},
-    ("Mouvement de balle", "Pression porteur"): {"turnover": -.007, "assist": .0175},
-
-    ("Rebond offensif", "Zone"): {"oreb": .077},
-    ("Rebond offensif", "Box out"): {"oreb": -.105},
-    ("Rebond offensif", "Repli défensif"): {"oreb": .0315},
-}
-
+def _legacy_to_continuous(t):
+    """Translate old priority saves so existing leagues remain playable."""
+    out=DEFAULT_TACTICS.copy()
+    if not isinstance(t,dict): return out
+    weights=(1.0,.58,.30)
+    off_map={
+        "Jeu intérieur":{"rimPriority":22,"postPlay":24,"threePriority":-12},
+        "Tir extérieur":{"threePriority":25,"rimPriority":-9,"midPriority":-8},
+        "Pénétration":{"rimPriority":24,"pace":5},
+        "Pick & Roll":{"pickAndRoll":28,"ballMovement":7},
+        "Jeu rapide":{"pace":28,"rimPriority":9},
+        "Mouvement de balle":{"ballMovement":28},
+        "Rebond offensif":{"offensiveGlass":30},
+    }
+    def_map={
+        "Protection du cercle":{"rimProtection":28,"perimeterPressure":-8},
+        "Défense extérieure":{"perimeterPressure":27,"rimProtection":-6},
+        "Pression porteur":{"perimeterPressure":18,"helpDefense":-4},
+        "Zone":{"helpDefense":22,"perimeterPressure":-7},
+        "Homme à homme":{"perimeterPressure":8,"switching":-4},
+        "Box out":{"defensiveTransition":-24},
+        "Repli défensif":{"defensiveTransition":28},
+    }
+    for side,mapping in (("offense",off_map),("defense",def_map)):
+        for w,suffix in zip(weights,("Primary","Secondary","Tertiary")):
+            for k,v in mapping.get(t.get(side+suffix),{}).items():
+                out[k]+=v*w
+    return {k:int(round(_clamp(v,0,100))) for k,v in out.items()}
 
 def normalize_tactics(t):
-    out = DEFAULT_TACTICS.copy()
-    if isinstance(t, dict):
-        for k in out:
-            if k in t and t[k]: out[k] = t[k]
-    offense=[out["offensePrimary"],out["offenseSecondary"],out["offenseTertiary"]]
-    defense=[out["defensePrimary"],out["defenseSecondary"],out["defenseTertiary"]]
-    if any(x not in OFFENSE_FOCUSES for x in offense) or any(x not in DEFENSE_FOCUSES for x in defense):
-        raise ValueError("Focus tactique inconnu.")
-    if len(set(offense)) != 3 or len(set(defense)) != 3:
-        raise ValueError("Les trois priorités offensives et les trois priorités défensives doivent être différentes.")
-    return out
+    if isinstance(t,dict) and any(k in t for k in TACTIC_KEYS):
+        return {k:int(round(_clamp(float(t.get(k,v)),0,100))) for k,v in DEFAULT_TACTICS.items()}
+    return _legacy_to_continuous(t)
 
-
-def _is_neutral_tactics(tactics):
-    return all(tactics.get(k) == v for k, v in NEUTRAL_TACTICS.items())
+def _n(t,key):
+    return (float(t.get(key,DEFAULT_TACTICS[key]))-50.0)/50.0
 
 def _effects(tactics, side):
-    if _is_neutral_tactics(tactics):
-        return {}
-    table = OFFENSE_PROFILE if side == "offense" else DEFENSE_PROFILE
-    keys = ("offensePrimary","offenseSecondary","offenseTertiary") if side == "offense" else ("defensePrimary","defenseSecondary","defenseTertiary")
-    result = {}
-    seen = set()
-    for weight, key in zip(PRIORITY, keys):
-        focus = tactics.get(key, "Équilibré")
-        if focus in seen: continue
-        seen.add(focus)
-        for stat, value in table.get(focus, {}).items(): result[stat] = result.get(stat, 0.0) + value * weight
-    return result
-
+    """Translate manager intent into situation volume, never direct shot accuracy."""
+    t=normalize_tactics(tactics)
+    if side=="offense":
+        pace=_n(t,"pace"); move=_n(t,"ballMovement"); pnr=_n(t,"pickAndRoll")
+        post=_n(t,"postPlay"); glass=_n(t,"offensiveGlass")
+        # Shot priorities are relative: maxing rim + three mostly squeezes midrange.
+        raw={"rim":max(5.0,t["rimPriority"]),"mid":max(5.0,t["midPriority"]),"three":max(5.0,t["threePriority"])}
+        mean=sum(raw.values())/3.0
+        return {
+            "rim":(raw["rim"]/mean-1)*.22,
+            "mid":(raw["mid"]/mean-1)*.18,
+            "three":(raw["three"]/mean-1)*.22,
+            "transition":pace*.22,
+            "assist":move*.10,
+            "pnr":max(0,pnr)*.10,
+            "post":max(0,post)*.12,
+            "oreb":glass*.10,
+            "turnover":pace*.006 + max(0,move)*.002,
+        }
+    pressure=_n(t,"perimeterPressure"); rim=_n(t,"rimProtection"); helpd=_n(t,"helpDefense")
+    switching=_n(t,"switching"); trans=_n(t,"defensiveTransition")
+    # Defense changes where shots are available and possession outcomes. No
+    # perimeter_def/rim_def quality modifier is emitted here.
+    return {
+        "three_suppress":max(0,pressure)*.14,
+        "rim_allow":max(0,pressure)*.08 + max(0,switching)*.025,
+        "rim_suppress":max(0,rim)*.14 + max(0,helpd)*.045,
+        "three_allow":max(0,rim)*.09 + max(0,helpd)*.055,
+        "turnover_force":max(0,pressure)*.007,
+        "foul":max(0,pressure)*.004 + max(0,helpd)*.002,
+        "transition_def":max(0,trans)*.25,
+        "transition_allow":max(0,-trans)*.10,
+        "oreb_def":max(0,-trans)*.11,
+        "oreb_allow":max(0,trans)*.07,
+        "assist_allow":max(0,-helpd)*.035,
+    }
 
 def _focuses(tactics, side):
-    if _is_neutral_tactics(tactics):
-        return []
-    keys = ("offensePrimary","offenseSecondary","offenseTertiary") if side == "offense" else ("defensePrimary","defenseSecondary","defenseTertiary")
-    result=[]; seen=set()
-    for weight,key in zip(PRIORITY,keys):
-        focus=tactics.get(key,"Équilibré")
-        if focus in seen: continue
-        seen.add(focus); result.append((focus,weight))
-    return result
+    # Compatibility helper retained for API callers; new tactics are continuous.
+    return []
 
 def _matchup_effects(offense_tactics, defense_tactics):
-    result={}
-    # Cross all priorities. Primary-v-primary matters most; tertiary counters are
-    # useful but cannot overwhelm a talent gap. The 0.72 factor is the global
-    # tactical-strength cap for matchup interactions.
-    for of,ow in _focuses(offense_tactics,"offense"):
-        for df,dw in _focuses(defense_tactics,"defense"):
-            for stat,value in TACTIC_MATCHUPS.get((of,df),{}).items():
-                result[stat]=result.get(stat,0.0)+value*ow*dw*.72
-    return result
+    # V2 has no rock-paper-scissors make-percentage table.
+    return {}
 
 
 def _clamp(v, lo, hi): return max(lo, min(hi, v))
