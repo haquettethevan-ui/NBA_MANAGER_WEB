@@ -1,67 +1,62 @@
-"""Comprehensive V2 tactical diagnostic. Does NOT modify the engine."""
+"""League-wide tactical diagnostic. Engine remains untouched."""
 import json, random, statistics as st
 import server
 from main import DEFAULT_TACTICS, simulate_game
 
-N=100
-T1,T2="PHI","SAS"
+GAMES_PER_MATCHUP=6
+TEAMS=[t["id"] for t in server.TEAM_META]
 KEYS=["points","fg_pct","three_attempted","three_pct","shots_attempted",
       "free_throws_attempted","rebounds","assists","turnovers","fouls","possessions"]
 
 def tac(**kw):
     x=dict(DEFAULT_TACTICS); x.update(kw); return x
 
-def one(seed,t1,t2,team1="PHI",team2="SAS"):
+PLANS={
+ "neutral":tac(),
+ "rim":tac(rimPriority=90,threePriority=28,midPriority=22),
+ "perimeter":tac(threePriority=72,rimPriority=42,midPriority=28,ballMovement=70,pickAndRoll=68),
+}
+
+def game(seed,a_id,b_id,t1,t2):
     random.seed(seed)
-    a,_=server.build_team(team1); b,_=server.build_team(team2)
+    a,_=server.build_team(a_id); b,_=server.build_team(b_id)
     s,r1=server.build_auto_rotation_minutes(a); r2=server.build_ai_rotation(b)
     return simulate_game(a,b,r1,r2,[p.name for p in s],[p.name for p in b.starters],None,None,t1,t2)
 
-def summary(games):
-    a=[g["team1"] for g in games]; b=[g["team2"] for g in games]
-    def av(arr,key):
-        vals=[x["score"] if key=="points" else x["stats"][key] for x in arr]
-        return round(st.mean(vals),2)
-    out={k:av(a,k) for k in KEYS}
-    out.update({"opp_"+k:av(b,k) for k in KEYS})
-    out["point_diff"]=round(out["points"]-out["opp_points"],2)
-    out["win_pct"]=round(100*sum(g["team1"]["score"]>g["team2"]["score"] for g in games)/len(games),1)
-    return out
+def avg(xs): return round(st.mean(xs),2) if xs else 0
+agg={p:{k:[] for k in KEYS} | {"opp_points":[],"wins":[]} for p in PLANS}
+team_results={p:{t:{"diff":[],"wins":[]} for t in TEAMS} for p in PLANS}
+matchups=[]
+seed=700000
+for ai,a in enumerate(TEAMS):
+    for b in TEAMS[ai+1:]:
+        row={"matchup":f"{a}-{b}"}
+        for pn,pt in PLANS.items():
+            gs=[game(seed+j,a,b,pt,PLANS["neutral"]) for j in range(GAMES_PER_MATCHUP)]
+            seed+=GAMES_PER_MATCHUP
+            for g in gs:
+                x,y=g["team1"],g["team2"]
+                for k in KEYS:
+                    agg[pn][k].append(x["score"] if k=="points" else x["stats"][k])
+                agg[pn]["opp_points"].append(y["score"])
+                w=x["score"]>y["score"]; agg[pn]["wins"].append(w)
+                team_results[pn][a]["diff"].append(x["score"]-y["score"]); team_results[pn][a]["wins"].append(w)
+            row[pn]={"diff":avg([g["team1"]["score"]-g["team2"]["score"] for g in gs]),
+                     "win_pct":round(100*sum(g["team1"]["score"]>g["team2"]["score"] for g in gs)/len(gs),1)}
+        matchups.append(row)
 
-neutral=tac()
-scenarios={
- "neutral":neutral,
- "all_100":{k:100 for k in DEFAULT_TACTICS},
- "all_0":{k:0 for k in DEFAULT_TACTICS},
- "rim_100":tac(rimPriority=100,midPriority=5,threePriority=20),
- "three_100":tac(rimPriority=20,midPriority=5,threePriority=100),
- "rim_three_100":tac(rimPriority=100,midPriority=5,threePriority=100),
- "mid_100":tac(rimPriority=10,midPriority=100,threePriority=10),
- "pace_100":tac(pace=100),"pace_0":tac(pace=0),
- "movement_100":tac(ballMovement=100),"movement_0":tac(ballMovement=0),
- "pnr_100":tac(pickAndRoll=100),"pnr_0":tac(pickAndRoll=0),
- "post_100":tac(postPlay=100),"post_0":tac(postPlay=0),
- "glass_100":tac(offensiveGlass=100),"glass_0":tac(offensiveGlass=0),
- "pressure_100":tac(perimeterPressure=100),"pressure_0":tac(perimeterPressure=0),
- "rim_def_100":tac(rimProtection=100),"rim_def_0":tac(rimProtection=0),
- "help_100":tac(helpDefense=100),"help_0":tac(helpDefense=0),
- "switch_100":tac(switching=100),"switch_0":tac(switching=0),
- "transition_def_100":tac(defensiveTransition=100),"transition_def_0":tac(defensiveTransition=0),
-}
-report={"games_per_scenario":N,"total_games":0,"engine_frozen":True,"scenarios":{},"cross_tests":{}}
-for i,(name,t) in enumerate(scenarios.items()):
-    games=[one(100000+i*1000+j,t,neutral) for j in range(N)]
-    report["scenarios"][name]=summary(games); report["total_games"]+=N
+summary={}
+for pn,d in agg.items():
+    summary[pn]={k:avg(v) for k,v in d.items() if k!="wins"}
+    summary[pn]["point_diff"]=round(summary[pn]["points"]-summary[pn]["opp_points"],2)
+    summary[pn]["win_pct"]=round(100*sum(d["wins"])/len(d["wins"]),1)
 
-cross={
- "rim_attack_vs_rim_def":(scenarios["rim_100"],scenarios["rim_def_100"]),
- "three_attack_vs_pressure":(scenarios["three_100"],scenarios["pressure_100"]),
- "rim_three_vs_neutral":(scenarios["rim_three_100"],neutral),
- "all100_vs_neutral":(scenarios["all_100"],neutral),
-}
-for i,(name,(ta,tb)) in enumerate(cross.items()):
-    games=[one(900000+i*1000+j,ta,tb) for j in range(N)]
-    report["cross_tests"][name]=summary(games); report["total_games"]+=N
+per_team={}
+for pn,td in team_results.items():
+    per_team[pn]={t:{"point_diff":avg(v["diff"]),"win_pct":round(100*sum(v["wins"])/len(v["wins"]),1)}
+                  for t,v in td.items() if v["diff"]}
 
-open("data/tactics_v2_test_report.json","w",encoding="utf-8").write(json.dumps(report,indent=2,ensure_ascii=False))
+report={"engine_frozen":True,"teams":len(TEAMS),"games_per_matchup_per_plan":GAMES_PER_MATCHUP,
+        "matchups":len(matchups),"total_games":len(matchups)*len(PLANS)*GAMES_PER_MATCHUP,
+        "plans":summary,"per_team":per_team,"matchup_results":matchups}
 print(json.dumps(report,indent=2,ensure_ascii=False))
