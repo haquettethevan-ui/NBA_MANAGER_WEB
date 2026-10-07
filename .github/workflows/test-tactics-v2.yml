@@ -16,3 +16,5 @@ jobs:
           python-version: '3.12'
       - name: Run all-team tactical test
         run: python test_tactics_v2.py
+
+# paired-seeds rerun
