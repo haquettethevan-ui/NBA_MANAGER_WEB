@@ -32,8 +32,10 @@ for ai,a in enumerate(TEAMS):
     for b in TEAMS[ai+1:]:
         row={"matchup":f"{a}-{b}"}
         for pn,pt in PLANS.items():
-            gs=[game(seed+j,a,b,pt,PLANS["neutral"]) for j in range(GAMES_PER_MATCHUP)]
-            seed+=GAMES_PER_MATCHUP
+            # Common random numbers: every tactical plan gets the exact same
+            # seed sequence for this matchup, isolating the tactical effect.
+            matchup_seed=700000 + ai*10000 + TEAMS.index(b)*100
+            gs=[game(matchup_seed+j,a,b,pt,PLANS["neutral"]) for j in range(GAMES_PER_MATCHUP)]
             for g in gs:
                 x,y=g["team1"],g["team2"]
                 for k in KEYS:
@@ -56,7 +58,7 @@ for pn,td in team_results.items():
     per_team[pn]={t:{"point_diff":avg(v["diff"]),"win_pct":round(100*sum(v["wins"])/len(v["wins"]),1)}
                   for t,v in td.items() if v["diff"]}
 
-report={"engine_frozen":True,"teams":len(TEAMS),"games_per_matchup_per_plan":GAMES_PER_MATCHUP,
+report={"engine_frozen":True,"paired_seeds":True,"teams":len(TEAMS),"games_per_matchup_per_plan":GAMES_PER_MATCHUP,
         "matchups":len(matchups),"total_games":len(matchups)*len(PLANS)*GAMES_PER_MATCHUP,
         "plans":summary,"per_team":per_team,"matchup_results":matchups}
 print(json.dumps(report,indent=2,ensure_ascii=False))
