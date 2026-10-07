@@ -462,8 +462,24 @@ def _play_possession(att, dfn, tactics_a, tactics_d):
     profile["three"] *= _clamp(1 + three_intent*2.55, .42, 1.85)
 
     # Defensive choices remove/redirect opportunities instead of changing make %.
-    profile["rim"] *= _clamp(1-de.get("rim_suppress",0)+de.get("rim_allow",0),.62,1.38)
-    profile["three"] *= _clamp(1-de.get("three_suppress",0)+de.get("three_allow",0),.62,1.38)
+    # Scheme intent is combined with the actual defenders on court: elite rim
+    # protection should make clean rim attempts harder to CREATE, not magically
+    # lower the conversion rate after a rim attempt has already been obtained.
+    rim_skill = sum(interior_defense(p) * _energy_factor(p,"defense") for p in dfn.on_court) / max(1,len(dfn.on_court))
+    perimeter_skill = sum(perimeter_defense(p) * _energy_factor(p,"defense") for p in dfn.on_court) / max(1,len(dfn.on_court))
+    rim_personnel = _clamp((rim_skill-75.0)/25.0,-.32,.32)
+    perimeter_personnel = _clamp((perimeter_skill-75.0)/28.0,-.26,.26)
+
+    rim_denial = de.get("rim_suppress",0) + max(0.0,rim_personnel) * (.30 + de.get("rim_suppress",0))
+    three_denial = de.get("three_suppress",0) + max(0.0,perimeter_personnel) * (.22 + de.get("three_suppress",0))
+    profile["rim"] *= _clamp(1-rim_denial+de.get("rim_allow",0),.48,1.38)
+    profile["three"] *= _clamp(1-three_denial+de.get("three_allow",0),.55,1.38)
+
+    # Denied attempts become secondary options. Help/rim protection tends to
+    # concede kick-outs; perimeter pressure tends to funnel the ball inward.
+    profile["three"] *= 1 + max(0.0,rim_denial) * .24
+    profile["mid"] *= 1 + max(0.0,rim_denial) * .12 + max(0.0,three_denial) * .10
+    profile["rim"] *= 1 + max(0.0,three_denial) * .14
     area = _pick(["rim","mid","three"], [profile["rim"],profile["mid"],profile["three"]])
     defender = _best_defender(dfn, shooter, area, oe)
 
