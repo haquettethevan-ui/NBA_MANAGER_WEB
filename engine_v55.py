@@ -116,7 +116,18 @@ def _effects(tactics, side):
 
 def _focuses(tactics, side):
     # Compatibility helper retained for API callers; new tactics are continuous.
-    return []
+    if side != "offense": return []
+    t=normalize_tactics(tactics)
+    raw=[("Jeu intérieur",t["rimPriority"]-50),("Tir extérieur",t["threePriority"]-50),
+         ("Pick & Roll",t["pickAndRoll"]-50),("Jeu rapide",t["pace"]-50),
+         ("Mouvement de balle",t["ballMovement"]-50),("Rebond offensif",t["offensiveGlass"]-50)]
+    if t["postPlay"]>50: raw.append(("Jeu intérieur",(t["postPlay"]-50)*.75))
+    scores={}
+    for k,v in raw:
+        if v>0: scores[k]=scores.get(k,0)+v
+    if not scores: return [("Équilibré",1.0)]
+    total=sum(scores.values())
+    return [(k,v/total) for k,v in scores.items()]
 
 def _matchup_effects(offense_tactics, defense_tactics):
     # V2 has no rock-paper-scissors make-percentage table.
@@ -285,6 +296,7 @@ def _tactical_finisher_weight(p, creator, oe):
         + transition * (.62*athletic + .23*play + .15*inside) * .42
         + movement * (.68*play + .32*outside) * .55
     )
+    intent += oe.get("post",0) * (.85*inside + .15*play) * 1.15
     return w * math.exp(_clamp(intent,-.75,.75))
 
 def tactic_compatibility(tactics, players, minutes=None):
@@ -315,7 +327,7 @@ def tactic_compatibility(tactics, players, minutes=None):
     return {"overall":overall_score,"label":label,"offense":details}
 
 
-def _best_defender(def_team, attacker, area, oe=None):
+def _best_defender(def_team, attacker, area, oe=None, defense_tactics=None):
     """Choose the defender from the basketball situation, not a random best-defender roll.
 
     Normal half-court possessions keep the positional matchup. Pick & Roll can
@@ -337,7 +349,8 @@ def _best_defender(def_team, attacker, area, oe=None):
     # Pick & Roll is the main source of switches. The switch defender should be
     # positionally adjacent (guard/wing or forward/big), not any random player.
     pnr_level = max(0.0, oe.get("pnr", 0))
-    switch_p = min(.32, .045 + pnr_level * .65)
+    switch_intent=_n(normalize_tactics(defense_tactics),"switching")
+    switch_p = _clamp(.045 + pnr_level * .65 + switch_intent*.12, .005, .36)
 
     roll = random.random()
     if roll < switch_p:
@@ -457,6 +470,7 @@ def _play_possession(att, dfn, tactics_a, tactics_d):
     rim_intent = oe.get("rim",0) + mx.get("rim",0)
     mid_intent = oe.get("mid",0) + mx.get("mid",0)
     three_intent = oe.get("three",0) + mx.get("three",0)
+    rim_intent += oe.get("post",0)*.65
     profile["rim"] *= _clamp(1 + rim_intent*2.35, .52, 1.85)
     profile["mid"] *= _clamp(1 + mid_intent*1.75, .62, 1.55)
     profile["three"] *= _clamp(1 + three_intent*2.55, .42, 1.85)
@@ -465,7 +479,7 @@ def _play_possession(att, dfn, tactics_a, tactics_d):
     profile["rim"] *= _clamp(1-de.get("rim_suppress",0)+de.get("rim_allow",0),.62,1.38)
     profile["three"] *= _clamp(1-de.get("three_suppress",0)+de.get("three_allow",0),.62,1.38)
     area = _pick(["rim","mid","three"], [profile["rim"],profile["mid"],profile["three"]])
-    defender = _best_defender(dfn, shooter, area, oe)
+    defender = _best_defender(dfn, shooter, area, oe, tactics_d)
 
     assisted = potential_assist and random.random() < _clamp(.71 + (creator.playmaking-75)*.0105 + oe.get("assist",0)*.34 + de.get("assist_allow",0)*.16 + mx.get("assist",0)*.28,.30,.92)
     passer = creator if assisted and creator is not shooter else None
