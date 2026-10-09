@@ -300,32 +300,60 @@ def _tactical_finisher_weight(p, creator, oe):
     return w * math.exp(_clamp(intent,-.75,.75))
 
 def tactic_compatibility(tactics, players, minutes=None):
-    """Public 0-100 compatibility scores, minute-weighted for the rotation."""
-    tactics=normalize_tactics(tactics)
-    minutes=minutes or {p.name:1 for p in players}
-    active=[p for p in players if minutes.get(p.name,0)>0] or list(players)
-    weights=[max(0,minutes.get(p.name,0)) for p in active]
-    if not any(weights): weights=[1]*len(active)
-    def avg(attr):
-        den=sum(weights) or 1
-        return sum(getattr(p,attr)*w for p,w in zip(active,weights))/den
-    outside,inside,play,ath,reb,overall=(avg(x) for x in ("outside_scoring","inside_scoring","playmaking","athleticism","rebounding","overall"))
-    def focus_skill(focus):
-        return {
-          "Équilibré":overall,"Jeu intérieur":.70*inside+.18*ath+.12*reb,
-          "Tir extérieur":.82*outside+.18*play,"Pénétration":.58*inside+.27*ath+.15*play,
-          "Pick & Roll":.52*play+.24*inside+.24*outside,"Jeu rapide":.62*ath+.23*play+.15*overall,
-          "Mouvement de balle":.72*play+.18*outside+.10*overall,"Rebond offensif":.72*reb+.28*ath,
-        }.get(focus,overall)
-    details=[]; weighted=0; den=0
-    for focus,priority in _focuses(tactics,"offense"):
-        score=round(100*_clamp((focus_skill(focus)-62)/26,0,1))
+    """Diagnostic of roster/tactic fit, not a simulation bonus.
+
+    Use the actual rotation and emphasize players likely to execute each action.
+    A team's absolute talent is deliberately not treated as proof that one
+    specific tactical choice is better than another.
+    """
+    t=normalize_tactics(tactics)
+    roster=list(players)
+    if not roster:
+        return {"overall":50,"label":"Moyenne","offense":[]}
+    minute_map=minutes if isinstance(minutes,dict) else None
+    active=[p for p in roster if minute_map is None or float(minute_map.get(p.name,0) or 0)>0] or roster
+    mins=[max(0.0,float(minute_map.get(p.name,0) or 0)) if minute_map is not None else 1.0 for p in active]
+    if not any(mins): mins=[1.0]*len(active)
+
+    def skill(p,focus):
+        inside=p.inside_scoring; outside=p.outside_scoring
+        play=p.playmaking; ath=p.athleticism; reb=p.rebounding
+        if focus=="Jeu intérieur": return .77*inside+.15*ath+.08*reb
+        if focus=="Tir extérieur": return .86*outside+.14*play
+        if focus=="Pénétration": return .60*inside+.28*ath+.12*play
+        if focus=="Pick & Roll": return .54*play+.25*inside+.21*outside
+        if focus=="Jeu rapide": return .63*ath+.27*play+.10*inside
+        if focus=="Mouvement de balle": return .76*play+.24*outside
+        if focus=="Rebond offensif": return .78*reb+.22*ath
+        return p.overall
+
+    def team_skill(focus):
+        values=[skill(p,focus) for p in active]
+        # Core rotation matters, but the players most capable of running an
+        # action should matter more than end-of-bench specialists.
+        base=sum(v*m for v,m in zip(values,mins))/sum(mins)
+        usage=[m*math.exp(_clamp((v-75.0)/16.0,-1.5,1.5))
+               for v,m in zip(values,mins)]
+        specialist=sum(v*w for v,w in zip(values,usage))/sum(usage)
+        return .55*base+.45*specialist
+
+    focus_scores={f:team_skill(f) for f in OFFENSE_FOCUSES}
+    # Keep the existing 0..100 scale for the interface, but make it sensitive
+    # to the lineup's specific strengths relative to its overall ability.
+    baseline=focus_scores["Équilibré"]
+    def rating(focus):
+        if focus=="Équilibré": return 60
+        relative=focus_scores[focus]-baseline
+        return int(round(_clamp(60+relative*2.0,0,100)))
+
+    details=[];weighted=0.0;den=0.0
+    for focus,priority in _focuses(t,"offense"):
+        score=rating(focus)
         details.append({"focus":focus,"score":score,"priority_weight":priority})
-        weighted+=score*priority; den+=priority
-    overall_score=round(weighted/den) if den else 50
+        weighted+=score*priority;den+=priority
+    overall_score=round(weighted/den) if den else 60
     label="Excellente" if overall_score>=80 else "Bonne" if overall_score>=67 else "Moyenne" if overall_score>=52 else "Faible"
     return {"overall":overall_score,"label":label,"offense":details}
-
 
 def _best_defender(def_team, attacker, area, oe=None, defense_tactics=None):
     """Choose the defender from the basketball situation, not a random best-defender roll.
