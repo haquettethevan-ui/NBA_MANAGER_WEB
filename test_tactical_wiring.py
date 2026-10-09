@@ -26,3 +26,15 @@ for label,attack,defense in [
     print(label,{"point_diff":round(sum(r[0] for r in rows)/len(rows),2),
                  "three_attempted":round(sum(r[1] for r in rows)/len(rows),2)})
 print("TACTICAL_WIRING_TESTS_PASSED")
+
+# Compatibility should be driven by roster specialization and active minutes.
+a,_=server.build_team("PHI")
+base=tactic_compatibility(tac(threePriority=100),a.roster)
+assert 0 <= base["overall"] <= 100
+assert base["offense"] and all(0 <= x["score"] <= 100 for x in base["offense"])
+first=a.roster[0]
+limited={p.name:(36 if p is first else 0) for p in a.roster}
+weighted=tactic_compatibility(tac(threePriority=100),a.roster,limited)
+assert 0 <= weighted["overall"] <= 100
+assert tactic_compatibility(tac(),[],None)["overall"] == 50
+print("COMPATIBILITY_REGRESSION_PASSED",base["overall"],weighted["overall"])
