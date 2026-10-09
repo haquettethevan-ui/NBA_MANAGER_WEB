@@ -17,3 +17,5 @@ jobs:
           python-version: '3.12'
       - name: Check tactical wiring
         run: python test_tactical_wiring.py
+
+# rerun wiring regression after tactical changes
