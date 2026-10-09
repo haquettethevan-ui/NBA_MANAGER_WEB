@@ -56,7 +56,7 @@ def evaluate(side,names):
             round(mean(x)-1.96*se,2),round(mean(x)+1.96*se,2)],
             "positive_matchups",sum(v>0 for v in clusters),"/",len(clusters),
             "fit_corr",corr(fits[name],clusters) if side=="offense" else "n/a")
-print("COMPATIBILITY_AUDIT all_30_teams minute_weighted=true paired_seeds=true")
+print("COMPATIBILITY_AUDIT all_30_teams minute_weighted=true paired_seeds=true model=role_specialization_v2")
 evaluate("offense",OFF)
 evaluate("defense",DEF)
 print("TEST_COMPLETE games=",len(PAIRS)*SEEDS*(len(OFF)+len(DEF)))
