@@ -40,10 +40,11 @@ def evaluate(side,names):
             rows=[game(aid,bid,770000+i*1000+j,attack,defense) for j in range(SEEDS)]
             results[name]=rows
             if side=="offense":
-                fits[name].append(tactic_compatibility(t,a.roster)["overall"])
+                starters, rotation=server.build_auto_rotation_minutes(a)
+                fits[name].append(tactic_compatibility(t,a.roster,rotation)["overall"])
         base=results["Équilibré"]
         for name in names:
-            paired=[results[name][j][0]-base[j][0] for j in range(SEEDS)]
+            paired=[(results[name][j][0]-base[j][0]) * (1 if side=="offense" else -1) for j in range(SEEDS)]
             by_name[name].extend(paired)
             per_matchup[name].append(mean(paired))
     print("\\n"+side.upper()+" TESTS "+str(len(PAIRS)*SEEDS*len(names)))
@@ -55,6 +56,7 @@ def evaluate(side,names):
             round(mean(x)-1.96*se,2),round(mean(x)+1.96*se,2)],
             "positive_matchups",sum(v>0 for v in clusters),"/",len(clusters),
             "fit_corr",corr(fits[name],clusters) if side=="offense" else "n/a")
+print("COMPATIBILITY_AUDIT all_30_teams minute_weighted=true paired_seeds=true")
 evaluate("offense",OFF)
 evaluate("defense",DEF)
 print("TEST_COMPLETE games=",len(PAIRS)*SEEDS*(len(OFF)+len(DEF)))
