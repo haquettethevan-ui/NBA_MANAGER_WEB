@@ -10,11 +10,9 @@ def _scores(a,o,adapt=.30):
     c=lambda x:max(-5,min(5,x))*adapt
     off={
       "Tir extérieur":a["outside_scoring"]+c((o["inside_scoring"]-o["outside_scoring"])*.8),
-      "Jeu intérieur":a["inside_scoring"]+c((o["outside_scoring"]-o["inside_scoring"])*.8),
-      "Pénétration":.58*a["inside_scoring"]+.42*a["athleticism"]+c((78-o["defense"])*.6),
-      "Pick & Roll":.62*a["playmaking"]+.23*a["inside_scoring"]+.15*a["outside_scoring"]+c((o["defense"]-75)*.35),
+      "Attaque intérieure":a["inside_scoring"]+c((o["outside_scoring"]-o["inside_scoring"])*.8),
+      "Création offensive":.85*a["playmaking"]+.15*a["outside_scoring"]+c((o["defense"]-75)*.35),
       "Jeu rapide":.62*a["athleticism"]+.23*a["playmaking"]+.15*a["overall"]+c((78-o["athleticism"])*.5),
-      "Mouvement de balle":.72*a["playmaking"]+.28*a["outside_scoring"]+c((o["defense"]-75)*.4),
       "Rebond offensif":.78*a["rebounding"]+.22*a["athleticism"]+c((75-o["rebounding"])*.7)}
     de={
       "Protection du cercle":.62*a["defense"]+.38*a["rebounding"]+c((o["inside_scoring"]-75)*.9),
