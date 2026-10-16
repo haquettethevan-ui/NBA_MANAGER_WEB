@@ -12,8 +12,8 @@ from legacy_main import (
 )
 
 OFFENSE_FOCUSES = (
-    "Équilibré", "Jeu intérieur", "Tir extérieur", "Pénétration",
-    "Pick & Roll", "Jeu rapide", "Mouvement de balle", "Rebond offensif",
+    "Tir extérieur", "Attaque intérieure", "Création offensive",
+    "Jeu rapide", "Rebond offensif",
 )
 DEFENSE_FOCUSES = (
     "Équilibré", "Protection du cercle", "Défense extérieure", "Pression porteur",
@@ -45,12 +45,14 @@ def _legacy_to_continuous(t):
     if not isinstance(t,dict): return out
     weights=(1.0,.58,.30)
     off_map={
+        "Attaque intérieure":{"rimPriority":22,"postPlay":24,"threePriority":-12},
         "Jeu intérieur":{"rimPriority":22,"postPlay":24,"threePriority":-12},
         "Tir extérieur":{"threePriority":25,"rimPriority":-9,"midPriority":-8},
         "Pénétration":{"rimPriority":24,"pace":5},
-        "Pick & Roll":{"pickAndRoll":28,"ballMovement":7},
+        "Création offensive":{"ballMovement":28,"pickAndRoll":12},
+        "Pick & Roll":{"ballMovement":28,"pickAndRoll":12},
         "Jeu rapide":{"pace":28,"rimPriority":9},
-        "Mouvement de balle":{"ballMovement":28},
+        "Mouvement de balle":{"ballMovement":28,"pickAndRoll":12},
         "Rebond offensif":{"offensiveGlass":30},
     }
     def_map={
@@ -118,10 +120,10 @@ def _focuses(tactics, side):
     # Compatibility helper retained for API callers; new tactics are continuous.
     if side != "offense": return []
     t=normalize_tactics(tactics)
-    raw=[("Jeu intérieur",t["rimPriority"]-50),("Tir extérieur",t["threePriority"]-50),
-         ("Pick & Roll",t["pickAndRoll"]-50),("Jeu rapide",t["pace"]-50),
-         ("Mouvement de balle",t["ballMovement"]-50),("Rebond offensif",t["offensiveGlass"]-50)]
-    if t["postPlay"]>50: raw.append(("Jeu intérieur",(t["postPlay"]-50)*.75))
+    raw=[("Attaque intérieure",t["rimPriority"]-50),("Tir extérieur",t["threePriority"]-50),
+         ("Création offensive",t["ballMovement"]-50),("Jeu rapide",t["pace"]-50),
+         ("Rebond offensif",t["offensiveGlass"]-50)]
+    if t["postPlay"]>50: raw.append(("Attaque intérieure",(t["postPlay"]-50)*.75))
     scores={}
     for k,v in raw:
         if v>0: scores[k]=scores.get(k,0)+v
@@ -214,12 +216,14 @@ def _lineup_focus_fit(lineup, focus):
     # neutral so ordinary NBA lineups do not receive a hidden penalty.
     skill={
         "Équilibré": overall,
-        "Jeu intérieur": .70*inside+.18*ath+.12*reb,
+        "Attaque intérieure": .82*inside+.18*ath,
+        "Jeu intérieur": .82*inside+.18*ath,
         "Tir extérieur": .82*outside+.18*play,
         "Pénétration": .58*inside+.27*ath+.15*play,
-        "Pick & Roll": .52*play+.24*inside+.24*outside,
+        "Création offensive": .85*play+.15*outside,
+        "Pick & Roll": .85*play+.15*outside,
         "Jeu rapide": .62*ath+.23*play+.15*overall,
-        "Mouvement de balle": .72*play+.18*outside+.10*overall,
+        "Mouvement de balle": .85*play+.15*outside,
         "Rebond offensif": .72*reb+.28*ath,
     }.get(focus, overall)
     return _clamp((skill-62.0)/26.0, 0.0, 1.0)
@@ -333,11 +337,13 @@ def tactic_compatibility(tactics, players, minutes=None):
     skills = {
         "Équilibré": overall,
         "Tir extérieur": .82*outside+.18*play,
-        "Jeu intérieur": .70*inside+.18*athletic+.12*rebound,
+        "Attaque intérieure": .82*inside+.18*athletic,
+        "Jeu intérieur": .82*inside+.18*athletic,
         "Pénétration": .58*inside+.27*athletic+.15*play,
-        "Pick & Roll": .52*play+.24*inside+.24*outside,
+        "Création offensive": .85*play+.15*outside,
+        "Pick & Roll": .85*play+.15*outside,
         "Jeu rapide": .62*athletic+.23*play+.15*overall,
-        "Mouvement de balle": .72*play+.18*outside+.10*overall,
+        "Mouvement de balle": .85*play+.15*outside,
         "Rebond offensif": .72*rebound+.28*athletic,
     }
     # Existing public 0-100 score, with 75 skill = 65 execution score.
