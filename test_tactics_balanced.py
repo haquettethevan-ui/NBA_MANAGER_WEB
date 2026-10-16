@@ -10,10 +10,10 @@ PAIRS=list(zip(
  "ATL BOS BKN CHA CHI CLE DAL DEN DET GSW HOU IND LAC LAL MEM MIA MIL MIN NOP NYK OKC ORL PHI PHX POR SAC SAS TOR UTA WAS".split(),
  "IND NOP SAC BKN GSW MIL PHX ATL DEN MEM ORL UTA CLE LAC NYK SAS CHA HOU MIN POR BOS DET MIA PHI WAS DAL LAL OKC TOR CHI".split()))
 SEEDS=8
-OFF=["Équilibré","Jeu intérieur","Tir extérieur","Pénétration","Pick & Roll","Jeu rapide","Mouvement de balle","Rebond offensif"]
+OFF=["Référence neutre","Tir extérieur","Attaque intérieure","Création offensive","Jeu rapide","Rebond offensif"]
 DEF=["Équilibré","Protection du cercle","Défense extérieure","Pression porteur","Zone","Homme à homme","Box out","Repli défensif"]
 def tactic(side,name):
-    if name=="Équilibré": return dict(DEFAULT_TACTICS)
+    if name in ("Équilibré","Référence neutre"): return dict(DEFAULT_TACTICS)
     return normalize_tactics({side+"Primary":name})
 def game(aid,bid,seed,t1,t2):
     random.seed(seed)
@@ -42,7 +42,7 @@ def evaluate(side,names):
             if side=="offense":
                 starters, rotation=server.build_auto_rotation_minutes(a)
                 fits[name].append(tactic_compatibility(t,a.roster,rotation)["overall"])
-        base=results["Équilibré"]
+        base=results["Référence neutre" if side=="offense" else "Équilibré"]
         for name in names:
             paired=[(results[name][j][0]-base[j][0]) * (1 if side=="offense" else -1) for j in range(SEEDS)]
             by_name[name].extend(paired)
