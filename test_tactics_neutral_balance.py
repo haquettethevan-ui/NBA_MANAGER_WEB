@@ -51,9 +51,9 @@ for side,pool in (("offense",OFF),("defense",DEF)):
 for tid,oid in pairs[:10]:
     team,_=server.build_team(tid); opp,_=server.build_team(oid)
     plans={
-      "inside": {"offensePrimary":"Jeu intérieur","offenseSecondary":"Pénétration","offenseTertiary":"Mouvement de balle",
+      "inside": {"offensePrimary":"Attaque intérieure","offenseSecondary":"Création offensive","offenseTertiary":"Jeu rapide",
                  "defensePrimary":"Équilibré","defenseSecondary":"Homme à homme","defenseTertiary":"Box out"},
-      "outside":{"offensePrimary":"Tir extérieur","offenseSecondary":"Mouvement de balle","offenseTertiary":"Pick & Roll",
+      "outside":{"offensePrimary":"Tir extérieur","offenseSecondary":"Création offensive","offenseTertiary":"Jeu rapide",
                  "defensePrimary":"Équilibré","defenseSecondary":"Homme à homme","defenseTertiary":"Box out"},
     }
     rates={}
@@ -89,22 +89,18 @@ def roster_skill(team,focus):
     def avg(attr): return sum(getattr(p,attr)*rot[p.name] for p in active)/den
     outside,inside,play,ath,reb,overall=(avg(x) for x in ("outside_scoring","inside_scoring","playmaking","athleticism","rebounding","overall"))
     return {
-      "Équilibré":overall,
-      "Jeu intérieur":.70*inside+.18*ath+.12*reb,
       "Tir extérieur":.82*outside+.18*play,
-      "Pénétration":.50*inside+.32*ath+.18*play,
-      "Pick & Roll":.52*play+.28*inside+.20*outside,
-      "Jeu rapide":.68*ath+.32*play,
-      "Mouvement de balle":.68*play+.32*outside,
-      "Rebond offensif":.76*reb+.24*ath,
+      "Attaque intérieure":.82*inside+.18*ath,
+      "Création offensive":.85*play+.15*outside,
+      "Jeu rapide":.62*ath+.23*play+.15*overall,
+      "Rebond offensif":.72*reb+.28*ath,
     }[focus]
 
 base={}
 gains=defaultdict(list); skills=defaultdict(list)
 for a,b in pairs:
-    base[a]=margin(a,b,"offense","Équilibré",seeds=12)
+    base[a]=statistics.mean([margin(a,b,"offense",focus,seeds=12) for focus in OFF])
     for focus in OFF:
-        if focus=="Équilibré": continue
         team,_=server.build_team(a)
         skills[focus].append(roster_skill(team,focus))
         gains[focus].append(margin(a,b,"offense",focus,seeds=12)-base[a])
