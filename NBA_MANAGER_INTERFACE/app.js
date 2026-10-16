@@ -420,12 +420,13 @@ function tacticCompatibilityScore(focus) {
     const avg = key => active.reduce((n,p) => n + Number(p[key] || 0) * Number(p.minutes || 0), 0) / total;
     const outside=avg("outside"), inside=avg("inside"), play=avg("playmaking"), ath=avg("athleticism"), reb=avg("rebounding"), overall=avg("overall");
     const skill = ({
-      "Équilibré": overall, "Jeu intérieur": .70*inside+.18*ath+.12*reb,
-      "Tir extérieur": .82*outside+.18*play, "Pénétration": .58*inside+.27*ath+.15*play,
-      "Pick & Roll": .52*play+.24*inside+.24*outside, "Jeu rapide": .62*ath+.23*play+.15*overall,
-      "Mouvement de balle": .72*play+.18*outside+.10*overall, "Rebond offensif": .72*reb+.28*ath
+      "Tir extérieur": .82*outside+.18*play,
+      "Attaque intérieure": .82*inside+.18*ath,
+      "Création offensive": .85*play+.15*outside,
+      "Jeu rapide": .62*ath+.23*play+.15*overall,
+      "Rebond offensif": .72*reb+.28*ath
     })[focus] ?? overall;
-    return Math.round(100 * Math.max(0, Math.min(1, (skill - 62) / 26)));
+    return Math.round(Math.max(0, Math.min(100, 65 + (skill - 75) * 2)));
 }
 function renderTacticCompatibility() {
     if (!$('compatibilityScore')) return;
