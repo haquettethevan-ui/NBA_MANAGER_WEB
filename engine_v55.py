@@ -300,71 +300,54 @@ def _tactical_finisher_weight(p, creator, oe):
     return w * math.exp(_clamp(intent,-.75,.75))
 
 def tactic_compatibility(tactics, players, minutes=None):
-    """Explain how well a rotation suits its chosen offense; diagnostic only.
+    """Diagnostic-only execution capacity, distinct from relative team identity.
 
-    Scores are based on player skills and roles, not team overall rating or
-    outcomes. Nothing here feeds into shot probability or simulation effects.
+    Never changes possession selection, shot quality or make probability.
     """
-    t=normalize_tactics(tactics)
-    roster=list(players)
+    t = normalize_tactics(tactics)
+    roster = list(players)
     if not roster:
-        return {"overall":50,"label":"Moyenne","offense":[]}
-    minute_map=minutes if isinstance(minutes,dict) else None
-    active=[p for p in roster if minute_map is None or float(minute_map.get(p.name,0) or 0)>0] or roster
-    weights=[max(0.0,float(minute_map.get(p.name,0) or 0)) if minute_map is not None else 1.0 for p in active]
-    if not any(weights): weights=[1.0]*len(active)
+        return {"overall": 50, "label": "Moyenne", "offense": []}
+    active = [p for p in roster if minutes is None or float(minutes.get(p.name, 0) or 0) > 0] or roster
+    weights = [max(0., float(minutes.get(p.name, 0) or 0)) if isinstance(minutes, dict) else 1. for p in active]
+    if not sum(weights):
+        weights = [1.] * len(active)
 
-    def weighted_mean(values, w):
-        return sum(v*m for v,m in zip(values,w))/max(.001,sum(w))
+    def weighted(attr, specialization=False):
+        vals = [float(getattr(p, attr)) for p in active]
+        base = sum(v*w for v,w in zip(vals, weights)) / sum(weights)
+        if not specialization:
+            return base
+        usage = [w*math.exp(_clamp((v-75.)/14., -1.2, 1.2)) for v,w in zip(vals,weights)]
+        specialist = sum(v*w for v,w in zip(vals,usage))/sum(usage)
+        return .65*base+.35*specialist
 
-    def attribute(name):
-        return weighted_mean([getattr(p,name) for p in active],weights)
-
-    # Relative strength matters: a 78 shooter in a lineup averaging 72
-    # outside scoring is more useful for a perimeter-oriented plan than a
-    # similarly rated shooter on a roster with several superior options.
-    avg_inside=attribute("inside_scoring")
-    avg_outside=attribute("outside_scoring")
-    avg_play=attribute("playmaking")
-    avg_ath=attribute("athleticism")
-    avg_reb=attribute("rebounding")
-
-    def top_skill(name, priority="overall"):
-        vals=[getattr(p,name) for p in active]
-        # High-usage opportunities are normally handled by a small group,
-        # not uniformly by the entire roster.
-        usage=[m*math.exp(_clamp((getattr(p,priority)-75)/14,-1.2,1.2))
-               for p,m in zip(active,weights)]
-        return .35*weighted_mean(vals,weights)+.65*weighted_mean(vals,usage)
-
-    # These inputs mirror what the tactical sliders actually ask players to
-    # execute: creation, finishing, spacing, pace and securing extra possessions.
-    shooter=top_skill("outside_scoring","outside_scoring")
-    finisher=top_skill("inside_scoring","inside_scoring")
-    creator=top_skill("playmaking","playmaking")
-    runner=top_skill("athleticism","athleticism")
-    rebounder=top_skill("rebounding","rebounding")
-
-    # The baseline is deliberately roster-relative. A team should not be
-    # labelled an excellent fit for every plan simply for being talented.
-    skills={
-        "Équilibré": 60.0,
-        "Jeu intérieur": 60+1.6*(finisher-avg_outside)+.35*(rebounder-avg_reb),
-        "Tir extérieur": 60+1.8*(shooter-avg_inside)+.3*(creator-avg_play),
-        "Pénétration": 60+1.15*(finisher-avg_outside)+.8*(runner-avg_ath),
-        "Pick & Roll": 60+1.35*(creator-avg_play)+.65*(finisher-avg_inside),
-        "Jeu rapide": 60+1.65*(runner-avg_ath)+.4*(creator-avg_play),
-        "Mouvement de balle": 60+1.65*(creator-avg_play)+.3*(shooter-avg_outside),
-        "Rebond offensif": 60+1.85*(rebounder-avg_reb)+.25*(runner-avg_ath),
+    outside = weighted("outside_scoring", True)
+    inside = weighted("inside_scoring", True)
+    play = weighted("playmaking", True)
+    athletic = weighted("athleticism", True)
+    rebound = weighted("rebounding", True)
+    overall = weighted("overall")
+    # Absolute skills determine execution; specialists matter without
+    # allowing a single bench star to represent the whole rotation.
+    skills = {
+        "Équilibré": overall,
+        "Tir extérieur": .82*outside+.18*play,
+        "Jeu intérieur": .70*inside+.18*athletic+.12*rebound,
+        "Pénétration": .58*inside+.27*athletic+.15*play,
+        "Pick & Roll": .52*play+.24*inside+.24*outside,
+        "Jeu rapide": .62*athletic+.23*play+.15*overall,
+        "Mouvement de balle": .72*play+.18*outside+.10*overall,
+        "Rebond offensif": .72*rebound+.28*athletic,
     }
-    details=[];total=0.0;den=0.0
-    for focus,priority in _focuses(t,"offense"):
-        score=int(round(_clamp(skills.get(focus,60),0,100)))
-        details.append({"focus":focus,"score":score,"priority_weight":priority})
-        total+=score*priority;den+=priority
-    overall_score=round(total/den) if den else 60
-    label="Excellente" if overall_score>=80 else "Bonne" if overall_score>=67 else "Moyenne" if overall_score>=52 else "Faible"
-    return {"overall":overall_score,"label":label,"offense":details}
+    # Existing public 0-100 score, with 75 skill = 65 execution score.
+    score = lambda skill: int(round(_clamp(65.+(skill-75.)*2., 0., 100.)))
+    details = [{"focus": name, "score": score(skills.get(name,overall)),
+                "priority_weight": priority}
+               for name,priority in _focuses(t,"offense")]
+    total = round(sum(d["score"]*d["priority_weight"] for d in details)) if details else score(overall)
+    label = "Excellente" if total>=80 else "Bonne" if total>=67 else "Moyenne" if total>=52 else "Faible"
+    return {"overall":total, "label":label, "offense":details}
 
 def _best_defender(def_team, attacker, area, oe=None, defense_tactics=None):
     """Choose the defender from the basketball situation, not a random best-defender roll.
