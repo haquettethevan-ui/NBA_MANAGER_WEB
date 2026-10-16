@@ -4,7 +4,7 @@ import server
 from main import simulate_game, tactic_compatibility, DEFAULT_TACTICS
 from engine_v55 import normalize_tactics, _effects, _tactical_finisher_weight, _shot_probability
 TEAMS=[x["id"] for x in server.TEAM_META]
-FOCUSES=["Tir extérieur","Pénétration","Jeu intérieur","Pick & Roll"]
+FOCUSES=["Tir extérieur","Attaque intérieure","Création offensive","Jeu rapide","Rebond offensif"]
 SEEDS=24
 def plan(name):
     return normalize_tactics({"offensePrimary":name})
@@ -26,11 +26,11 @@ for i,tid in enumerate(TEAMS):
     row={"team":tid,"outside":round(wm(team,rot,"outside_scoring"),2),
          "inside":round(wm(team,rot,"inside_scoring"),2),
          "playmaking":round(wm(team,rot,"playmaking"),2),
-         "athleticism":round(wm(team,rot,"athleticism"),2)}
+         "athleticism":round(wm(team,rot,"athleticism"),2), "rebounding":round(wm(team,rot,"rebounding"),2)}
     for name in FOCUSES: row["fit_"+name]=tactic_compatibility(plan(name),team.roster,rot)["overall"]
     profiles.append(row)
 print("STATIC_PROFILE",json.dumps(profiles))
-for name,attr in [("Tir extérieur","outside"),("Pénétration","inside"),("Jeu intérieur","inside"),("Pick & Roll","playmaking")]:
+for name,attr in [("Tir extérieur","outside"),("Attaque intérieure","inside"),("Création offensive","playmaking"),("Jeu rapide","athleticism"),("Rebond offensif","rebounding")]:
     print("FIT_VALIDITY",name,"fit_vs_absolute_skill",corr([p["fit_"+name] for p in profiles],[p[attr] for p in profiles]))
 print("ENGINE_WIRING",json.dumps({n:{"effects":_effects(plan(n),"offense"),"fit_only_diagnostic":True} for n in FOCUSES}))
 print("SHOT_PROBABILITY_DIRECT_TACTIC_BONUS",False)
@@ -45,7 +45,7 @@ for name in FOCUSES:
             base.append(run(tid,oid,seed,DEFAULT_TACTICS))
             test.append(run(tid,oid,seed,plan(name)))
         data.append({"team":tid,"fit":profiles[i]["fit_"+name],
-                     "skill":profiles[i][{"Tir extérieur":"outside","Pénétration":"inside","Jeu intérieur":"inside","Pick & Roll":"playmaking"}[name]],
+                     "skill":profiles[i][{"Tir extérieur":"outside","Attaque intérieure":"inside","Création offensive":"playmaking","Jeu rapide":"athleticism","Rebond offensif":"rebounding"}[name]],
                      "margin_gain":round(st.mean(t[0]-b[0] for t,b in zip(test,base)),2),
                      "three_attempt_gain":round(st.mean(t[1]-b[1] for t,b in zip(test,base)),2)})
     print("FOCUS",name,"fit_gain_corr",corr([x["fit"] for x in data],[x["margin_gain"] for x in data]),
@@ -53,4 +53,4 @@ for name in FOCUSES:
           "mean_gain",round(st.mean(x["margin_gain"] for x in data),2),
           "mean_3pa_change",round(st.mean(x["three_attempt_gain"] for x in data),2),
           "per_team",json.dumps(data))
-print("AUDIT_COMPLETE engine_unchanged=true")
+print("AUDIT_COMPLETE five_offensive_foci=true no_direct_shot_bonus=true")
