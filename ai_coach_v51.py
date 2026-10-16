@@ -1,5 +1,6 @@
 """V51 AI coach: stable team identity with limited opponent adaptation."""
 import random
+from engine_v55 import tactic_compatibility, normalize_tactics
 ATTRS=("overall","outside_scoring","inside_scoring","playmaking","defense","rebounding","athleticism")
 def rotation_metrics(team, minutes):
     ps=[p for p in team.roster if minutes.get(p.name,0)>0]; den=sum(minutes[p.name] for p in ps) or 1
@@ -27,6 +28,11 @@ def _scores(a,o,adapt=.30):
 def choose_tactics(team,minutes,opp,opp_minutes,rng=None,adapt=.30):
     rng=rng or random.Random(); a=rotation_metrics(team,minutes);o=rotation_metrics(opp,opp_minutes)
     off,de=_scores(a,o,adapt)
+    # Execution capacity supplements, rather than replaces, coaching identity.
+    for focus in off:
+        fit=tactic_compatibility(normalize_tactics({"offensePrimary":focus}),team.roster,minutes)["overall"]
+        execution_equivalent=75.+(fit-65.)/2.
+        off[focus]=.75*off[focus]+.25*execution_equivalent
     # Small coaching uncertainty, far below V50's full reactive noise.
     O=sorted(off,key=lambda k:off[k]+rng.gauss(0,0.65),reverse=True)[:3]
     D=sorted(de,key=lambda k:de[k]+rng.gauss(0,0.65),reverse=True)[:3]
