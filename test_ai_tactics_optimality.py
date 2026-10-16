@@ -8,7 +8,7 @@ import statistics
 import server
 import main
 
-OFFENSE = ["Équilibré","Jeu intérieur","Tir extérieur","Pénétration","Pick & Roll","Jeu rapide","Mouvement de balle","Rebond offensif"]
+OFFENSE = list(main.OFFENSE_FOCUSES)
 DEFENSE = ["Équilibré","Homme à homme","Pression porteur","Protection du cercle","Défense extérieure","Box out","Repli défensif","Zone"]
 
 def replace_primary(plan, side, focus, pool):
