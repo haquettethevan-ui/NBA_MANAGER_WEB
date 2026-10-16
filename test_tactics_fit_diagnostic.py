@@ -1,4 +1,4 @@
-"""Diagnostic only: validate compatibility versus real rotation skills and tactical outcomes."""
+"""Diagnostic only: validate compatibility versus real rotation skills and tactical outcomes.\nPost-correction rerun: same teams, seeds, and matchups as baseline.\n"""
 import random, statistics as st, json, math
 import server
 from main import simulate_game, tactic_compatibility, DEFAULT_TACTICS
