@@ -35,7 +35,7 @@ def _decay(state, defense, ticks=2):
     state.possession_clock -= ticks
     for i in range(5):
         d=defense[state.matchups[i]]
-        recovery=4.5 + skill(d,"speed")*.085 + skill(d,"defensive_iq")*.05
+        recovery=4.5 + skill(d,"speed")*.085 + skill(d,"defensive_iq")*.03 + skill(d,"agility")*.02
         state.delays[i]=max(0.,state.delays[i]-recovery*ticks/2)
     state.screen_bonus=max(0,state.screen_bonus-9*ticks/2)
 
@@ -53,7 +53,7 @@ def _pick_action(rng,p,pressure,state,tactics,memory,key):
     weights={
         "three":.22+(skill(p,"three_point")-75)*.005-(pressure-30)*.0025,
         "mid":.12+(skill(p,"mid_range")-75)*.004-(pressure-30)*.001,
-        "drive":.22+(skill(p,"ball_handle")-75)*.004+(skill(p,"acceleration")-75)*.003,
+        "drive":.22+(skill(p,"ball_handle")-75)*.004+(skill(p,"speed_with_ball")-75)*.003,
         "post":.10+(skill(p,"post_control")-75)*.004,
         "pass":.20+(skill(p,"pass_iq")-75)*.004+free*.003,
         "screen":.10+(skill(p,"pass_iq")-75)*.001,
@@ -78,9 +78,9 @@ def _choose_help(rng,state,defense,holder,tactics):
     available=[j for j in range(5) if j!=defender_for(state,holder)]
     # Prioritize help defender who protects the rim, while preserving a tradeoff.
     j=max(available,key=lambda k:.55*skill(defense[k],"interior_defense")
-          +.45*skill(defense[k],"defensive_iq"))
+          +.30*skill(defense[k],"defensive_iq")+.15*skill(defense[k],"help_defense_iq"))
     d=defense[j]
-    p=clamp(.30+(skill(d,"defensive_iq")-75)*.003,0,.8)
+    p=clamp(.30+(skill(d,"defensive_iq")-75)*.002+(skill(d,"help_defense_iq")-75)*.001,0,.8)
     p*=clamp(tactics.get("help",1),.2,2.0)
     if not chance(rng,p):
         return None
@@ -96,7 +96,7 @@ def _rotate(rng,state,defense,freed,tactics,events):
     candidates=[i for i in range(5) if i!=freed and state.matchups[i]!=state.helper]
     cover=max(candidates,key=lambda i:skill(defense[state.matchups[i]],"defensive_iq"))
     defender=defense[state.matchups[cover]]
-    quality=(skill(defender,"defensive_iq")+skill(defender,"speed"))/2
+    quality=(skill(defender,"defensive_iq")+skill(defender,"speed")+skill(defender,"help_defense_iq"))/3
     if not chance(rng,clamp(.38+(quality-75)*.006,.08,.85)):
         events.append("defense: rotation late")
         return
@@ -106,7 +106,7 @@ def _rotate(rng,state,defense,freed,tactics,events):
 
 def _pass_target(rng,offense,state,holder,passer):
     choices=[i for i in range(5) if i!=holder]
-    iq=skill(passer,"pass_iq")
+    iq=.65*skill(passer,"pass_iq")+.35*skill(passer,"pass_vision")
     # Low IQ approaches random; high IQ prefers useful space and a capable receiver.
     weights=[]
     for i in choices:
@@ -117,7 +117,7 @@ def _pass_target(rng,offense,state,holder,passer):
     return weighted_choice(rng,choices,weights)
 
 def _steal(rng,defender,handler,pressure,events):
-    prob=clamp(.012+(skill(defender,"perimeter_defense")-75)*.0006
+    prob=clamp(.012+(skill(defender,"steal")-75)*.0007+(skill(defender,"pass_perception")-75)*.00035+(skill(defender,"perimeter_defense")-75)*.0003
                +(skill(defender,"defensive_iq")-75)*.00035
                +(pressure-35)*.00035-(skill(handler,"ball_handle")-75)*.0004,0,.12)
     if chance(rng,prob):
@@ -134,7 +134,7 @@ def _shot(rng,offense,defense,state,holder,zone,result,memory,key):
     helper=defense[state.helper] if state.helper is not None and zone=="rim" else None
     if helper is not None:
         block_p=clamp(.035+(skill(helper,"interior_defense")-75)*.0015
-                      +(skill(helper,"vertical")-75)*.0007,0,.14)
+                      +(skill(helper,"vertical")-75)*.0005+(skill(helper,"block")-75)*.0008,0,.14)
         if made and chance(rng,block_p):
             made=False
             result.events.append(f"defense: block by {helper.name}")
@@ -235,7 +235,7 @@ def simulate_possession(offense,defense,rng=None,memory=None,offense_id="home",
             return _shot(rng,offense,defense,state,holder,action,result,memory,key)
         if action=="drive":
             attack=(.32*skill(p,"ball_handle")+.22*skill(p,"speed")
-                    +.21*skill(p,"acceleration")+.15*skill(p,"strength")
+                    +.21*skill(p,"speed_with_ball")+.15*skill(p,"strength")
                     +.10*skill(p,"shot_iq"))
             stop=(.52*skill(defender,"perimeter_defense")+.23*skill(defender,"speed")
                   +.25*skill(defender,"defensive_iq"))
@@ -309,11 +309,11 @@ def simulate_possession(offense,defense,rng=None,memory=None,offense_id="home",
         if action=="cut":
             cutter=max((i for i in range(5) if i!=holder),
                        key=lambda i:.55*skill(offense[i],"speed")
-                           +.45*skill(offense[i],"acceleration"))
+                           +.45*skill(offense[i],"agility"))
             receiver=offense[cutter]
             d=defense[defender_for(state,cutter)]
             chance_open=clamp(.42+(skill(receiver,"speed")-skill(d,"speed"))*.009
-                              +(skill(p,"pass_iq")-75)*.003,.07,.86)
+                              +(skill(p,"pass_vision")-75)*.003,.07,.86)
             if chance(rng,chance_open):
                 state.delays[cutter]=clamp(state.delays[cutter]+42)
                 result.events.append(f"offense: {receiver.name} cuts open")
