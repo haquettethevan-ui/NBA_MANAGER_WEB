@@ -286,3 +286,7 @@ def simulate_game(home, away, seed=0, possessions_per_team=100, tactics=None):
             for p in off+defense:
                 p.energy=clamp(p.energy-(.12+(100-p.stamina)*.001),45,100)
     return {"score":tuple(scores),"stats":tuple(dict(s) for s in stats)}
+
+# V2 action/reaction layer supersedes the initial simple possession resolver.
+# Import after all shared types/helpers to avoid circular initialization issues.
+from engine_v2_actions import simulate_possession  # noqa: E402,F811
