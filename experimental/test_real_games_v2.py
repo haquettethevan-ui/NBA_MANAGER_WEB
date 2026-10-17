@@ -26,7 +26,7 @@ def rotation_for(roster):
     # Limit the candidate pool but retain enough depth at each position.
     pool=set(rank[:12])
     for pos in POSITIONS:
-        pool.update(i for i in rank if pos in eligible[i]][:3])
+        pool.update([i for i in rank if pos in eligible[i]][:3])
     candidates=[[i for i in rank if i in pool and pos in eligible[i]] for pos in POSITIONS]
     if any(not slot for slot in candidates):
         raise ValueError("Missing a legal player for a required position")
