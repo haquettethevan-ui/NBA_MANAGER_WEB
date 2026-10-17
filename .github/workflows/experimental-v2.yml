@@ -5,6 +5,7 @@ on:
       - experimental/possession-engine-v2
     paths:
       - 'experimental/**'
+      - 'scrape_2kratings.py'
       - '.github/workflows/experimental-v2.yml'
   workflow_dispatch:
 jobs:
@@ -17,6 +18,8 @@ jobs:
           python-version: '3.11'
       - name: Run V2 unit tests
         run: python -m unittest discover -s experimental -p 'test_engine_v2*.py' -v
+      - name: Validate detailed ratings parser
+        run: PYTHONPATH=experimental python -m unittest discover -s experimental -p 'test_ratings_import.py' -v
       - name: Run V2 smoke benchmark
         run: |
           PYTHONPATH=experimental python - <<'PY'
