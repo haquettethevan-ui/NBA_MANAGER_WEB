@@ -200,7 +200,7 @@ def simulate_possession(offense, defense, rng=None, memory=None,
     for step in range(max_actions):
         p=offense[holder]
         defender=defense[state.matchups[holder]]
-        key=(offense_id,holder)
+        key=(offense_id,p.name)
         anticipation=min(.85, memory.actions[(key,"drive")]*.035)
         pressure=defender_pressure(p,defender,"three",state.delay.get(holder,0))
         action=choose_action(rng,p,pressure,advantage,memory,key,ot)
