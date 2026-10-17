@@ -61,6 +61,10 @@ class PossessionResult:
     assists: int = 0
     turnovers: int = 0
     offensive_rebounds: int = 0
+    fouls_drawn: int = 0
+    fouled_by: str | None = None
+    free_throws_attempted: int = 0
+    free_throws_made: int = 0
     events: list = field(default_factory=list)
 
 @dataclass
@@ -282,6 +286,10 @@ def simulate_game(home, away, seed=0, possessions_per_team=100, tactics=None):
             stats[side][r.outcome]+=1
             stats[side]["assists"]+=r.assists
             stats[side]["turnovers"]+=r.turnovers
+            stats[side]["offensive_rebounds"]+=r.offensive_rebounds
+            stats[side]["fouls_drawn"]+=r.fouls_drawn
+            stats[side]["free_throws_attempted"]+=r.free_throws_attempted
+            stats[side]["free_throws_made"]+=r.free_throws_made
             # Fatigue depends on actual actions and stamina; recovery is outside scope.
             for p in off+defense:
                 p.energy=clamp(p.energy-(.12+(100-p.stamina)*.001),45,100)
