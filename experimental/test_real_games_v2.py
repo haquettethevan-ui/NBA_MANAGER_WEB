@@ -80,7 +80,11 @@ def benchmark(rosters=None,seeds=SEEDS,matchups=MATCHUPS,possessions=100):
             assert all(35<=v<=100 for side in r["final_energy"] for v in side)
             assert all(len(trace)==48 for trace in r["on_court_energy_by_minute"])
             results.append({"home":home,"away":away,"seed":seed,
-                "score":r["score"],"home_bench":hbench,"away_bench":abench,\n                "home_players_used":sum(m>0 for m in r["minutes"][0]),\n                "away_players_used":sum(m>0 for m in r["minutes"][1]),\n                "home_max_minutes":max(r["minutes"][0]),\n                "away_max_minutes":max(r["minutes"][1]),
+                "score":r["score"],"home_bench":hbench,"away_bench":abench,
+                "home_players_used":sum(m>0 for m in r["minutes"][0]),
+                "away_players_used":sum(m>0 for m in r["minutes"][1]),
+                "home_max_minutes":max(r["minutes"][0]),
+                "away_max_minutes":max(r["minutes"][1]),
                 "minutes_total":[sum(x) for x in r["minutes"]],
                 "energy_start":[trace[0] for trace in r["on_court_energy_by_minute"]],
                 "energy_end":[trace[-1] for trace in r["on_court_energy_by_minute"]],
