@@ -70,5 +70,26 @@ class OffensiveDefensiveActionTests(unittest.TestCase):
             self.assertIn(r.outcome,("made","miss","turnover"))
             self.assertLessEqual(sum(e.startswith("offense: ") and e.split()[-1] in {"three","mid","drive","post","pass","screen","cut","handoff"} for e in r.events),2)
 
+class RulesTests(unittest.TestCase):
+    def test_rebound_and_free_throws(self):
+        from engine_v2_rules import rebound, free_throws
+        a,b=lineup("A"),lineup("B")
+        outcomes=[rebound(random.Random(i),a,b,[]) for i in range(200)]
+        self.assertTrue(any(x[0] for x in outcomes))
+        self.assertTrue(any(not x[0] for x in outcomes))
+        self.assertTrue(all(0<=x[1]<5 for x in outcomes))
+        self.assertTrue(0<=free_throws(random.Random(2),a[0],3,[])<=3)
+
+    def test_foul_and_rebound_stats_are_consistent(self):
+        a,b=lineup("A"),lineup("B")
+        found={"foul":False,"rebound":False}
+        for seed in range(2000):
+            r=simulate_possession(a,b,random.Random(seed))
+            self.assertLessEqual(r.free_throws_made,r.free_throws_attempted)
+            self.assertGreaterEqual(r.offensive_rebounds,0)
+            found["foul"] |= r.fouls_drawn>0
+            found["rebound"] |= r.offensive_rebounds>0
+        self.assertTrue(all(found.values()))
+
 if __name__=="__main__":
     unittest.main()
