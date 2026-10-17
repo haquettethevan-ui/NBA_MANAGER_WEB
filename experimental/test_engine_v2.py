@@ -225,6 +225,33 @@ class RotationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_rotation(team,[[1,0,2,3,4]]*48)
 
+    def test_flexible_players_exact_minutes(self):
+        from engine_v2_rotations import rotation_from_minutes, validate_rotation
+        players=[
+            Player("PG",position="PG"),Player("SG",position="SG"),
+            Player("SF",position="SF"),Player("PF",position="PF"),
+            Player("C",position="C"),Player("G",position="PG/SG"),
+            Player("W",position="SG/SF"),Player("F",position="SF/PF"),
+            Player("B",position="PF/C"),Player("U",position="PG/SG/SF/PF/C")]
+        targets=[32,28,27,29,31,22,20,19,18,14]
+        self.assertEqual(sum(targets),240)
+        plan=rotation_from_minutes(players,targets)
+        self.assertTrue(validate_rotation(players,plan))
+        self.assertEqual([sum(i in row for row in plan) for i in range(len(players))],targets)
+        self.assertEqual(plan,rotation_from_minutes(players,targets))
+
+    def test_unfillable_position_targets_rejected(self):
+        from engine_v2_rotations import rotation_from_minutes
+        players=[Player(f"G{i}",position="PG/SG") for i in range(5)]
+        with self.assertRaises(ValueError):
+            rotation_from_minutes(players,[48]*5)
+
+    def test_48_minute_full_starters(self):
+        from engine_v2_rotations import rotation_from_minutes
+        players=lineup("Starter")
+        plan=rotation_from_minutes(players,[48]*5)
+        self.assertEqual(plan,[[0,1,2,3,4]]*48)
+
     def test_exact_minutes_builder_with_specialists(self):
         from engine_v2_rotations import rotation_from_minutes,validate_rotation
         players=[Player(f"P{i}",position=("PG","SG","SF","PF","C")[i%5]) for i in range(10)]
