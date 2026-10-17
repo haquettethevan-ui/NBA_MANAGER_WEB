@@ -5,10 +5,7 @@ Provisional probabilities, deliberately NOT NBA calibrated.
 from engine_v2 import clamp, chance, skill
 
 def free_throws(rng, shooter, attempts, events, *, return_last=False):
-    # Free throw rating not yet in Player; use touch proxy until data migration.
-    touch=(skill(shooter,"mid_range")*.45+skill(shooter,"close_shot")*.30+
-           skill(shooter,"three_point")*.25)
-    p=clamp(.74+(touch-75)*.003, .40,.96)
+    p=clamp(.74+(skill(shooter,"free_throw")-75)*.006, .40,.96)
     results=[chance(rng,p) for _ in range(attempts)]
     made=sum(results)
     events.append(f"rules: {shooter.name} free throws {made}/{attempts}")
@@ -19,6 +16,7 @@ def shooting_foul(rng, shooter, primary, helper, zone, events):
     # Higher defensive IQ reduces unnecessary contact; aggressive rim defense
     # increases the number of contact opportunities.
     contact=sum(.012+(100-skill(d,"defensive_iq"))*.00045 for d in defenders)
+    contact *= clamp(1+(skill(shooter,"draw_foul")-75)*.008,.6,1.4)
     if zone=="rim":
         contact*=2.2
     if chance(rng,clamp(contact,0,.32)):
@@ -30,7 +28,7 @@ def shooting_foul(rng, shooter, primary, helper, zone, events):
 def rebound(rng, offense, defense, events):
     """Return (offense_won, player_index). Rebound battle considers all ten players."""
     offensive=[max(1,skill(p,"offensive_rebound")*.70+
-                   skill(p,"vertical")*.18+skill(p,"strength")*.12) for p in offense]
+                   skill(p,"vertical")*.12+skill(p,"strength")*.10+skill(p,"hustle")*.08) for p in offense]
     defensive=[max(1,skill(p,"defensive_rebound")*.70+
                    skill(p,"vertical")*.18+skill(p,"strength")*.12) for p in defense]
     # Defense has positioning advantage on a normal shot.
