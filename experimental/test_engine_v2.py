@@ -246,6 +246,19 @@ class RotationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             rotation_from_minutes(players,[48]*5)
 
+    def test_real_benchmark_rotation_uses_bench_and_secondary_positions(self):
+        from test_real_games_v2 import rotation_for
+        from engine_v2_rotations import validate_rotation
+        players=[Player(f"P{i}",position=pos) for i,pos in enumerate(
+            ("PG","SG","SF","PF","C","PG/SG","SG/SF","SF/PF","PF/C","PG/SG/SF"))]
+        plan,bench=rotation_for(players)
+        self.assertTrue(validate_rotation(players,plan))
+        minutes=[sum(i in row for row in plan) for i in range(len(players))]
+        self.assertEqual(sum(minutes),240)
+        self.assertTrue(bench)
+        self.assertGreaterEqual(sum(x>0 for x in minutes),8)
+        self.assertLess(max(minutes),48)
+
     def test_48_minute_full_starters(self):
         from engine_v2_rotations import rotation_from_minutes
         players=lineup("Starter")
