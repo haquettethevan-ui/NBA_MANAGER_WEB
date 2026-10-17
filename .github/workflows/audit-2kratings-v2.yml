@@ -8,7 +8,7 @@ on:
       - 'scripts/apply_tyler_nickel_placeholder.py'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   scrape-and-audit:
     runs-on: ubuntu-latest
@@ -26,6 +26,15 @@ jobs:
         run: python scripts/apply_tyler_nickel_placeholder.py
       - name: Audit completeness, duplicates and inconsistencies
         run: python scripts/audit_2kratings_v2.py
+      - name: Persist isolated V2 candidate on experimental branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/players_2k27_v2_candidate.json data/scrape_report.json data/audit_2kratings_v2.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update isolated 2KRatings V2 candidate and audit'
+            git push origin HEAD:experimental/possession-engine-v2
+          fi
       - name: Upload candidate data and audit reports
         if: always()
         uses: actions/upload-artifact@v4
