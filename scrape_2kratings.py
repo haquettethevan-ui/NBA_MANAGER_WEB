@@ -58,6 +58,55 @@ CATEGORY_LABELS = {
     "stamina": ["STAMINA", "ENDURANCE"],
 }
 
+
+# Complete individual player ratings displayed in the 2KRatings Attributes table.
+# Keep these separate from aggregate category scores.
+DETAILED_LABELS = {
+    "three_point": "Three-Point Shot", "mid_range": "Mid-Range Shot",
+    "close_shot": "Close Shot", "free_throw": "Free Throw",
+    "offensive_consistency": "Offensive Consistency", "shot_iq": "Shot IQ",
+    "speed": "Speed", "strength": "Strength", "agility": "Agility",
+    "vertical": "Vertical", "hustle": "Hustle", "stamina": "Stamina",
+    "overall_durability": "Overall Durability", "driving_layup": "Layup",
+    "driving_dunk": "Driving Dunk", "standing_dunk": "Standing Dunk",
+    "post_hook": "Post Hook", "post_fade": "Post Fade",
+    "post_control": "Post Control", "draw_foul": "Draw Foul",
+    "hands": "Hands", "ball_handle": "Ball Handle",
+    "speed_with_ball": "Speed with Ball", "pass_accuracy": "Pass Accuracy",
+    "pass_vision": "Pass Vision", "pass_iq": "Pass IQ",
+    "block": "Block", "steal": "Steal",
+    "pass_perception": "Pass Perception",
+    "interior_defense": "Interior Defense",
+    "perimeter_defense": "Perimeter Defense",
+    "defensive_consistency": "Defensive Consistency",
+    "help_defense_iq": "Help Defense IQ",
+    "defensive_rebound": "Defensive Rebound",
+    "offensive_rebound": "Offensive Rebound",
+    "intangibles": "Intangibles",
+}
+
+def parse_detailed_attributes(text: str) -> Dict[str, Optional[int]]:
+    """Extract explicitly labeled values; never invent absent ratings."""
+    clean = normalize(text)
+    result = {}
+    for key, label in DETAILED_LABELS.items():
+        escaped = re.escape(label)
+        patterns = (
+            rf"(?<![A-Za-z]){escaped}(?![A-Za-z])\\s*[:\\-]?\\s*(\\d{{1,3}})\\b",
+            rf"\\b(\\d{{1,3}})\\s*[:\\-]?\\s*{escaped}(?![A-Za-z])",
+        )
+        value = None
+        for pattern in patterns:
+            for match in re.finditer(pattern, clean, re.I):
+                candidate = int(match.group(1))
+                if 0 <= candidate <= 100:
+                    value = candidate
+                    break
+            if value is not None:
+                break
+        result[key] = value
+    return result
+
 POSITION_RE = re.compile(
     r"\b(PG|SG|SF|PF|C)(?:\s*/\s*(PG|SG|SF|PF|C))?(?:\s*/\s*(PG|SG|SF|PF|C))?\b",
     re.I,
@@ -339,6 +388,7 @@ def enrich_player(player: dict, refresh: bool, delay: float) -> dict:
     record = dict(player)
     record.update({key: None for key in CATEGORY_LABELS})
     record["general_category_status"] = "unverified"
+    record["attributes_status"] = "unverified"
     record["source"] = "2KRatings"
 
     if not player.get("url"):
@@ -352,6 +402,10 @@ def enrich_player(player: dict, refresh: bool, delay: float) -> dict:
         potential_grade, potential = extract_potential(detail_text)
         age = extract_age(detail_text)
         record.update(categories)
+        detailed = parse_detailed_attributes(detail_text)
+        record["attributes"] = detailed
+        record["attributes_missing"] = [k for k, v in detailed.items() if v is None]
+        record["attributes_status"] = "verified" if not record["attributes_missing"] else "partial"
         record["potential_grade"] = potential_grade
         record["potential"] = potential
         record["age"] = age
@@ -435,6 +489,8 @@ def main() -> int:
             "fully_verified": verified,
             "partial_or_unverified": len(final_players) - verified,
             "missing_by_category": missing,
+            "detailed_complete": sum(p.get("attributes_status") == "verified" for p in final_players),
+            "missing_by_attribute": {key: sum(p.get("attributes", {}).get(key) is None for p in final_players) for key in DETAILED_LABELS},
         })
 
     # Preserve the complete 30-team structure. Teams not selected remain unchanged.
@@ -447,6 +503,7 @@ def main() -> int:
             "outside_scoring", "inside_scoring", "athleticism", "playmaking",
             "defense", "rebounding", "stamina", "potential",
         ],
+        "detailed_attribute_keys": list(DETAILED_LABELS),
         "teams_count": len(teams),
         "players": ordered_players,
     }
@@ -473,6 +530,7 @@ def main() -> int:
         "players_with_missing_general_category": len(missing_players),
         "missing_players": missing_players,
         "runs": report,
+        "players_with_complete_detailed_attributes": sum(p.get("attributes_status") == "verified" for roster in ordered_players.values() for p in roster),
     }
     REPORT_FILE.write_text(json.dumps(full_report, ensure_ascii=False, indent=2), encoding="utf-8")
 
