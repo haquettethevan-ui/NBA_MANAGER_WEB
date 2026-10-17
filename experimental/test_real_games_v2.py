@@ -12,39 +12,58 @@ MATCHUPS=(("BOS","NYK"),("OKC","DEN"),("LAL","GSW"),("PHI","SAS"),("CHI","ATL"))
 SEEDS=(11,29,47)
 
 def rotation_for(roster):
-    """Choose a legal starting five and, where available, five positional backups.
+    """Plan staggered pre-match substitutions with real primary/secondary positions.
 
-    Players with the highest composite scoring/defense ratings are preferred.
-    Each chosen player plays 24 minutes if two distinct fives are possible.
-    Otherwise a legal five plays all 48 minutes (explicit benchmark fallback).
+    Evaluate legal five-player lineups every three minutes, preferring stronger
+    players but penalizing accumulated playing time and consecutive shifts.
+    No substitutions occur in response to events during the simulated game.
     """
-    rank=sorted(range(len(roster)),key=lambda i:(
-        -(roster[i].three_point+roster[i].close_shot+roster[i].perimeter_defense+
-          roster[i].interior_defense),i))
-    def find_five(excluded):
-        selected=[None]*5
-        def search(slot,used):
+    eligible=[{p.strip().upper() for p in player.position.replace("-","/").split("/")}
+              for player in roster]
+    quality=[(p.three_point+p.close_shot+p.perimeter_defense+p.interior_defense)/4
+             for p in roster]
+    rank=sorted(range(len(roster)),key=lambda i:(-quality[i],i))
+    # Limit the candidate pool but retain enough depth at each position.
+    pool=set(rank[:12])
+    for pos in POSITIONS:
+        pool.update(i for i in rank if pos in eligible[i]][:3])
+    candidates=[[i for i in rank if i in pool and pos in eligible[i]] for pos in POSITIONS]
+    if any(not slot for slot in candidates):
+        raise ValueError("Missing a legal player for a required position")
+    played=[0]*len(roster)
+    consecutive=[0]*len(roster)
+    rotation=[]
+    for minute in range(0,48,3):
+        # Exhaustive five-position assignment (small roster), with explicit
+        # one-player-per-slot constraint. Score is evaluated for this block.
+        best=None
+        best_score=float("-inf")
+        def assign(slot,lineup,used,score):
+            nonlocal best,best_score
             if slot==5:
-                return True
-            for i in rank:
-                if i in excluded or i in used:
+                key=tuple(lineup)
+                if score>best_score or (score==best_score and (best is None or key<tuple(best))):
+                    best_score=score
+                    best=list(lineup)
+                return
+            for i in candidates[slot]:
+                if i in used:
                     continue
-                positions={x.strip().upper() for x in roster[i].position.replace("-","/").split("/")}
-                if POSITIONS[slot] not in positions:
-                    continue
-                selected[slot]=i
-                if search(slot+1,used|{i}):
-                    return True
-            return False
-        return list(selected) if search(0,set()) else None
-    first=find_five(set())
-    if first is None:
-        raise ValueError("No legal starting five from recorded positions")
-    second=find_five(set(first))
-    rotation=[first[:] for _ in range(48)] if second is None else [
-        (first if minute%12<6 else second)[:] for minute in range(48)]
+                # Penalize heavy minutes and long uninterrupted stints.
+                value=quality[i]*0.12-played[i]*0.75-consecutive[i]*1.8
+                assign(slot+1,lineup+[i],used|{i},score+value)
+        assign(0,[],set(),0.0)
+        if best is None:
+            raise ValueError("No legal five-player lineup")
+        rotation.extend([best[:] for _ in range(3)])
+        active=set(best)
+        for i in range(len(roster)):
+            consecutive[i]=consecutive[i]+3 if i in active else 0
+            if i in active:
+                played[i]+=3
     validate_rotation(roster,rotation)
-    return rotation,second is not None
+    used=sum(m>0 for m in played)
+    return rotation,used>=8
 
 def benchmark(rosters=None,seeds=SEEDS,matchups=MATCHUPS,possessions=100):
     rosters=rosters if rosters is not None else load_rosters()
@@ -61,7 +80,7 @@ def benchmark(rosters=None,seeds=SEEDS,matchups=MATCHUPS,possessions=100):
             assert all(35<=v<=100 for side in r["final_energy"] for v in side)
             assert all(len(trace)==48 for trace in r["on_court_energy_by_minute"])
             results.append({"home":home,"away":away,"seed":seed,
-                "score":r["score"],"home_bench":hbench,"away_bench":abench,
+                "score":r["score"],"home_bench":hbench,"away_bench":abench,\n                "home_players_used":sum(m>0 for m in r["minutes"][0]),\n                "away_players_used":sum(m>0 for m in r["minutes"][1]),\n                "home_max_minutes":max(r["minutes"][0]),\n                "away_max_minutes":max(r["minutes"][1]),
                 "minutes_total":[sum(x) for x in r["minutes"]],
                 "energy_start":[trace[0] for trace in r["on_court_energy_by_minute"]],
                 "energy_end":[trace[-1] for trace in r["on_court_energy_by_minute"]],
