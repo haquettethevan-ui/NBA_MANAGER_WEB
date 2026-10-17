@@ -91,7 +91,7 @@ def parse_detailed_attributes(text: str) -> Dict[str, Optional[int]]:
     result = {}
     # Pages typically show "Label 85"; duplicated attribute summaries can
     # show "85 Label". Detect reverse-only snippets from their first token.
-    reverse_first = bool(re.match(r"^\\d{1,3}\\s", clean))
+    reverse_first = bool(re.match(r"^\d{1,3}\s", clean))
     for key, label in DETAILED_LABELS.items():
         escaped = re.escape(label)
         patterns = (
