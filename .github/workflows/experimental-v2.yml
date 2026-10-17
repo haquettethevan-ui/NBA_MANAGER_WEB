@@ -1,0 +1,29 @@
+name: Experimental V2 Engine Tests
+on:
+  push:
+    branches:
+      - experimental/possession-engine-v2
+    paths:
+      - 'experimental/**'
+      - '.github/workflows/experimental-v2.yml'
+  workflow_dispatch:
+jobs:
+  engine-v2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run V2 unit tests
+        run: python -m unittest discover -s experimental -p 'test_engine_v2.py' -v
+      - name: Run V2 smoke benchmark
+        run: |
+          PYTHONPATH=experimental python - <<'PY'
+          from engine_v2 import Player, simulate_game
+          def team(prefix):
+              return [Player(f'{prefix}{i}', position=['PG','SG','SF','PF','C'][i]) for i in range(5)]
+          a,b=team('A'),team('B')
+          result=simulate_game(a,b,seed=42,possessions_per_team=100)
+          print(result)
+          PY
