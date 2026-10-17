@@ -2,6 +2,8 @@
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scrape_2kratings import DETAILED_LABELS, CATEGORY_LABELS
 
 ROOT = Path(__file__).resolve().parents[1]
