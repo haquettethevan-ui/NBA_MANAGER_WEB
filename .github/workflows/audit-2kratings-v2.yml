@@ -26,6 +26,8 @@ jobs:
         run: python scripts/apply_tyler_nickel_placeholder.py
       - name: Audit completeness, duplicates and inconsistencies
         run: python scripts/audit_2kratings_v2.py
+      - name: Run V2 unit and rotation tests
+        run: python -m unittest discover -s experimental -p 'test_engine_v2.py' -v
       - name: Verify real roster integration and smoke match
         run: |
           PYTHONPATH=experimental python - <<'PY'
