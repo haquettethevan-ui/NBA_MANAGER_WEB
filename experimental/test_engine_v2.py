@@ -200,5 +200,37 @@ class FullRosterIntegrationTests(unittest.TestCase):
             self.assertEqual(team[0].free_throw,65)
             self.assertEqual(team[0].help_defense_iq,65)
 
+class RotationTests(unittest.TestCase):
+    def test_full_48_minute_rotation_and_recovery(self):
+        from engine_v2_rotations import validate_rotation,simulate_rotated_game
+        def roster(prefix):
+            return [Player(f"{prefix}{i}",position=("PG","SG","SF","PF","C")[i]) for i in range(10)]
+        home=roster("H");away=roster("A")
+        schedule=[[i for i in range(5)] if minute<24 else [i for i in range(5,10)]
+                  for minute in range(48)]
+        self.assertTrue(validate_rotation(home,schedule))
+        result=simulate_rotated_game(home,away,schedule,schedule,seed=12,possessions_per_team=48)
+        self.assertEqual(sum(result["minutes"][0]),240)
+        self.assertEqual(result["minutes"][0],tuple([24]*10))
+        self.assertTrue(all(p.energy==100 for p in home+away))
+        self.assertLess(result["on_court_energy_by_minute"][0][23],100)
+        self.assertGreater(result["final_energy"][0][0],result["on_court_energy_by_minute"][0][23])
+        self.assertEqual(result,simulate_rotated_game(home,away,schedule,schedule,seed=12,possessions_per_team=48))
+
+    def test_rotation_rejects_wrong_position_and_minutes(self):
+        from engine_v2_rotations import validate_rotation
+        team=lineup("T")
+        with self.assertRaises(ValueError):
+            validate_rotation(team,[[0,1,2,3,4]]*47)
+        with self.assertRaises(ValueError):
+            validate_rotation(team,[[1,0,2,3,4]]*48)
+
+    def test_exact_minutes_builder_with_specialists(self):
+        from engine_v2_rotations import rotation_from_minutes,validate_rotation
+        players=[Player(f"P{i}",position=("PG","SG","SF","PF","C")[i%5]) for i in range(10)]
+        plan=rotation_from_minutes(players,[24]*10)
+        self.assertTrue(validate_rotation(players,plan))
+        self.assertEqual([sum(i in row for row in plan) for i in range(10)],[24]*10)
+
 if __name__=="__main__":
     unittest.main()
