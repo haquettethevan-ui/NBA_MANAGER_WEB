@@ -46,5 +46,29 @@ class EngineV2Tests(unittest.TestCase):
         with self.assertRaises(ValueError):
             simulate_possession(lineup("A")[:4],lineup("B"))
 
+class OffensiveDefensiveActionTests(unittest.TestCase):
+    def test_action_and_reaction_events(self):
+        from engine_v2_actions import ACTIONS, REACTIONS
+        self.assertTrue({"screen","cut","handoff","post","drive"}.issubset(ACTIONS))
+        self.assertTrue({"contain","help","switch","rotate","steal","block"}.issubset(REACTIONS))
+        events=[]
+        a,b=lineup("A"),lineup("B")
+        for seed in range(1200):
+            result=simulate_possession(a,b,random.Random(seed))
+            events.extend(result.events)
+        text=" | ".join(events)
+        for phrase in ("offense: screen","offense: dribble handoff",
+                       "offense: beat primary defender","defense: help",
+                       "defense: contain drive","defense: switch",
+                       "defense: rotate","offense:"):
+            self.assertIn(phrase,text)
+
+    def test_action_limit(self):
+        a,b=lineup("A"),lineup("B")
+        for seed in range(300):
+            r=simulate_possession(a,b,random.Random(seed),max_actions=2)
+            self.assertIn(r.outcome,("made","miss","turnover"))
+            self.assertLessEqual(sum(e.startswith("offense: ") for e in r.events),3)
+
 if __name__=="__main__":
     unittest.main()
