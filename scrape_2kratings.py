@@ -89,6 +89,9 @@ def parse_detailed_attributes(text: str) -> Dict[str, Optional[int]]:
     """Extract explicitly labeled values; never invent absent ratings."""
     clean = normalize(text)
     result = {}
+    # Pages typically show "Label 85"; duplicated attribute summaries can
+    # show "85 Label". Detect reverse-only snippets from their first token.
+    reverse_first = bool(re.match(r"^\\d{1,3}\\s", clean))
     for key, label in DETAILED_LABELS.items():
         escaped = re.escape(label)
         patterns = (
@@ -96,7 +99,7 @@ def parse_detailed_attributes(text: str) -> Dict[str, Optional[int]]:
             rf"\b(\d{{1,3}})\s*[:\-]?\s*{escaped}(?![A-Za-z])",
         )
         value = None
-        for pattern in patterns:
+        for pattern in (reversed(patterns) if reverse_first else patterns):
             for match in re.finditer(pattern, clean, re.I):
                 candidate = int(match.group(1))
                 if 0 <= candidate <= 100:
