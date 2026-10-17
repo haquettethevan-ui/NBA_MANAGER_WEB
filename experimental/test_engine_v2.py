@@ -91,5 +91,25 @@ class RulesTests(unittest.TestCase):
             found["rebound"] |= r.offensive_rebounds>0
         self.assertTrue(all(found.values()))
 
+class AdditionalRulesTests(unittest.TestCase):
+    def test_free_throw_last_attempt(self):
+        from engine_v2_rules import free_throws
+        p=Player("shooter")
+        for seed in range(100):
+            made,last=free_throws(random.Random(seed),p,3,[],return_last=True)
+            self.assertTrue(0<=made<=3)
+            self.assertIsInstance(last,bool)
+
+    def test_offensive_foul_and_last_ft_rebound_events(self):
+        a,b=lineup("A"),lineup("B")
+        events=[]
+        for seed in range(2500):
+            r=simulate_possession(a,b,random.Random(seed))
+            events.extend(r.events)
+            self.assertLessEqual(r.free_throws_made,r.free_throws_attempted)
+            self.assertEqual(r.offensive_fouls, sum("rules: offensive foul" in e for e in r.events))
+        self.assertTrue(any("rules: offensive foul" in e for e in events))
+        self.assertTrue(any("rules: shot clock reset to 14 after missed free throw" in e for e in events))
+
 if __name__=="__main__":
     unittest.main()
