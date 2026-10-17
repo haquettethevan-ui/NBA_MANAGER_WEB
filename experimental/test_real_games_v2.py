@@ -71,7 +71,9 @@ def rotation_for(roster):
                 if i in used:
                     continue
                 # Penalize heavy minutes and long uninterrupted stints.
-                value=(quality[i]*0.12 + (target_by_player[i]-played[i])*2.0\n                       -consecutive[i]*0.55\n                       -max(0,played[i]+3-target_by_player[i])*25)
+                value=(quality[i]*0.12 + (target_by_player[i]-played[i])*2.0
+                       -consecutive[i]*0.55
+                       -max(0,played[i]+3-target_by_player[i])*25)
                 assign(slot+1,lineup+[i],used|{i},score+value)
         assign(0,[],set(),0.0)
         if best is None:
