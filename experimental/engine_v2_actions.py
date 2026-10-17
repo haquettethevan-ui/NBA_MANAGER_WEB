@@ -215,7 +215,7 @@ def simulate_possession(offense,defense,rng=None,memory=None,offense_id="home",
             break
         p=offense[holder]
         defender=defense[defender_for(state,holder)]
-        key=(offense_id,holder)
+        key=(offense_id,p.name)
         pressure=_pressure(state,offense,defense,holder)
         action=_pick_action(rng,p,pressure,state,ot,memory,key)
         memory.actions[(key,action)]+=1
