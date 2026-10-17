@@ -8,6 +8,8 @@ on:
       - 'scripts/apply_tyler_nickel_placeholder.py'
       - 'scripts/restore_verified_v2_attributes.py'
       - 'experimental/test_real_games_v2.py'
+      - 'experimental/engine_v2_rosters.py'
+      - 'experimental/test_engine_v2.py'
   workflow_dispatch:
 permissions:
   contents: write
