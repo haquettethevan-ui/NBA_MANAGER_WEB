@@ -13,6 +13,11 @@ DIRECT = (
     "pass_accuracy", "shot_iq", "speed", "strength", "vertical",
     "perimeter_defense", "interior_defense", "offensive_rebound",
     "defensive_rebound", "stamina",
+    "free_throw", "offensive_consistency", "agility", "hustle",
+    "overall_durability", "standing_dunk", "post_hook", "post_fade",
+    "draw_foul", "hands", "speed_with_ball", "pass_vision", "block",
+    "steal", "pass_perception", "defensive_consistency",
+    "help_defense_iq", "intangibles",
 )
 # The current V2 Player schema names these differently from 2KRatings.
 PROXIES = {"acceleration": "speed_with_ball", "defensive_iq": "help_defense_iq"}
