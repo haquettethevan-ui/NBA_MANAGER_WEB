@@ -26,6 +26,20 @@ jobs:
         run: python scripts/apply_tyler_nickel_placeholder.py
       - name: Audit completeness, duplicates and inconsistencies
         run: python scripts/audit_2kratings_v2.py
+      - name: Verify real roster integration and smoke match
+        run: |
+          PYTHONPATH=experimental python - <<'PY'
+          from engine_v2_rosters import load_rosters
+          from engine_v2 import simulate_game
+          rosters = load_rosters()
+          assert len(rosters) == 30, f"Expected 30 teams, got {len(rosters)}"
+          assert sum(map(len, rosters.values())) >= 500
+          for team, players in rosters.items():
+              assert len(players) >= 5, team
+          score = simulate_game(rosters["ATL"][:5], rosters["BOS"][:5], seed=17, possessions_per_team=12)["score"]
+          assert all(isinstance(n, int) and n >= 0 for n in score)
+          print("V2 real-player import verified:", sum(map(len, rosters.values())), "players, sample score", score)
+          PY
       - name: Persist isolated V2 candidate on experimental branch
         run: |
           git config user.name 'github-actions[bot]'
