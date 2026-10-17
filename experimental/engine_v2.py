@@ -93,9 +93,12 @@ class GameMemory:
     actions: Counter = field(default_factory=Counter)
     counters: Counter = field(default_factory=Counter)
 
+def skill_raw(p, attr):
+    return getattr(p, attr)
+
 def skill(p, attr):
     # Fatigue reduces athletic performance first, then execution and decisions.
-    loss = max(0, 80 - p.energy) / 35
+    loss = max(0, 80 - p.energy) / 35 * (1 - (skill_raw(p,"overall_durability") - 75) * .003)
     factor = 1 - loss * (.15 if attr in ("speed","acceleration","speed_with_ball","agility","vertical") else .095)
     return getattr(p, attr) * factor
 
@@ -158,7 +161,14 @@ def resolve_shot(rng, p, defender, zone, delay, events, anticipated=False):
     else:
         rating = .42*skill(p,"close_shot")+.40*skill(p,"driving_layup") + .18*skill(p,"driving_dunk")
         base=.60
-    probability = clamp(base + (rating-75)*.0042 - (pressure-40)*.0034 + (skill(p,"offensive_consistency")-75)*.00045, .07, .88)
+    # Post hooks/fades, standing dunks and finishing touch matter at the rim.
+    if zone=="rim":
+        rating = (.36*skill(p,"close_shot")+.30*skill(p,"driving_layup")
+                  +.12*skill(p,"driving_dunk")+.08*skill(p,"standing_dunk")
+                  +.07*skill(p,"post_hook")+.07*skill(p,"post_fade"))
+    composure = .6*skill(p,"offensive_consistency")+.4*skill(p,"intangibles")
+    probability = clamp(base + (rating-75)*.0042 - (pressure-40)*.0034
+                        + (composure-75)*.00045, .07, .88)
     made = chance(rng,probability)
     events.append(f"{p.name} {zone} pressure={pressure:.0f} p={probability:.3f} made={made}")
     return made, 3 if zone=="three" else 2
