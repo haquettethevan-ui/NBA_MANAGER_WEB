@@ -204,7 +204,7 @@ class RotationTests(unittest.TestCase):
     def test_full_48_minute_rotation_and_recovery(self):
         from engine_v2_rotations import validate_rotation,simulate_rotated_game
         def roster(prefix):
-            return [Player(f"{prefix}{i}",position=("PG","SG","SF","PF","C")[i]) for i in range(10)]
+            return [Player(f"{prefix}{i}",position=("PG","SG","SF","PF","C")[i%5]) for i in range(10)]
         home=roster("H");away=roster("A")
         schedule=[[i for i in range(5)] if minute<24 else [i for i in range(5,10)]
                   for minute in range(48)]
