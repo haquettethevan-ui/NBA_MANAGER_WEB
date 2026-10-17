@@ -39,6 +39,25 @@ class Player:
     offensive_rebound: float = 75
     defensive_rebound: float = 75
     stamina: float = 75
+    # Remaining 2KRatings detailed attributes (all 36 represented).
+    free_throw: float = 75
+    offensive_consistency: float = 75
+    agility: float = 75
+    hustle: float = 75
+    overall_durability: float = 75
+    standing_dunk: float = 75
+    post_hook: float = 75
+    post_fade: float = 75
+    draw_foul: float = 75
+    hands: float = 75
+    speed_with_ball: float = 75
+    pass_vision: float = 75
+    block: float = 75
+    steal: float = 75
+    pass_perception: float = 75
+    defensive_consistency: float = 75
+    help_defense_iq: float = 75
+    intangibles: float = 75
     energy: float = 100
 
     def __post_init__(self):
@@ -77,7 +96,7 @@ class GameMemory:
 def skill(p, attr):
     # Fatigue reduces athletic performance first, then execution and decisions.
     loss = max(0, 80 - p.energy) / 35
-    factor = 1 - loss * (.15 if attr in ("speed","acceleration","vertical") else .095)
+    factor = 1 - loss * (.15 if attr in ("speed","acceleration","speed_with_ball","agility","vertical") else .095)
     return getattr(p, attr) * factor
 
 def weighted_choice(rng, items, weights):
@@ -85,7 +104,7 @@ def weighted_choice(rng, items, weights):
 
 def select_creator(rng, team):
     return weighted_choice(rng, list(range(5)), [
-        math.exp((.30*skill(p,"ball_handle")+.35*skill(p,"pass_iq")
+        math.exp((.26*skill(p,"ball_handle")+.27*skill(p,"pass_iq")+.12*skill(p,"pass_vision")
                   +.20*skill(p,"shot_iq")+.15*skill(p,"pass_accuracy")-75)/12)
         for p in team])
 
@@ -115,12 +134,12 @@ def defender_pressure(attacker, defender, zone, delay, anticipated=False):
                skill(defender,"interior_defense") if zone=="rim" else
                .5*(skill(defender,"perimeter_defense")+skill(defender,"interior_defense")))
     fatigue = (100-defender.energy)*.19
-    return clamp(base + (quality-75)*.44 + (skill(defender,"defensive_iq")-75)*.14
+    return clamp(base + (quality-75)*.44 + (skill(defender,"defensive_iq")-75)*.08 + (skill(defender,"defensive_consistency")-75)*.06
                  - delay*.68 - fatigue + (11 if anticipated else 0))
 
 def execute_pass(rng, passer, target, pressure, delay, events):
     difficulty = pressure*.30 + max(0, 65-skill(passer,"pass_iq"))*.15
-    execution = .985 - difficulty*.0024 + (skill(passer,"pass_accuracy")-75)*.0021
+    execution = .985 - difficulty*.0024 + (skill(passer,"pass_accuracy")-75)*.0021 + (skill(target,"hands")-75)*.00055
     if not chance(rng,execution):
         events.append("pass intercepted or lost")
         return False, 0
@@ -139,7 +158,7 @@ def resolve_shot(rng, p, defender, zone, delay, events, anticipated=False):
     else:
         rating = .42*skill(p,"close_shot")+.40*skill(p,"driving_layup") + .18*skill(p,"driving_dunk")
         base=.60
-    probability = clamp(base + (rating-75)*.0042 - (pressure-40)*.0034, .07, .88)
+    probability = clamp(base + (rating-75)*.0042 - (pressure-40)*.0034 + (skill(p,"offensive_consistency")-75)*.00045, .07, .88)
     made = chance(rng,probability)
     events.append(f"{p.name} {zone} pressure={pressure:.0f} p={probability:.3f} made={made}")
     return made, 3 if zone=="three" else 2
