@@ -31,8 +31,14 @@ def restore(previous, fresh):
                 continue
             p["attributes"]={**old["attributes"],**{k:v for k,v in attrs.items() if v is not None}}
             p["attributes_missing"]=[k for k in DETAILED_LABELS if p["attributes"].get(k) is None]
-            p["attributes_status"]="restored_from_previous_verified"\n            p["rating_provenance"]="Prior verified 2KRatings snapshot; values may be older than current scrape"
-            p["detail_error"]=None\n            for key in ("outside_scoring","inside_scoring","athleticism","playmaking","defense","rebounding","stamina"):\n                if p.get(key) is None and old.get(key) is not None:\n                    p[key]=old[key]\n            if all(p.get(key) is not None for key in ("outside_scoring","inside_scoring","athleticism","playmaking","defense","rebounding","stamina")):\n                p["general_category_status"]="restored_from_previous_verified"
+            p["attributes_status"]="restored_from_previous_verified"
+            p["rating_provenance"]="Prior verified 2KRatings snapshot; values may be older than current scrape"
+            p["detail_error"]=None
+            for key in ("outside_scoring","inside_scoring","athleticism","playmaking","defense","rebounding","stamina"):
+                if p.get(key) is None and old.get(key) is not None:
+                    p[key]=old[key]
+            if all(p.get(key) is not None for key in ("outside_scoring","inside_scoring","athleticism","playmaking","defense","rebounding","stamina")):
+                p["general_category_status"]="restored_from_previous_verified"
             p["attributes_restored_keys"]=missing
             restored.append({"team":team,"name":p.get("name"),"count":len(missing)})
     return restored
