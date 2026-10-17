@@ -92,8 +92,8 @@ def parse_detailed_attributes(text: str) -> Dict[str, Optional[int]]:
     for key, label in DETAILED_LABELS.items():
         escaped = re.escape(label)
         patterns = (
-            rf"(?<![A-Za-z]){escaped}(?![A-Za-z])\\s*[:\\-]?\\s*(\\d{{1,3}})\\b",
-            rf"\\b(\\d{{1,3}})\\s*[:\\-]?\\s*{escaped}(?![A-Za-z])",
+            rf"(?<![A-Za-z]){escaped}(?![A-Za-z])\s*[:\-]?\s*(\d{{1,3}})\b",
+            rf"\b(\d{{1,3}})\s*[:\-]?\s*{escaped}(?![A-Za-z])",
         )
         value = None
         for pattern in patterns:
