@@ -38,7 +38,7 @@ def load_rosters(path=DATA_FILE):
             if missing:
                 raise ValueError(f"{team} / {record.get('name')}: missing {missing}")
             converted.append(Player(name=record["name"],
-                position=(record.get("position") or "SG").split("/")[0],
+                position=(record.get("position") or "SG"),
                 **mapping))
         rosters[team] = converted
     return rosters
