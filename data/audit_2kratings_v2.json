@@ -1,0 +1,136 @@
+{
+  "expected_teams": 30,
+  "teams_present": 30,
+  "missing_teams": [],
+  "unexpected_teams": [],
+  "totals": {
+    "players": 528,
+    "complete_detailed": 528
+  },
+  "by_team": {
+    "ATL": {
+      "players": 18,
+      "complete_detailed": 18
+    },
+    "BOS": {
+      "players": 16,
+      "complete_detailed": 16
+    },
+    "BKN": {
+      "players": 18,
+      "complete_detailed": 18
+    },
+    "CHA": {
+      "players": 19,
+      "complete_detailed": 19
+    },
+    "CHI": {
+      "players": 17,
+      "complete_detailed": 17
+    },
+    "CLE": {
+      "players": 17,
+      "complete_detailed": 17
+    },
+    "DAL": {
+      "players": 19,
+      "complete_detailed": 19
+    },
+    "DEN": {
+      "players": 17,
+      "complete_detailed": 17
+    },
+    "DET": {
+      "players": 18,
+      "complete_detailed": 18
+    },
+    "GSW": {
+      "players": 19,
+      "complete_detailed": 19
+    },
+    "HOU": {
+      "players": 18,
+      "complete_detailed": 18
+    },
+    "IND": {
+      "players": 17,
+      "complete_detailed": 17
+    },
+    "LAC": {
+      "players": 17,
+      "complete_detailed": 17
+    },
+    "LAL": {
+      "players": 19,
+      "complete_detailed": 19
+    },
+    "MEM": {
+      "players": 20,
+      "complete_detailed": 20
+    },
+    "MIA": {
+      "players": 18,
+      "complete_detailed": 18
+    },
+    "MIL": {
+      "players": 19,
+      "complete_detailed": 19
+    },
+    "MIN": {
+      "players": 17,
+      "complete_detailed": 17
+    },
+    "NOP": {
+      "players": 20,
+      "complete_detailed": 20
+    },
+    "NYK": {
+      "players": 16,
+      "complete_detailed": 16
+    },
+    "OKC": {
+      "players": 17,
+      "complete_detailed": 17
+    },
+    "ORL": {
+      "players": 18,
+      "complete_detailed": 18
+    },
+    "PHI": {
+      "players": 16,
+      "complete_detailed": 16
+    },
+    "PHX": {
+      "players": 18,
+      "complete_detailed": 18
+    },
+    "POR": {
+      "players": 18,
+      "complete_detailed": 18
+    },
+    "SAC": {
+      "players": 16,
+      "complete_detailed": 16
+    },
+    "SAS": {
+      "players": 17,
+      "complete_detailed": 17
+    },
+    "TOR": {
+      "players": 15,
+      "complete_detailed": 15
+    },
+    "UTA": {
+      "players": 18,
+      "complete_detailed": 18
+    },
+    "WAS": {
+      "players": 16,
+      "complete_detailed": 16
+    }
+  },
+  "players_with_missing_values": [],
+  "duplicates": [],
+  "inconsistencies": [],
+  "complete": true
+}
