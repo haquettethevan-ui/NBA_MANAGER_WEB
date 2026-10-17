@@ -4,6 +4,7 @@ Abstract spacing, no player coordinates. This module is imported by engine_v2
 after Player, GameMemory and utility functions have been defined.
 """
 from dataclasses import dataclass, field
+from engine_v2_rules import shooting_foul, free_throws, rebound
 import math
 from engine_v2 import (
     clamp, chance, skill, weighted_choice, select_creator, defender_pressure,
@@ -129,21 +130,61 @@ def _shot(rng,offense,defense,state,holder,zone,result,memory,key):
     defender=defense[defender_for(state,holder)]
     anticipated=_anticipation(memory,key,zone,defender)>.15
     delay=state.delays[holder]+(state.advantage if zone=="rim" else 0)
-    # Reuse the shared shot model, with actual helper contest accounted for.
     made,points=resolve_shot(rng,attacker,defender,zone,clamp(delay),result.events,anticipated)
-    if zone=="rim" and state.helper is not None:
-        helper=defense[state.helper]
+    helper=defense[state.helper] if state.helper is not None and zone=="rim" else None
+    if helper is not None:
         block_p=clamp(.035+(skill(helper,"interior_defense")-75)*.0015
                       +(skill(helper,"vertical")-75)*.0007,0,.14)
         if made and chance(rng,block_p):
             made=False
             result.events.append(f"defense: block by {helper.name}")
     result.shooter=attacker.name
-    result.outcome="made" if made else "miss"
-    result.points=points if made else 0
-    if made and state.last_passer and state.last_passer!=attacker.name:
-        result.assists=1
-        result.passer=state.last_passer
+    # Foul is resolved independently of shot success (and-one possible).
+    foul=shooting_foul(rng,attacker,defender,helper,zone,result.events)
+    if foul:
+        result.fouls_drawn+=1
+        result.fouled_by=foul
+        attempts=1 if made else (3 if zone=="three" else 2)
+        result.free_throws_attempted+=attempts
+        ft=free_throws(rng,attacker,attempts,result.events)
+        result.free_throws_made+=ft
+        result.points=(points if made else 0)+ft
+        result.outcome="made" if made else "foul"
+        if made and state.last_passer and state.last_passer!=attacker.name:
+            result.assists=1
+            result.passer=state.last_passer
+        # Missed last free throw rebounds deferred to complete match rules.
+        return result
+    if made:
+        result.points=points
+        result.outcome="made"
+        if state.last_passer and state.last_passer!=attacker.name:
+            result.assists=1
+            result.passer=state.last_passer
+        return result
+    # A missed field goal is not a completed possession until rebound.
+    for second_chance in range(2):
+        offensive,boarder=rebound(rng,offense,defense,result.events)
+        if not offensive:
+            result.outcome="miss"
+            return result
+        result.offensive_rebounds+=1
+        rebounder=offense[boarder]
+        # Reset shot clock to 14 on an offensive rebound.
+        state.possession_clock=14
+        state.last_passer=None
+        result.events.append("rules: shot clock reset to 14")
+        # Quick putback vs defense; no direct bonus to field goal rating.
+        defender2=defense[defender_for(state,boarder)]
+        putback,pts=resolve_shot(rng,rebounder,defender2,"rim",20,result.events)
+        result.shooter=rebounder.name
+        if putback:
+            result.points=pts
+            result.outcome="made"
+            return result
+    # Cap consecutive putbacks to keep the prototype bounded.
+    rebound(rng,offense,defense,result.events)
+    result.outcome="miss"
     return result
 
 def simulate_possession(offense,defense,rng=None,memory=None,offense_id="home",
