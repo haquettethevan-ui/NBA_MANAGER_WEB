@@ -4,14 +4,15 @@ Provisional probabilities, deliberately NOT NBA calibrated.
 """
 from engine_v2 import clamp, chance, skill
 
-def free_throws(rng, shooter, attempts, events):
+def free_throws(rng, shooter, attempts, events, *, return_last=False):
     # Free throw rating not yet in Player; use touch proxy until data migration.
     touch=(skill(shooter,"mid_range")*.45+skill(shooter,"close_shot")*.30+
            skill(shooter,"three_point")*.25)
     p=clamp(.74+(touch-75)*.003, .40,.96)
-    made=sum(chance(rng,p) for _ in range(attempts))
+    results=[chance(rng,p) for _ in range(attempts)]
+    made=sum(results)
     events.append(f"rules: {shooter.name} free throws {made}/{attempts}")
-    return made
+    return (made, results[-1] if results else True) if return_last else made
 
 def shooting_foul(rng, shooter, primary, helper, zone, events):
     defenders=[primary]+([helper] if helper is not None else [])
@@ -41,3 +42,17 @@ def rebound(rng, offense, defense, events):
     events.append(f"rules: {'offensive' if is_off else 'defensive'} rebound by "
                   f"{(offense if is_off else defense)[index].name}")
     return is_off,index
+
+def offensive_foul(rng, attacker, defender, action, events):
+    """Charging and illegal screens; ball changes hands without free throws."""
+    if action not in ("drive","screen","post"):
+        return False
+    base={"drive":.017,"screen":.024,"post":.014}[action]
+    control=(skill(attacker,"ball_handle") if action=="drive" else
+             skill(attacker,"strength") if action=="post" else skill(attacker,"shot_iq"))
+    p=clamp(base+(skill(defender,"defensive_iq")-75)*.00035
+            -(control-75)*.0002,0,.10)
+    if chance(rng,p):
+        events.append(f"rules: offensive foul ({action}) by {attacker.name}")
+        return True
+    return False
