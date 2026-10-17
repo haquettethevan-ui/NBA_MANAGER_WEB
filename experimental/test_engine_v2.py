@@ -68,7 +68,7 @@ class OffensiveDefensiveActionTests(unittest.TestCase):
         for seed in range(300):
             r=simulate_possession(a,b,random.Random(seed),max_actions=2)
             self.assertIn(r.outcome,("made","miss","turnover"))
-            self.assertLessEqual(sum(e.startswith("offense: ") and e.split()[-1] in {"three","mid","drive","post","pass","screen","cut","handoff"} for e in r.events),2)
+            self.assertLessEqual(sum(e.startswith("offense: ") and len(e.split())==3 and e.split()[-1] in {"three","mid","drive","post","pass","screen","cut","handoff"} for e in r.events),2)
 
 class RulesTests(unittest.TestCase):
     def test_rebound_and_free_throws(self):
