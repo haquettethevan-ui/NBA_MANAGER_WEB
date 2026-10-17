@@ -6,6 +6,7 @@ on:
       - '.github/workflows/audit-2kratings-v2.yml'
       - 'scripts/audit_2kratings_v2.py'
       - 'scripts/apply_tyler_nickel_placeholder.py'
+      - 'scripts/restore_verified_v2_attributes.py'
   workflow_dispatch:
 permissions:
   contents: write
@@ -18,10 +19,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Preserve last verified candidate before scraping
+        run: |
+          if test -f data/players_2k27_v2_candidate.json; then
+            cp data/players_2k27_v2_candidate.json data/players_2k27_v2_baseline.json
+          fi
       - name: Scrape all NBA rosters to isolated output
         env:
           NBA_MANAGER_SCRAPE_OUTPUT: data/players_2k27_v2_candidate.json
         run: python scrape_2kratings.py --refresh --workers 2 --delay 1.0
+      - name: Restore incomplete ratings from prior verified snapshot
+        run: python scripts/restore_verified_v2_attributes.py
       - name: Apply approved Tyler Nickel placeholder
         run: python scripts/apply_tyler_nickel_placeholder.py
       - name: Audit completeness, duplicates and inconsistencies
