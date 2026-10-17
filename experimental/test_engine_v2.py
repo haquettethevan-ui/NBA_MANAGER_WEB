@@ -129,6 +129,31 @@ class DetailedAttributesTests(unittest.TestCase):
         b=sum(free_throws(random.Random(i),high,2,[]) for i in range(1000))
         self.assertGreater(b,a)
 
+    def test_durability_reduces_fatigue_penalty(self):
+        from engine_v2 import skill
+        low=Player("low",overall_durability=40,energy=45,speed=80)
+        high=Player("high",overall_durability=95,energy=45,speed=80)
+        self.assertGreater(skill(high,"speed"),skill(low,"speed"))
+
+    def test_shot_consistency_and_intangibles_affect_shots(self):
+        from engine_v2 import resolve_shot
+        d=Player("defender")
+        low=Player("low",offensive_consistency=40,intangibles=40)
+        high=Player("high",offensive_consistency=95,intangibles=95)
+        a=sum(resolve_shot(random.Random(i),low,d,"three",0,[])[0] for i in range(1500))
+        b=sum(resolve_shot(random.Random(i),high,d,"three",0,[])[0] for i in range(1500))
+        self.assertGreater(b,a)
+
+    def test_post_finishing_ratings_affect_rim(self):
+        from engine_v2 import resolve_shot
+        d=Player("defender")
+        fields=dict(standing_dunk=40,post_hook=40,post_fade=40)
+        low=Player("low",**fields)
+        high=Player("high",standing_dunk=95,post_hook=95,post_fade=95)
+        a=sum(resolve_shot(random.Random(i),low,d,"rim",0,[])[0] for i in range(1500))
+        b=sum(resolve_shot(random.Random(i),high,d,"rim",0,[])[0] for i in range(1500))
+        self.assertGreater(b,a)
+
     def test_loader_rejects_missing_detailed_attributes(self):
         import json
         import tempfile
