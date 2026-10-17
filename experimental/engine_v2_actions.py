@@ -4,7 +4,7 @@ Abstract spacing, no player coordinates. This module is imported by engine_v2
 after Player, GameMemory and utility functions have been defined.
 """
 from dataclasses import dataclass, field
-from engine_v2_rules import shooting_foul, free_throws, rebound
+from engine_v2_rules import shooting_foul, free_throws, rebound, offensive_foul
 import math
 from engine_v2 import (
     clamp, chance, skill, weighted_choice, select_creator, defender_pressure,
@@ -146,14 +146,25 @@ def _shot(rng,offense,defense,state,holder,zone,result,memory,key):
         result.fouled_by=foul
         attempts=1 if made else (3 if zone=="three" else 2)
         result.free_throws_attempted+=attempts
-        ft=free_throws(rng,attacker,attempts,result.events)
+        ft,last_made=free_throws(rng,attacker,attempts,result.events,return_last=True)
         result.free_throws_made+=ft
         result.points=(points if made else 0)+ft
         result.outcome="made" if made else "foul"
         if made and state.last_passer and state.last_passer!=attacker.name:
             result.assists=1
             result.passer=state.last_passer
-        # Missed last free throw rebounds deferred to complete match rules.
+        if not last_made:
+            offensive,boarder=rebound(rng,offense,defense,result.events)
+            if offensive:
+                result.offensive_rebounds+=1
+                state.possession_clock=14
+                result.events.append("rules: shot clock reset to 14 after missed free throw")
+                putback,pts=resolve_shot(rng,offense[boarder],
+                    defense[defender_for(state,boarder)],"rim",20,result.events)
+                result.shooter=offense[boarder].name
+                if putback:
+                    result.points+=pts
+                    result.outcome="made"
         return result
     if made:
         result.points=points
@@ -210,6 +221,14 @@ def simulate_possession(offense,defense,rng=None,memory=None,offense_id="home",
         memory.actions[(key,action)]+=1
         result.events.append(f"offense: {p.name} {action}")
         _decay(state,defense,2)
+        if state.possession_clock<=0:
+            result.events.append("offense: shot clock violation")
+            result.turnovers=1;result.outcome="turnover";return result
+        if offensive_foul(rng,p,defender,action,result.events):
+            result.turnovers=1
+            result.offensive_fouls+=1
+            result.outcome="turnover"
+            return result
         if _steal(rng,defender,p,pressure,result.events):
             result.turnovers=1;result.outcome="turnover";return result
         if action in ("three","mid"):
