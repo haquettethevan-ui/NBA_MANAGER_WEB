@@ -111,5 +111,34 @@ class AdditionalRulesTests(unittest.TestCase):
         self.assertTrue(any("rules: offensive foul" in e for e in events))
         self.assertTrue(any("rules: shot clock reset to 14 after missed free throw" in e for e in events))
 
+class DetailedAttributesTests(unittest.TestCase):
+    def test_all_2kratings_fields_are_supported(self):
+        import sys
+        from pathlib import Path
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+        from scrape_2kratings import DETAILED_LABELS
+        p=Player("full", **{key:65 for key in DETAILED_LABELS})
+        self.assertEqual(len(DETAILED_LABELS),36)
+        self.assertTrue(all(getattr(p,key)==65 for key in DETAILED_LABELS))
+
+    def test_real_free_throw_rating_changes_outcomes(self):
+        from engine_v2_rules import free_throws
+        low=Player("low",free_throw=40)
+        high=Player("high",free_throw=99)
+        a=sum(free_throws(random.Random(i),low,2,[]) for i in range(1000))
+        b=sum(free_throws(random.Random(i),high,2,[]) for i in range(1000))
+        self.assertGreater(b,a)
+
+    def test_loader_rejects_missing_detailed_attributes(self):
+        import json
+        import tempfile
+        from pathlib import Path
+        from engine_v2_rosters import load_rosters
+        with tempfile.TemporaryDirectory() as tmp:
+            p=Path(tmp)/"rosters.json"
+            p.write_text(json.dumps({"players":{"ATL":[{"name":"Incomplete","attributes":{"three_point":80}}]}}))
+            with self.assertRaises(ValueError):
+                load_rosters(p)
+
 if __name__=="__main__":
     unittest.main()
