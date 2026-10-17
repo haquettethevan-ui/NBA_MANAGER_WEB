@@ -1,0 +1,50 @@
+name: Live 2KRatings Detailed Import
+on:
+  push:
+    branches:
+      - experimental/possession-engine-v2
+    paths:
+      - '.github/workflows/experimental-ratings-import.yml'
+  workflow_dispatch:
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Scrape real player profiles to temporary output
+        env:
+          NBA_MANAGER_SCRAPE_OUTPUT: data/players_2k27_detailed_staging.json
+        run: |
+          python scrape_2kratings.py --refresh --workers 4 --delay 0.6
+      - name: Summarize attribute coverage
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("data/players_2k27_detailed_staging.json")
+          if not p.exists():
+              print("No output JSON created")
+          else:
+              data=json.loads(p.read_text())
+              players=[x for team in data.get("players",{}).values() for x in team]
+              keys=data.get("detailed_attribute_keys",[])
+              print("Players:",len(players),"Teams with players:",sum(bool(v) for v in data.get("players",{}).values()))
+              print("Complete detail profiles:",sum(x.get("attributes_status")=="verified" for x in players))
+              for k in keys:
+                  print(k,sum(x.get("attributes",{}).get(k) is not None for x in players),"/",len(players))
+          PY
+      - name: Upload staging JSON and report (never commit or deploy)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nba-2kratings-detailed-staging
+          path: |
+            data/players_2k27_detailed_staging.json
+            data/scrape_report.json
+          if-no-files-found: warn
+          retention-days: 7
