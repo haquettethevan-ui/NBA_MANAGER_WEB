@@ -30,7 +30,7 @@ def rotation_from_minutes(roster, minutes):
     """Build a valid fixed rotation from exact player minute targets.
 
     Player minutes are an integer list totalling 240. A player may occupy only
-    eligible positions. Greedy per-minute assignments are backtracked when needed.
+    eligible positions. A max-flow allocation is decomposed into exact one-minute matchings.
     """
     if len(minutes) != len(roster) or any(type(m) is not int or m < 0 or m > 48 for m in minutes):
         raise ValueError("Provide one integer target in [0,48] per player")
@@ -78,19 +78,43 @@ def rotation_from_minutes(roster, minutes):
         flow+=bottleneck
     if flow!=240:
         raise ValueError("Minute targets cannot cover all five positions")
-    # Each position has 48 assigned minutes. Construct a minute-by-minute
-    # schedule without placing one player twice in the same minute.
+    # Decompose the player-position minute multigraph into 48 matchings.
+    # Pad with dummy (bench) slots to make an n x n 48-regular bipartite
+    # multigraph. Each matching is one minute: no player can be duplicated.
     allocations=[[capacity[n+j,i] if (n+j,i) in capacity else 0 for j in range(5)] for i in range(n)]
+    if n > 5:
+        spare=[48-sum(row) for row in allocations]
+        for j in range(5,n):
+            needed=48
+            for i in range(n):
+                take=min(needed,spare[i])
+                allocations[i].append(take)
+                spare[i]-=take
+                needed-=take
+            if needed:
+                raise AssertionError("Cannot fill bench slots")
     rotation=[]
     for minute in range(48):
-        used=set(); lineup=[]
-        for slot in range(5):
-            candidates=[i for i in range(n) if i not in used and allocations[i][slot]>0]
-            if not candidates:
-                raise ValueError("Minute allocation cannot form distinct five-player lineups")
-            i=max(candidates,key=lambda k:(allocations[k][slot],-k))
-            lineup.append(i);used.add(i);allocations[i][slot]-=1
-        rotation.append(lineup)
+        # Bipartite augmenting paths find a perfect matching. Greedy selection
+        # alone fails for many perfectly feasible multi-position rotations.
+        assigned=[-1]*n  # slot -> player
+        def augment(player,seen):
+            for slot in sorted(range(n),key=lambda j:(j>=5,-allocations[player][j],j)):
+                if allocations[player][slot]<=0 or slot in seen:
+                    continue
+                seen.add(slot)
+                if assigned[slot]<0 or augment(assigned[slot],seen):
+                    assigned[slot]=player
+                    return True
+            return False
+        for i in sorted(range(n),key=lambda k:(-sum(allocations[k][:5]),k)):
+            if not augment(i,set()):
+                raise AssertionError(f"No complete matching at minute {minute}")
+        rotation.append(assigned[:5])
+        for slot,player in enumerate(assigned):
+            allocations[player][slot]-=1
+    if any(any(value for value in row) for row in allocations):
+        raise AssertionError("Rotation did not consume all allocated minutes")
     validate_rotation(roster,rotation)
     return rotation
 
