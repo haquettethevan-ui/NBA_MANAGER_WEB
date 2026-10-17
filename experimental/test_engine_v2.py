@@ -68,7 +68,7 @@ class OffensiveDefensiveActionTests(unittest.TestCase):
         for seed in range(300):
             r=simulate_possession(a,b,random.Random(seed),max_actions=2)
             self.assertIn(r.outcome,("made","miss","turnover"))
-            self.assertLessEqual(sum(e.startswith("offense: ") for e in r.events),3)
+            self.assertLessEqual(sum(e.startswith("offense: ") and e.split()[-1] in {"three","mid","drive","post","pass","screen","cut","handoff"} for e in r.events),2)
 
 if __name__=="__main__":
     unittest.main()
