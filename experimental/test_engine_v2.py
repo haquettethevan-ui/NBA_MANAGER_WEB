@@ -15,8 +15,8 @@ class EngineV2Tests(unittest.TestCase):
         x=simulate_possession(a,b,random.Random(4))
         y=simulate_possession(a,b,random.Random(4))
         self.assertEqual(x,y)
-        self.assertIn(x.outcome,("made","miss","turnover"))
-        self.assertIn(x.points,(0,2,3))
+        self.assertIn(x.outcome,("made","miss","turnover","foul"))
+        self.assertTrue(0<=x.points<=4)
 
     def test_pressure_delay_and_fatigue(self):
         a=Player("attacker")
@@ -67,7 +67,7 @@ class OffensiveDefensiveActionTests(unittest.TestCase):
         a,b=lineup("A"),lineup("B")
         for seed in range(300):
             r=simulate_possession(a,b,random.Random(seed),max_actions=2)
-            self.assertIn(r.outcome,("made","miss","turnover"))
+            self.assertIn(r.outcome,("made","miss","turnover","foul"))
             self.assertLessEqual(sum(e.startswith("offense: ") and len(e.split())==3 and e.split()[2] in {"three","mid","drive","post","pass","screen","cut","handoff"} and e.split()[1] not in {"dribble"} for e in r.events),2)
 
 class RulesTests(unittest.TestCase):
