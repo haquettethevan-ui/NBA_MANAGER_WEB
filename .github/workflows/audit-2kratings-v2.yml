@@ -7,6 +7,7 @@ on:
       - 'scripts/audit_2kratings_v2.py'
       - 'scripts/apply_tyler_nickel_placeholder.py'
       - 'scripts/restore_verified_v2_attributes.py'
+      - 'experimental/test_real_games_v2.py'
   workflow_dispatch:
 permissions:
   contents: write
@@ -50,6 +51,10 @@ jobs:
           assert all(isinstance(n, int) and n >= 0 for n in score)
           print("V2 real-player import verified:", sum(map(len, rosters.values())), "players, sample score", score)
           PY
+      - name: Benchmark real NBA matchups with 48-minute rotations
+        env:
+          PYTHONPATH: experimental
+        run: python experimental/test_real_games_v2.py > data/v2_real_games_benchmark.json
       - name: Persist isolated V2 candidate on experimental branch
         run: |
           git config user.name 'github-actions[bot]'
@@ -68,5 +73,6 @@ jobs:
             data/players_2k27_v2_candidate.json
             data/scrape_report.json
             data/audit_2kratings_v2.json
+            data/v2_real_games_benchmark.json
           if-no-files-found: warn
           retention-days: 14
