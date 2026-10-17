@@ -61,6 +61,7 @@ class PossessionResult:
     assists: int = 0
     turnovers: int = 0
     offensive_rebounds: int = 0
+    offensive_fouls: int = 0
     fouls_drawn: int = 0
     fouled_by: str | None = None
     free_throws_attempted: int = 0
@@ -288,6 +289,7 @@ def simulate_game(home, away, seed=0, possessions_per_team=100, tactics=None):
             stats[side]["turnovers"]+=r.turnovers
             stats[side]["offensive_rebounds"]+=r.offensive_rebounds
             stats[side]["fouls_drawn"]+=r.fouls_drawn
+            stats[side]["offensive_fouls"]+=r.offensive_fouls
             stats[side]["free_throws_attempted"]+=r.free_throws_attempted
             stats[side]["free_throws_made"]+=r.free_throws_made
             # Fatigue depends on actual actions and stamina; recovery is outside scope.
