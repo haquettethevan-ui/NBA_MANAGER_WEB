@@ -23,11 +23,32 @@ def rotation_for(roster):
     quality=[(p.three_point+p.close_shot+p.perimeter_defense+p.interior_defense)/4
              for p in roster]
     rank=sorted(range(len(roster)),key=lambda i:(-quality[i],i))
-    # Limit the candidate pool but retain enough depth at each position.
-    pool=set(rank[:12])
+    # A normal nine-man rotation, expanded to ten only when positional depth
+    # makes that necessary. Never select twelve to fourteen players by default.
+    pool=list(rank[:9])
     for pos in POSITIONS:
-        pool.update([i for i in rank if pos in eligible[i]][:3])
-    candidates=[[i for i in rank if i in pool and pos in eligible[i]] for pos in POSITIONS]
+        if not any(pos in eligible[i] for i in pool):
+            replacement=next((i for i in rank if pos in eligible[i]),None)
+            if replacement is None:
+                raise ValueError("Missing a legal player for a required position")
+            pool.append(replacement)
+    # Ensure two eligible players for each position when possible.
+    for pos in POSITIONS:
+        if sum(pos in eligible[i] for i in pool)<2 and len(pool)<10:
+            replacement=next((i for i in rank if i not in pool and pos in eligible[i]),None)
+            if replacement is not None:
+                pool.append(replacement)
+    pool=pool[:10]
+    targets=([36,33,30,30,27,24,21,21,18] if len(pool)==9
+             else [36,33,30,30,27,24,21,15,12,12])
+    # If a very unusual roster offers fewer than nine players, distribute
+    # the 240 minutes across those available without inventing players.
+    if len(pool)<9:
+        targets=[(240//len(pool)//3)*3]*len(pool)
+        for j in range((240-sum(targets))//3):
+            targets[j%len(pool)]+=3
+    target_by_player=dict(zip(pool,targets))
+    candidates=[[i for i in pool if pos in eligible[i]] for pos in POSITIONS]
     if any(not slot for slot in candidates):
         raise ValueError("Missing a legal player for a required position")
     played=[0]*len(roster)
@@ -50,7 +71,7 @@ def rotation_for(roster):
                 if i in used:
                     continue
                 # Penalize heavy minutes and long uninterrupted stints.
-                value=quality[i]*0.12-played[i]*0.75-consecutive[i]*1.8
+                value=(quality[i]*0.12 + (target_by_player[i]-played[i])*2.0\n                       -consecutive[i]*0.55\n                       -max(0,played[i]+3-target_by_player[i])*25)
                 assign(slot+1,lineup+[i],used|{i},score+value)
         assign(0,[],set(),0.0)
         if best is None:
